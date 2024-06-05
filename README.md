@@ -21,9 +21,7 @@ The user-friendliness of data processing activities is improved as a result of t
 ![Picture3](https://github.com/vcipi/blockly_unix/assets/108274884/67304620-7e13-4718-973e-55cf3f2e296c)
 
 
-# Braches
-There are two main branches for **blockly_unix**.
-
-**master** - This is the stable current release of the application.
-
-**develop** - This is where most of our work happens. Pull requests should always be made against develop. This branch will generally be usable, but may be less stable than the master branch. Once something is in develop we expect it to merge to master in the next release.
+# Further information
+The work behind this project is further documented in MSc theses by
+[Klenti Cipi](http://www.pyxida.aueb.gr/index.php?op=view_object&object_id=11051) and
+[Pantelis Kakavas](http://www.pyxida.aueb.gr/index.php?op=view_object&object_id=11053).
