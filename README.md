@@ -1,5 +1,7 @@
-# visual-development-of-data-processing-pipelines-using-Blockly
-A development environment based on **Blockly** where users can easily construct data processing pipelines by visually plugging together processing blocks. The pipeline will be implemented underneath using Unix tools.
+ # Visual development of data processing pipelines using Blockly
+
+This is a development environment based on **Blockly** where users can easily construct data processing pipelines
+by visually plugging together processing blocks. The pipeline will be implemented underneath using Unix tools.
 ![Picture2](https://github.com/vcipi/blockly_unix/assets/108274884/8bb6be00-a88b-4145-bb61-8be70e9b5c58)
 
 # Summary
