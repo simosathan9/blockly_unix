@@ -432,9 +432,9 @@ function handleMainBlocks(block,blockDefinition,patternValue,regexStringValue) {
 						
 						value = (inputValue !== '') ? blockDefinition.unix_description[0][input.name].replace("str",inputValue) : '';
 					}
-			  } else {
-				  value = '';
-			  }
+				} else {
+					value = '';
+				}
 			}
 
 			console.log("handleMainBlocks - value:", value);
