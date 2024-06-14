@@ -98,7 +98,7 @@ var grepBlock = {
   style: "Data Processing",
   previousStatement: "Action",
   nextStatement: "Action",
-  tooltip: "search in a file with a pattern",
+  tooltip: "%{BKY_GREP_TOOLTIP}",
   helpUrl: "" // URL to further information or documentation.
 };
 
