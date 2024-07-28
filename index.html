@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blockly Demo: Unix</title>
+    <meta name="x-auth-token" content="" />
     <script src="https://unpkg.com/blockly@latest/blockly_compressed.js"></script>
     <script src="https://unpkg.com/blockly@latest/blocks_compressed.js"></script>
     <script src="https://unpkg.com/blockly@latest/javascript_compressed.js"></script>
+    <script src="https://unpkg.com/@blockly/workspace-minimap@latest"></script>
+    <script
+      src="https://unpkg.com/@blockly/plugin-toolbox-search@latest"
+      type="application/javascript"
+    ></script>
+    <script src="https://unpkg.com/@blockly/plugin-scroll-options@latest"></script>
+    <script src="https://unpkg.com/@blockly/workspace-backpack@latest"></script>
+    <script src="https://unpkg.com/@blockly/plugin-cross-tab-copy-paste@latest"></script>
+    <script src="js/el.js"></script>
     <!-- <script src="https://unpkg.com/@blockly/block-plus-minus"></script> -->
 
     <!-- BLOCKS DEFINITION -->
@@ -56,6 +66,53 @@
     <script src="blocks/NFBlock.js"></script>
     <script src="blocks/xargsBlock.js"></script>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/auth-token')
+          .then((response) => response.json())
+          .then((data) => {
+            const token = data.authToken;
+            const user = data.user;
+            if (token) {
+              // User is authenticated
+              document.getElementById('logoutButton').style.display =
+                'inline-block';
+              document
+                .getElementById('logoutButton')
+                .addEventListener('click', () => {
+                  document.getElementById('logoutForm').submit();
+                });
+              document.getElementById('helloMessage').style.display = 'flex';
+              document.getElementById('welcome').innerHTML =
+                `Welcome ${user.username} !`;
+              // Use the token as needed in your client-side JavaScript
+              console.log('Token:', token);
+            } else {
+              // User is not authenticated
+              document.getElementById('helloMessage').style.display = 'flex';
+              document.getElementById('loginButton').style.display =
+                'inline-block';
+              document
+                .getElementById('loginButton')
+                .addEventListener('click', () => {
+                  window.location.href = '/login'; // Redirect to login page
+                });
+              document.getElementById('registerButton').style.display =
+                'inline-block';
+              document
+                .getElementById('registerButton')
+                .addEventListener('click', () => {
+                  window.location.href = '/register'; // Redirect to login page
+                });
+              document.getElementById('logoutButton').style.display = 'none';
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching the token:', error);
+          });
+      });
+    </script>
+
     <!-- END OF BLOCK DEFINITION -->
 
     <link
@@ -65,32 +122,112 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="buttonContainer">
-      <button id="resetButton" class="icon-button" title="Reset Workspace">
-        <i class="fas fa-undo"></i>
-      </button>
-      <button id="executeButton" class="icon-button" title="Execute">
-        <i class="fas fa-play"></i>
-      </button>
+    <div id="navbar">
+      <div id="helloMessage" style="background-color: #f5f5f5; display: none">
+        <span id="welcome"></span>
+        <form
+          id="loginForm"
+          action="/login"
+          method="POST"
+          style="display: none"
+        >
+          <input type="hidden" name="_method" value="POST" />
+        </form>
+        <button
+          id="loginButton"
+          class="icon-button"
+          title="Login"
+          type="button"
+        >
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+        <form
+          id="registerForm"
+          action="/register"
+          method="POST"
+          style="display: none"
+        >
+          <input type="hidden" name="_method" value="POST" />
+        </form>
+        <button
+          id="registerButton"
+          class="icon-button"
+          title="Register"
+          type="button"
+        >
+          <i class="fas fa-user-plus"></i>
+        </button>
+      </div>
+      <div id="buttonContainer" style="background-color: #f5f5f5">
+        <form
+          id="logoutForm"
+          action="/logout"
+          method="DELETE"
+          style="display: none"
+        >
+          <input type="hidden" name="_method" value="DELETE" />
+        </form>
+
+        <button
+          id="logoutButton"
+          class="icon-button"
+          title="Sign Out"
+          type="button"
+          style="display: none"
+        >
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+
+        <button id="resetButton" class="icon-button" title="Reset Workspace">
+          <i class="fas fa-undo"></i>
+        </button>
+        <button id="executeButton" class="icon-button" title="Execute">
+          <i class="fas fa-play"></i>
+        </button>
+        <label for="themeDropdown"></label>
+        <select id="themeDropdown" class="icon-dropdown">
+          <option value="halloween">Classic Theme</option>
+          <option value="dark">Dark Theme</option>
+          <option value="tritanopia">Tritanopia</option>
+          <option value="dark-tritanopia">Dark Tritanopia</option>
+        </select>
+
+        <label for="languageDropdown"></label>
+        <select id="languageMenu" class="icon-dropdown">
+          <option value="en">English</option>
+          <option value="el">Ελληνικά</option>
+        </select>
+      </div>
     </div>
 
     <div id="blocklyArea">
       <div id="blocklyDiv"></div>
     </div>
-    <div id="resultsWrapper">
-      <div id="resultsArea">Results will appear here...</div>
+    <div id="resultsWrapper" style="background-color: #fff">
+      <div
+        id="resultsArea"
+        style="background-color: #fff; border: 1px solid #ddd"
+      >
+        Results will appear here...
+      </div>
       <button
         id="copyButton"
-        style="position: absolute; right: 10px; bottom: 21px"
+        style="
+          position: absolute;
+          right: 10px;
+          bottom: 21px;
+          background-color: #fff;
+        "
       >
         <img src="img/copy_icon.png" alt="copy" />
       </button>
     </div>
 
     <script>
-      var toolboxXML = `
+      function generateToolboxXML(colors) {
+        return `
         <xml>
-            <category name="Text Processing" colour="#4CAF50">
+            <category name="Text Processing" colour="${colors.textProcessing}">
                 <block type="head"></block>
                 <block type="tail"></block>
                 <block type="wc"></block>
@@ -103,13 +240,13 @@
                 <block type="echo"></block>
             </category>
 
-            <category name="File inputs" colour="#5C81A6">
+            <category name="File inputs" colour="${colors.fileInputs}">
                 <block type="filename"></block>
                 <block type="filenamesCreate"></block>
                 <block type="fileEndStart"></block>
             </category>
 
-            <category name="File and Directory Operations" colour="#FE9B13">
+            <category name="File and Directory Operations" colour="${colors.fileDirectoryOps}">
                 <block type="ls"></block>
                 <block type="find"></block>
                 <block type="cd"></block>
@@ -119,13 +256,13 @@
                 <block type="touch"></block>
             </category>
 
-            <category name="I/O Redirection" colour=#1976D2>
+            <category name="I/O Redirection" colour="${colors.ioRedirection}">
                 <block type="save"></block>
                 <block type="append"></block>
                 <block type="tee"></block>
             </category>
 
-            <category name="Regular Expressions" colour="#FF5733">
+            <category name="Regular Expressions" colour="${colors.regularExpressions}">
                 <block type="regOutput"></block>
                 <block type="regPattern"></block>
                 <block type="regOr"></block>
@@ -141,17 +278,17 @@
                 <block type="regCommon"></block>
             </category>
 
-            <category name="Data Processing" colour="#3B7C09">
+            <category name="Data Processing" colour="${colors.dataProcessing}">
                 <block type="beginEnd"></block>
                 <block type="awk"></block>
-				<block type="condOutput"></block>
+                <block type="condOutput"></block>
                 <block type="column"></block>
                 <block type="grep"></block>
                 <block type="NR"></block>
                 <block type="NF"></block>
                 <block type="xargs"></block>
 
-                <category name="Text output" colour="160">
+                <category name="Text output" colour="${colors.textOutput}">
                     <block type="text"></block>
                     <block type="text_print">
                         <value name="TEXT">
@@ -163,19 +300,19 @@
                     <block type="multiplePrint"></block>
                 </category>
 
-                <category name="Logic" colour="210">
+                <category name="Logic" colour="${colors.logic}">
                     <block type="controls_if"></block>
                     <block type="logic_compare"></block>
                     <block type="logic_operation"></block>
                     <block type="logic_negate"></block>
                 </category>
 
-                <category name="Loops" colour="120">
+                <category name="Loops" colour="${colors.loops}">
                     <block type="controls_whileUntil"></block>
                     <block type="controls_forEach"></block>
                 </category>
 
-                <category name="Math" colour="230">
+                <category name="Math" colour="${colors.math}">
                     <block type="math_number"></block>
                     <block type="math_arithmetic">
                         <value name="A">
@@ -192,68 +329,105 @@
                 </category>
             </category>
 
-            <category name="Variables" colour="330" custom="VARIABLE"></category>
-</xml>`;
+            <category name="Variables" colour="${colors.variables}" custom="VARIABLE"></category>
+        </xml>
+    `;
+      }
 
+      const colors1 = {
+        textProcessing: '#4CAF50',
+        fileInputs: '#5C81A6',
+        fileDirectoryOps: '#FE9B13',
+        ioRedirection: '#1976D2',
+        regularExpressions: '#FF5733',
+        dataProcessing: '#3B7C09',
+        textOutput: '160',
+        logic: '210',
+        loops: '120',
+        math: '230',
+        variables: '330'
+      };
+
+      const colors2 = {
+        textProcessing: '#058863',
+        fileInputs: '#2d676f',
+        fileDirectoryOps: '#4b2d84',
+        ioRedirection: '#b69ce8',
+        regularExpressions: '#9fd2f1',
+        dataProcessing: '#3B7C09',
+        textOutput: '#aa1846',
+        logic: '#e6da39',
+        loops: '#00e6e6',
+        math: '#66004d',
+        variables: '330'
+      };
+
+      const toolboxXML = generateToolboxXML(colors1);
+      const toolboxXML2 = generateToolboxXML(colors2);
+
+      const baseBlockStyles = {
+        'Text Processing': {
+          colourPrimary: '#4CAF50',
+          colourSecondary: '#FFCDD2',
+          colourTertiary: '#CDB6E9'
+        },
+        'File inputs': {
+          colourPrimary: '#5C81A6',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Data Processing': {
+          colourPrimary: '#3B7C09',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'File and Directory Operations': {
+          colourPrimary: '#FE9B13',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'I/O Redirection': {
+          colourPrimary: '#1976D2',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Regular Expressions': {
+          colourPrimary: '#FF5733',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Text output': {
+          colourPrimary: '#FF5733',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Math - logic - loops': {
+          colourPrimary: '#D800FF',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        }
+      };
+
+      // Create the Halloween theme using the base block styles
       Blockly.Themes.Halloween = Blockly.Theme.defineTheme('halloween', {
         base: Blockly.Themes.Classic,
-        // 'categoryStyles': {
+        blockStyles: baseBlockStyles
+        // Uncomment and modify the following lines if categoryStyles or componentStyles are needed
+        // categoryStyles: {
         //     'I/O Redirection': {
-        //     'colour': "#FE9B13"
-        //     }},
+        //         'colour': "#FE9B13"
+        //     },
         //     'logic_category': {
-        //     'colour': "#8b4513",
+        //         'colour': "#8b4513",
         //     },
         //     'loop_category': {
-        //     'colour': "#85E21F",
+        //         'colour': "#85E21F",
         //     },
         //     'text_category': {
-        //     'colour': "#FE9B13",
+        //         'colour': "#FE9B13",
         //     },
         // },
-        blockStyles: {
-          'Text Processing': {
-            colourPrimary: '#4CAF50',
-            colourSecondary: '#FFCDD2',
-            colourTertiary: '#CDB6E9',
-          },
-          'File inputs': {
-            colourPrimary: '#5C81A6',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'Data Processing': {
-            colourPrimary: '#3B7C09',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'File and Directory Operations': {
-            colourPrimary: '#FE9B13',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'I/O Redirection': {
-            colourPrimary: '#1976D2',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'Regular Expressions': {
-            colourPrimary: '#FF5733',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'Text output': {
-            colourPrimary: '#FF5733',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-          'Math - logic - loops': {
-            colourPrimary: '#D800FF',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF',
-          },
-        },
-        // 'componentStyles': {
+        // componentStyles: {
         //     'workspaceBackgroundColour': '#ff7518',
         //     'toolboxBackgroundColour': '#F9C10E',
         //     'toolboxForegroundColour': '#fff',
@@ -269,6 +443,316 @@
         // }
       });
 
+      // Create the Dark theme using the base block styles and adding dark-specific properties
+      Blockly.Themes.Dark = Blockly.Theme.defineTheme('dark', {
+        base: Blockly.Themes.Classic,
+        componentStyles: {
+          workspaceBackgroundColour: '#1e1e1e',
+          toolboxBackgroundColour: 'blackBackground',
+          toolboxForegroundColour: '#fff',
+          flyoutBackgroundColour: '#252526',
+          flyoutForegroundColour: '#ccc',
+          flyoutOpacity: 1,
+          scrollbarColour: '#797979',
+          insertionMarkerColour: '#fff',
+          insertionMarkerOpacity: 0.3,
+          scrollbarOpacity: 0.4,
+          cursorColour: '#d0d0d0',
+          blackBackground: '#333'
+        },
+        blockStyles: baseBlockStyles
+      });
+
+      const tritanopiaThemeConfig = {
+        base: Blockly.Themes.Classic,
+        blockStyles: {
+          'Text Processing': {
+            colourPrimary: '#058863',
+            colourSecondary: '#5ecfaf',
+            colourTertiary: '#04684c'
+          },
+          'File inputs': {
+            colourPrimary: '#2d676f',
+            colourSecondary: '#ff0000',
+            colourTertiary: '#C5EAFF'
+          },
+          'Data Processing': {
+            colourPrimary: '#3B7C09',
+            colourSecondary: '#ff0000',
+            colourTertiary: '#C5EAFF'
+          },
+          Logic: {
+            colourPrimary: '#e6da39',
+            colourSecondary: '#e6da39',
+            colourTertiary: '#e6da39'
+          },
+          Loops: {
+            colourPrimary: '#00e6e6',
+            colourSecondary: '#00e6e6',
+            colourTertiary: '#00e6e6'
+          },
+          Math: {
+            colourPrimary: '#66004d',
+            colourSecondary: '#66004d',
+            colourTertiary: '#66004d'
+          },
+          'File and Directory Operations': {
+            colourPrimary: '#4b2d84',
+            colourSecondary: '#816ea7',
+            colourTertiary: '#83759e'
+          },
+          'I/O Redirection': {
+            colourPrimary: '#b69ce8',
+            colourSecondary: '#ccbaef',
+            colourTertiary: '#9176c5'
+          },
+          'Regular Expressions': {
+            colourPrimary: '#9fd2f1',
+            colourSecondary: '#c0e0f4',
+            colourTertiary: '#74bae5'
+          },
+          'Text output': {
+            colourPrimary: '#aa1846',
+            colourSecondary: '#aa1846',
+            colourTertiary: '#aa1846'
+          },
+          Variables: {
+            colourPrimary: '#330',
+            colourSecondary: '#330',
+            colourTertiary: '#330'
+          }
+        }
+      };
+
+      // Create the Tritanopia theme using the base configuration
+      Blockly.Themes.Tritanopia = Blockly.Theme.defineTheme(
+        'tritanopia',
+        tritanopiaThemeConfig
+      );
+
+      // Create the DarkTritanopia theme using the base configuration and adding dark-specific properties
+      const darkTritanopiaConfig = {
+        ...tritanopiaThemeConfig,
+        componentStyles: {
+          workspaceBackgroundColour: '#1e1e1e',
+          toolboxBackgroundColour: 'blackBackground',
+          toolboxForegroundColour: '#fff',
+          flyoutBackgroundColour: '#252526',
+          flyoutForegroundColour: '#ccc',
+          flyoutOpacity: 1,
+          scrollbarColour: '#797979',
+          insertionMarkerColour: '#fff',
+          insertionMarkerOpacity: 0.3,
+          scrollbarOpacity: 0.4,
+          cursorColour: '#d0d0d0',
+          blackBackground: '#333'
+        }
+      };
+
+      Blockly.Themes.DarkTritanopia = Blockly.Theme.defineTheme(
+        'dark-tritanopia',
+        darkTritanopiaConfig
+      );
+
+      const toolboxCategories = {
+        kind: 'categoryToolbox',
+        contents: [
+          {
+            kind: 'category',
+            name: 'Text Processing',
+            colour: '#4CAF50',
+            contents: [
+              { kind: 'block', type: 'head' },
+              { kind: 'block', type: 'tail' },
+              { kind: 'block', type: 'wc' },
+              { kind: 'block', type: 'sort' },
+              { kind: 'block', type: 'uniq' },
+              { kind: 'block', type: 'findDuplicates' },
+              { kind: 'block', type: 'showUniqs' },
+              { kind: 'block', type: 'cut' },
+              { kind: 'block', type: 'sed' },
+              { kind: 'block', type: 'echo' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'File inputs',
+            colour: '#5C81A6',
+            contents: [
+              { kind: 'block', type: 'filename' },
+              { kind: 'block', type: 'filenamesCreate' },
+              { kind: 'block', type: 'fileEndStart' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'File and Directory Operations',
+            colour: '#FE9B13',
+            contents: [
+              { kind: 'block', type: 'ls' },
+              { kind: 'block', type: 'find' },
+              { kind: 'block', type: 'cd' },
+              { kind: 'block', type: 'mkdir' },
+              { kind: 'block', type: 'gzip' },
+              { kind: 'block', type: 'cat' },
+              { kind: 'block', type: 'touch' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'I/O Redirection',
+            colour: '#1976D2',
+            contents: [
+              { kind: 'block', type: 'save' },
+              { kind: 'block', type: 'append' },
+              { kind: 'block', type: 'tee' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Regular Expressions',
+            colour: '#FF5733',
+            contents: [
+              { kind: 'block', type: 'regOutput' },
+              { kind: 'block', type: 'regPattern' },
+              { kind: 'block', type: 'regOr' },
+              { kind: 'block', type: 'regNegation' },
+              { kind: 'block', type: 'regCapturingGroup' },
+              { kind: 'block', type: 'regStart' },
+              { kind: 'block', type: 'regEnd' },
+              { kind: 'block', type: 'regFor' },
+              { kind: 'block', type: 'regRange' },
+              { kind: 'block', type: 'regQuant' },
+              { kind: 'block', type: 'regAnyOne' },
+              { kind: 'block', type: 'regLookahead' },
+              { kind: 'block', type: 'regCommon' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Data Processing',
+            //colour: '#3B7C09',
+            contents: [
+              { kind: 'block', type: 'beginEnd' },
+              { kind: 'block', type: 'awk' },
+              { kind: 'block', type: 'condOutput' },
+              { kind: 'block', type: 'column' },
+              { kind: 'block', type: 'grep' },
+              { kind: 'block', type: 'NR' },
+              { kind: 'block', type: 'NF' },
+              { kind: 'block', type: 'xargs' },
+              {
+                kind: 'category',
+                name: 'Text output',
+                colour: '160',
+                contents: [
+                  { kind: 'block', type: 'text' },
+                  {
+                    kind: 'block',
+                    type: 'text_print',
+                    inputs: {
+                      TEXT: {
+                        shadow: {
+                          type: 'text',
+                          fields: {
+                            TEXT: 'abc'
+                          }
+                        }
+                      }
+                    }
+                  },
+                  { kind: 'block', type: 'multiplePrint' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Logic',
+                colour: '210',
+                contents: [
+                  { kind: 'block', type: 'controls_if' },
+                  { kind: 'block', type: 'logic_compare' },
+                  { kind: 'block', type: 'logic_operation' },
+                  { kind: 'block', type: 'logic_negate' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Loops',
+                colour: '120',
+                contents: [
+                  { kind: 'block', type: 'controls_whileUntil' },
+                  { kind: 'block', type: 'controls_forEach' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Math',
+                colour: '230',
+                contents: [
+                  { kind: 'block', type: 'math_number' },
+                  {
+                    kind: 'block',
+                    type: 'math_arithmetic',
+                    inputs: {
+                      A: {
+                        shadow: {
+                          type: 'math_number',
+                          fields: {
+                            NUM: 1
+                          }
+                        }
+                      },
+                      B: {
+                        shadow: {
+                          type: 'math_number',
+                          fields: {
+                            NUM: 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Variables',
+            colour: '330',
+            custom: 'VARIABLE'
+          },
+          {
+            kind: 'sep'
+          }
+        ]
+      };
+
+      const toolbox = { ...toolboxCategories };
+      toolbox.contents.push({
+        kind: 'search',
+        name: 'search',
+        contents: []
+      });
+
       var workspace = Blockly.inject('blocklyDiv', {
         // renderer : 'Zelos',
         toolbox: toolboxXML,
@@ -278,10 +762,16 @@
         comments: true,
         disable: true,
         maxBlocks: Infinity,
+        grid: {
+          spacing: 20,
+          length: 1,
+          colour: '#ccc',
+          snap: true
+        },
         move: {
           scrollbars: true, // Enables or disables scrollbars on the workspace
           drag: true, // Allows workspace to be moved (dragged) with the mouse
-          wheel: true, // Enables or disables scrolling with the mouse wheel
+          wheel: true // Enables or disables scrolling with the mouse wheel
         },
         zoom: {
           controls: true,
@@ -289,9 +779,107 @@
           startScale: 1,
           maxScale: 3,
           minScale: 0.3,
-          scaleSpeed: 1.2,
+          scaleSpeed: 1.2
         },
+
+        plugins: {
+          blockDragger: ScrollBlockDragger,
+          metricsManager: ScrollMetricsManager
+        }
       });
+
+      const backpackOptions = {
+        allowEmptyBackpackOpen: false,
+        useFilledBackpackImage: true,
+        skipSerializerRegistration: false,
+        contextMenu: {
+          emptyBackpack: true,
+          removeFromBackpack: true,
+          copyToBackpack: true,
+          copyAllToBackpack: true,
+          pasteAllToBackpack: true,
+          disablePreconditionChecks: false
+        }
+      };
+
+      const backpack = new Backpack(workspace, backpackOptions);
+      backpack.init();
+
+      const plugin = new ScrollOptions(workspace);
+      plugin.init();
+
+      const minimap = new Minimap(workspace);
+      minimap.init();
+
+      const crossTabCopyPasteOptions = {
+        contextMenu: true,
+        shortcut: true
+      };
+
+      const crossTabCopyPaste = new CrossTabCopyPaste();
+      crossTabCopyPaste.init(crossTabCopyPasteOptions, () => {
+        console.log(
+          'Use this error callback to handle TypeError while pasting'
+        );
+      });
+
+      // Optional: Remove the duplication command from Blockly's context menu
+      Blockly.ContextMenuRegistry.registry.unregister('blockDuplicate');
+
+      // Optional: Change the position of the menu items added to the context menu
+      Blockly.ContextMenuRegistry.registry.getItem(
+        'blockCopyToStorage'
+      ).weight = 2;
+      Blockly.ContextMenuRegistry.registry.getItem(
+        'blockPasteFromStorage'
+      ).weight = 3;
+
+      document
+        .getElementById('themeDropdown')
+        .addEventListener('change', function (event) {
+          var selectedTheme = this.value;
+          var welcomeMessageContainer = document.getElementById('helloMessage');
+          var welcomeMessage = document.getElementById('welcome');
+          var buttonContainer = document.getElementById('buttonContainer');
+          var resultsWrapperContainer =
+            document.getElementById('resultsWrapper');
+          var resultsAreaContainer = document.getElementById('resultsArea');
+          var copyButton = document.getElementById('copyButton');
+          if (selectedTheme === 'halloween' || selectedTheme === 'tritanopia') {
+            if (selectedTheme === 'halloween') {
+              workspace.updateToolbox(toolboxXML);
+              workspace.setTheme(Blockly.Themes.Halloween);
+            } else {
+              workspace.updateToolbox(toolboxXML2);
+              workspace.setTheme(Blockly.Themes.Tritanopia);
+            }
+            welcomeMessageContainer.style.backgroundColor = '#f5f5f5';
+            welcomeMessage.style.color = '#000';
+            buttonContainer.style.backgroundColor = '#f5f5f5';
+            resultsWrapperContainer.style.backgroundColor = '#fff';
+            resultsAreaContainer.style.backgroundColor = '#fff';
+            resultsAreaContainer.style.color = '#000';
+          } else if (
+            selectedTheme === 'dark' ||
+            selectedTheme === 'dark-tritanopia'
+          ) {
+            if (selectedTheme === 'dark') {
+              workspace.updateToolbox(toolboxXML);
+              workspace.setTheme(Blockly.Themes.Dark);
+            } else {
+              workspace.updateToolbox(toolboxXML2);
+              workspace.setTheme(Blockly.Themes.DarkTritanopia);
+            }
+            welcomeMessageContainer.style.backgroundColor = '#252526';
+            welcomeMessage.style.color = '#f5f5f5';
+            buttonContainer.style.backgroundColor = '#252526';
+            resultsWrapperContainer.style.backgroundColor = '#252526';
+            resultsAreaContainer.style.backgroundColor = '#252526';
+            resultsAreaContainer.style.color = '#fff';
+            resultsAreaContainer.style.border = '1px solid #ddd';
+            copyButton.style.backgroundColor = '#fff';
+          }
+        });
     </script>
     <script src="main.js"></script>
   </body>

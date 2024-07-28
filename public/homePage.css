@@ -1,0 +1,187 @@
+/* Globals */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #007bff; /* Updated color for better visibility */
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #f8f9fa; /* Light background color */
+  border: 1px solid #ccc; /* Subtle border */
+}
+
+/* Navbar link color */
+.nav-link.active {
+  color: #007bff; /* Consistent link color */
+}
+
+/* Navbar button color */
+.btn-outline-primary {
+  color: #007bff; /* Text color for buttons */
+  border-color: #007bff; /* Border color for buttons */
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+/* Span styling */
+span {
+  font-size: large;
+  font-weight: bold;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  margin: 0; /* Ensure no default margin */
+  background-color: #fff; /* Light background for a modern look */
+}
+
+body {
+  color: #333; /* Dark text color for better readability */
+  font-family: Arial, sans-serif;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+/* Flexbox Layout Styles */
+.container {
+  margin-top: 20px;
+  height: 100%; /* Ensure container expands to fill available space */
+}
+
+.bg-light {
+  background-color: #fff !important;
+}
+
+.border {
+  border: 1px solid #fff;
+}
+
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+/* Responsive Flexbox Items */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  flex: 1 1 50%;
+}
+
+/* Ensure the image is displayed correctly */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Image Container Styles */
+.image-container {
+  width: 80%; /* Control the max width of the image container */
+  margin: 0 auto; /* Center the image container horizontally */
+}
+
+.image-container img {
+  width: 100%; /* Ensure the image fits within the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: add rounded corners to the image */
+}
+
+/* Enhanced Text Styling */
+.display-4 {
+  font-size: 2rem; /* Larger font size for the heading */
+  font-weight: 500; /* Bold font weight */
+  color: #000; /* Primary color for a striking appearance */
+  margin-bottom: 1rem; /* Space below the heading */
+}
+
+.lead {
+  font-size: 1.25rem; /* Slightly larger font size for emphasis */
+  font-weight: 300; /* Light font weight for a softer look */
+  color: #333; /* Dark text color for readability */
+  margin-bottom: 2rem; /* Space below the paragraph */
+}
+
+/* General Styles for Feature Box Container */
+.feature-box {
+  background-color: #f8f9fa; /* Light background color for the feature box */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover Effect for Feature Box */
+.feature-box:hover {
+  background-color: #e9ecef; /* Slightly darker background on hover */
+  transform: translateY(-5px); /* Lift the box on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Styling for Feature Box Header */
+.feature-box h3 {
+  font-size: 1.5rem; /* Larger font size for the heading */
+  color: #333; /* Darker text color for better readability */
+  margin-bottom: 1rem; /* Space below the heading */
+}
+
+/* Styling for Feature Box Paragraph */
+.feature-box p {
+  font-size: 1rem; /* Normal font size for the paragraph */
+  color: #666; /* Lighter text color for the paragraph */
+  line-height: 1.5; /* Increase line height for better readability */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .feature-box {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .feature-box h3 {
+    font-size: 1.25rem; /* Smaller font size for the heading */
+  }
+
+  .feature-box p {
+    font-size: 0.875rem; /* Smaller font size for the paragraph */
+  }
+}
