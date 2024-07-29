@@ -10,6 +10,37 @@
     <!-- Link to custom CSS -->
     <link rel="stylesheet" href="homePage.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/auth-token')
+          .then((response) => response.json())
+          .then((data) => {
+            const token = data.authToken;
+            const user = data.user;
+            if (!token) {
+              // User is authenticated
+              document.getElementById('loginHomePageButton').style.display = 'block';
+              document.getElementById('registerHomePageButton').style.display = 'block';
+              document.getElementById('registerSecondButtonHomePage').style.display = 'inline-block';
+              document.getElementById('getStartedButton').style.display = 'inline-block';
+              console.log('Token:', token);
+            } else {
+              document.getElementById('continueWithBlocklyButton').style.display = 'block';
+              document.getElementById('logoutHomePageButton').style.display = 'block';
+              document
+                .getElementById('logoutHomePageButton')
+                .addEventListener('click', () => {
+                  event.preventDefault();
+                  document.getElementById('logoutForm').submit();
+                });
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching the token:', error);
+          });
+      });
+    </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -36,8 +67,8 @@
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <a href="/login" class="btn btn-primary me-2">Login</a>
-                    <a href="/register" class="btn btn-outline-primary me-2">Register</a>
+                    <a href="/login" class="btn btn-primary me-2" id="loginHomePageButton" style="display: none;">Login</a>
+                    <a href="/register" class="btn btn-outline-primary me-2" id="registerHomePageButton" style="display: none;">Register</a>
                     <!--
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -45,6 +76,13 @@
                     </form>
                     -->
                 </div>
+                <div class="d-flex align-items-center">
+                  <a href="/blockly_unix" class="btn btn-primary me-2" id="continueWithBlocklyButton" style="display: none;">Continue Where You Left Off</a>
+                  <a href="/" class="btn btn-outline-primary me-2" id="logoutHomePageButton" style="display: none;">Logout</a>
+                  <form id="logoutForm" action="/logout" method="DELETE" style="display: none;">
+                    <input type="hidden" name="_method" value="DELETE" />
+                  </form>
+              </div>
             </div>
         </div>
     </nav>
@@ -58,8 +96,8 @@
               <div>
                 <h1>Powerful <span class="highlight">coding</span>,  block by block</h1>
                 <h2>Blockly is a visual programming editor by Google that uses drag-and-drop blocks. It’s the engine that powers the most popular coding education programs world wide.</h2>
-                <a href="/blockly_unix" class="btn-get-started scrollto">Get Started</a>
-                <a href="/blockly_unix" class="btn-get-login">Register</a>
+                <a href="/blockly_unix" class="btn-get-started scrollto" id="getStartedButton" style="display: none;">Get Started</a>
+                <a href="/register" id="registerSecondButtonHomePage" class="btn-get-login" style="display: none;">Register</a>
               </div>
             </div>
             <div class="col-lg-10 order-2 order-lg-2 hero-img" data-aos="fade-left">
