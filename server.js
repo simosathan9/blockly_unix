@@ -22,7 +22,7 @@ const initializePassport = require('./passport-config');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
-const jwt = require('jsonwebtoken'); // Example using JSON Web Token for simplicity
+const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 // const mysql = require('mysql');
 
@@ -95,7 +95,7 @@ function addAuthToken(req, res, next) {
   if (req.isAuthenticated()) {
     const token = jwt.sign({ user: req.user.id }, process.env.SECRET_KEY, {
       expiresIn: '10s'
-    }); // Token expires in 10 seconds
+    }); // Token expires in 10 seconds for testing. When in production, set to 20 minutes
     req.authToken = token;
   } else {
     req.authToken = null;
@@ -120,8 +120,8 @@ app.post('/login', checkNotAuthenticated, (req, res, next) => {
       req.flash('success', 'You have successfully logged in.');
       const token = jwt.sign({ user: user.id }, process.env.SECRET_KEY, {
         expiresIn: '10'
-      }); //expires in 20 seconds
-      res.cookie('remember_me', token, { httpOnly: true }); //Cookie expires in 2 hours
+      });
+      res.cookie('remember_me', token, { httpOnly: true });
       res.redirect('/blockly_unix');
     });
   })(req, res, next);
