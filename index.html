@@ -20,6 +20,29 @@
     <!-- <script src="https://unpkg.com/@blockly/block-plus-minus"></script> -->
 
     <!-- BLOCKS DEFINITION -->
+    <script src="blocks/psBlock.js"></script>
+    <script src="blocks/dfBlock.js"></script>
+    <script src="blocks/killBlock.js"></script>
+    <script src="blocks/chmodBlock.js"></script>
+    <script src="blocks/duBlock.js"></script>
+    <script src="blocks/chownBlock.js"></script>
+    <script src="blocks/lnBlock.js"></script>
+    <script src="blocks/mvBlock.js"></script>
+    <script src="blocks/cpBlock.js"></script>
+    <script src="blocks/rmBlock.js"></script>
+    <script src="blocks/tarBlock.js"></script>
+    <script src="blocks/gzipBlock.js"></script>
+    <script src="blocks/unzipBlock.js"></script>
+    <script src="blocks/scpBlock.js"></script>
+    <script src="blocks/sshBlock.js"></script>
+    <script src="blocks/curlBlock.js"></script>
+    <script src="blocks/pingBlock.js"></script>
+    <script src="blocks/journalctlBlock.js"></script>
+    <script src="blocks/uptimeBlock.js"></script>
+    <script src="blocks/whoBlock.js"></script>
+    <script src="blocks/hostnameBlock.js"></script>
+    <script src="blocks/dateBlock.js"></script>
+    <script src="blocks/sleepBlock.js"></script>
     <script src="blocks/beginEndBlock.js"></script>
     <script src="blocks/filenameBlock.js"></script>
     <script src="blocks/headBlock.js"></script>
@@ -554,197 +577,254 @@
         darkTritanopiaConfig
       );
 
-      const toolboxCategories = {
-        kind: 'categoryToolbox',
-        contents: [
-          {
-            kind: 'category',
-            name: 'Text Processing',
-            colour: '#4CAF50',
-            contents: [
-              { kind: 'block', type: 'head' },
-              { kind: 'block', type: 'tail' },
-              { kind: 'block', type: 'wc' },
-              { kind: 'block', type: 'sort' },
-              { kind: 'block', type: 'uniq' },
-              { kind: 'block', type: 'findDuplicates' },
-              { kind: 'block', type: 'showUniqs' },
-              { kind: 'block', type: 'cut' },
-              { kind: 'block', type: 'sed' },
-              { kind: 'block', type: 'echo' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'File inputs',
-            colour: '#5C81A6',
-            contents: [
-              { kind: 'block', type: 'filename' },
-              { kind: 'block', type: 'filenamesCreate' },
-              { kind: 'block', type: 'fileEndStart' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'File and Directory Operations',
-            colour: '#FE9B13',
-            contents: [
-              { kind: 'block', type: 'ls' },
-              { kind: 'block', type: 'find' },
-              { kind: 'block', type: 'cd' },
-              { kind: 'block', type: 'mkdir' },
-              { kind: 'block', type: 'gzip' },
-              { kind: 'block', type: 'cat' },
-              { kind: 'block', type: 'touch' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'I/O Redirection',
-            colour: '#1976D2',
-            contents: [
-              { kind: 'block', type: 'save' },
-              { kind: 'block', type: 'append' },
-              { kind: 'block', type: 'tee' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'Regular Expressions',
-            colour: '#FF5733',
-            contents: [
-              { kind: 'block', type: 'regOutput' },
-              { kind: 'block', type: 'regPattern' },
-              { kind: 'block', type: 'regOr' },
-              { kind: 'block', type: 'regNegation' },
-              { kind: 'block', type: 'regCapturingGroup' },
-              { kind: 'block', type: 'regStart' },
-              { kind: 'block', type: 'regEnd' },
-              { kind: 'block', type: 'regFor' },
-              { kind: 'block', type: 'regRange' },
-              { kind: 'block', type: 'regQuant' },
-              { kind: 'block', type: 'regAnyOne' },
-              { kind: 'block', type: 'regLookahead' },
-              { kind: 'block', type: 'regCommon' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'Data Processing',
-            //colour: '#3B7C09',
-            contents: [
-              { kind: 'block', type: 'beginEnd' },
-              { kind: 'block', type: 'awk' },
-              { kind: 'block', type: 'condOutput' },
-              { kind: 'block', type: 'column' },
-              { kind: 'block', type: 'grep' },
-              { kind: 'block', type: 'NR' },
-              { kind: 'block', type: 'NF' },
-              { kind: 'block', type: 'xargs' },
-              {
-                kind: 'category',
-                name: 'Text output',
-                colour: '160',
-                contents: [
-                  { kind: 'block', type: 'text' },
-                  {
-                    kind: 'block',
-                    type: 'text_print',
-                    inputs: {
-                      TEXT: {
-                        shadow: {
-                          type: 'text',
-                          fields: {
-                            TEXT: 'abc'
-                          }
-                        }
-                      }
-                    }
-                  },
-                  { kind: 'block', type: 'multiplePrint' }
-                ]
-              },
-              {
-                kind: 'category',
-                name: 'Logic',
-                colour: '210',
-                contents: [
-                  { kind: 'block', type: 'controls_if' },
-                  { kind: 'block', type: 'logic_compare' },
-                  { kind: 'block', type: 'logic_operation' },
-                  { kind: 'block', type: 'logic_negate' }
-                ]
-              },
-              {
-                kind: 'category',
-                name: 'Loops',
-                colour: '120',
-                contents: [
-                  { kind: 'block', type: 'controls_whileUntil' },
-                  { kind: 'block', type: 'controls_forEach' }
-                ]
-              },
-              {
-                kind: 'category',
-                name: 'Math',
-                colour: '230',
-                contents: [
-                  { kind: 'block', type: 'math_number' },
-                  {
-                    kind: 'block',
-                    type: 'math_arithmetic',
-                    inputs: {
-                      A: {
-                        shadow: {
-                          type: 'math_number',
-                          fields: {
-                            NUM: 1
-                          }
-                        }
-                      },
-                      B: {
-                        shadow: {
-                          type: 'math_number',
-                          fields: {
-                            NUM: 1
-                          }
-                        }
-                      }
+       const toolboxCategories = {
+  kind: 'categoryToolbox',
+  contents: [
+    {
+      kind: 'category',
+      name: "text",
+      colour: '#4CAF50',
+      contents: [
+        { kind: 'block', type: 'head' },
+        { kind: 'block', type: 'tail' },
+        { kind: 'block', type: 'wc' },
+        { kind: 'block', type: 'sort' },
+        { kind: 'block', type: 'uniq' },
+        { kind: 'block', type: 'findDuplicates' },
+        { kind: 'block', type: 'showUniqs' },
+        { kind: 'block', type: 'cut' },
+        { kind: 'block', type: 'sed' },
+        { kind: 'block', type: 'echo' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'File inputs',
+      colour: '#5C81A6',
+      contents: [
+        { kind: 'block', type: 'filename' },
+        { kind: 'block', type: 'filenamesCreate' },
+        { kind: 'block', type: 'fileEndStart' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'File and Directory Operations',
+      colour: '#FE9B13',
+      contents: [
+        { kind: 'block', type: 'ls' },
+        { kind: 'block', type: 'find' },
+        { kind: 'block', type: 'cd' },
+        { kind: 'block', type: 'mkdir' },
+        { kind: 'block', type: 'gzip' },
+        { kind: 'block', type: 'cat' },
+        { kind: 'block', type: 'touch' },
+        { kind: 'block', type: 'chmod' },
+        { kind: 'block', type: 'chown' },
+        { kind: 'block', type: 'ln' },
+        { kind: 'block', type: 'mv' },
+        { kind: 'block', type: 'cp' },
+        { kind: 'block', type: 'rm' },
+        { kind: 'block', type: 'tar' },
+        { kind: 'block', type: 'unzip' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'I/O Redirection',
+      colour: '#1976D2',
+      contents: [
+        { kind: 'block', type: 'save' },
+        { kind: 'block', type: 'append' },
+        { kind: 'block', type: 'tee' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'Regular Expressions',
+      colour: '#FF5733',
+      contents: [
+        { kind: 'block', type: 'regOutput' },
+        { kind: 'block', type: 'regPattern' },
+        { kind: 'block', type: 'regOr' },
+        { kind: 'block', type: 'regNegation' },
+        { kind: 'block', type: 'regCapturingGroup' },
+        { kind: 'block', type: 'regStart' },
+        { kind: 'block', type: 'regEnd' },
+        { kind: 'block', type: 'regFor' },
+        { kind: 'block', type: 'regRange' },
+        { kind: 'block', type: 'regQuant' },
+        { kind: 'block', type: 'regAnyOne' },
+        { kind: 'block', type: 'regLookahead' },
+        { kind: 'block', type: 'regCommon' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'System Monitoring',
+      colour: '#9C27B0',
+      contents: [
+        { kind: 'block', type: 'ps' },
+        { kind: 'block', type: 'df' },
+        { kind: 'block', type: 'du' },
+        { kind: 'block', type: 'uptime' },
+        { kind: 'block', type: 'who' },
+        { kind: 'block', type: 'hostname' },
+        { kind: 'block', type: 'date' }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'Network Operations',
+      colour: '#FFC107',
+      contents: [
+        { kind: 'block', type: 'scp' },
+        { kind: 'block', type: 'ssh' },
+        { kind: 'block', type: 'curl' },
+        { kind: 'block', type: 'ping' },
+        { kind: 'block', type: 'journalctl' }
+      ]
+    },
+    
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'Data Processing',
+      colour: '#3B7C09',
+      contents: [
+        { kind: 'block', type: 'beginEnd' },
+        { kind: 'block', type: 'awk' },
+        { kind: 'block', type: 'condOutput' },
+        { kind: 'block', type: 'column' },
+        { kind: 'block', type: 'grep' },
+        { kind: 'block', type: 'NR' },
+        { kind: 'block', type: 'NF' },
+        { kind: 'block', type: 'xargs' },
+        {
+          kind: 'category',
+          name: 'Text output',
+          colour: '160',
+          contents: [
+            { kind: 'block', type: 'text' },
+            {
+              kind: 'block',
+              type: 'text_print',
+              inputs: {
+                TEXT: {
+                  shadow: {
+                    type: 'text',
+                    fields: {
+                      TEXT: 'abc'
                     }
                   }
-                ]
+                }
               }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: 'Variables',
-            colour: '330',
-            custom: 'VARIABLE'
-          },
-          {
-            kind: 'sep'
-          }
-        ]
-      };
+            },
+            { kind: 'block', type: 'multiplePrint' }
+          ]
+        },
+        {
+          kind: 'category',
+          name: 'Logic',
+          colour: '210',
+          contents: [
+            { kind: 'block', type: 'controls_if' },
+            { kind: 'block', type: 'logic_compare' },
+            { kind: 'block', type: 'logic_operation' },
+            { kind: 'block', type: 'logic_negate' }
+          ]
+        },
+        {
+          kind: 'category',
+          name: 'Loops',
+          colour: '120',
+          contents: [
+            { kind: 'block', type: 'controls_whileUntil' },
+            { kind: 'block', type: 'controls_forEach' }
+          ]
+        },
+        {
+          kind: 'category',
+          name: 'Math',
+          colour: '230',
+          contents: [
+            { kind: 'block', type: 'math_number' },
+            {
+              kind: 'block',
+              type: 'math_arithmetic',
+              inputs: {
+                A: {
+                  shadow: {
+                    type: 'math_number',
+                    fields: {
+                      NUM: 1
+                    }
+                  }
+                },
+                B: {
+                  shadow: {
+                    type: 'math_number',
+                    fields: {
+                      NUM: 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'Variables',
+      colour: '330',
+      custom: 'VARIABLE'
+    },
+    {
+      kind: 'sep',
+    },
+    {
+      kind: 'category',
+      name: 'Other Commands',
+      colour: '#009688',
+      contents: [
+        { kind: 'block', type: 'kill' },
+        { kind: 'block', type: 'echo' },
+        { kind: 'block', type: 'sleep' }
+      ]
+    },
+
+    {
+      kind: 'search',
+      name: 'Search',
+      contents: [],
+    }
+  ]
+};
 
       const toolbox = { ...toolboxCategories };
       toolbox.contents.push({
