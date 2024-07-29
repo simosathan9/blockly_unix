@@ -50,7 +50,11 @@ function handleLanguageChange() {
     .getElementById('languageMenu')
     .addEventListener('change', function (event) {
       var selectedLanguage = event.target.value;
-      loadLanguageFile(selectedLanguage).then(initBlockly);
+      loadLanguageFile(selectedLanguage).then(function () {
+        // Clear the workspace before reloading blocks in the new language
+        Blockly.getMainWorkspace().clear();
+        initBlockly();
+      });
     });
 }
 
