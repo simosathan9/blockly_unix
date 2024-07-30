@@ -149,7 +149,7 @@
   </head>
   <body>
     <div id="navbar">
-      <div id="helloMessage" style="background-color: #f5f5f5">
+      <div id="helloMessage">
         <button id="homePage" class="icon-button" title="HomePage">
           <i class="fas fa-home"></i>
         </button>
@@ -189,7 +189,7 @@
           <i class="fas fa-user-plus"></i>
         </button>
       </div>
-      <div id="buttonContainer" style="background-color: #f5f5f5">
+      <div id="buttonContainer">
         <form
           id="logoutForm"
           action="/logout"
@@ -255,147 +255,6 @@
     </div>
 
     <script>
-      function generateToolboxXML(colors) {
-        return `
-        <xml>
-            <category name="Text Processing" colour="${colors.textProcessing}">
-                <block type="head"></block>
-                <block type="tail"></block>
-                <block type="wc"></block>
-                <block type="sort"></block>
-                <block type="uniq"></block>
-                <block type="findDuplicates"></block>
-                <block type="showUniqs"></block>
-                <block type="cut"></block>
-                <block type="sed"></block>
-                <block type="echo"></block>
-            </category>
-
-            <category name="File inputs" colour="${colors.fileInputs}">
-                <block type="filename"></block>
-                <block type="filenamesCreate"></block>
-                <block type="fileEndStart"></block>
-            </category>
-
-            <category name="File and Directory Operations" colour="${colors.fileDirectoryOps}">
-                <block type="ls"></block>
-                <block type="find"></block>
-                <block type="cd"></block>
-                <block type="mkdir"></block>
-                <block type="gzip"></block>
-                <block type="cat"></block>
-                <block type="touch"></block>
-            </category>
-
-            <category name="I/O Redirection" colour="${colors.ioRedirection}">
-                <block type="save"></block>
-                <block type="append"></block>
-                <block type="tee"></block>
-            </category>
-
-            <category name="Regular Expressions" colour="${colors.regularExpressions}">
-                <block type="regOutput"></block>
-                <block type="regPattern"></block>
-                <block type="regOr"></block>
-                <block type="regNegation"></block>
-                <block type="regCapturingGroup"></block>
-                <block type="regStart"></block>
-                <block type="regEnd"></block>
-                <block type="regFor"></block>
-                <block type="regRange"></block>
-                <block type="regQuant"></block>
-                <block type="regAnyOne"></block>
-                <block type="regLookahead"></block>
-                <block type="regCommon"></block>
-            </category>
-
-            <category name="Data Processing" colour="${colors.dataProcessing}">
-                <block type="beginEnd"></block>
-                <block type="awk"></block>
-                <block type="condOutput"></block>
-                <block type="column"></block>
-                <block type="grep"></block>
-                <block type="NR"></block>
-                <block type="NF"></block>
-                <block type="xargs"></block>
-
-                <category name="Text output" colour="${colors.textOutput}">
-                    <block type="text"></block>
-                    <block type="text_print">
-                        <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                        </value>
-                    </block>
-                    <block type="multiplePrint"></block>
-                </category>
-
-                <category name="Logic" colour="${colors.logic}">
-                    <block type="controls_if"></block>
-                    <block type="logic_compare"></block>
-                    <block type="logic_operation"></block>
-                    <block type="logic_negate"></block>
-                </category>
-
-                <category name="Loops" colour="${colors.loops}">
-                    <block type="controls_whileUntil"></block>
-                    <block type="controls_forEach"></block>
-                </category>
-
-                <category name="Math" colour="${colors.math}">
-                    <block type="math_number"></block>
-                    <block type="math_arithmetic">
-                        <value name="A">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                        </value>
-                        <value name="B">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                        </value>
-                    </block>
-                </category>
-            </category>
-
-            <category name="Variables" colour="${colors.variables}" custom="VARIABLE"></category>
-        </xml>
-    `;
-      }
-
-      const colors1 = {
-        textProcessing: '#4CAF50',
-        fileInputs: '#5C81A6',
-        fileDirectoryOps: '#FE9B13',
-        ioRedirection: '#1976D2',
-        regularExpressions: '#FF5733',
-        dataProcessing: '#3B7C09',
-        textOutput: '160',
-        logic: '210',
-        loops: '120',
-        math: '230',
-        variables: '330'
-      };
-
-      const colors2 = {
-        textProcessing: '#058863',
-        fileInputs: '#2d676f',
-        fileDirectoryOps: '#4b2d84',
-        ioRedirection: '#b69ce8',
-        regularExpressions: '#9fd2f1',
-        dataProcessing: '#3B7C09',
-        textOutput: '#aa1846',
-        logic: '#e6da39',
-        loops: '#00e6e6',
-        math: '#66004d',
-        variables: '330'
-      };
-
-      const toolboxXML = generateToolboxXML(colors1);
-      const toolboxXML2 = generateToolboxXML(colors2);
-
       const baseBlockStyles = {
         'Text Processing': {
           colourPrimary: '#4CAF50',
@@ -498,59 +357,74 @@
         base: Blockly.Themes.Classic,
         blockStyles: {
           'Text Processing': {
-            colourPrimary: '#058863',
-            colourSecondary: '#5ecfaf',
-            colourTertiary: '#04684c'
+            colourPrimary: '#0D3B66',
+            colourSecondary: '#0D3B66',
+            colourTertiary: '#0D3B66'
           },
           'File inputs': {
-            colourPrimary: '#2d676f',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF'
+            colourPrimary: '#00A896',
+            colourSecondary: '#00A896',
+            colourTertiary: '#00A896'
           },
           'Data Processing': {
-            colourPrimary: '#3B7C09',
-            colourSecondary: '#ff0000',
-            colourTertiary: '#C5EAFF'
+            colourPrimary: '#8D6B3D',
+            colourSecondary: '#8D6B3D',
+            colourTertiary: '#8D6B3D'
           },
           Logic: {
-            colourPrimary: '#e6da39',
-            colourSecondary: '#e6da39',
-            colourTertiary: '#e6da39'
+            colourPrimary: '#6A994E',
+            colourSecondary: '#6A994E',
+            colourTertiary: '#6A994E'
           },
           Loops: {
-            colourPrimary: '#00e6e6',
-            colourSecondary: '#00e6e6',
-            colourTertiary: '#00e6e6'
+            colourPrimary: '#B5838D',
+            colourSecondary: '#B5838D',
+            colourTertiary: '#B5838D'
           },
           Math: {
-            colourPrimary: '#66004d',
-            colourSecondary: '#66004d',
-            colourTertiary: '#66004d'
+            colourPrimary: '#6D597A',
+            colourSecondary: '#6D597A',
+            colourTertiary: '#6D597A'
           },
           'File and Directory Operations': {
-            colourPrimary: '#4b2d84',
-            colourSecondary: '#816ea7',
-            colourTertiary: '#83759e'
+            colourPrimary: '#F25C05',
+            colourSecondary: '#F25C05',
+            colourTertiary: '#F25C05'
           },
           'I/O Redirection': {
-            colourPrimary: '#b69ce8',
-            colourSecondary: '#ccbaef',
-            colourTertiary: '#9176c5'
+            colourPrimary: '#D62828',
+            colourSecondary: '#D62828',
+            colourTertiary: '#D62828'
           },
           'Regular Expressions': {
-            colourPrimary: '#9fd2f1',
-            colourSecondary: '#c0e0f4',
-            colourTertiary: '#74bae5'
+            colourPrimary: '#83C5BE',
+            colourSecondary: '#83C5BE',
+            colourTertiary: '#83C5BE'
+          },
+          'System Monitoring': {
+            colourPrimary: '#E9C46A',
+            colourSecondary: '#E9C46A',
+            colourTertiary: '#E9C46A'
+          },
+          'Network Operations': {
+            colourPrimary: '#4A4A4A',
+            colourSecondary: '#4A4A4A',
+            colourTertiary: '#4A4A4A'
           },
           'Text output': {
-            colourPrimary: '#aa1846',
-            colourSecondary: '#aa1846',
-            colourTertiary: '#aa1846'
+            colourPrimary: '#2A9D8F',
+            colourSecondary: '#2A9D8F',
+            colourTertiary: '#2A9D8F'
           },
           Variables: {
-            colourPrimary: '#330',
-            colourSecondary: '#330',
-            colourTertiary: '#330'
+            colourPrimary: '#E63946',
+            colourSecondary: '#E63946',
+            colourTertiary: '#E63946'
+          },
+          'Other Commands': {
+            colourPrimary: '#7D7D7D',
+            colourSecondary: '#7D7D7D',
+            colourTertiary: '#7D7D7D'
           }
         }
       };
@@ -590,7 +464,7 @@
         contents: [
           {
             kind: 'category',
-            name: 'text',
+            name: 'Text Processing',
             colour: '#4CAF50',
             contents: [
               { kind: 'block', type: 'head' },
@@ -834,16 +708,267 @@
         ]
       };
 
+      const toolboxCategories2 = {
+        kind: 'categoryToolbox',
+        contents: [
+          {
+            kind: 'category',
+            name: 'Text Processing',
+            colour: '#0D3B66',
+            contents: [
+              { kind: 'block', type: 'head' },
+              { kind: 'block', type: 'tail' },
+              { kind: 'block', type: 'wc' },
+              { kind: 'block', type: 'sort' },
+              { kind: 'block', type: 'uniq' },
+              { kind: 'block', type: 'findDuplicates' },
+              { kind: 'block', type: 'showUniqs' },
+              { kind: 'block', type: 'cut' },
+              { kind: 'block', type: 'sed' },
+              { kind: 'block', type: 'echo' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'File inputs',
+            colour: '#00A896',
+            contents: [
+              { kind: 'block', type: 'filename' },
+              { kind: 'block', type: 'filenamesCreate' },
+              { kind: 'block', type: 'fileEndStart' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'File and Directory Operations',
+            colour: '#F25C05',
+            contents: [
+              { kind: 'block', type: 'ls' },
+              { kind: 'block', type: 'find' },
+              { kind: 'block', type: 'cd' },
+              { kind: 'block', type: 'mkdir' },
+              { kind: 'block', type: 'gzip' },
+              { kind: 'block', type: 'cat' },
+              { kind: 'block', type: 'touch' },
+              { kind: 'block', type: 'chmod' },
+              { kind: 'block', type: 'chown' },
+              { kind: 'block', type: 'ln' },
+              { kind: 'block', type: 'mv' },
+              { kind: 'block', type: 'cp' },
+              { kind: 'block', type: 'rm' },
+              { kind: 'block', type: 'tar' },
+              { kind: 'block', type: 'unzip' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'I/O Redirection',
+            colour: '#D62828',
+            contents: [
+              { kind: 'block', type: 'save' },
+              { kind: 'block', type: 'append' },
+              { kind: 'block', type: 'tee' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Regular Expressions',
+            colour: '#83C5BE',
+            contents: [
+              { kind: 'block', type: 'regOutput' },
+              { kind: 'block', type: 'regPattern' },
+              { kind: 'block', type: 'regOr' },
+              { kind: 'block', type: 'regNegation' },
+              { kind: 'block', type: 'regCapturingGroup' },
+              { kind: 'block', type: 'regStart' },
+              { kind: 'block', type: 'regEnd' },
+              { kind: 'block', type: 'regFor' },
+              { kind: 'block', type: 'regRange' },
+              { kind: 'block', type: 'regQuant' },
+              { kind: 'block', type: 'regAnyOne' },
+              { kind: 'block', type: 'regLookahead' },
+              { kind: 'block', type: 'regCommon' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'System Monitoring',
+            colour: '#E9C46A',
+            contents: [
+              { kind: 'block', type: 'ps' },
+              { kind: 'block', type: 'df' },
+              { kind: 'block', type: 'du' },
+              { kind: 'block', type: 'uptime' },
+              { kind: 'block', type: 'who' },
+              { kind: 'block', type: 'hostname' },
+              { kind: 'block', type: 'date' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Network Operations',
+            colour: '#4A4A4A',
+            contents: [
+              { kind: 'block', type: 'scp' },
+              { kind: 'block', type: 'ssh' },
+              { kind: 'block', type: 'curl' },
+              { kind: 'block', type: 'ping' },
+              { kind: 'block', type: 'journalctl' }
+            ]
+          },
+
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Data Processing',
+            colour: '#8D6B3D',
+            contents: [
+              { kind: 'block', type: 'beginEnd' },
+              { kind: 'block', type: 'awk' },
+              { kind: 'block', type: 'condOutput' },
+              { kind: 'block', type: 'column' },
+              { kind: 'block', type: 'grep' },
+              { kind: 'block', type: 'NR' },
+              { kind: 'block', type: 'NF' },
+              { kind: 'block', type: 'xargs' },
+              {
+                kind: 'category',
+                name: 'Text output',
+                colour: '#2A9D8F',
+                contents: [
+                  { kind: 'block', type: 'text' },
+                  {
+                    kind: 'block',
+                    type: 'text_print',
+                    inputs: {
+                      TEXT: {
+                        shadow: {
+                          type: 'text',
+                          fields: {
+                            TEXT: 'abc'
+                          }
+                        }
+                      }
+                    }
+                  },
+                  { kind: 'block', type: 'multiplePrint' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Logic',
+                colour: '#6A994E',
+                contents: [
+                  { kind: 'block', type: 'controls_if' },
+                  { kind: 'block', type: 'logic_compare' },
+                  { kind: 'block', type: 'logic_operation' },
+                  { kind: 'block', type: 'logic_negate' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Loops',
+                colour: '#B5838D',
+                contents: [
+                  { kind: 'block', type: 'controls_whileUntil' },
+                  { kind: 'block', type: 'controls_forEach' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: 'Math',
+                colour: '#6D597A',
+                contents: [
+                  { kind: 'block', type: 'math_number' },
+                  {
+                    kind: 'block',
+                    type: 'math_arithmetic',
+                    inputs: {
+                      A: {
+                        shadow: {
+                          type: 'math_number',
+                          fields: {
+                            NUM: 1
+                          }
+                        }
+                      },
+                      B: {
+                        shadow: {
+                          type: 'math_number',
+                          fields: {
+                            NUM: 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Variables',
+            colour: '#E63946',
+            custom: 'VARIABLE'
+          },
+          {
+            kind: 'sep'
+          },
+          {
+            kind: 'category',
+            name: 'Other Commands',
+            colour: '#7D7D7D',
+            contents: [
+              { kind: 'block', type: 'kill' },
+              { kind: 'block', type: 'echo' },
+              { kind: 'block', type: 'sleep' }
+            ]
+          },
+
+          {
+            kind: 'search',
+            name: 'Search',
+            contents: []
+          }
+        ]
+      };
+
+      /*
       const toolbox = { ...toolboxCategories };
       toolbox.contents.push({
         kind: 'search',
         name: 'search',
         contents: []
       });
+      */
 
       var workspace = Blockly.inject('blocklyDiv', {
         // renderer : 'Zelos',
-        toolbox: toolboxXML,
+        toolbox: toolboxCategories,
         theme: Blockly.Themes.Halloween,
         trashcan: true,
         collapse: true,
@@ -875,6 +1000,22 @@
           metricsManager: ScrollMetricsManager
         }
       });
+
+      /*
+      const savedState = localStorage.getItem('blocklyWorkspace');
+      if (savedState) {
+          const state = JSON.parse(savedState);
+          workspace.clear(); // Clear the workspace before loading the saved state
+          Blockly.serialization.workspaces.load(state, workspace);
+      }
+
+      // Save the state when the window is unloaded
+      window.addEventListener('unload', () => {
+          const state = Blockly.serialization.workspaces.save(workspace);
+          workspace.clear();
+          localStorage.setItem('blocklyWorkspace', JSON.stringify(state));
+      });
+      */
 
       const backpackOptions = {
         allowEmptyBackpackOpen: false,
@@ -926,24 +1067,20 @@
         .getElementById('themeDropdown')
         .addEventListener('change', function (event) {
           var selectedTheme = this.value;
-          var welcomeMessageContainer = document.getElementById('helloMessage');
-          var welcomeMessage = document.getElementById('welcome');
-          var buttonContainer = document.getElementById('buttonContainer');
+          var navbarContainer = document.getElementById('navbar');
           var resultsWrapperContainer =
             document.getElementById('resultsWrapper');
           var resultsAreaContainer = document.getElementById('resultsArea');
           var copyButton = document.getElementById('copyButton');
           if (selectedTheme === 'halloween' || selectedTheme === 'tritanopia') {
             if (selectedTheme === 'halloween') {
-              workspace.updateToolbox(toolboxXML);
+              workspace.updateToolbox(toolboxCategories);
               workspace.setTheme(Blockly.Themes.Halloween);
             } else {
-              workspace.updateToolbox(toolboxXML2);
+              workspace.updateToolbox(toolboxCategories2);
               workspace.setTheme(Blockly.Themes.Tritanopia);
             }
-            welcomeMessageContainer.style.backgroundColor = '#f5f5f5';
-            welcomeMessage.style.color = '#000';
-            buttonContainer.style.backgroundColor = '#f5f5f5';
+            navbarContainer.style.backgroundColor = '#f5f5f5';
             resultsWrapperContainer.style.backgroundColor = '#fff';
             resultsAreaContainer.style.backgroundColor = '#fff';
             resultsAreaContainer.style.color = '#000';
@@ -952,15 +1089,13 @@
             selectedTheme === 'dark-tritanopia'
           ) {
             if (selectedTheme === 'dark') {
-              workspace.updateToolbox(toolboxXML);
+              workspace.updateToolbox(toolboxCategories);
               workspace.setTheme(Blockly.Themes.Dark);
             } else {
-              workspace.updateToolbox(toolboxXML2);
+              workspace.updateToolbox(toolboxCategories2);
               workspace.setTheme(Blockly.Themes.DarkTritanopia);
             }
-            welcomeMessageContainer.style.backgroundColor = '#252526';
-            welcomeMessage.style.color = '#f5f5f5';
-            buttonContainer.style.backgroundColor = '#252526';
+            navbarContainer.style.backgroundColor = '#252526';
             resultsWrapperContainer.style.backgroundColor = '#252526';
             resultsAreaContainer.style.backgroundColor = '#252526';
             resultsAreaContainer.style.color = '#fff';
