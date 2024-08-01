@@ -177,6 +177,10 @@ app.get('/', (req, res) => {
   res.render('homePage', { errorMessages: req.flash('error') || [] });
 });
 
+app.get('/tutorials', (req, res) => {
+  res.render('tutorials', { errorMessages: req.flash('error') || [] });
+});
+
 app.get('/blockly_unix', addAuthToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), {
     headers: { 'X-Auth-Token': req.authToken || '' }

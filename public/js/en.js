@@ -834,7 +834,7 @@ Blockly.Msg['WC_TOOLTIP'] = 'word, line, character, and byte count in a file';
 Blockly.Msg['WC_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['XARGS'] = 'Execute following command\n for each item';
-Blockly.Msg['XARGS_PLACEHOLDER'] = 'use a palceholder %1';
+Blockly.Msg['XARGS_PLACEHOLDER'] = 'use a placeholder %1';
 Blockly.Msg['XARGS_TOOLTIP'] =
   'Execute the following command for each item of a list or a file';
 Blockly.Msg['XARGS_HELPURL'] = 'https://www.google.com/';

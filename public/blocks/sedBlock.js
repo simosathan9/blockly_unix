@@ -3,7 +3,7 @@ var sedBlock = {
   category: 'Text processing',
   unix_description: [
     {
-      regPattern: "'s/patt/",
+      regPattern: "'s/patt ",
       singleStr: "'s/str/",
       regReplaceText: "str/'",
       regex: '-E',
