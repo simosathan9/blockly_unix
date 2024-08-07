@@ -98,9 +98,11 @@ Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] =
 Blockly.Msg['GREP_SHOW_FILENAME'] = 'Show filename %1';
 Blockly.Msg['GREP_TOOLTIP'] = 'search in a file with a pattern';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['GZIP_FILE'] = '%1 File';
+Blockly.Msg['GZIP_FILE'] = '%1 file';
 Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'keep original file %1';
 Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'level of compression %1';
+Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Change suffix from .gz to';
+Blockly.Msg['GZIP_VERBOSE'] = 'Τurn on verbose mode %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'Head of file';
@@ -572,6 +574,8 @@ Blockly.Msg['REGOR_CREATE_WITH'] = 'multiple patterns';
 Blockly.Msg['REMOVE_COMMENT'] = 'Remove Comment';
 Blockly.Msg['RENAME_VARIABLE'] = 'Rename variable...';
 Blockly.Msg['RENAME_VARIABLE_TITLE'] = "Rename all '%1' variables to:";
+Blockly.Msg['RM_REQUEST_CONFIRMATION'] =
+  'Request confirmation before deleting %1';
 Blockly.Msg['TEXT_APPEND_HELPURL'] =
   'https://github.com/google/blockly/wiki/Text#text-modification';
 Blockly.Msg['TEXT_APPEND_TITLE'] = 'to %1 append text %2';
@@ -798,6 +802,8 @@ Blockly.Msg['SORT_BASED'] = 'based on %1';
 Blockly.Msg['SORT_DELIM'] = 'delimeter %1';
 Blockly.Msg['SORT_COLS'] = 'column to sort %1';
 Blockly.Msg['SORT_UNIQ'] = 'unique elements output %1';
+Blockly.Msg['SORT_IGNORE'] = 'ignore non-printable characters %1';
+Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'ignore leading blanks %1';
 Blockly.Msg['SORT_TOOLTIP'] = 'report or filter out repeated lines in a file';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
@@ -822,6 +828,7 @@ Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'count the occurencies of \n duplicates lines removed %1';
+Blockly.Msg['UNIQ_CASE'] = 'case sensitive %1';
 Blockly.Msg['UNIQ_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';
 

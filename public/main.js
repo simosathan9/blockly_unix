@@ -143,7 +143,7 @@ replacementMap.set(/\/\s{1,}/g, '/');
 replacementMap.set(/\/\'\s{1,}g/g, "/g'");
 
 //used for gzip
-replacementMap.set(/\s.?-k\s{1,}/g, '-k');
+replacementMap.set(/\s.?-k\s{1,}/g, '-k ');
 
 //used for exec parameter in find
 replacementMap.set(/{}.\\;.*?\|.*/g, '{} \\;');

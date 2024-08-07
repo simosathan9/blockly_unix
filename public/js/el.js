@@ -103,6 +103,8 @@ Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 Αρχείο';
 Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'διατήρηση αρχικού αρχείου %1';
 Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'επίπεδο συμπίεσης %1';
+Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Aλλαγή κατάληξης απο .gz σε';
+Blockly.Msg['GZIP_VERBOSE'] = 'Εμφάνισε πληροφορίες %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'Συμπίεση/αποσυμπίεση αρχείου';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'Αρχή αρχείου';
@@ -583,6 +585,7 @@ Blockly.Msg['REMOVE_COMMENT'] = 'Αφαίρεση σχολίου';
 Blockly.Msg['RENAME_VARIABLE'] = 'Μετονομασία μεταβλητής...';
 Blockly.Msg['RENAME_VARIABLE_TITLE'] =
   "Μετονομασία όλων των μεταβλητών '%1' σε:";
+Blockly.Msg['RM_REQUEST_CONFIRMATION'] = 'Αίτημα επιβεβαίωσης για αφαίρεση %1';
 Blockly.Msg['TEXT_APPEND_HELPURL'] =
   'https://github.com/google/blockly/wiki/Text#text-modification';
 Blockly.Msg['TEXT_APPEND_TITLE'] = 'στο %1 προσθήκη κειμένου %2';
@@ -820,6 +823,8 @@ Blockly.Msg['SORT_BASED'] = 'με βάση %1';
 Blockly.Msg['SORT_DELIM'] = 'διαχωριστικό %1';
 Blockly.Msg['SORT_COLS'] = 'στήλη για ταξινόμηση %1';
 Blockly.Msg['SORT_UNIQ'] = 'έξοδος μοναδικών στοιχείων %1';
+Blockly.Msg['SORT_IGNORE'] = 'αγνόηση μη εκτυπώσιμων χαρακτήρων %1';
+Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'αγνόηση κενών στην αρχή %1';
 Blockly.Msg['SORT_TOOLTIP'] =
   'αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
@@ -845,6 +850,7 @@ Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στο αρχείο\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
+Blockly.Msg['UNIQ_CASE'] = ' χωρίς διάκριση πεζών-κεφαλαίων %1';
 Blockly.Msg['UNIQ_TOOLTIP'] =
   'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';

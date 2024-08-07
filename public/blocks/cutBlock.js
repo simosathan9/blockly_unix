@@ -3,8 +3,8 @@ var cutBlock = {
   category: 'Text Processing',
   unix_description: [
     {
-      delimiter: "-d'str'",
-      columns: "-f'str'",
+      delimiter: "-d 'str'",
+      columns: '-f str',
       charsStart: '-c str',
       charsEnd: '-c-str'
     }

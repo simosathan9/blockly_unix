@@ -5,7 +5,8 @@ var uniqBlock = {
   unix_description: [
     {
       none: '',
-      occurencies: '-c'
+      occurencies: '-c',
+      caseInsensitive: '-i'
     }
   ],
 
@@ -14,6 +15,14 @@ var uniqBlock = {
     {
       type: 'field_checkbox',
       name: 'occurencies',
+      checked: false // by default it's disabled
+    }
+  ],
+  message2: '%{BKY_UNIQ_CASE}',
+  args2: [
+    {
+      type: 'field_checkbox',
+      name: 'caseInsensitive',
       checked: false // by default it's disabled
     }
   ],

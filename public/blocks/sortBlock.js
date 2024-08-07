@@ -8,7 +8,9 @@ var sortBlock = {
       numeric_sorting: '-n',
       sort_delimiter: "-t'str'",
       sort_column: '-k',
-      uniq_elements: '-u'
+      uniq_elements: '-u',
+      ignore_nonPrintable: '-i',
+      ignore_leading_blanks: '-b'
     }
   ],
   message1: '%{BKY_SORT_DESC}',
@@ -55,6 +57,22 @@ var sortBlock = {
     {
       type: 'field_checkbox',
       name: 'uniq_elements',
+      checked: false // by default it's disabled
+    }
+  ],
+  message6: '%{BKY_SORT_IGNORE}',
+  args6: [
+    {
+      type: 'field_checkbox',
+      name: 'ignore_nonPrintable',
+      checked: false // by default it's disabled
+    }
+  ],
+  message7: '%{BKY_SORT_IGNORE_LEADING_BLANKS}',
+  args7: [
+    {
+      type: 'field_checkbox',
+      name: 'ignore_leading_blanks',
       checked: false // by default it's disabled
     }
   ],
