@@ -72,10 +72,15 @@ body {
 }
 
 #copyButton {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  bottom: 21px;
+  background-color: rgb(255, 255, 255) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0%;
+  color: #000000;
 }
 
 .icon-button:hover {

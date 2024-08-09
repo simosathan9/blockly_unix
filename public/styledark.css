@@ -1,0 +1,244 @@
+html[dir='RTL'] .farSide {
+  text-align: left;
+}
+
+.farSide {
+  text-align: right;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #1e1e1e; /* Dark background for the entire page */
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  color: rgb(208, 208, 208); /* Light text color for contrast */
+}
+
+#blocklyArea {
+  height: 85%;
+}
+
+#blocklyDiv {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #252526; /* Dark background for Blockly workspace */
+}
+
+#controlArea {
+  padding: 4px;
+  background: #333; /* Dark background for control area */
+  border-bottom: 1px solid #555; /* Darker border for separation */
+  text-align: right;
+  color: rgb(208, 208, 208); /* White text for control area */
+}
+
+#resultsWrapper {
+  box-sizing: border-box;
+  padding: 10px;
+  border-top: 1px solid #555; /* Darker border for results area */
+  background-color: #2e2e2e; /* Dark background for results wrapper */
+}
+
+#resultsArea {
+  position: relative;
+  margin-top: 8px;
+  padding: 9px;
+  background: #3a3a3a; /* Darker background for results area */
+  height: 25px;
+  overflow-y: hidden;
+  border-radius: 8px;
+  color: rgb(208, 208, 208); /* White text for results area */
+}
+
+.blockly-minimap {
+  position: absolute;
+  box-shadow: none;
+  width: 200px;
+  height: 150px;
+  top: 50px;
+  left: 258px;
+  overflow: hidden;
+  border-radius: 3px;
+  background-color: #2a2a2a; /* Dark background for minimap */
+}
+
+#copyButton {
+  position: absolute;
+  right: 10px;
+  bottom: 21px;
+  background-color: rgb(37, 37, 38) !important; /* Μαύρο-γκρι χρώμα */
+  border: none !important; /* Αφαίρεση περιγράμματος */
+  outline: none !important; /* Αφαίρεση του outline (αν υπάρχει) */
+  box-shadow: none !important; /* Αφαίρεση σκιάς (αν υπάρχει) */
+  border-radius: 0%; /* Καμία στρογγυλοποίηση στις γωνίες */
+  color: rgb(208, 208, 208); /* Λευκό χρώμα για το εικονίδιο */
+}
+
+.icon-button:hover {
+  background-color: #444; /* Darker hover state color */
+}
+
+.icon-button i {
+  font-size: 16px; /* Icon size */
+  color: #d0d0d0; /* Light gray for icons */
+}
+
+#executeButton {
+  background-color: rgb(34, 139, 34); /* Darker green for execute button */
+  color: #fff; /* White text */
+}
+
+#executeButton:hover {
+  background-color: rgb(28, 115, 28); /* Darker green on hover */
+}
+
+#resetButton {
+  background-color: rgb(255, 140, 0); /* Darker orange for reset button */
+  color: #fff; /* White text */
+}
+
+#resetButton:hover {
+  background-color: rgb(220, 120, 0); /* Darker orange on hover */
+}
+
+/* Navbar */
+
+#navbar {
+  display: flex;
+  align-items: center;
+  height: 5.5%; /* Increased height */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Darker shadow for depth */
+  background-color: #333; /* Dark background for navbar */
+}
+
+#helloMessage {
+  flex: 2;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px;
+  height: 100%;
+  border-radius: 5px; /* Rounded corners */
+
+  background-color: rgb(37, 37, 38); /* Dark background for hello message */
+  color: #fff; /* White text */
+}
+
+#loginButton,
+#registerButton,
+#logoutButton {
+  display: none; /* Hide by default */
+}
+
+#buttonContainer {
+  flex: 4;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+}
+
+button {
+  border-radius: 4px;
+  border: 1px solid #555; /* Darker border for buttons */
+  font-size: large;
+  background-color: #444; /* Dark background for buttons */
+  color: #d0d0d0; /* Light gray text */
+  cursor: pointer;
+  padding: 1px 10px;
+  margin: 1px 5px;
+}
+
+.icon-dropdown {
+  border-radius: 4px;
+  border: 1px solid #555; /* Darker border for dropdown */
+  font-size: large;
+  background-color: #444; /* Dark background for dropdown */
+  color: #d0d0d0; /* Light gray text */
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 1px 5px;
+}
+
+.icon-dropdown option {
+  background-color: #333; /* Dark background for dropdown options */
+  color: #fff; /* White text */
+}
+
+button.primary {
+  border: 1px solid #d32f2f; /* Dark red border */
+  background-color: #d32f2f; /* Dark red background */
+  color: #fff; /* White text */
+}
+
+button.primary > img {
+  opacity: 1;
+}
+
+button > img {
+  opacity: 0.8; /* Slightly increased opacity for images */
+  vertical-align: text-bottom;
+}
+
+button:hover > img {
+  opacity: 1;
+}
+
+button:active {
+  border: 1px solid #888 !important; /* Lighter border on active */
+}
+
+button:hover {
+  box-shadow: 2px 2px 5px #666; /* Lighter shadow on hover */
+}
+
+button.disabled:hover > img {
+  opacity: 0.6;
+}
+
+button.disabled {
+  display: none;
+}
+
+button.notext {
+  font-size: 10%;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #fff; /* White text for headings */
+}
+
+/* Adds padding around the group of categories and separators. */
+.blocklyToolboxContents {
+  padding: 0.4em;
+}
+/* Adds space between the categories, rounds the corners and adds space around the label. */
+.blocklyTreeRow {
+  padding: 3px;
+  margin-bottom: 0.5em;
+  border-radius: 4px;
+  background-color: #3a3a3a; /* Darker background for tree rows */
+  color: #fff; /* White text */
+}
+
+/* Separator Styling */
+.blocklyTreeSeparator {
+  border-bottom: solid #3a3a3a 2px;
+}
+
+.blocklyMainBackground {
+  stroke: #0b0b0b;
+}

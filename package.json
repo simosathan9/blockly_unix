@@ -13,7 +13,6 @@
   "keywords": [],
   "author": "",
   "devDependencies": {
-    "prettier": "^3.3.3",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -27,7 +26,8 @@
     "method-override": "^3.0.0",
     "mysql": "^2.18.1",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "prettier": "^3.3.3"
   },
   "license": "ISC"
 }

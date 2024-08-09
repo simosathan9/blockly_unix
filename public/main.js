@@ -16,8 +16,20 @@ document
     var selectedTheme = this.value;
     if (selectedTheme === 'halloween') {
       workspace.setTheme(Blockly.Themes.Halloween);
+      document.getElementById('light-theme').disabled = false;
+      document.getElementById('dark-theme').disabled = true;
     } else if (selectedTheme === 'dark') {
+      document.getElementById('light-theme').disabled = true;
+      document.getElementById('dark-theme').disabled = false;
       workspace.setTheme(Blockly.Themes.Dark);
+    } else if (selectedTheme === 'tritanopia') {
+      workspace.setTheme(Blockly.Themes.Tritanopia);
+      document.getElementById('light-theme').disabled = false;
+      document.getElementById('dark-theme').disabled = true;
+    } else if (selectedTheme === 'dark-tritanopia') {
+      workspace.setTheme(Blockly.Themes.DarkTritanopia);
+      document.getElementById('light-theme').disabled = true;
+      document.getElementById('dark-theme').disabled = false;
     }
   });
 
