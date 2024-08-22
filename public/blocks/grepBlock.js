@@ -10,9 +10,13 @@ var grepBlock = {
       inverted: '-v',
       recursive: '-r',
       show_line_nums: '-n',
+      stop_after_num_matches: '-m ',
       multiple_patterns: '-e',
       regPattern: '"patt"',
-      showFiles: '-H'
+      showFiles: '-H',
+      print_context_before_match: '-B ',
+      print_context_after_match: '-A ',
+      print_context_around_match: '-C '
     }
   ],
   message0: '%{BKY_GREP}',
@@ -72,28 +76,72 @@ var grepBlock = {
       checked: false // by default it's disabled
     }
   ],
-  message8: '%{BKY_GREP_MULTIPLE_PATTERN_SEARCH}',
+  message8: '%{BKY_GREP_STOP_AFTER_NUM_MATCHES}',
   args8: [
+    {
+      type: 'field_number',
+      name: 'stop_after_num_matches',
+      value: 0
+    }
+  ],
+  message9: '%{BKY_GREP_MULTIPLE_PATTERN_SEARCH}',
+  args9: [
     {
       type: 'field_checkbox',
       name: 'show_line_nums',
       checked: false // by default it's disabled
     }
   ],
-  message9: '%{BKY_GREP_SHOW_FILENAME}',
-  args9: [
+  message10: '%{BKY_GREP_SHOW_FILENAME}',
+  args10: [
     {
       type: 'field_checkbox',
       name: 'showFiles',
       checked: false // by default it's disabled
     }
   ],
-  message10: '%{BKY_GREP_PATTERN_DEFINE}',
-  args10: [
+  message11: '%{BKY_GREP_PATTERN_DEFINE}',
+  args11: [
     {
       type: 'input_value',
       name: 'regPattern',
       check: 'String'
+    }
+  ],
+  message12: '%{BKY_GREP_PRINT_CONTEXT_BEFORE_MATCH}',
+  args12: [
+    {
+      type: 'field_number',
+      name: 'print_context_before_match',
+      value: 0
+    },
+    {
+      type: 'field_checkbox',
+      checked: false // by default it's disabled
+    }
+  ],
+  message13: '%{BKY_GREP_PRINT_CONTEXT_AFTER_MATCH}',
+  args13: [
+    {
+      type: 'field_number',
+      name: 'print_context_after_match',
+      value: 0
+    },
+    {
+      type: 'field_checkbox',
+      checked: false // by default it's disabled
+    }
+  ],
+  message14: '%{BKY_GREP_PRINT_CONTEXT_AROUND_MATCH}',
+  args14: [
+    {
+      type: 'field_number',
+      name: 'print_context_around_match',
+      value: 0
+    },
+    {
+      type: 'field_checkbox',
+      checked: false // by default it's disabled
     }
   ],
   style: 'Data Processing',

@@ -96,7 +96,15 @@ Blockly.Msg['GREP_PATTERN_NEGATION'] =
   'εμφάνιση γραμμών που δεν ταιριάζουν στο μοτίβο %1';
 Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'αναζήτηση αναδρομικά %1';
 Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'εμφάνιση αριθμών γραμμών %1';
+Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] =
+  'σταμάτησε μετά από %1 αντιστοιχίες';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] = 'Αναζήτηση με πολλαπλά μοτίβα %1';
+Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
+  'Εκτύπωση %1 γραμμών πριν από την αντιστοιχία %2';
+Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
+  'Εκτύπωση %1 γραμμών μετά την αντιστοιχία %2';
+Blockly.Msg['GREP_PRINT_CONTEXT_AROUND_MATCH'] =
+  'Εκτύπωση %1 γραμμών γύρω από την αντιστοιχία %2';
 Blockly.Msg['GREP_SHOW_FILENAME'] = 'Εμφάνιση ονόματος αρχείου %1';
 Blockly.Msg['GREP_TOOLTIP'] = 'αναζήτηση σε αρχείο με μοτίβο';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';

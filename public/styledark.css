@@ -54,7 +54,7 @@ body {
   height: 25px;
   overflow-y: hidden;
   border-radius: 8px;
-  color: rgb(208, 208, 208); /* White text for results area */
+  color: #fff; /* White text for results area */
 }
 
 .blockly-minimap {
@@ -64,9 +64,18 @@ body {
   height: 150px;
   top: 50px;
   left: 258px;
-  overflow: hidden;
   border-radius: 3px;
-  background-color: #2a2a2a; /* Dark background for minimap */
+  background-color: #252526;
+}
+
+.blockly-focus-region {
+  background-color: #252526; /* Applies to HTML elements */
+  fill: #252526; /* Applies to SVG elements */
+  border: none; /* Ensures no border is applied */
+}
+
+.svg {
+  fill: #252526; /* Applies to SVG elements */
 }
 
 #copyButton {
@@ -78,7 +87,7 @@ body {
   outline: none !important; /* Αφαίρεση του outline (αν υπάρχει) */
   box-shadow: none !important; /* Αφαίρεση σκιάς (αν υπάρχει) */
   border-radius: 0%; /* Καμία στρογγυλοποίηση στις γωνίες */
-  color: rgb(208, 208, 208); /* Λευκό χρώμα για το εικονίδιο */
+  color: #fff; /* Λευκό χρώμα για το εικονίδιο */
 }
 
 .icon-button:hover {
@@ -87,7 +96,7 @@ body {
 
 .icon-button i {
   font-size: 16px; /* Icon size */
-  color: #d0d0d0; /* Light gray for icons */
+  color: #fff; /* Light gray for icons */
 }
 
 #executeButton {
@@ -152,7 +161,7 @@ button {
   border: 1px solid #555; /* Darker border for buttons */
   font-size: large;
   background-color: #444; /* Dark background for buttons */
-  color: #d0d0d0; /* Light gray text */
+  color: #fff; /* Light gray text */
   cursor: pointer;
   padding: 1px 10px;
   margin: 1px 5px;
@@ -163,7 +172,7 @@ button {
   border: 1px solid #555; /* Darker border for dropdown */
   font-size: large;
   background-color: #444; /* Dark background for dropdown */
-  color: #d0d0d0; /* Light gray text */
+  color: #fff; /* Light gray text */
   cursor: pointer;
   padding: 5px 10px;
   margin: 1px 5px;

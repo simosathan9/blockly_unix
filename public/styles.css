@@ -49,7 +49,7 @@ body {
   background: #fff;
   height: 25px;
   overflow-y: hidden;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 .blockly-minimap {

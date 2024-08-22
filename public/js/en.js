@@ -93,9 +93,16 @@ Blockly.Msg['GREP_COUNT_MATCHES'] = 'count the matches %1';
 Blockly.Msg['GREP_PATTERN_NEGATION'] = "show lines that don't match pattern %1";
 Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'search recursively %1';
 Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'show line numbers %1';
+Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] = 'stop after %1 matches';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] =
   'Search with multiple patterns %1';
 Blockly.Msg['GREP_SHOW_FILENAME'] = 'Show filename %1';
+Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
+  'Print %1 lines of context before match %2';
+Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
+  'Print %1 lines of context after match %2';
+Blockly.Msg['GREP_PRINT_CONTEXT_AROUND_MATCH'] =
+  'Print %1 lines of context around match %2';
 Blockly.Msg['GREP_TOOLTIP'] = 'search in a file with a pattern';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 file';
