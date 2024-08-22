@@ -29,5 +29,8 @@
     "passport-local": "^1.0.0",
     "prettier": "^3.3.3"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
 }

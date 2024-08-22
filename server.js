@@ -24,14 +24,40 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-// const mysql = require('mysql');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('blockly_unix_database.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the blockly_unix database.');
+});
 
 const { body, validationResult } = require('express-validator');
 
+/*
 initializePassport(
   passport,
   (username) => users.find((user) => user.username === username),
   (id) => users.find((user) => user.id === id)
+);
+*/
+
+initializePassport(
+  passport,
+  (username, done) => {
+    db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row) => {
+      if (err) return done(err);
+      if (!row) return done(null, false);
+      return done(null, row);
+    });
+  },
+  (id, done) => {
+    db.get(`SELECT * FROM users WHERE id = ?`, [id], (err, row) => {
+      if (err) return done(err);
+      if (!row) return done(null, false);
+      return done(null, row);
+    });
+  }
 );
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -63,6 +89,7 @@ app.use((req, res, next) => {
   next();
 });
 
+/*
 function checkRememberMe(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -89,12 +116,43 @@ function checkRememberMe(req, res, next) {
     return next(); // No token, continue to next middleware
   }
 }
+*/
+function checkRememberMe(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  const token = req.cookies.remember_me;
+  if (token) {
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+      if (err) {
+        return next();
+      }
+      db.get(
+        'SELECT * FROM users WHERE id = ?',
+        [decoded.user],
+        (err, user) => {
+          if (err || !user) {
+            return next();
+          }
+          req.logIn(user, (err) => {
+            if (err) {
+              return next();
+            }
+            return res.redirect('/blockly_unix');
+          });
+        }
+      );
+    });
+  } else {
+    return next();
+  }
+}
 
 // Middleware to add auth token
 function addAuthToken(req, res, next) {
   if (req.isAuthenticated()) {
     const token = jwt.sign({ user: req.user.id }, process.env.SECRET_KEY, {
-      expiresIn: '10s'
+      expiresIn: '20m'
     }); // Token expires in 10 seconds for testing. When in production, set to 20 minutes
     req.authToken = token;
   } else {
@@ -119,7 +177,7 @@ app.post('/login', checkNotAuthenticated, (req, res, next) => {
       }
       req.flash('success', 'You have successfully logged in.');
       const token = jwt.sign({ user: user.id }, process.env.SECRET_KEY, {
-        expiresIn: '10'
+        expiresIn: '20m'
       });
       res.cookie('remember_me', token, { httpOnly: true });
       res.redirect('/blockly_unix');
@@ -136,6 +194,10 @@ app.post(
     .withMessage('Password must be at least 8 characters long')
     .matches(/[!@#$%^&*(),.?":{}|<>]/)
     .withMessage('Password must contain a special character'),
+  body('email')
+    .isEmail()
+    .withMessage('Must be a valid email address')
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -145,6 +207,7 @@ app.post(
       );
       return res.redirect('/register');
     }
+    /*
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = {
@@ -164,6 +227,48 @@ app.post(
         req.flash('success', 'You have successfully registered and logged in.');
         res.redirect('/blockly_unix');
       });
+    } catch (e) {
+      console.log(e);
+      req.flash('error', 'Registration failed.');
+      res.redirect('/register');
+    }
+    */
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = {
+        id: Date.now().toString(),
+        username: req.body.username,
+        email: req.body.email,
+        password: hashedPassword
+      };
+      db.run(
+        `INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)`,
+        [
+          Date.now().toString(),
+          req.body.username,
+          req.body.email,
+          hashedPassword
+        ],
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            req.flash('error', 'Registration failed.');
+            return res.redirect('/register');
+          }
+          req.logIn(newUser, (err) => {
+            if (err) {
+              console.log(err);
+              req.flash('error', 'Registration failed.');
+              return res.redirect('/register');
+            }
+            req.flash(
+              'success',
+              'You have successfully registered and logged in.'
+            );
+            res.redirect('/blockly_unix');
+          });
+        }
+      );
     } catch (e) {
       console.log(e);
       req.flash('error', 'Registration failed.');
