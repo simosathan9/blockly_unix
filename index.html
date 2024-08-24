@@ -9,10 +9,7 @@
     <script src="https://unpkg.com/blockly@latest/blocks_compressed.js"></script>
     <script src="https://unpkg.com/blockly@latest/javascript_compressed.js"></script>
     <script src="https://unpkg.com/@blockly/workspace-minimap@latest"></script>
-    <script
-      src="https://unpkg.com/@blockly/plugin-toolbox-search@latest"
-      type="application/javascript"
-    ></script>
+    <script src="https://unpkg.com/@blockly/toolbox-search@latest"></script>
     <script src="https://unpkg.com/@blockly/plugin-scroll-options@latest"></script>
     <script src="https://unpkg.com/@blockly/workspace-backpack@latest"></script>
     <script src="https://unpkg.com/@blockly/plugin-cross-tab-copy-paste@latest"></script>
@@ -105,10 +102,6 @@
                 .addEventListener('click', () => {
                   document.getElementById('logoutForm').submit();
                 });
-              // document.getElementById('helloMessage').style.display = 'flex';
-              // document.getElementById('welcome').innerHTML =
-              //  `Welcome ${user.username} !`;
-              // Use the token as needed in your client-side JavaScript
               console.log('Token:', token);
             } else {
               // User is not authenticated
@@ -215,6 +208,24 @@
         </button>
         <button id="executeButton" class="icon-button" title="Execute">
           <i class="fas fa-play"></i>
+        </button>
+        <form
+          id="saveWorkspaceForm"
+          action="/saveWorkspace"
+          method="POST"
+          style="display: none"
+        >
+          <input type="hidden" name="_method" value="POST" />
+          <input type="hidden" id="workspaceData" name="workspaceData" />
+          <input type="hidden" name="userId" id="userId" />
+        </form>
+        <button
+          id="saveButton"
+          class="icon-button"
+          title="Save"
+          style="display: none"
+        >
+          <i class="fas fa-save"></i>
         </button>
         <label for="themeDropdown"></label>
         <select id="themeDropdown" class="icon-dropdown">
@@ -691,12 +702,6 @@
               { kind: 'block', type: 'echo' },
               { kind: 'block', type: 'sleep' }
             ]
-          },
-
-          {
-            kind: 'search',
-            name: 'Search',
-            contents: []
           }
         ]
       };
@@ -941,7 +946,9 @@
               { kind: 'block', type: 'sleep' }
             ]
           },
-
+          {
+            kind: 'sep'
+          },
           {
             kind: 'search',
             name: 'Search',
@@ -990,8 +997,50 @@
 
         plugins: {
           blockDragger: ScrollBlockDragger,
-          metricsManager: ScrollMetricsManager
+          metricsManager: ScrollMetricsManager,
+          toolboxSearch: true
         }
+      });
+
+      const state = Blockly.serialization.workspaces.save(workspace);
+
+      /* Save the state when the window is unloaded
+      window.addEventListener('unload', () => {
+        const state = Blockly.serialization.workspaces.save(workspace);
+        localStorage.setItem('blocklyWorkspace', JSON.stringify(state));
+      });
+      */
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/auth-token')
+          .then((response) => response.json())
+          .then((data) => {
+            const token = data.authToken;
+            const user = data.user;
+            if (token) {
+              document.getElementById('saveButton').style.display =
+                'inline-block';
+              // Event listener for the save button
+              document
+                .getElementById('saveButton')
+                .addEventListener('click', () => {
+                  event.preventDefault();
+                  // Serialize the workspace state to JSON
+                  const state =
+                    Blockly.serialization.workspaces.save(workspace);
+                  const jsonState = JSON.stringify(state);
+
+                  // Set the value of the hidden input field in the form
+                  document.getElementById('workspaceData').value = jsonState;
+                  document.getElementById('userId').value = user.id;
+
+                  // Submit the form
+                  document.getElementById('saveWorkspaceForm').submit();
+                });
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching the token:', error);
+          });
       });
 
       /*

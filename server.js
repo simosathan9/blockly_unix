@@ -337,6 +337,32 @@ app.get('/logout', function (req, res, next) {
   }
 });
 
+app.post('/saveWorkspace', (req, res) => {
+  // Retrieve the workspace data and user ID from the request body
+  const { workspaceData, userId } = req.body;
+
+  if (!workspaceData || !userId) {
+    return res
+      .status(400)
+      .json({ error: 'Missing workspace data or user ID.' });
+  }
+
+  // Insert the workspace data and user ID into the database
+  const query = `INSERT INTO workspaces (workspaceData, userId) VALUES (?, ?)`;
+
+  db.run(query, [workspaceData, userId], function (err) {
+    if (err) {
+      console.error('Error inserting workspace data:', err.message);
+      return res.status(500).json({ error: 'Failed to save workspace data.' });
+    }
+
+    res.status(200).json({
+      message: 'Workspace data saved successfully.',
+      workspaceId: this.lastID // Return the ID of the inserted workspace
+    });
+  });
+});
+
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
