@@ -1,9 +1,5 @@
 // TO DO
-// Connect to database
-// Handle case when user enters blockly_unix without being logged in
-// Add regex for email handling
 // Fix issue with blockly Data Processing sub categories
-// Store blockly unix history in database
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -25,6 +21,7 @@ const methodOverride = require('method-override');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const sqlite3 = require('sqlite3').verbose();
+app.use(express.json());
 const db = new sqlite3.Database('blockly_unix_database.db', (err) => {
   if (err) {
     console.error(err.message);
@@ -33,14 +30,6 @@ const db = new sqlite3.Database('blockly_unix_database.db', (err) => {
 });
 
 const { body, validationResult } = require('express-validator');
-
-/*
-initializePassport(
-  passport,
-  (username) => users.find((user) => user.username === username),
-  (id) => users.find((user) => user.id === id)
-);
-*/
 
 initializePassport(
   passport,
@@ -89,34 +78,6 @@ app.use((req, res, next) => {
   next();
 });
 
-/*
-function checkRememberMe(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  const token = req.cookies.remember_me;
-  if (token) {
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return next();
-      }
-      const user = users.find((user) => user.id === decoded.user);
-      if (user) {
-        req.logIn(user, (err) => {
-          if (err) {
-            return next();
-          }
-          return res.redirect('/blockly_unix');
-        });
-      } else {
-        return next(); // User not found, continue to next middleware
-      }
-    });
-  } else {
-    return next(); // No token, continue to next middleware
-  }
-}
-*/
 function checkRememberMe(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -207,32 +168,6 @@ app.post(
       );
       return res.redirect('/register');
     }
-    /*
-    try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const newUser = {
-        id: Date.now().toString(),
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword
-      };
-      users.push(newUser);
-      console.log(users);
-      req.logIn(newUser, (err) => {
-        if (err) {
-          console.log(err);
-          req.flash('error', 'Registration failed.');
-          return res.redirect('/register');
-        }
-        req.flash('success', 'You have successfully registered and logged in.');
-        res.redirect('/blockly_unix');
-      });
-    } catch (e) {
-      console.log(e);
-      req.flash('error', 'Registration failed.');
-      res.redirect('/register');
-    }
-    */
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = {
@@ -339,7 +274,7 @@ app.get('/logout', function (req, res, next) {
 
 app.post('/saveWorkspace', (req, res) => {
   // Retrieve the workspace data and user ID from the request body
-  const { workspaceData, userId } = req.body;
+  const { workspaceData, userId, workspaceName } = req.body;
 
   if (!workspaceData || !userId) {
     return res
@@ -348,9 +283,9 @@ app.post('/saveWorkspace', (req, res) => {
   }
 
   // Insert the workspace data and user ID into the database
-  const query = `INSERT INTO workspaces (workspaceData, userId) VALUES (?, ?)`;
+  const query = `INSERT INTO workspaces (workspaceData, userId, workspaceName) VALUES (?, ?, ?)`;
 
-  db.run(query, [workspaceData, userId], function (err) {
+  db.run(query, [workspaceData, userId, workspaceName], function (err) {
     if (err) {
       console.error('Error inserting workspace data:', err.message);
       return res.status(500).json({ error: 'Failed to save workspace data.' });
@@ -360,6 +295,50 @@ app.post('/saveWorkspace', (req, res) => {
       message: 'Workspace data saved successfully.',
       workspaceId: this.lastID // Return the ID of the inserted workspace
     });
+  });
+});
+
+app.get('/getUserWorkspaces', (req, res) => {
+  // Assume that userId is passed as a query parameter or extracted from session
+  const userId = req.query.userId;
+
+  if (!userId) {
+    return res.status(400).json({ error: 'Missing user ID.' });
+  }
+
+  // Query to select workspaces for the given userId
+  const query = `SELECT id, workspaceName FROM workspaces WHERE userId = ?`;
+
+  db.all(query, [userId], (err, rows) => {
+    if (err) {
+      console.error('Error retrieving workspaces:', err.message);
+      return res.status(500).json({ error: 'Failed to retrieve workspaces.' });
+    }
+
+    res.status(200).json({ workspaces: rows });
+  });
+});
+
+app.get('/getWorkspace', (req, res) => {
+  const workspaceId = req.query.workspaceId;
+
+  if (!workspaceId) {
+    return res.status(400).json({ error: 'Missing workspace ID.' });
+  }
+
+  const query = `SELECT workspaceData FROM workspaces WHERE id = ?`;
+
+  db.get(query, [workspaceId], (err, row) => {
+    if (err) {
+      console.error('Error retrieving workspace:', err.message);
+      return res.status(500).json({ error: 'Failed to retrieve workspace.' });
+    }
+
+    if (!row) {
+      return res.status(404).json({ error: 'Workspace not found.' });
+    }
+
+    res.status(200).json({ workspaceData: row.workspaceData });
   });
 });
 
