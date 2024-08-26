@@ -43,13 +43,31 @@ body {
 }
 
 #resultsArea {
-  position: relative;
+  position: relative; /* To position the button inside */
   margin-top: 8px;
-  padding: 9px;
+  padding: 9px 40px 9px 9px; /* Adjust padding to provide space for button */
   background: #fff;
-  height: 25px;
+  height: auto; /* Adjust height to fit content */
   overflow-y: hidden;
-  border-radius: 3px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Space between text and button */
+}
+
+#copyButton {
+  position: absolute; /* Positioned relative to #resultsArea */
+  right: 10px; /* 10px from the right edge of #resultsArea */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  background-color: rgb(255, 255, 255) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 4px; /* Slight rounding for aesthetics */
+  color: #000000;
+  cursor: pointer;
 }
 
 .blockly-minimap {
@@ -69,18 +87,6 @@ body {
   stroke-width: 0.5;
   stroke: rgb(0, 0, 0);
   fill-opacity: 0.1;
-}
-
-#copyButton {
-  position: absolute;
-  right: 10px;
-  bottom: 21px;
-  background-color: rgb(255, 255, 255) !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  border-radius: 0%;
-  color: #000000;
 }
 
 .icon-button:hover {
@@ -125,7 +131,6 @@ body {
   padding: 4px;
   height: 100%;
   border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #loginButton,

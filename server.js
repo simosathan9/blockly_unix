@@ -78,37 +78,6 @@ app.use((req, res, next) => {
   next();
 });
 
-function checkRememberMe(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  const token = req.cookies.remember_me;
-  if (token) {
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return next();
-      }
-      db.get(
-        'SELECT * FROM users WHERE id = ?',
-        [decoded.user],
-        (err, user) => {
-          if (err || !user) {
-            return next();
-          }
-          req.logIn(user, (err) => {
-            if (err) {
-              return next();
-            }
-            return res.redirect('/blockly_unix');
-          });
-        }
-      );
-    });
-  } else {
-    return next();
-  }
-}
-
 // Middleware to add auth token
 function addAuthToken(req, res, next) {
   if (req.isAuthenticated()) {

@@ -20,6 +20,10 @@ body {
   color: rgb(208, 208, 208); /* Light text color for contrast */
 }
 
+#navbar {
+  background-color: #252526;
+}
+
 #blocklyArea {
   height: 85%;
 }
@@ -43,18 +47,34 @@ body {
   box-sizing: border-box;
   padding: 10px;
   border-top: 1px solid #555; /* Darker border for results area */
-  background-color: #2e2e2e; /* Dark background for results wrapper */
 }
 
 #resultsArea {
-  position: relative;
+  position: relative; /* To allow absolute positioning for button */
   margin-top: 8px;
-  padding: 9px;
-  background: #3a3a3a; /* Darker background for results area */
-  height: 25px;
+  padding: 9px 40px 9px 9px; /* Adjust padding to provide space for the button */
+  background: #252526; /* Dark background for results area */
   overflow-y: hidden;
   border-radius: 8px;
+  border: 1px solid #555; /* Darker border */
   color: #fff; /* White text for results area */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Space between text and button */
+}
+
+#copyButton {
+  position: absolute; /* Positioned relative to #resultsArea */
+  right: 10px; /* 10px from the right edge of #resultsArea */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  background-color: #252526 !important; /* Dark grey background color */
+  border: none !important; /* Remove border */
+  outline: none !important; /* Remove outline */
+  box-shadow: none !important; /* Remove shadow */
+  border-radius: 4px; /* Slight rounding for aesthetics */
+  color: #fff; /* White color for the icon */
+  cursor: pointer;
 }
 
 .blockly-minimap {
@@ -76,18 +96,6 @@ body {
 
 .svg {
   fill: #252526; /* Applies to SVG elements */
-}
-
-#copyButton {
-  position: absolute;
-  right: 10px;
-  bottom: 21px;
-  background-color: rgb(37, 37, 38) !important; /* Μαύρο-γκρι χρώμα */
-  border: none !important; /* Αφαίρεση περιγράμματος */
-  outline: none !important; /* Αφαίρεση του outline (αν υπάρχει) */
-  box-shadow: none !important; /* Αφαίρεση σκιάς (αν υπάρχει) */
-  border-radius: 0%; /* Καμία στρογγυλοποίηση στις γωνίες */
-  color: #fff; /* Λευκό χρώμα για το εικονίδιο */
 }
 
 .icon-button:hover {
@@ -154,6 +162,7 @@ body {
   align-items: center;
   justify-content: flex-end;
   padding: 4px;
+  background-color: rgb(37, 37, 38);
 }
 
 button {
