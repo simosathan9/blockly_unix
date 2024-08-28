@@ -26,7 +26,6 @@ const db = new sqlite3.Database('blockly_unix_database.db', (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Connected to the blockly_unix database.');
 });
 
 const { body, validationResult } = require('express-validator');

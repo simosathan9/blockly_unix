@@ -85,7 +85,7 @@
     <script src="blocks/NRBlock.js"></script>
     <script src="blocks/NFBlock.js"></script>
     <script src="blocks/xargsBlock.js"></script>
-
+    <!-- END OF BLOCK DEFINITION -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         fetch('/auth-token')
@@ -102,7 +102,6 @@
                 .addEventListener('click', () => {
                   document.getElementById('logoutForm').submit();
                 });
-              console.log('Token:', token);
             } else {
               // User is not authenticated
               document.getElementById('helloMessage').style.display = 'flex';
@@ -131,9 +130,6 @@
         });
       });
     </script>
-
-    <!-- END OF BLOCK DEFINITION -->
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -310,35 +306,6 @@
       Blockly.Themes.Halloween = Blockly.Theme.defineTheme('halloween', {
         base: Blockly.Themes.Classic,
         blockStyles: baseBlockStyles
-        // Uncomment and modify the following lines if categoryStyles or componentStyles are needed
-        // categoryStyles: {
-        //     'I/O Redirection': {
-        //         'colour': "#FE9B13"
-        //     },
-        //     'logic_category': {
-        //         'colour': "#8b4513",
-        //     },
-        //     'loop_category': {
-        //         'colour': "#85E21F",
-        //     },
-        //     'text_category': {
-        //         'colour': "#FE9B13",
-        //     },
-        // },
-        // componentStyles: {
-        //     'workspaceBackgroundColour': '#ff7518',
-        //     'toolboxBackgroundColour': '#F9C10E',
-        //     'toolboxForegroundColour': '#fff',
-        //     'flyoutBackgroundColour': '#252526',
-        //     'flyoutForegroundColour': '#ccc',
-        //     'flyoutOpacity': 1,
-        //     'scrollbarColour': '#ff0000',
-        //     'insertionMarkerColour': '#fff',
-        //     'insertionMarkerOpacity': 0.3,
-        //     'scrollbarOpacity': 0.4,
-        //     'cursorColour': '#d0d0d0',
-        //     'blackBackground': '#333'
-        // }
       });
 
       // Create the Dark theme using the base block styles and adding dark-specific properties
@@ -604,17 +571,7 @@
         ]
       };
 
-      /*
-      const toolbox = { ...toolboxCategories };
-      toolbox.contents.push({
-        kind: 'search',
-        name: 'search',
-        contents: []
-      });
-      */
-
       var workspace = Blockly.inject('blocklyDiv', {
-        // renderer : 'Zelos',
         toolbox: toolboxCategories,
         theme: Blockly.Themes.Halloween,
         trashcan: true,
@@ -649,162 +606,6 @@
         }
       });
 
-      const state = Blockly.serialization.workspaces.save(workspace);
-
-      /* Save the state when the window is unloaded
-      window.addEventListener('unload', () => {
-        const state = Blockly.serialization.workspaces.save(workspace);
-        localStorage.setItem('blocklyWorkspace', JSON.stringify(state));
-      });
-      */
-      document.addEventListener('DOMContentLoaded', () => {
-        fetch('/auth-token')
-          .then((response) => response.json())
-          .then((data) => {
-            const token = data.authToken;
-            const user = data.user;
-            if (token) {
-              document.getElementById('savedWorkspaces').style.display =
-                'inline-block';
-
-              fetch(`/getUserWorkspaces?userId=${user.id}`)
-                .then((response) => response.json())
-                .then((data) => {
-                  const workspaces = data.workspaces;
-                  const savedWorkspacesSelect =
-                    document.getElementById('savedWorkspaces');
-
-                  // Clear any existing options
-                  savedWorkspacesSelect.innerHTML = '';
-
-                  // Add a default option
-                  const defaultOption = document.createElement('option');
-                  defaultOption.value = '';
-                  defaultOption.text = 'Select a workspace';
-                  savedWorkspacesSelect.appendChild(defaultOption);
-
-                  // Populate dropdown with the user's saved workspaces
-                  workspaces.forEach((workspace) => {
-                    const option = document.createElement('option');
-                    option.value = workspace.id; // use the ID as the option value
-                    option.text = workspace.workspaceName; // display the workspace name
-                    savedWorkspacesSelect.appendChild(option);
-                  });
-
-                  savedWorkspacesSelect.addEventListener('change', () => {
-                    const selectedWorkspaceId = savedWorkspacesSelect.value;
-
-                    if (selectedWorkspaceId) {
-                      fetch(`/getWorkspace?workspaceId=${selectedWorkspaceId}`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                          if (data.workspaceData) {
-                            const workspaceState = JSON.parse(
-                              data.workspaceData
-                            );
-                            // Deserialize and load the workspace
-                            Blockly.serialization.workspaces.load(
-                              workspaceState,
-                              workspace
-                            );
-                            console.log('Workspace loaded successfully.');
-                          } else {
-                            console.error(
-                              'Failed to load workspace: Invalid workspace data.'
-                            );
-                            alert(
-                              'Failed to load workspace. Please try again.'
-                            );
-                          }
-                        })
-                        .catch((error) => {
-                          console.error('Error loading workspace:', error);
-                          alert('Failed to load workspace. Please try again.');
-                        });
-                    }
-                  });
-                })
-                .catch((error) => {
-                  console.error('Error fetching user workspaces:', error);
-                });
-
-              document.getElementById('saveButton').style.display =
-                'inline-block';
-
-              document
-                .getElementById('saveButton')
-                .addEventListener('click', (event) => {
-                  event.preventDefault(); // Prevent default form submission behavior
-
-                  // Ask the user for the workspace name
-                  const workspaceName = prompt(
-                    'Enter a name for your workspace:'
-                  );
-
-                  if (!workspaceName || workspaceName.trim() === '') {
-                    alert('Workspace name cannot be empty.');
-                    return;
-                  }
-
-                  // Serialize the workspace state to JSON
-                  const state =
-                    Blockly.serialization.workspaces.save(workspace);
-                  const jsonState = JSON.stringify(state);
-
-                  // Ensure jsonState, user.id, and workspaceName are valid before submitting
-                  if (jsonState && user.id && workspaceName.trim() !== '') {
-                    // Set the value of the hidden input fields in the form
-                    document.getElementById('workspaceData').value = jsonState;
-                    document.getElementById('userId').value = user.id;
-                    document.getElementById('workspaceName').value =
-                      workspaceName;
-
-                    // Use AJAX to send the data to the server without redirecting
-                    fetch('/saveWorkspace', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        workspaceData: jsonState,
-                        userId: user.id,
-                        workspaceName: workspaceName
-                      })
-                    })
-                      .then((response) => response.json())
-                      .then((result) => {
-                        if (result.error) {
-                          console.error(
-                            'Error saving workspace:',
-                            result.error
-                          );
-                          alert('Failed to save workspace. Please try again.');
-                        } else {
-                          console.log(
-                            'Workspace saved successfully:',
-                            result.message
-                          );
-                          alert('Workspace saved successfully.');
-                        }
-                      })
-                      .catch((error) => {
-                        console.error('Error saving workspace:', error);
-                        alert('Failed to save workspace. Please try again.');
-                      });
-                  } else {
-                    console.error(
-                      'Invalid workspace data, user ID, or workspace name.'
-                    );
-                    alert('Failed to save workspace. Invalid data.');
-                  }
-                });
-            }
-          })
-          .catch((error) => {
-            console.error('Error fetching the token:', error);
-          });
-      });
-
       const backpackOptions = {
         allowEmptyBackpackOpen: false,
         useFilledBackpackImage: true,
@@ -834,11 +635,7 @@
       };
 
       const crossTabCopyPaste = new CrossTabCopyPaste();
-      crossTabCopyPaste.init(crossTabCopyPasteOptions, () => {
-        console.log(
-          'Use this error callback to handle TypeError while pasting'
-        );
-      });
+      crossTabCopyPaste.init(crossTabCopyPasteOptions, () => {});
 
       // Optional: Remove the duplication command from Blockly's context menu
       Blockly.ContextMenuRegistry.registry.unregister('blockDuplicate');

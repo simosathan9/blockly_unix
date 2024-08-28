@@ -10,6 +10,137 @@ function initBlockly() {
   loadWorkspace(); // Load the workspace after initialization
 }
 
+const state = Blockly.serialization.workspaces.save(workspace);
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      const user = data.user;
+      if (token) {
+        document.getElementById('savedWorkspaces').style.display =
+          'inline-block';
+
+        fetch(`/getUserWorkspaces?userId=${user.id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const workspaces = data.workspaces;
+            const savedWorkspacesSelect =
+              document.getElementById('savedWorkspaces');
+
+            // Clear any existing options
+            savedWorkspacesSelect.innerHTML = '';
+
+            // Add a default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.text = 'Select a workspace';
+            savedWorkspacesSelect.appendChild(defaultOption);
+
+            // Populate dropdown with the user's saved workspaces
+            workspaces.forEach((workspace) => {
+              const option = document.createElement('option');
+              option.value = workspace.id; // use the ID as the option value
+              option.text = workspace.workspaceName; // display the workspace name
+              savedWorkspacesSelect.appendChild(option);
+            });
+
+            savedWorkspacesSelect.addEventListener('change', () => {
+              const selectedWorkspaceId = savedWorkspacesSelect.value;
+
+              if (selectedWorkspaceId) {
+                fetch(`/getWorkspace?workspaceId=${selectedWorkspaceId}`)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    if (data.workspaceData) {
+                      const workspaceState = JSON.parse(data.workspaceData);
+                      // Deserialize and load the workspace
+                      Blockly.serialization.workspaces.load(
+                        workspaceState,
+                        workspace
+                      );
+                    } else {
+                      console.error(
+                        'Failed to load workspace: Invalid workspace data.'
+                      );
+                      alert('Failed to load workspace. Please try again.');
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error loading workspace:', error);
+                    alert('Failed to load workspace. Please try again.');
+                  });
+              }
+            });
+          })
+          .catch((error) => {
+            console.error('Error fetching user workspaces:', error);
+          });
+
+        document.getElementById('saveButton').style.display = 'inline-block';
+
+        document
+          .getElementById('saveButton')
+          .addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // Ask the user for the workspace name
+            const workspaceName = prompt('Enter a name for your workspace:');
+
+            if (!workspaceName || workspaceName.trim() === '') {
+              alert('Workspace name cannot be empty.');
+              return;
+            }
+
+            // Serialize the workspace state to JSON
+            const state = Blockly.serialization.workspaces.save(workspace);
+            const jsonState = JSON.stringify(state);
+
+            // Ensure jsonState, user.id, and workspaceName are valid before submitting
+            if (jsonState && user.id && workspaceName.trim() !== '') {
+              // Set the value of the hidden input fields in the form
+              document.getElementById('workspaceData').value = jsonState;
+              document.getElementById('userId').value = user.id;
+              document.getElementById('workspaceName').value = workspaceName;
+
+              // Use AJAX to send the data to the server without redirecting
+              fetch('/saveWorkspace', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  workspaceData: jsonState,
+                  userId: user.id,
+                  workspaceName: workspaceName
+                })
+              })
+                .then((response) => response.json())
+                .then((result) => {
+                  if (result.error) {
+                    console.error('Error saving workspace:', result.error);
+                    alert('Failed to save workspace. Please try again.');
+                  } else {
+                    alert('Workspace saved successfully.');
+                  }
+                })
+                .catch((error) => {
+                  alert('Failed to save workspace. Please try again.');
+                });
+            } else {
+              console.error(
+                'Invalid workspace data, user ID, or workspace name.'
+              );
+              alert('Failed to save workspace. Invalid data.');
+            }
+          });
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching the token:', error);
+    });
+});
 document
   .getElementById('themeDropdown')
   .addEventListener('change', function (event) {
