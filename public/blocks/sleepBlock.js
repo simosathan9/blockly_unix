@@ -1,6 +1,6 @@
 var sleepBlock = {
   type: 'sleep',
-  message0: '%{BKY_SLEEP_MESSAGE}',
+  message0: '%{BKY_SLEEP} %1',
   category: 'Other Commands',
   unix_description: [
     {
@@ -14,7 +14,7 @@ var sleepBlock = {
       text: '1' // default time in seconds
     }
   ],
-  style: 'other_commands',
+  style: 'Other Commands',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_SLEEP_TOOLTIP}',

@@ -1,7 +1,7 @@
 var killBlock = {
   type: 'kill',
   category: 'Other Commands',
-  message0: 'kill %1',
+  message0: '%{BKY_KILL} %1',
   unix_description: [
     {
       command: 'kill %PID'
@@ -17,8 +17,8 @@ var killBlock = {
   style: 'Other Commands',
   previousStatement: 'Action',
   nextStatement: 'Action',
-  tooltip: 'Σταματάει διεργασίες βάσει του PID τους.',
-  helpUrl: 'https://linux.die.net/man/1/kill'
+  tooltip: '%{BKY_KILL_TOOLTIP}',
+  helpUrl: '%{BKY_KILL_HELPURL}'
 };
 
 Blockly.defineBlocksWithJsonArray([killBlock]);

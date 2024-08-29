@@ -14,7 +14,7 @@ var journalctlBlock = {
       text: '-xe' // default options
     }
   ],
-  style: 'system_monitoring',
+  style: 'Network Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: 'Προβάλει τα logs του συστήματος.',

@@ -299,6 +299,26 @@
           colourPrimary: '#D800FF',
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
+        },
+        'System Monitoring': {
+          colourPrimary: '#9C27B0',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Network Operations': {
+          colourPrimary: '#FFC107',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        Variables: {
+          colourPrimary: '#330',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Other Commands': {
+          colourPrimary: '#009688',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
         }
       };
 
@@ -432,7 +452,6 @@
             contents: [
               { kind: 'block', type: 'ps' },
               { kind: 'block', type: 'df' },
-              { kind: 'block', type: 'du' },
               { kind: 'block', type: 'uptime' },
               { kind: 'block', type: 'who' },
               { kind: 'block', type: 'hostname' },
@@ -447,7 +466,6 @@
             name: 'Network Operations',
             colour: '#FFC107',
             contents: [
-              { kind: 'block', type: 'scp' },
               { kind: 'block', type: 'ssh' },
               { kind: 'block', type: 'curl' },
               { kind: 'block', type: 'ping' },
@@ -555,6 +573,7 @@
             colour: '330',
             custom: 'VARIABLE'
           },
+
           {
             kind: 'sep'
           },

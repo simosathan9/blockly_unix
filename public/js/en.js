@@ -863,3 +863,57 @@ Blockly.Msg['PROCEDURES_HUE'] = '290';
 Blockly.Msg['COLOUR_HUE'] = '20';
 Blockly.Msg['VARIABLES_DYNAMIC_HUE'] = '310';
 Blockly.Msg['CATVARIABLES'] = 'Variables';
+
+// df command
+Blockly.Msg['DF'] = 'Disk free space';
+Blockly.Msg['DF_BLOCK'] = 'disk free space %1';
+Blockly.Msg['DF_TOOLTIP'] = 'Display free disk space for filesystems';
+Blockly.Msg['DF_HELPURL'] = 'https://man7.org/linux/man-pages/man1/df.1.html';
+
+// uptime command
+Blockly.Msg['UPTIME'] = 'System uptime';
+Blockly.Msg['UPTIME_BLOCK'] = 'system uptime %1';
+Blockly.Msg['UPTIME_TOOLTIP'] = 'Show how long the system has been running';
+Blockly.Msg['UPTIME_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/uptime.1.html';
+
+// who command
+Blockly.Msg['WHO'] = 'Who is logged in';
+Blockly.Msg['WHO_BLOCK'] = 'who is logged in %1';
+Blockly.Msg['WHO_TOOLTIP'] = 'Show who is logged in to the system';
+Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
+
+// hostname command
+Blockly.Msg['HOSTNAME'] = 'System hostname';
+Blockly.Msg['HOSTNAME_BLOCK'] = 'system hostname %1';
+Blockly.Msg['HOSTNAME_TOOLTIP'] = 'Show or set the system hostname';
+Blockly.Msg['HOSTNAME_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/hostname.1.html';
+
+// date command
+Blockly.Msg['DATE'] = 'Current date and time';
+Blockly.Msg['DATE_BLOCK'] = 'current date and time %1';
+Blockly.Msg['DATE_TOOLTIP'] = 'Display or set the system date and time';
+Blockly.Msg['DATE_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/date.1.html';
+
+// kill command
+Blockly.Msg['KILL'] = 'Terminate process';
+Blockly.Msg['KILL_BLOCK'] = 'terminate process %1';
+Blockly.Msg['KILL_TOOLTIP'] = 'Terminate a process by its PID';
+Blockly.Msg['KILL_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/kill.1.html';
+
+// echo command
+Blockly.Msg['ECHO'] = 'Print message';
+Blockly.Msg['ECHO_BLOCK'] = 'print message %1';
+Blockly.Msg['ECHO_TOOLTIP'] = 'Print a message to the terminal';
+Blockly.Msg['ECHO_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/echo.1.html';
+
+// sleep command
+Blockly.Msg['SLEEP'] = 'Sleep for duration';
+Blockly.Msg['SLEEP_BLOCK'] = 'sleep for %1 seconds';
+Blockly.Msg['SLEEP_TOOLTIP'] = 'Pause for a specified amount of time';
+Blockly.Msg['SLEEP_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/sleep.1.html';

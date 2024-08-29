@@ -14,7 +14,7 @@ var pingBlock = {
       text: 'example.com' // default address
     }
   ],
-  style: 'network_operations',
+  style: 'Network Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip:

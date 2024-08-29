@@ -1,9 +1,10 @@
 var echoBlock = {
   type: 'echo',
-  category: 'File and Directory Operations',
+  message0: '%{BKY_ECHO}',
+  category: 'Other Commands',
   unix_description: [
     {
-      echoInput: '"str"'
+      command: 'str'
     }
   ],
   message0: '%{BKY_ECHO} %1',
@@ -14,7 +15,7 @@ var echoBlock = {
       text: ''
     }
   ],
-  style: 'Text Processing',
+  style: 'Other Commands',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_ECHO_TOOLTIP}',

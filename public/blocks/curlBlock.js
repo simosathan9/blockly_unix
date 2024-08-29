@@ -1,7 +1,7 @@
 var curlBlock = {
   type: 'curl',
-  message0: 'curl %1',
   category: 'Network Operations',
+  message0: 'curl %1',
   unix_description: [
     {
       url: 'curl %URL'
@@ -11,10 +11,10 @@ var curlBlock = {
     {
       type: 'field_input',
       name: 'URL',
-      text: 'http://example.com' // default URL
+      text: 'http://example.com'
     }
   ],
-  style: 'network_operations',
+  style: 'Network Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: 'Μεταφέρει δεδομένα από ή προς διακομιστές.',
