@@ -864,35 +864,54 @@ Blockly.Msg['VARIABLES_DYNAMIC_HUE'] = '310';
 Blockly.Msg['CATVARIABLES'] = 'Variables';
 
 // df command
-Blockly.Msg['DF'] = 'Disk free space';
-Blockly.Msg['DF_BLOCK'] = 'disk free space %1';
-Blockly.Msg['DF_TOOLTIP'] = 'Display free disk space for filesystems';
+Blockly.Msg['DF'] = 'Disk space usage';
+Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Show file system type %1';
+Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Show total block count %1';
+Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Show used blocks %1';
+Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Show available blocks %1';
+Blockly.Msg['DF_TOOLTIP'] =
+  'Execute the df command to display disk space usage information';
 Blockly.Msg['DF_HELPURL'] = 'https://man7.org/linux/man-pages/man1/df.1.html';
 
 // uptime command
 Blockly.Msg['UPTIME'] = 'System uptime';
-Blockly.Msg['UPTIME_BLOCK'] = 'system uptime %1';
-Blockly.Msg['UPTIME_TOOLTIP'] = 'Show how long the system has been running';
+Blockly.Msg['UPTIME_PRETTY'] = 'Display uptime in a pretty format %1';
+Blockly.Msg['UPTIME_SINCE'] =
+  'Show how long the system has been running since boot %1';
+Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Display the kernel version %1';
+Blockly.Msg['UPTIME_TOOLTIP'] =
+  'Displays system uptime, number of users, and load averages';
 Blockly.Msg['UPTIME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/uptime.1.html';
 
 // who command
-Blockly.Msg['WHO'] = 'Who is logged in';
-Blockly.Msg['WHO_BLOCK'] = 'who is logged in %1';
-Blockly.Msg['WHO_TOOLTIP'] = 'Show who is logged in to the system';
+Blockly.Msg['WHO'] = 'Display who is logged in';
+Blockly.Msg['WHO_SHOW_HEADING'] = 'Show heading information %1';
+Blockly.Msg['WHO_SHOW_ALL'] = 'Show all information %1';
+Blockly.Msg['WHO_SHOW_USERS'] = 'Show user processes %1';
+Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Show last boot time %1';
+Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Show current runlevel %1';
+Blockly.Msg['WHO_TOOLTIP'] =
+  'Displays who is logged in and related system information';
 Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
 
 // hostname command
-Blockly.Msg['HOSTNAME'] = 'System hostname';
-Blockly.Msg['HOSTNAME_BLOCK'] = 'system hostname %1';
-Blockly.Msg['HOSTNAME_TOOLTIP'] = 'Show or set the system hostname';
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Show the hostname of the system';
+Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = "Show the system's hostname %1";
+Blockly.Msg['HOSTNAME_SET_HOSTNAME'] = "Set the system's hostname to %1";
+Blockly.Msg['HOSTNAME_SHOW_ALIASES'] = 'Show hostname aliases %1';
+Blockly.Msg['HOSTNAME_SHOW_IP'] = 'Show IP address associated with hostname %1';
+Blockly.Msg['HOSTNAME_SHOW_FQDN'] =
+  'Show fully qualified domain name (FQDN) %1';
+Blockly.Msg['HOSTNAME_TOOLTIP'] =
+  'Displays or sets the system hostname and related information';
 Blockly.Msg['HOSTNAME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/hostname.1.html';
 
 // date command
-Blockly.Msg['DATE'] = 'Current date and time';
-Blockly.Msg['DATE_BLOCK'] = 'current date and time %1';
-Blockly.Msg['DATE_TOOLTIP'] = 'Display or set the system date and time';
+Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Display the current date and time';
+Blockly.Msg['DATE_UTC_TIME'] = 'Display time in UTC %1';
+Blockly.Msg['DATE_TOOLTIP'] = 'Displays or sets the system date and time';
 Blockly.Msg['DATE_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/date.1.html';
 
@@ -916,3 +935,16 @@ Blockly.Msg['SLEEP_BLOCK'] = 'sleep for %1 seconds';
 Blockly.Msg['SLEEP_TOOLTIP'] = 'Pause for a specified amount of time';
 Blockly.Msg['SLEEP_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/sleep.1.html';
+
+// ps command
+Blockly.Msg['PS'] = 'Process status';
+Blockly.Msg['PS_SHOW_ALL'] = 'Show all processes %1';
+Blockly.Msg['PS_SHOW_USER'] = 'Show processes for user %1';
+Blockly.Msg['PS_SHOW_PID'] = 'Show process by PID %1';
+Blockly.Msg['PS_FORMAT'] = 'Output format %1';
+Blockly.Msg['PS_SHOW_THREAD'] = 'Show threads %1';
+Blockly.Msg['PS_TOOLTIP'] =
+  'Execute the ps command to display process information';
+Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
+
+// ssh command

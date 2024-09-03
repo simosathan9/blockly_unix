@@ -888,3 +888,93 @@ Blockly.Msg['PROCEDURES_HUE'] = '290';
 Blockly.Msg['COLOUR_HUE'] = '20';
 Blockly.Msg['VARIABLES_DYNAMIC_HUE'] = '310';
 Blockly.Msg['CATVARIABLES'] = 'Μεταβλητές';
+
+// df command
+Blockly.Msg['DF'] = 'Χρήση χώρου δίσκου';
+Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Εμφάνιση τύπου συστήματος αρχείων %1';
+Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Εμφάνιση συνολικού αριθμού blocks %1';
+Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Εμφάνιση χρησιμοποιημένων blocks %1';
+Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Εμφάνιση διαθέσιμων blocks %1';
+Blockly.Msg['DF_TOOLTIP'] =
+  'Εκτελεί την εντολή df για εμφάνιση πληροφοριών χρήσης χώρου δίσκου';
+Blockly.Msg['DF_HELPURL'] = 'https://man7.org/linux/man-pages/man1/df.1.html';
+
+// uptime command
+Blockly.Msg['UPTIME'] = 'Χρόνος λειτουργίας συστήματος';
+Blockly.Msg['UPTIME_PRETTY'] = 'Εμφάνιση χρόνου λειτουργίας σε όμορφη μορφή %1';
+Blockly.Msg['UPTIME_SINCE'] =
+  'Εμφάνιση του χρόνου λειτουργίας από την εκκίνηση %1';
+Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Εμφάνιση της έκδοσης του πυρήνα %1';
+Blockly.Msg['UPTIME_TOOLTIP'] =
+  'Εμφανίζει τον χρόνο λειτουργίας του συστήματος, τον αριθμό των χρηστών και τους μέσους όρους φορτίου';
+Blockly.Msg['UPTIME_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/uptime.1.html';
+
+// who command
+Blockly.Msg['WHO'] = 'Εμφάνιση ποιοι χρήστες είναι συνδεδεμένοι';
+Blockly.Msg['WHO_SHOW_HEADING'] = 'Εμφάνιση πληροφοριών κεφαλίδας %1';
+Blockly.Msg['WHO_SHOW_ALL'] = 'Εμφάνιση όλων των πληροφοριών %1';
+Blockly.Msg['WHO_SHOW_USERS'] = 'Εμφάνιση διεργασιών χρηστών %1';
+Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Εμφάνιση τελευταίου χρόνου εκκίνησης %1';
+Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Εμφάνιση του τρέχοντος runlevel %1';
+Blockly.Msg['WHO_TOOLTIP'] =
+  'Εμφανίζει ποιοι χρήστες είναι συνδεδεμένοι και σχετικές πληροφορίες συστήματος';
+Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
+
+// hostname command
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Εμφάνιση του ονόματος του συστήματος';
+Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] =
+  'Εμφάνιση του ονόματος του συστήματος %1';
+Blockly.Msg['HOSTNAME_SET_HOSTNAME'] =
+  'Ορισμός του ονόματος του συστήματος σε %1';
+Blockly.Msg['HOSTNAME_SHOW_ALIASES'] =
+  'Εμφάνιση ψευδωνύμων του ονόματος συστήματος %1';
+Blockly.Msg['HOSTNAME_SHOW_IP'] =
+  'Εμφάνιση της IP διεύθυνσης που συνδέεται με το όνομα συστήματος %1';
+Blockly.Msg['HOSTNAME_SHOW_FQDN'] =
+  'Εμφάνιση του πλήρως καταρτισμένου ονόματος τομέα (FQDN) %1';
+Blockly.Msg['HOSTNAME_TOOLTIP'] =
+  'Εμφανίζει ή ορίζει το όνομα του συστήματος και σχετικές πληροφορίες';
+Blockly.Msg['HOSTNAME_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/hostname.1.html';
+
+// date command
+Blockly.Msg['SYSTEM_DATE_COMMAND'] =
+  'Εμφάνιση της τρέχουσας ημερομηνίας και ώρας';
+Blockly.Msg['DATE_UTC_TIME'] = 'Εμφάνιση ώρας σε UTC %1';
+Blockly.Msg['DATE_TOOLTIP'] =
+  'Εμφανίζει ή ορίζει την ημερομηνία και ώρα του συστήματος';
+Blockly.Msg['DATE_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/date.1.html';
+
+// kill command
+Blockly.Msg['KILL'] = 'Τερματισμός διεργασίας';
+Blockly.Msg['KILL_BLOCK'] = 'τερματισμός διεργασίας %1';
+Blockly.Msg['KILL_TOOLTIP'] = 'Τερματισμός μιας διεργασίας με το PID της';
+Blockly.Msg['KILL_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/kill.1.html';
+
+// echo command
+Blockly.Msg['ECHO'] = 'Εκτύπωση μηνύματος';
+Blockly.Msg['ECHO_BLOCK'] = 'εκτύπωση μηνύματος %1';
+Blockly.Msg['ECHO_TOOLTIP'] = 'Εκτυπώνει ένα μήνυμα στο τερματικό';
+Blockly.Msg['ECHO_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/echo.1.html';
+
+// sleep command
+Blockly.Msg['SLEEP'] = 'Αναμονή για διάρκεια';
+Blockly.Msg['SLEEP_BLOCK'] = 'αναμονή για %1 δευτερόλεπτα';
+Blockly.Msg['SLEEP_TOOLTIP'] = 'Παύση για καθορισμένο χρονικό διάστημα';
+Blockly.Msg['SLEEP_HELPURL'] =
+  'https://man7.org/linux/man-pages/man1/sleep.1.html';
+
+// ps command
+Blockly.Msg['PS'] = 'Κατάσταση διεργασίας';
+Blockly.Msg['PS_SHOW_ALL'] = 'Εμφάνιση όλων των διεργασιών %1';
+Blockly.Msg['PS_SHOW_USER'] = 'Εμφάνιση διεργασιών για χρήστη %1';
+Blockly.Msg['PS_SHOW_PID'] = 'Εμφάνιση διεργασίας με PID %1';
+Blockly.Msg['PS_FORMAT'] = 'Μορφή εξόδου %1';
+Blockly.Msg['PS_SHOW_THREAD'] = 'Εμφάνιση νημάτων %1';
+Blockly.Msg['PS_TOOLTIP'] =
+  'Εκτελεί την εντολή ps για εμφάνιση πληροφοριών διεργασίας';
+Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';

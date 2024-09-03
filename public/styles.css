@@ -110,7 +110,15 @@ body {
 }
 
 #resetButton:hover {
-  background-color: rgb(255, 164, 52);
+  background-color: rgb(243, 155, 48);
+}
+
+#saveButton {
+  background-color: rgb(123, 166, 230);
+}
+
+#saveButton:hover {
+  background-color: rgb(44, 123, 197);
 }
 
 /* Navbar */
