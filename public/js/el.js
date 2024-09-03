@@ -21,13 +21,13 @@ Blockly.Msg['AWK_BEGIN'] =
   'Εκτέλεση μία φορά πριν από την επεξεργασία δεδομένων';
 Blockly.Msg['AWK_ACTION'] = 'Ενέργεια';
 Blockly.Msg['AWK_END'] = 'Εκτέλεση μία φορά μετά την επεξεργασία δεδομένων';
-Blockly.Msg['AWK_PRINT'] = 'στήλες προς εκτύπωση';
-Blockly.Msg['AWK_TOOLTIP'] = 'γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
+Blockly.Msg['AWK_PRINT'] = 'Στήλες προς εκτύπωση';
+Blockly.Msg['AWK_TOOLTIP'] = 'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['BEGIN_END'] =
   'Εκτέλεση μία φορά\n πριν/μετά την επεξεργασία δεδομένων';
 Blockly.Msg['BEGIN_END_TOOLTIP'] =
-  'γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
+  'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
 Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CAT'] = 'Εμφάνιση αρχείου';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'Με αριθμούς γραμμών';
@@ -44,9 +44,10 @@ Blockly.Msg['CONDITION_OUTPUT_TOOLTIP'] =
   'Δημιουργία συνθήκης αναζήτησης με δηλώσεις if';
 Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Αποκοπή σε αρχείο ή συμβολοσειρά';
+Blockly.Msg['CUT_DELIMITER'] = 'Διαχωριστικό';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Ορισμός στηλών';
-Blockly.Msg['CUT_START'] = 'έναρξη υποσυμβολοσειράς';
-Blockly.Msg['CUT_END'] = 'τέλος';
+Blockly.Msg['CUT_START'] = 'Έναρξη υποσυμβολοσειράς';
+Blockly.Msg['CUT_END'] = 'Τέλος';
 Blockly.Msg['CUT_TOOLTIP'] =
   'Αποκοπή σε ένα αρχείο ή μια συμβολοσειρά.\nΓια συνεχόμενες αποκοπές χρησιμοποιήστε κόμμα(,) , για αποκοπές εύρους χρησιμοποιήστε παύλα (-)';
 Blockly.Msg['CUT_HELPURL'] = 'https://www.google.com/';
@@ -70,71 +71,69 @@ Blockly.Msg['FILES_CREATE_EMPTY_TITLE'] = 'Δημιουργία λίστας α�
 Blockly.Msg['FILES_CREATE_WITH_HELPURL'] = '';
 Blockly.Msg['FIND_DUPLICATES'] = 'Εύρεση διπλότυπων στο αρχείο\n';
 Blockly.Msg['FIND_DUPLICATES_TOOLTIP'] =
-  'εύρεση διπλότυπων γραμμών σε ένα αρχείο';
+  'Εύρεση διπλότυπων γραμμών σε ένα αρχείο';
 Blockly.Msg['FIND_DUPLICATES_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FIND'] = 'Εύρεση στην ιεραρχία αρχείων\n';
-Blockly.Msg['FIND_DIRECTORY_SEARCH'] = 'αναζήτηση στον κατάλογο %1 ';
+Blockly.Msg['FIND_DIRECTORY_SEARCH'] = 'Αναζήτηση στον κατάλογο %1 ';
 Blockly.Msg['FIND_CHOOSE_TYPE'] = 'για %1';
 Blockly.Msg['FIND_SUBDIRECTORIES'] = 'Μην περιλαμβάνετε υποκαταλόγους %1';
 Blockly.Msg['FIND_DIRECTORY_DEFINE'] = 'Ορισμός άλλου καταλόγου %1';
-Blockly.Msg['FIND_MODIFIED'] = 'τροποποιήθηκε τελευταίες %1 %2';
-Blockly.Msg['FIND_ACCESSED'] = 'πρόσβαση τελευταίες %1 %2';
-Blockly.Msg['FIND_METADATA'] = 'μεταδεδομένα άλλαξαν τελευταίες %1 %2';
-Blockly.Msg['FIND_SIZE'] = 'μέγεθος %1 από %2 %3';
-Blockly.Msg['FIND_NAME_DEFINE'] = 'με όνομα όπως %1';
+Blockly.Msg['FIND_MODIFIED'] = 'Τροποποιήθηκε τελευταίες %1 %2';
+Blockly.Msg['FIND_ACCESSED'] = 'Πρόσβαση τελευταίες %1 %2';
+Blockly.Msg['FIND_METADATA'] = 'Μεταδεδομένα άλλαξαν τελευταίες %1 %2';
+Blockly.Msg['FIND_SIZE'] = 'Μέγεθος %1 από %2 %3';
+Blockly.Msg['FIND_NAME_DEFINE'] = 'Με όνομα όπως %1';
 Blockly.Msg['FIND_EXECUTE_COMMAND'] =
-  'εκτελέστε την ακόλουθη εντολή σε\n όλα τα αρχεία που βρέθηκαν %1';
+  'Εκτελέστε την ακόλουθη εντολή σε\n όλα τα αρχεία που βρέθηκαν %1';
 Blockly.Msg['FIND_TOOLTIP'] = 'Εύρεση αρχείων σε καταλόγους και υποκαταλόγους';
 Blockly.Msg['FIND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GREP'] = 'Αναζήτηση σε αρχείο ή κατάλογο ';
 Blockly.Msg['GREP_PATTERN_DEFINE'] = 'το μοτίβο %1';
-Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'κανονική έκφραση %1';
-Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'χωρίς διάκριση πεζών-κεφαλαίων %1';
-Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'αναζήτηση πλήρους λέξης %1';
-Blockly.Msg['GREP_COUNT_MATCHES'] = 'μέτρηση των αντιστοιχιών %1';
+Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'Κανονική έκφραση %1';
+Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'Χωρίς διάκριση πεζών-κεφαλαίων %1';
+Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'Αναζήτηση πλήρους λέξης %1';
+Blockly.Msg['GREP_COUNT_MATCHES'] = 'Μέτρηση των αντιστοιχιών %1';
 Blockly.Msg['GREP_PATTERN_NEGATION'] =
-  'εμφάνιση γραμμών που δεν ταιριάζουν στο μοτίβο %1';
-Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'αναζήτηση αναδρομικά %1';
-Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'εμφάνιση αριθμών γραμμών %1';
+  'Εμφάνιση γραμμών που δεν ταιριάζουν στο μοτίβο %1';
+Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'Αναζήτηση αναδρομικά %1';
+Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Εμφάνιση αριθμών γραμμών %1';
 Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] =
-  'σταμάτησε μετά από %1 αντιστοιχίες';
+  'Σταμάτησε μετά από %1 αντιστοιχίες';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] = 'Αναζήτηση με πολλαπλά μοτίβα %1';
 Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
-  'Εκτύπωση %1 γραμμών πριν από την αντιστοιχία %2';
+  'Εμφάνιση %1 γραμμών πριν από την αντιστοιχία %2';
 Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
-  'Εκτύπωση %1 γραμμών μετά την αντιστοιχία %2';
-Blockly.Msg['GREP_PRINT_CONTEXT_AROUND_MATCH'] =
-  'Εκτύπωση %1 γραμμών γύρω από την αντιστοιχία %2';
+  'Εμφάνιση %1 γραμμών μετά την αντιστοιχία %2';
 Blockly.Msg['GREP_SHOW_FILENAME'] = 'Εμφάνιση ονόματος αρχείου %1';
-Blockly.Msg['GREP_TOOLTIP'] = 'αναζήτηση σε αρχείο με μοτίβο';
+Blockly.Msg['GREP_TOOLTIP'] = 'Αναζήτηση σε αρχείο με μοτίβο';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 Αρχείο';
-Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'διατήρηση αρχικού αρχείου %1';
-Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'επίπεδο συμπίεσης %1';
+Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'Διατήρηση αρχικού αρχείου %1';
+Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Επίπεδο συμπίεσης %1';
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Aλλαγή κατάληξης απο .gz σε';
 Blockly.Msg['GZIP_VERBOSE'] = 'Εμφάνισε πληροφορίες %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'Συμπίεση/αποσυμπίεση αρχείου';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['HEAD_MESSAGE'] = 'Αρχή αρχείου';
-Blockly.Msg['HEAD_METRIC'] = 'μετρική %1';
-Blockly.Msg['HEAD_NUMBER_OF'] = 'αριθμός %1';
+Blockly.Msg['HEAD_MESSAGE'] = 'Επικεφαλίδα αρχείου';
+Blockly.Msg['HEAD_METRIC'] = 'Μετρική %1';
+Blockly.Msg['HEAD_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Εμφάνιση του πρώτου μέρους των αρχείων';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'Λίστα αρχείων & καταλόγων';
-Blockly.Msg['LS_SHOW_DETAILS'] = 'εμφάνιση λεπτομερειών %1';
-Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 αναζήτηση σε όλους τους υποκαταλόγους';
-Blockly.Msg['LS_HIDDEN'] = 'εμφάνιση κρυφών αρχείων %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = '%1 εμφάνιση σε αντίστροφη σειρά';
-Blockly.Msg['LS_TOOLTIP'] = 'λίστα περιεχομένων καταλόγου';
+Blockly.Msg['LS_SHOW_DETAILS'] = 'Εμφάνιση λεπτομερειών %1';
+Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 Αναζήτηση σε όλους τους υποκαταλόγους';
+Blockly.Msg['LS_HIDDEN'] = 'Εμφάνιση κρυφών αρχείων %1';
+Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Εμφάνιση σε αντίστροφη σειρά';
+Blockly.Msg['LS_TOOLTIP'] = 'Λίστα περιεχομένων καταλόγου';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'για πολλαπλούς καταλόγους χωρίστε με κενό';
+  'Για πολλαπλούς καταλόγους χωρίστε με κενό';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
-  'δημιουργήστε επίσης καταλόγους γονέων %1';
-Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'λίστα δημιουργημένων καταλόγων %1';
-Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'γράψτε όνομα καταλόγου ή διαδρομή %1';
-Blockly.Msg['MKDIR_TOOLTIP'] = 'δημιουργία καταλόγου';
+  'Δημιουργήστε επίσης καταλόγους γονέων %1';
+Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'Λίστα δημιουργημένων καταλόγων %1';
+Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Γράψτε όνομα καταλόγου ή διαδρομή %1';
+Blockly.Msg['MKDIR_TOOLTIP'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['RECORD_NUMBER'] = 'Τρέχων εγγραφή';
@@ -154,8 +153,8 @@ Blockly.Msg['COLOUR_BLEND_COLOUR1'] = 'χρώμα 1';
 Blockly.Msg['COLOUR_BLEND_COLOUR2'] = 'χρώμα 2';
 Blockly.Msg['COLOUR_BLEND_HELPURL'] =
   'https://meyerweb.com/eric/tools/color-blend/#:::rgbp';
-Blockly.Msg['COLOUR_BLEND_RATIO'] = 'αναλογία';
-Blockly.Msg['COLOUR_BLEND_TITLE'] = 'συγχώνευση';
+Blockly.Msg['COLOUR_BLEND_RATIO'] = 'Αναλογία';
+Blockly.Msg['COLOUR_BLEND_TITLE'] = 'Συγχώνευση';
 Blockly.Msg['COLOUR_BLEND_TOOLTIP'] =
   'Συγχωνεύει δύο χρώματα μαζί με μια δεδομένη αναλογία (0.0 - 1.0).';
 Blockly.Msg['COLOUR_PICKER_HELPURL'] = 'https://en.wikipedia.org/wiki/Color';
@@ -777,7 +776,7 @@ Blockly.Msg['REGFOR'] =
 Blockly.Msg['REGFOR_1'] = '%1';
 Blockly.Msg['REGFOR_TOOLTIP'] = 'Περισσότερες από μία αντιστοιχίες μοτίβων.';
 Blockly.Msg['REGFOR_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGLOOKAHEAD'] = 'μοτίβο %1 ακολουθούμενο από %2';
+Blockly.Msg['REGLOOKAHEAD'] = 'Μοτίβο %1 ακολουθούμενο από %2';
 Blockly.Msg['REGLOOKAHEAD_TOOLTIP'] =
   'Αντιστοίχιση μοτίβου που ακολουθεί ή δεν ακολουθεί άλλο μοτίβο';
 Blockly.Msg['REGLOOKAHEAD_HELPURL'] = 'https://www.google.com/';
@@ -812,11 +811,11 @@ Blockly.Msg['SAVE_TOOLTIP'] =
 Blockly.Msg['SAVE_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SED'] = 'Αναζήτηση και αντικατάσταση σε ένα αρχείο\n';
-Blockly.Msg['SED_REGEX'] = 'είναι κανονική έκφραση %1\n';
-Blockly.Msg['SED_PATTERN'] = 'μοτίβο αναζήτησης %1\n';
+Blockly.Msg['SED_REGEX'] = 'Είναι κανονική έκφραση %1\n';
+Blockly.Msg['SED_PATTERN'] = 'Μοτίβο αναζήτησης %1\n';
 Blockly.Msg['SED_STRING'] = 'ή απλή συμβολοσειρά %1\n';
-Blockly.Msg['SED_TEXT'] = 'κείμενο προς αλλαγή %1\n';
-Blockly.Msg['SED_INALL'] = 'σε όλες τις εμφανίσεις του μοτίβου %1';
+Blockly.Msg['SED_TEXT'] = 'Κείμενο προς αλλαγή %1\n';
+Blockly.Msg['SED_INALL'] = 'Σε όλες τις εμφανίσεις του μοτίβου %1';
 Blockly.Msg['SED_TOOLTIP'] = 'Ροή επεξεργασίας σε ένα αρχείο';
 Blockly.Msg['SED_HELPURL'] = 'https://www.google.com/';
 
@@ -826,27 +825,27 @@ Blockly.Msg['SHOWUNIQS_TOOLTIP'] =
 Blockly.Msg['SHOWUNIQS_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SORT'] = 'Ταξινόμηση αρχείου';
-Blockly.Msg['SORT_DESC'] = 'φθίνουσα σειρά %1';
-Blockly.Msg['SORT_BASED'] = 'με βάση %1';
-Blockly.Msg['SORT_DELIM'] = 'διαχωριστικό %1';
-Blockly.Msg['SORT_COLS'] = 'στήλη για ταξινόμηση %1';
-Blockly.Msg['SORT_UNIQ'] = 'έξοδος μοναδικών στοιχείων %1';
-Blockly.Msg['SORT_IGNORE'] = 'αγνόηση μη εκτυπώσιμων χαρακτήρων %1';
-Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'αγνόηση κενών στην αρχή %1';
+Blockly.Msg['SORT_DESC'] = 'Φθίνουσα σειρά %1';
+Blockly.Msg['SORT_BASED'] = 'Με βάση %1';
+Blockly.Msg['SORT_DELIM'] = 'Διαχωριστικό %1';
+Blockly.Msg['SORT_COLS'] = 'Στήλη για ταξινόμηση %1';
+Blockly.Msg['SORT_UNIQ'] = 'Έξοδος μοναδικών στοιχείων %1';
+Blockly.Msg['SORT_IGNORE'] = 'Αγνόηση μη εκτυπώσιμων χαρακτήρων %1';
+Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'Αγνόηση κενών στην αρχή %1';
 Blockly.Msg['SORT_TOOLTIP'] =
-  'αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
+  'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TAIL'] = 'Ουρά του αρχείου';
-Blockly.Msg['TAIL_METRIC'] = 'μετρική %1';
-Blockly.Msg['TAIL_NUMBER_OF'] = 'αριθμός %1';
-Blockly.Msg['TAIL_DESC'] = 'φθίνουσα σειρά %1';
+Blockly.Msg['TAIL_METRIC'] = 'Μετρική %1 απο το τέλος';
+Blockly.Msg['TAIL_NUMBER_OF'] = 'Αριθμός %1';
+Blockly.Msg['TAIL_DESC'] = 'Φθίνουσα σειρά %1';
 Blockly.Msg['TAIL_TOOLTIP'] = 'Εμφάνιση του τελευταίου μέρους των αρχείων';
 Blockly.Msg['TAIL_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TEE'] = 'Αποθήκευση σε αρχείο &\n και συνέχιση επεξεργασίας\n';
-Blockly.Msg['TEE_APPEND'] = 'προσθήκη στο αρχείο %1\n';
-Blockly.Msg['TEE_NAME'] = 'δώστε όνομα αρχείου %1';
+Blockly.Msg['TEE_APPEND'] = 'Προσθήκη στο αρχείο %1\n';
+Blockly.Msg['TEE_NAME'] = 'Δώστε όνομα αρχείου %1';
 Blockly.Msg['TEE_TOOLTIP'] =
   'Το εργαλείο tee αντιγράφει την τυπική είσοδο στην τυπική έξοδο, κάνοντας ένα αντίγραφο σε ένα ή περισσότερα αρχεία.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
@@ -857,19 +856,19 @@ Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στο αρχείο\n';
 Blockly.Msg['UNIQ_COUNT'] =
-  'μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
-Blockly.Msg['UNIQ_CASE'] = ' χωρίς διάκριση πεζών-κεφαλαίων %1';
+  'Μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
+Blockly.Msg['UNIQ_CASE'] = ' Χωρίς διάκριση πεζών-κεφαλαίων %1';
 Blockly.Msg['UNIQ_TOOLTIP'] =
   'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['WC'] = 'Μέτρηση στο αρχείο';
-Blockly.Msg['WC_LINES'] = 'μέτρηση γραμμών %1';
-Blockly.Msg['WC_WORDS'] = 'μέτρηση λέξεων %1';
-Blockly.Msg['WC_BYTES'] = 'μέτρηση byte %1';
-Blockly.Msg['WC_CHARS'] = 'μέτρηση χαρακτήρων %1';
+Blockly.Msg['WC_LINES'] = 'Μέτρηση γραμμών %1';
+Blockly.Msg['WC_WORDS'] = 'Μέτρηση λέξεων %1';
+Blockly.Msg['WC_BYTES'] = 'Μέτρηση byte %1';
+Blockly.Msg['WC_CHARS'] = 'Μέτρηση χαρακτήρων %1';
 Blockly.Msg['WC_TOOLTIP'] =
-  'μέτρηση λέξεων, γραμμών, χαρακτήρων και byte σε ένα αρχείο';
+  'Μέτρηση λέξεων, γραμμών, χαρακτήρων και byte σε ένα αρχείο';
 Blockly.Msg['WC_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['XARGS'] = 'Εκτέλεση της παρακάτω εντολής\n για κάθε στοιχείο';

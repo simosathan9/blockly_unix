@@ -146,6 +146,26 @@
         <form id="homePageForm" action="/" method="POST" style="display: none">
           <input type="hidden" name="_method" value="POST" />
         </form>
+
+        <form
+          id="logoutForm"
+          action="/logout"
+          method="DELETE"
+          style="display: none"
+        >
+          <input type="hidden" name="_method" value="DELETE" />
+        </form>
+
+        <button
+          id="logoutButton"
+          class="icon-button"
+          title="Sign Out"
+          type="button"
+          style="display: none"
+        >
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+
         <form
           id="loginForm"
           action="/login"
@@ -180,25 +200,6 @@
         </button>
       </div>
       <div id="buttonContainer">
-        <form
-          id="logoutForm"
-          action="/logout"
-          method="DELETE"
-          style="display: none"
-        >
-          <input type="hidden" name="_method" value="DELETE" />
-        </form>
-
-        <button
-          id="logoutButton"
-          class="icon-button"
-          title="Sign Out"
-          type="button"
-          style="display: none"
-        >
-          <i class="fas fa-sign-out-alt"></i>
-        </button>
-
         <button id="resetButton" class="icon-button" title="Reset Workspace">
           <i class="fas fa-undo"></i>
         </button>
@@ -250,7 +251,7 @@
     </div>
     <div id="resultsWrapper">
       <div id="resultsArea">
-        Results will appear here...
+        <div id="resultsText">Results will appear here...</div>
 
         <button id="copyButton" class="btn btn-light">
           <i class="fas fa-copy"></i>

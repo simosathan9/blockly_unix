@@ -340,7 +340,7 @@ document
     generatedCommand = replaceKeywords(generatedCommand);
 
     // Combine the constructed UNIX command and filename
-    document.getElementById('resultsArea').innerText = generatedCommand;
+    document.getElementById('resultsText').innerText = generatedCommand;
 
     console.log('Generated command:', generatedCommand);
   });

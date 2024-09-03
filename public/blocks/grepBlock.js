@@ -15,8 +15,7 @@ var grepBlock = {
       regPattern: '"patt"',
       showFiles: '-H',
       print_context_before_match: '-B ',
-      print_context_after_match: '-A ',
-      print_context_around_match: '-C '
+      print_context_after_match: '-A '
     }
   ],
   message0: '%{BKY_GREP}',
@@ -125,18 +124,6 @@ var grepBlock = {
     {
       type: 'field_number',
       name: 'print_context_after_match',
-      value: 0
-    },
-    {
-      type: 'field_checkbox',
-      checked: false // by default it's disabled
-    }
-  ],
-  message14: '%{BKY_GREP_PRINT_CONTEXT_AROUND_MATCH}',
-  args14: [
-    {
-      type: 'field_number',
-      name: 'print_context_around_match',
       value: 0
     },
     {

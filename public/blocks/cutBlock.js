@@ -10,7 +10,7 @@ var cutBlock = {
     }
   ],
   message0: '%{BKY_CUT}\n',
-  message1: 'delimiter %1\n',
+  message1: '%{BKY_CUT_DELIMITER} %1\n',
   args1: [
     {
       type: 'field_input',

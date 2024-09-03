@@ -43,6 +43,7 @@ Blockly.Msg['CONDITION_OUTPUT_TOOLTIP'] =
   'Construct a search condition with if statements';
 Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Cut out in file or string';
+Blockly.Msg['CUT_DELIMITER'] = 'Delimiter';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Define columns';
 Blockly.Msg['CUT_START'] = 'substring start';
 Blockly.Msg['CUT_END'] = 'end';
@@ -68,20 +69,20 @@ Blockly.Msg['FILES_CREATE_WITH_TOOLTIP'] = 'Add files';
 Blockly.Msg['FILES_CREATE_EMPTY_TITLE'] = 'Create list of files';
 Blockly.Msg['FILES_CREATE_WITH_HELPURL'] = '';
 Blockly.Msg['FIND_DUPLICATES'] = 'Find duplicates in file\n';
-Blockly.Msg['FIND_DUPLICATES_TOOLTIP'] = 'find duplicate lines in a file';
+Blockly.Msg['FIND_DUPLICATES_TOOLTIP'] = 'Find duplicate lines in a file';
 Blockly.Msg['FIND_DUPLICATES_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FIND'] = 'Find in file hierarchy\n';
-Blockly.Msg['FIND_DIRECTORY_SEARCH'] = 'search in %1 directory ';
-Blockly.Msg['FIND_CHOOSE_TYPE'] = 'for %1';
+Blockly.Msg['FIND_DIRECTORY_SEARCH'] = 'Search in %1 directory ';
+Blockly.Msg['FIND_CHOOSE_TYPE'] = 'For %1';
 Blockly.Msg['FIND_SUBDIRECTORIES'] = 'Do not include subdirectories %1';
 Blockly.Msg['FIND_DIRECTORY_DEFINE'] = 'Define other directory %1';
-Blockly.Msg['FIND_MODIFIED'] = 'modified last %1 %2';
-Blockly.Msg['FIND_ACCESSED'] = 'accessed last %1 %2';
-Blockly.Msg['FIND_METADATA'] = 'metadata changed last %1 %2';
-Blockly.Msg['FIND_SIZE'] = 'size %1 than %2 %3';
-Blockly.Msg['FIND_NAME_DEFINE'] = 'with name like %1';
+Blockly.Msg['FIND_MODIFIED'] = 'Modified last %1 %2';
+Blockly.Msg['FIND_ACCESSED'] = 'Accessed last %1 %2';
+Blockly.Msg['FIND_METADATA'] = 'Metadata changed last %1 %2';
+Blockly.Msg['FIND_SIZE'] = 'Size %1 than %2 %3';
+Blockly.Msg['FIND_NAME_DEFINE'] = 'With name like %1';
 Blockly.Msg['FIND_EXECUTE_COMMAND'] =
-  'execute following command in\n all files found %1';
+  'Execute following command in\n all files found %1';
 Blockly.Msg['FIND_TOOLTIP'] = 'Find files in directories and subdirectories';
 Blockly.Msg['FIND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GREP'] = 'Search in file or directory ';
@@ -101,13 +102,11 @@ Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
   'Print %1 lines of context before match %2';
 Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
   'Print %1 lines of context after match %2';
-Blockly.Msg['GREP_PRINT_CONTEXT_AROUND_MATCH'] =
-  'Print %1 lines of context around match %2';
 Blockly.Msg['GREP_TOOLTIP'] = 'search in a file with a pattern';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 file';
-Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'keep original file %1';
-Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'level of compression %1';
+Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'Keep original file %1';
+Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Level of compression %1';
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Change suffix from .gz to';
 Blockly.Msg['GZIP_VERBOSE'] = 'Τurn on verbose mode %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
@@ -118,20 +117,20 @@ Blockly.Msg['HEAD_NUMBER_OF'] = 'number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
-Blockly.Msg['LS_SHOW_DETAILS'] = 'show details %1';
-Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 search in all subdirectories';
-Blockly.Msg['LS_HIDDEN'] = 'show hidden files %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = '%1 show in reverse order';
-Blockly.Msg['LS_TOOLTIP'] = 'list directory contents';
+Blockly.Msg['LS_SHOW_DETAILS'] = 'Show details %1';
+Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 Search in all subdirectories';
+Blockly.Msg['LS_HIDDEN'] = 'Show hidden files %1';
+Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Show in reverse order';
+Blockly.Msg['LS_TOOLTIP'] = 'List directory contents';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Create directory';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'for multiple directories separate with space';
+  'For multiple directories separate with space';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
-  'create also parent directories %1';
-Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'list directories created %1';
-Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'write directory or path %1';
-Blockly.Msg['MKDIR_TOOLTIP'] = 'create directory';
+  'Create also parent directories %1';
+Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'List directories created %1';
+Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Write directory or path %1';
+Blockly.Msg['MKDIR_TOOLTIP'] = 'Create directory';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['RECORD_NUMBER'] = 'Current record';
@@ -756,7 +755,7 @@ Blockly.Msg['REGFOR'] =
 Blockly.Msg['REGFOR_1'] = '%1';
 Blockly.Msg['REGFOR_TOOLTIP'] = 'More than one pattern matches.';
 Blockly.Msg['REGFOR_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGLOOKAHEAD'] = 'pattern %1 followed by %2';
+Blockly.Msg['REGLOOKAHEAD'] = 'Pattern %1 followed by %2';
 Blockly.Msg['REGLOOKAHEAD_TOOLTIP'] =
   "Match a pattern that follows or doesn't follow another pattern";
 Blockly.Msg['REGLOOKAHEAD_HELPURL'] = 'https://www.google.com/';
@@ -791,11 +790,11 @@ Blockly.Msg['SAVE_TOOLTIP'] =
 Blockly.Msg['SAVE_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SED'] = 'Search and replace in a file\n';
-Blockly.Msg['SED_REGEX'] = 'is Regex %1\n';
-Blockly.Msg['SED_PATTERN'] = 'search pattern %1\n';
+Blockly.Msg['SED_REGEX'] = 'Is Regex %1\n';
+Blockly.Msg['SED_PATTERN'] = 'Search pattern %1\n';
 Blockly.Msg['SED_STRING'] = 'or single string %1\n';
-Blockly.Msg['SED_TEXT'] = 'text to change %1\n';
-Blockly.Msg['SED_INALL'] = 'in all occurencies of the pattern %1';
+Blockly.Msg['SED_TEXT'] = 'Text to change %1\n';
+Blockly.Msg['SED_INALL'] = 'In all occurencies of the pattern %1';
 Blockly.Msg['SED_TOOLTIP'] = 'Stream edit in a file';
 Blockly.Msg['SED_HELPURL'] = 'https://www.google.com/';
 
@@ -804,26 +803,26 @@ Blockly.Msg['SHOWUNIQS_TOOLTIP'] = 'Find and show only unique lines in a file';
 Blockly.Msg['SHOWUNIQS_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SORT'] = 'Sort file';
-Blockly.Msg['SORT_DESC'] = 'descending order %1';
-Blockly.Msg['SORT_BASED'] = 'based on %1';
-Blockly.Msg['SORT_DELIM'] = 'delimeter %1';
-Blockly.Msg['SORT_COLS'] = 'column to sort %1';
-Blockly.Msg['SORT_UNIQ'] = 'unique elements output %1';
-Blockly.Msg['SORT_IGNORE'] = 'ignore non-printable characters %1';
-Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'ignore leading blanks %1';
-Blockly.Msg['SORT_TOOLTIP'] = 'report or filter out repeated lines in a file';
+Blockly.Msg['SORT_DESC'] = 'Descending order %1';
+Blockly.Msg['SORT_BASED'] = 'Based on %1';
+Blockly.Msg['SORT_DELIM'] = 'Delimeter %1';
+Blockly.Msg['SORT_COLS'] = 'Column to sort %1';
+Blockly.Msg['SORT_UNIQ'] = 'Unique elements output %1';
+Blockly.Msg['SORT_IGNORE'] = 'Ignore non-printable characters %1';
+Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'Ignore leading blanks %1';
+Blockly.Msg['SORT_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TAIL'] = 'Tail of file';
-Blockly.Msg['TAIL_METRIC'] = 'metric %1';
-Blockly.Msg['TAIL_NUMBER_OF'] = 'number of %1';
-Blockly.Msg['TAIL_DESC'] = 'descending order %1';
+Blockly.Msg['TAIL_METRIC'] = 'Metric %1';
+Blockly.Msg['TAIL_NUMBER_OF'] = 'Number of %1';
+Blockly.Msg['TAIL_DESC'] = 'Descending order %1';
 Blockly.Msg['TAIL_TOOLTIP'] = 'Output the last parts of files';
 Blockly.Msg['TAIL_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TEE'] = 'Save to file &\n and continue processing\n';
-Blockly.Msg['TEE_APPEND'] = 'append to file %1\n';
-Blockly.Msg['TEE_NAME'] = 'give file name %1';
+Blockly.Msg['TEE_APPEND'] = 'Append to file %1\n';
+Blockly.Msg['TEE_NAME'] = 'Give file name %1';
 Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
@@ -834,17 +833,17 @@ Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';
 Blockly.Msg['UNIQ_COUNT'] =
-  'count the occurencies of \n duplicates lines removed %1';
-Blockly.Msg['UNIQ_CASE'] = 'case sensitive %1';
+  'Count the occurencies of \n duplicates lines removed %1';
+Blockly.Msg['UNIQ_CASE'] = 'Case sensitive %1';
 Blockly.Msg['UNIQ_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['WC'] = 'Count in file';
-Blockly.Msg['WC_LINES'] = 'lines count %1';
-Blockly.Msg['WC_WORDS'] = 'words count %1';
-Blockly.Msg['WC_BYTES'] = 'bytes count %1';
-Blockly.Msg['WC_CHARS'] = 'chars count %1';
-Blockly.Msg['WC_TOOLTIP'] = 'word, line, character, and byte count in a file';
+Blockly.Msg['WC_LINES'] = 'Lines count %1';
+Blockly.Msg['WC_WORDS'] = 'Words count %1';
+Blockly.Msg['WC_BYTES'] = 'Bytes count %1';
+Blockly.Msg['WC_CHARS'] = 'Chars count %1';
+Blockly.Msg['WC_TOOLTIP'] = 'Word, line, character, and byte count in a file';
 Blockly.Msg['WC_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['XARGS'] = 'Execute following command\n for each item';
