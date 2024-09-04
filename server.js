@@ -172,6 +172,17 @@ app.post(
           });
         }
       );
+      db.run(
+        `INSERT INTO workspaces (workspaceData, userId, workspaceName) VALUES (?, ?, ?)`,
+        ['{}', newUser.id, '__autosave__'],
+        function (err) {
+          if (err) {
+            console.log(err.message);
+            req.flash('error', 'Registration failed.');
+            return res.redirect('/register');
+          }
+        }
+      );
     } catch (e) {
       console.log(e);
       req.flash('error', 'Registration failed.');
@@ -207,7 +218,11 @@ app.get('/auth-token', addAuthToken, (req, res) => {
       }
     });
   } else {
-    res.status(401).json({ authToken: null, user: null });
+    res.json({
+      message: 'User is not authenticated',
+      authToken: null,
+      user: null
+    });
   }
 });
 
@@ -263,6 +278,43 @@ app.post('/saveWorkspace', (req, res) => {
       message: 'Workspace data saved successfully.',
       workspaceId: this.lastID // Return the ID of the inserted workspace
     });
+  });
+});
+
+app.post('/autoSaveWorkspace', (req, res) => {
+  const { workspaceData, userId } = req.body;
+
+  if (!workspaceData || !userId) {
+    return res
+      .status(400)
+      .json({ error: 'Missing workspace data or user ID.' });
+  }
+
+  // Query to update the __autosave__ workspace
+  const query = `UPDATE workspaces SET workspaceData = ? WHERE userId = ? AND workspaceName = '__autosave__'`;
+
+  db.run(query, [workspaceData, userId], function (err) {
+    if (err) {
+      console.error('Error auto-saving workspace:', err.message);
+      return res.status(500).json({ error: 'Failed to auto-save workspace.' });
+    }
+
+    // If no rows were updated, it means the __autosave__ entry doesn't exist. Insert a new one.
+    if (this.changes === 0) {
+      const insertQuery = `INSERT INTO workspaces (workspaceData, userId, workspaceName) VALUES (?, ?, '__autosave__')`;
+      db.run(insertQuery, [workspaceData, userId], function (err) {
+        if (err) {
+          console.error('Error inserting __autosave__ workspace:', err.message);
+          return res
+            .status(500)
+            .json({ error: 'Failed to auto-save workspace.' });
+        }
+
+        res.status(200).json({ message: 'Workspace auto-saved successfully.' });
+      });
+    } else {
+      res.status(200).json({ message: 'Workspace auto-saved successfully.' });
+    }
   });
 });
 

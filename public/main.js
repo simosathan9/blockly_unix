@@ -7,10 +7,136 @@ window.onload = function () {
 };
 
 function initBlockly() {
-  loadWorkspace(); // Load the workspace after initialization
+  //loadWorkspace(); // Load the workspace after initialization
+
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      if (token) {
+        loadAutoSavedWorkspace();
+      } else {
+        loadWorkspace();
+      }
+    });
 }
 
 const state = Blockly.serialization.workspaces.save(workspace);
+
+function autoSaveWorkspace() {
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      const user = data.user;
+      if (token) {
+        document.getElementById('savedWorkspaces').style.display =
+          'inline-block';
+
+        // Serialize the current workspace state
+        const state = Blockly.serialization.workspaces.save(workspace);
+        const jsonState = JSON.stringify(state);
+
+        // Assuming you have a global 'user' object with the current user ID
+        if (jsonState && user.id) {
+          // Send the workspace data to the server to update __autosave__ workspace
+          fetch('/autoSaveWorkspace', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              workspaceData: jsonState,
+              userId: user.id
+            })
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.error) {
+                console.error('Error auto-saving workspace:', result.error);
+              } else {
+                console.log('Workspace auto-saved successfully.');
+              }
+            })
+            .catch((error) => {
+              console.error('Error auto-saving workspace:', error);
+            });
+        }
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching the token:', error);
+    });
+}
+
+function loadAutoSavedWorkspace() {
+  // Fetch the authentication token and user information
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      const user = data.user;
+
+      if (token && user && user.id) {
+        // Construct the query to find the autosaved workspace ID for the user
+        fetch(`/getUserWorkspaces?userId=${user.id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const workspaces = data.workspaces;
+            const autoSaveWorkspace = workspaces.find(
+              (ws) => ws.workspaceName === '__autosave__'
+            );
+
+            if (autoSaveWorkspace) {
+              // Fetch the autosaved workspace data using its ID
+              fetch(`/getWorkspace?workspaceId=${autoSaveWorkspace.id}`)
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.workspaceData) {
+                    try {
+                      // Deserialize and load the workspace state
+                      const workspaceState = JSON.parse(data.workspaceData);
+
+                      // Clear the existing workspace and load the autosaved state
+                      Blockly.serialization.workspaces.load(
+                        workspaceState,
+                        workspace
+                      );
+
+                      console.log('Autosaved workspace loaded successfully.');
+                    } catch (error) {
+                      console.error('Error parsing workspace data:', error);
+                      alert(
+                        'Failed to load autosaved workspace. Please try again.'
+                      );
+                    }
+                  } else {
+                    console.log('No autosaved workspace data found.');
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error fetching autosaved workspace:', error);
+                  alert(
+                    'Failed to fetch autosaved workspace. Please try again.'
+                  );
+                });
+            } else {
+              console.log('No autosaved workspace found for user ID:', user.id);
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching user workspaces:', error);
+            alert('Failed to fetch user workspaces. Please try again.');
+          });
+      } else {
+        loadWorkspace();
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching the token:', error);
+      alert('Failed to fetch authentication token. Please try again.');
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('/auth-token')
@@ -40,10 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Populate dropdown with the user's saved workspaces
             workspaces.forEach((workspace) => {
-              const option = document.createElement('option');
-              option.value = workspace.id; // use the ID as the option value
-              option.text = workspace.workspaceName; // display the workspace name
-              savedWorkspacesSelect.appendChild(option);
+              if (workspace.workspaceName !== '__autosave__') {
+                const option = document.createElement('option');
+                option.value = workspace.id; // use the ID as the option value
+                option.text = workspace.workspaceName; // display the workspace name
+                savedWorkspacesSelect.appendChild(option);
+              }
             });
 
             savedWorkspacesSelect.addEventListener('change', () => {
@@ -197,19 +325,15 @@ loadInitialLanguage();
 handleLanguageChange();
 
 function loadWorkspace() {
-  var xml_text = localStorage.getItem('blocklyWorkspace');
-  if (xml_text) {
+  var jsonState = localStorage.getItem('blocklyWorkspace');
+  if (jsonState) {
     console.log('blocklyWorkspace found in local storage.');
     try {
-      var parser = new DOMParser();
-      var xml = parser.parseFromString(xml_text, 'text/xml');
-      Blockly.Xml.domToWorkspace(
-        xml.documentElement,
-        Blockly.getMainWorkspace()
-      );
+      var state = JSON.parse(jsonState);
+      Blockly.serialization.workspaces.load(state, workspace);
       console.log('Blockly workspace loaded successfully.');
     } catch (e) {
-      console.error('Error parsing XML from local storage:', e);
+      console.error('Error parsing JSON from local storage:', e);
     }
   } else {
     console.log('No saved blocklyWorkspace found in local storage.');
@@ -218,16 +342,26 @@ function loadWorkspace() {
 
 function onWorkspaceChange(event) {
   console.log('Saving Workspace...');
-  saveWorkspace();
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      if (token) {
+        autoSaveWorkspace();
+      } else {
+        saveWorkspace();
+      }
+    });
 }
 Blockly.getMainWorkspace().addChangeListener(onWorkspaceChange);
 
 function saveWorkspace() {
-  var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
-  var xmlText = Blockly.Xml.domToText(xml);
-  localStorage.setItem('blocklyWorkspace', xmlText);
+  const state = Blockly.serialization.workspaces.save(workspace);
+  const jsonState = JSON.stringify(state);
+  localStorage.setItem('blocklyWorkspace', jsonState);
 }
-window.addEventListener('beforeunload', saveWorkspace);
+//window.addEventListener('beforeunload', saveWorkspace);
+//window.addEventListener('beforeunload', autoSaveWorkspace);
 
 // Global replacement map
 const replacementMap = new Map([
