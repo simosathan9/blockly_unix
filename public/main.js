@@ -1,6 +1,9 @@
 Blockly.JavaScript.init(workspace);
 Blockly.JavaScript = new Blockly.Generator('JavaScript');
 var generator = javascript.javascriptGenerator;
+let workspaceChangedAfterExecution = false; // Flag to track if the workspace has changed after execution
+let hasExecuted = false;
+let executedWorkspace = '';
 
 window.onload = function () {
   initBlockly(); // Initialize your Blockly workspace
@@ -341,7 +344,6 @@ function loadWorkspace() {
 }
 
 function onWorkspaceChange(event) {
-  console.log('Saving Workspace...');
   fetch('/auth-token')
     .then((response) => response.json())
     .then((data) => {
@@ -352,15 +354,67 @@ function onWorkspaceChange(event) {
         saveWorkspace();
       }
     });
+  if (hasExecuted) {
+    // Compare the current workspace state with the executed workspace state
+    const currentWorkspaceState =
+      Blockly.serialization.workspaces.save(workspace);
+    const jsonCurrentState = JSON.stringify(currentWorkspaceState);
+
+    if (jsonCurrentState !== executedWorkspace) {
+      workspaceChangedAfterExecution = true;
+      console.log('Workspace has changed since execution.');
+    } else {
+      workspaceChangedAfterExecution = false;
+      console.log('Workspace has not changed since execution.');
+    }
+  }
 }
 Blockly.getMainWorkspace().addChangeListener(onWorkspaceChange);
 
 function saveWorkspace() {
+  //used for saving the workspace in the local storage of the browser in case the user is not logged in
   const state = Blockly.serialization.workspaces.save(workspace);
   const jsonState = JSON.stringify(state);
   localStorage.setItem('blocklyWorkspace', jsonState);
 }
-//window.addEventListener('beforeunload', saveWorkspace);
+
+// Used to collect workspace data from guest users when they close the tab.
+function saveGuestWorkspaceData() {
+  const state = Blockly.serialization.workspaces.save(workspace);
+  const jsonState = JSON.stringify(state);
+  fetch('/auth-token')
+    .then((response) => response.json())
+    .then((data) => {
+      const token = data.authToken;
+      if (!token && hasExecuted && jsonState !== executedWorkspace) {
+        workspaceChangedAfterExecution = true;
+      }
+      if (!token) {
+        fetch('/saveGuestWorkspace', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            workspaceData: jsonState,
+            executionStatus: hasExecuted,
+            changesAfterExecution: workspaceChangedAfterExecution
+          })
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.error) {
+              console.error('Error saving guest workspace:', result.error);
+              alert('Failed to save guest workspace. Please try again.');
+            }
+          })
+          .catch((error) => {
+            alert('Failed to save guest workspace. Please try again.');
+          });
+      }
+    });
+}
+window.addEventListener('beforeunload', saveGuestWorkspaceData);
 //window.addEventListener('beforeunload', autoSaveWorkspace);
 
 // Global replacement map
@@ -436,12 +490,13 @@ var filenameBlocks = ['filename', 'filenamesCreate', 'fileEndStart'];
 document
   .getElementById('executeButton')
   .addEventListener('click', function onExecuteButtonClick() {
-    console.log('Top blocks:', workspace.getTopBlocks());
     // Start from the first block
     let currentBlock = workspace.getTopBlocks()[0];
     let generatedCommand = '';
+    let blockCount = 0; // Mark the workspace as executed if users clicks the execute button and there are blocks in the workspace
 
     while (currentBlock) {
+      blockCount++;
       var blockDef = window[currentBlock.type + 'Block'];
       // Generate the command for the current block
       try {
@@ -477,6 +532,23 @@ document
     document.getElementById('resultsText').innerText = generatedCommand;
 
     console.log('Generated command:', generatedCommand);
+    if (blockCount > 0) {
+      fetch('/auth-token')
+        .then((response) => response.json())
+        .then((data) => {
+          const token = data.authToken;
+          if (!token) {
+            hasExecuted = true;
+            console.log('It got executed');
+            const state = Blockly.serialization.workspaces.save(workspace);
+            executedWorkspace = JSON.stringify(state);
+          }
+          console.log('Has executed ', hasExecuted); // Now inside the .then block
+        });
+    } else {
+      console.log('Has executed ', hasExecuted); // Still log if no fetch occurs
+    }
+    console.log('Top blocks:', workspace.getTopBlocks());
   });
 
 document.getElementById('resetButton').addEventListener('click', function () {

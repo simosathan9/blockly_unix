@@ -125,6 +125,14 @@ body {
   background-color: rgb(220, 120, 0); /* Darker orange on hover */
 }
 
+#saveButton {
+  background-color: rgb(123, 166, 230);
+}
+
+#saveButton:hover {
+  background-color: rgb(44, 123, 197);
+}
+
 /* Navbar */
 
 #navbar {
