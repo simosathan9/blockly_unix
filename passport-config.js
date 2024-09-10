@@ -1,9 +1,65 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./blockly_unix_database.db');
 
+// Google OAuth2 Strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: 'http://localhost:3000/auth/google/callback'
+    },
+    function (accessToken, refreshToken, profile, done) {
+      console.log('Google profile:', profile); // Log the profile for debugging
+
+      // Find user by Google ID in the database
+      db.get(
+        'SELECT * FROM users WHERE googleId = ?',
+        [profile.id],
+        (err, row) => {
+          if (err) return done(err);
+
+          if (!row) {
+            // Insert a new user if one does not exist
+            db.run(
+              `INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)`,
+              [profile.id, profile.displayName, profile.emails[0].value],
+              function (err) {
+                if (err) return done(err);
+
+                // Retrieve the newly created user
+                db.get(
+                  'SELECT * FROM users WHERE googleId = ?',
+                  [profile.id],
+                  (err, newRow) => {
+                    if (err) return done(err);
+                    if (!newRow) {
+                      return done(new Error('Failed to retrieve new user'));
+                    }
+                    console.log('New user created:', newRow); // Log the new user data
+                    return done(null, newRow); // Return the new user with ID
+                  }
+                );
+              }
+            );
+          } else {
+            console.log('Existing user found:', row); // Log the existing user
+            return done(null, row); // Return the existing user
+          }
+        }
+      );
+    }
+  )
+);
+
+// Initialize function to set up LocalStrategy and Google OAuth
 function initialize(passport, getUserByUsername, getUserById) {
+  // Local Strategy for login
   const authenticateUser = async (username, password, done) => {
-    // Retrieve the user by username from the database
     getUserByUsername(username, async (err, user) => {
       if (err) {
         return done(err);
@@ -15,7 +71,7 @@ function initialize(passport, getUserByUsername, getUserById) {
       }
 
       try {
-        // Compare the provided password with the stored hash
+        // Compare the provided password with the stored hashed password
         if (await bcrypt.compare(password, user.password)) {
           return done(null, user);
         } else {
@@ -27,20 +83,33 @@ function initialize(passport, getUserByUsername, getUserById) {
     });
   };
 
+  // Use LocalStrategy for authentication
   passport.use(
     new LocalStrategy({ usernameField: 'username' }, authenticateUser)
   );
 
   // Serialize user into the session
-  passport.serializeUser((user, done) => done(null, user.id));
+  passport.serializeUser((user, done) => {
+    console.log('Serialized user:', user); // Log the user object being serialized
+    if (user && user.id) {
+      done(null, user.id);
+    } else {
+      done(new Error('User ID is missing or invalid'));
+    }
+  });
 
-  // Deserialize user from the session
   passport.deserializeUser((id, done) => {
-    getUserById(id, (err, user) => {
+    console.log('Deserializing user with ID:', id); // Log the ID being deserialized
+
+    // Find user by ID in the database
+    db.get('SELECT * FROM users WHERE id = ?', [id], (err, user) => {
       if (err) return done(err);
-      return done(null, user);
+      if (!user) {
+        console.log('User not found during deserialization'); // Log if user is not found
+        return done(new Error('User not found'));
+      }
+      done(null, user); // If user is found, pass it to the next middleware
     });
   });
 }
-
 module.exports = initialize;

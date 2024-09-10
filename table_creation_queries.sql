@@ -1,9 +1,10 @@
 -- SQLite
 CREATE TABLE IF NOT EXISTS users (
-    id TEXT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    googleId TEXT,
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL,
+    password TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

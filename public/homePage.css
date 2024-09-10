@@ -34,6 +34,26 @@ a:focus {
   border-color: #007bff; /* Border color for buttons */
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  height: 60px;
+  padding: 10px 20px;
+}
+
+/* Sticky navbar with a shadow when scrolled */
+.sticky-top {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Class to hide the navbar */
+.navbar-hidden {
+  top: -60px; /* Κρύβει τη navbar όταν γίνεται scroll προς τα κάτω */
+}
+
 .btn-outline-primary:hover {
   background-color: #007bff; /* Background color on hover */
   color: #fff; /* Text color on hover */
@@ -109,14 +129,19 @@ body {
 
 /* Image Container Styles */
 .image-container {
-  width: 80%; /* Control the max width of the image container */
-  margin: 0 auto; /* Center the image container horizontally */
+  width: 80%;
+  margin: 0 auto;
 }
 
 .image-container img {
-  width: 100%; /* Ensure the image fits within the container */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: add rounded corners to the image */
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#hero .hero-img img {
+  width: 70%;
+  height: auto;
 }
 
 /* Enhanced Text Styling */
@@ -187,9 +212,9 @@ body {
   background-image: url('https://developers.google.com/blockly/images/landing/hero.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  padding-top: 60px;
   margin: 0;
-  margin-top: 10px;
-  padding: 60px 0;
   background-color: rgb(232, 240, 254);
 }
 
@@ -216,11 +241,11 @@ body {
 
 #hero .btn-get-started {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 17px;
   text-transform: uppercase;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 38px;
+  padding: 14px 40px;
   border-radius: 10px;
   transition: 0.5s;
   color: #fff;
@@ -231,11 +256,11 @@ body {
 
 #hero .btn-get-login {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 17px;
   text-transform: uppercase;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 50px;
+  padding: 14px 50px;
   border-radius: 10px;
   transition: 0.5s;
   color: #000000;
@@ -285,9 +310,9 @@ body {
 # About
 --------------------------------------------------------------*/
 .about {
-  padding: 0;
+  padding: 60px 20px;
   margin-top: 60px;
-  margin-bottom: 120px;
+  margin-bottom: 60px;
 }
 
 .about .container {
@@ -333,8 +358,10 @@ body {
 /*--------------------------------------------------------------
 # Frequently Asked Questions
 --------------------------------------------------------------*/
+/* FAQ Section Styles */
 .faq {
-  padding: 60px 0;
+  padding: 60px 20px;
+  margin-top: 60px;
 }
 
 .faq .faq-list {
@@ -351,14 +378,13 @@ body {
 .faq .faq-list .question {
   display: block;
   position: relative;
-  font-family: #4285f4;
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
   padding-left: 25px;
   cursor: pointer;
   color: #4285f4;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .faq .faq-list i {
@@ -366,6 +392,7 @@ body {
   position: absolute;
   left: 0;
   top: -2px;
+  transition: transform 0.3s;
 }
 
 .faq .faq-list p {
@@ -387,12 +414,23 @@ body {
 
 .faq .faq-list .collapsed .icon-show {
   display: inline-block;
-  transition: 0.6s;
 }
 
 .faq .faq-list .collapsed .icon-close {
   display: none;
-  transition: 0.6s;
+}
+
+.faq .faq-list .collapse.show .icon-show {
+  display: none;
+}
+
+.faq .faq-list .collapse.show .icon-close {
+  display: inline-block;
+}
+
+/* Add rotation to icons for better UI feedback */
+.faq .faq-list .collapse.show i {
+  transform: rotate(180deg);
 }
 
 /*--------------------------------------------------------------

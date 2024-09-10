@@ -404,3 +404,54 @@ function checkNotAuthenticated(req, res, next) {
 app.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
 });
+
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: 'http://localhost:3000/auth/google/callback'
+    },
+    function (accessToken, refreshToken, profile, done) {
+      db.get(
+        'SELECT * FROM users WHERE googleId = ?',
+        [profile.id],
+        (err, row) => {
+          if (err) return done(err);
+          if (!row) {
+            db.run(
+              `INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)`,
+              [profile.id, profile.displayName, profile.emails[0].value],
+              function (err) {
+                if (err) return done(err);
+                return done(null, profile);
+              }
+            );
+          } else {
+            return done(null, row);
+          }
+        }
+      );
+    }
+  )
+);
+
+// Google login route
+app.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+// Google login callback
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/blockly_unix');
+  }
+);
