@@ -14,7 +14,6 @@ passport.use(
       callbackURL: 'http://localhost:3000/auth/google/callback'
     },
     function (accessToken, refreshToken, profile, done) {
-      // Find user by Google ID in the database
       db.get(
         'SELECT * FROM users WHERE googleId = ?',
         [profile.id],
@@ -24,7 +23,6 @@ passport.use(
           }
 
           if (!row) {
-            // Insert a new user if one does not exist
             db.run(
               `INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)`,
               [profile.id, profile.displayName, profile.emails[0].value],
@@ -33,10 +31,10 @@ passport.use(
                   return done(err);
                 }
 
-                // Retrieve the newly created user
+                const newUserId = this.lastID;
                 db.get(
-                  'SELECT * FROM users WHERE googleId = ?',
-                  [profile.id],
+                  'SELECT * FROM users WHERE id = ?',
+                  [newUserId],
                   (err, newRow) => {
                     if (err) {
                       return done(err);
@@ -44,7 +42,7 @@ passport.use(
                     if (!newRow) {
                       return done(new Error('Failed to retrieve new user'));
                     }
-                    return done(null, newRow); // Return the new user with ID
+                    return done(null, newRow);
                   }
                 );
               }
@@ -92,24 +90,24 @@ function initialize(passport, getUserByUsername, getUserById) {
 
   // Serialize user into the session
   passport.serializeUser((user, done) => {
-    if (user && user.id) {
-      done(null, user.id);
-    } else {
-      done(new Error('User ID is missing or invalid'));
-    }
+    done(null, user.id); // Χρησιμοποίησε το `id` από τη βάση δεδομένων
   });
 
-  passport.deserializeUser((id, done) => {
-    // Find user by ID in the database
-    db.get('SELECT * FROM users WHERE id = ?', [id], (err, user) => {
-      if (err) {
-        return done(err);
+  passport.deserializeUser((googleId, done) => {
+    // Find user by Google ID in the database
+    db.get(
+      'SELECT * FROM users WHERE googleId = ?',
+      [googleId],
+      (err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(new Error('User not found'));
+        }
+        done(null, user); // Return the user
       }
-      if (!user) {
-        return done(new Error('User not found'));
-      }
-      done(null, user); // If user is found, pass it to the next middleware
-    });
+    );
   });
 }
 module.exports = initialize;
