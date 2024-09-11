@@ -133,6 +133,11 @@ Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Write directory or path %1';
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Create directory';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
 
+Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Do not prompt for confirmation %1';
+Blockly.Msg['MV_PROMPT_CONFIRMATION'] = 'Prompt for confirmation %1';
+Blockly.Msg['MV_VERBOSE'] = 'Verbose mode %1';
+Blockly.Msg['MV_NOT_OVERWRITE'] = 'Do not overwrite %1';
+
 Blockly.Msg['RECORD_NUMBER'] = 'Current record';
 Blockly.Msg['RECORD_NUMBER_TOOLTIP'] =
   'Represents the current record or (line) number';
@@ -580,8 +585,16 @@ Blockly.Msg['REGOR_CREATE_WITH'] = 'multiple patterns';
 Blockly.Msg['REMOVE_COMMENT'] = 'Remove Comment';
 Blockly.Msg['RENAME_VARIABLE'] = 'Rename variable...';
 Blockly.Msg['RENAME_VARIABLE_TITLE'] = "Rename all '%1' variables to:";
+Blockly.Msg['RM'] = 'Remove file(s)';
+Blockly.Msg['RM_FORCE'] = 'Force removal without prompt %1';
 Blockly.Msg['RM_REQUEST_CONFIRMATION'] =
-  'Request confirmation before deleting %1';
+  'Request confirmation before removing file(s) %1';
+Blockly.Msg['RM_REMOVE_DIRECTORIES'] = 'Remove directories %1';
+Blockly.Msg['RM_RECURSIVE'] = 'Remove recursively %1';
+Blockly.Msg['RM_VERBOSE'] = 'Verbose mode (show removed files) %1';
+Blockly.Msg['RM_NO_CROSS_MOUNT'] = 'Do not cross mount points %1';
+Blockly.Msg['RM_TOOLTIP'] =
+  'Removes files and directories based on specified options.';
 Blockly.Msg['TEXT_APPEND_HELPURL'] =
   'https://github.com/google/blockly/wiki/Text#text-modification';
 Blockly.Msg['TEXT_APPEND_TITLE'] = 'to %1 append text %2';
@@ -827,8 +840,18 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Create a file';
-Blockly.Msg['TOUCH_TOOLTIP'] = 'create directory';
+Blockly.Msg['TOUCH'] = 'Modify file timestamps';
+Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
+  'Do not create file if it does not exist %1';
+Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Change access time %1';
+Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Change modification time %1';
+Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
+  'with date in [[CC]YY]MMDDhhmm[.SS] %1';
+Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or';
+Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
+  'with date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
+Blockly.Msg['TOUCH_TOOLTIP'] =
+  'Set the modification and access times of files.  If any file does not exist, it is created with default permissions. ';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';

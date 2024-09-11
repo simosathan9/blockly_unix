@@ -136,6 +136,12 @@ Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Γράψτε όνομα καταλόγο
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
 
+Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Μην ζητήσεις επιβεβαίωση %1';
+Blockly.Msg['MV_PROMPT_CONFIRMATION'] =
+  'Ζήτα επιβεβαίωση προτού εκτελέστεί η εντολή %1';
+Blockly.Msg['MV_VERBOSE'] = 'Λεπτομερής αναφορά %1';
+Blockly.Msg['MV_NOT_OVERWRITE'] = 'Μη αντικατάσταση αρχείου %1';
+
 Blockly.Msg['RECORD_NUMBER'] = 'Τρέχων εγγραφή';
 Blockly.Msg['RECORD_NUMBER_TOOLTIP'] =
   'Αντιπροσωπεύει τον τρέχοντα αριθμό εγγραφής (γραμμής)';
@@ -592,7 +598,18 @@ Blockly.Msg['REMOVE_COMMENT'] = 'Αφαίρεση σχολίου';
 Blockly.Msg['RENAME_VARIABLE'] = 'Μετονομασία μεταβλητής...';
 Blockly.Msg['RENAME_VARIABLE_TITLE'] =
   "Μετονομασία όλων των μεταβλητών '%1' σε:";
-Blockly.Msg['RM_REQUEST_CONFIRMATION'] = 'Αίτημα επιβεβαίωσης για αφαίρεση %1';
+Blockly.Msg['RM'] = 'Αφαίρεση αρχείου(ων)';
+Blockly.Msg['RM_FORCE'] = 'Επιβολή αφαίρεσης χωρίς επιβεβαίωση %1';
+Blockly.Msg['RM_REQUEST_CONFIRMATION'] =
+  'Ζητήστε επιβεβαίωση πριν την αφαίρεση αρχείου(ων) %1';
+Blockly.Msg['RM_REMOVE_DIRECTORIES'] = 'Αφαίρεση καταλόγων %1';
+Blockly.Msg['RM_RECURSIVE'] = 'Αφαίρεση αναδρομικά %1';
+Blockly.Msg['RM_VERBOSE'] =
+  'Λειτουργία αναλυτικών πληροφοριών (εμφάνιση αφαιρεθέντων αρχείων) %1';
+Blockly.Msg['RM_NO_CROSS_MOUNT'] = 'Μην διασχίσετε σημεία σύνδεσης %1';
+Blockly.Msg['RM_TOOLTIP'] =
+  'Αφαιρεί αρχεία και καταλόγους με βάση τις καθορισμένες επιλογές.';
+
 Blockly.Msg['TEXT_APPEND_HELPURL'] =
   'https://github.com/google/blockly/wiki/Text#text-modification';
 Blockly.Msg['TEXT_APPEND_TITLE'] = 'στο %1 προσθήκη κειμένου %2';
@@ -850,8 +867,20 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'Το εργαλείο tee αντιγράφει την τυπική είσοδο στην τυπική έξοδο, κάνοντας ένα αντίγραφο σε ένα ή περισσότερα αρχεία.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Δημιουργία αρχείου';
-Blockly.Msg['TOUCH_TOOLTIP'] = 'δημιουργία καταλόγου';
+Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου';
+Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
+  'Μη δημιουργία αρχείου αν δεν υπάρχει %1';
+Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
+  'Αλλαγή χρόνου τελευταίας πρόσβασης %1';
+Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
+  'Αλλαγή χρόνου τελευταίας τροποποίησης %1';
+Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
+  'με προσθήκη ημερομηνίας στη μορφή [[CC]YY]MMDDhhmm[.SS] %1';
+Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'ή';
+Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
+  'με προσθήκη ημερομηνίας στη μορφή YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)] %1';
+Blockly.Msg['TOUCH_TOOLTIP'] =
+  'Όρισε την ώρα πρόσβασης και τροποποίησης ενός αρχείου. Αν το αρχείο δεν υπάρχει, δημιούργησε ένα κενό αρχείο.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στο αρχείο\n';
