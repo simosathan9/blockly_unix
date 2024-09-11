@@ -1,10 +1,13 @@
 var mvBlock = {
   type: 'mv',
   category: 'File and Directory Operations',
-  message0: 'mv %1 %2',
+  message0: 'Move %1 to %2', // Correctly references %1 (SOURCE) and %2 (DEST)
   unix_description: [
     {
-      command: 'mv %SOURCE %DEST'
+      not_prompt_confirmation: '-f',
+      prompt_confirmation: '-i',
+      verbose: '-v',
+      not_overwrite: '-n'
     }
   ],
   args0: [
@@ -19,6 +22,38 @@ var mvBlock = {
       text: 'dest' // default destination
     }
   ],
+  message1: '%{BKY_MV_NOT_PROMPT_CONFIRMATION}',
+  args1: [
+    {
+      type: 'field_checkbox',
+      name: 'not_prompt_confirmation',
+      checked: false
+    }
+  ],
+  message2: '%{BKY_MV_PROMPT_CONFIRMATION}',
+  args2: [
+    {
+      type: 'field_checkbox',
+      name: 'prompt_confirmation',
+      checked: false
+    }
+  ],
+  message3: '%{BKY_MV_VERBOSE}',
+  args3: [
+    {
+      type: 'field_checkbox',
+      name: 'verbose',
+      checked: false
+    }
+  ],
+  message4: '%{BKY_MV_NOT_OVERWRITE}',
+  args4: [
+    {
+      type: 'field_checkbox',
+      name: 'not_overwrite',
+      checked: false
+    }
+  ],
   style: 'File and Directory Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
@@ -27,4 +62,3 @@ var mvBlock = {
 };
 
 Blockly.defineBlocksWithJsonArray([mvBlock]);
-//
