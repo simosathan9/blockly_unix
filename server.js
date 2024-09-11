@@ -154,13 +154,11 @@ app.post(
         ],
         function (err) {
           if (err) {
-            console.log(err.message);
             req.flash('error', 'Registration failed.');
             return res.redirect('/register');
           }
           req.logIn(newUser, (err) => {
             if (err) {
-              console.log(err);
               req.flash('error', 'Registration failed.');
               return res.redirect('/register');
             }
@@ -177,14 +175,12 @@ app.post(
         ['{}', newUser.id, '__autosave__'],
         function (err) {
           if (err) {
-            console.log(err.message);
             req.flash('error', 'Registration failed.');
             return res.redirect('/register');
           }
         }
       );
     } catch (e) {
-      console.log(e);
       req.flash('error', 'Registration failed.');
       res.redirect('/register');
     }
@@ -204,7 +200,6 @@ app.get('/blockly_unix', addAuthToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), {
     headers: { 'X-Auth-Token': req.authToken || '' }
   });
-  //console.log('Token:', req.authToken);
 });
 
 app.get('/auth-token', addAuthToken, (req, res) => {
@@ -250,8 +245,17 @@ app.get('/logout', function (req, res, next) {
       if (err) {
         return next(err);
       }
+
+      res.clearCookie('connect.sid', {
+        path: '/',
+        httpOnly: true,
+        secure: false
+      });
+
       return res.redirect('/');
     });
+  } else {
+    res.redirect('/');
   }
 });
 

@@ -14,14 +14,14 @@ passport.use(
       callbackURL: 'http://localhost:3000/auth/google/callback'
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log('Google profile:', profile); // Log the profile for debugging
-
       // Find user by Google ID in the database
       db.get(
         'SELECT * FROM users WHERE googleId = ?',
         [profile.id],
         (err, row) => {
-          if (err) return done(err);
+          if (err) {
+            return done(err);
+          }
 
           if (!row) {
             // Insert a new user if one does not exist
@@ -29,25 +29,27 @@ passport.use(
               `INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)`,
               [profile.id, profile.displayName, profile.emails[0].value],
               function (err) {
-                if (err) return done(err);
+                if (err) {
+                  return done(err);
+                }
 
                 // Retrieve the newly created user
                 db.get(
                   'SELECT * FROM users WHERE googleId = ?',
                   [profile.id],
                   (err, newRow) => {
-                    if (err) return done(err);
+                    if (err) {
+                      return done(err);
+                    }
                     if (!newRow) {
                       return done(new Error('Failed to retrieve new user'));
                     }
-                    console.log('New user created:', newRow); // Log the new user data
                     return done(null, newRow); // Return the new user with ID
                   }
                 );
               }
             );
           } else {
-            console.log('Existing user found:', row); // Log the existing user
             return done(null, row); // Return the existing user
           }
         }
@@ -90,7 +92,6 @@ function initialize(passport, getUserByUsername, getUserById) {
 
   // Serialize user into the session
   passport.serializeUser((user, done) => {
-    console.log('Serialized user:', user); // Log the user object being serialized
     if (user && user.id) {
       done(null, user.id);
     } else {
@@ -99,13 +100,12 @@ function initialize(passport, getUserByUsername, getUserById) {
   });
 
   passport.deserializeUser((id, done) => {
-    console.log('Deserializing user with ID:', id); // Log the ID being deserialized
-
     // Find user by ID in the database
     db.get('SELECT * FROM users WHERE id = ?', [id], (err, user) => {
-      if (err) return done(err);
+      if (err) {
+        return done(err);
+      }
       if (!user) {
-        console.log('User not found during deserialization'); // Log if user is not found
         return done(new Error('User not found'));
       }
       done(null, user); // If user is found, pass it to the next middleware
