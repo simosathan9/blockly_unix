@@ -405,10 +405,6 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
-app.listen(3000, () => {
-  console.log('Server started on http://localhost:3000');
-});
-
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 app.use(passport.initialize());
@@ -421,23 +417,81 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: 'http://localhost:3000/auth/google/callback'
     },
-    function (accessToken, refreshToken, profile, done) {
+    (accessToken, refreshToken, profile, done) => {
+      // Check if user with the given Google ID exists
       db.get(
         'SELECT * FROM users WHERE googleId = ?',
         [profile.id],
-        (err, row) => {
+        (err, user) => {
           if (err) return done(err);
-          if (!row) {
-            db.run(
-              `INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)`,
-              [profile.id, profile.displayName, profile.emails[0].value],
-              function (err) {
+
+          if (user) {
+            // User already exists, log them in
+            return done(null, user);
+          } else {
+            // User does not exist, create a new user
+            db.get(
+              'SELECT * FROM users WHERE email = ?',
+              [profile.emails[0].value],
+              (err, existingUser) => {
                 if (err) return done(err);
-                return done(null, profile);
+
+                if (existingUser) {
+                  // Update the existing user with the Google ID
+                  db.run(
+                    'UPDATE users SET googleId = ? WHERE email = ?',
+                    [profile.id, profile.emails[0].value],
+                    (err) => {
+                      if (err) return done(err);
+
+                      // Fetch the updated user
+                      db.get(
+                        'SELECT * FROM users WHERE email = ?',
+                        [profile.emails[0].value],
+                        (err, updatedUser) => {
+                          if (err) return done(err);
+                          done(null, updatedUser);
+                        }
+                      );
+                    }
+                  );
+                } else {
+                  // Register a new user
+                  const newUser = {
+                    googleId: profile.id,
+                    username: profile.displayName,
+                    email: profile.emails[0].value
+                  };
+
+                  db.run(
+                    'INSERT INTO users (googleId, username, email) VALUES (?, ?, ?)',
+                    [newUser.googleId, newUser.username, newUser.email],
+                    function (err) {
+                      if (err) return done(err);
+
+                      // Retrieve the newly created user
+                      db.get(
+                        'SELECT * FROM users WHERE id = ?',
+                        [this.lastID],
+                        (err, createdUser) => {
+                          if (err) return done(err);
+
+                          // Create default workspace for the new user
+                          db.run(
+                            'INSERT INTO workspaces (workspaceData, userId, workspaceName) VALUES (?, ?, ?)',
+                            ['{}', createdUser.id, '__autosave__'],
+                            (err) => {
+                              if (err) return done(err);
+                              done(null, createdUser);
+                            }
+                          );
+                        }
+                      );
+                    }
+                  );
+                }
               }
             );
-          } else {
-            return done(null, row);
           }
         }
       );
@@ -459,3 +513,7 @@ app.get(
     res.redirect('/blockly_unix');
   }
 );
+
+app.listen(3000, () => {
+  console.log('Server started on http://localhost:3000');
+});
