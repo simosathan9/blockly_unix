@@ -16,8 +16,8 @@ var tailBlock = {
       type: 'field_dropdown',
       name: 'metric_type',
       options: [
-        ['lines from the end', 'lines'],
-        ['bytes from the end', 'bytes']
+        ['lines', 'lines'],
+        ['bytes', 'bytes']
       ]
     }
   ],

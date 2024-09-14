@@ -61,6 +61,7 @@ Blockly.Msg['FIELD_NUMBER_TOOLTIP'] =
   'Represents the current field (column) number';
 Blockly.Msg['FIELD_NUMBER_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FILE_END_START_WILDCHARS'] = 'Filename';
+Blockly.Msg['FILE_END_START_WILDCHARS_WITH'] = 'with';
 Blockly.Msg['FILE_END_START_WILDCHARS_TOOLTIP'] =
   'Define start or end in filenames searching';
 Blockly.Msg['FILE_END_START_WILDCHARS_HELPURL'] = 'https://www.google.com/';
@@ -1004,8 +1005,7 @@ Blockly.Msg['PS_TOOLTIP'] =
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
 
 // Ping command translations
-Blockly.Msg['PING'] = 'Ping';
-Blockly.Msg['PING_HOST'] = 'Specify the IP address or hostname to ping';
+Blockly.Msg['PING'] = 'Give a IP address or hostname to ping: ';
 Blockly.Msg['PING_COUNT'] = 'Number of packets to send';
 Blockly.Msg['PING_INTERVAL'] = 'Time interval between each packet (in seconds)';
 Blockly.Msg['PING_TIMEOUT'] =
@@ -1021,5 +1021,6 @@ Blockly.Msg['SSH_PORT'] = 'Define the port number';
 Blockly.Msg['CURL'] = 'Execute an HTTP request to';
 Blockly.Msg['CURL_METHOD'] = 'Choose method';
 Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
-
+Blockly.Msg['CURL_REDIRECTS'] = 'Follow redirects';
 // Journal  command
+s;

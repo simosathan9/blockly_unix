@@ -7,14 +7,15 @@ var fileEndStartBlock = {
       ends: '*str'
     }
   ],
-  message0: '%{BKY_FILE_END_START_WILDCHARS} %1  %2',
+  message0:
+    '%{BKY_FILE_END_START_WILDCHARS} %1 %{BKY_FILE_END_START_WILDCHARS_WITH}  %2',
   args0: [
     {
       type: 'field_dropdown',
       name: 'metric_type',
       options: [
-        ['starts with', 'starts'],
-        ['ends with', 'ends']
+        ['starts', 'starts'],
+        ['ends', 'ends']
       ]
     },
     {

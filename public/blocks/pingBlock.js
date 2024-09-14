@@ -1,24 +1,25 @@
 var pingBlock = {
   type: 'ping',
-  message0: '%{BKY_PING} to %1',
+
   unix_description: [
     {
+      address: 'str',
       count: '-c ',
       interval: '-i ',
       timeout: '-W ',
       host: 'str '
     }
   ],
-
+  message0: '%{BKY_PING} %1',
   args0: [
     {
       type: 'field_input',
-      name: 'host',
+      name: 'address',
       text: '8.8.8.8'
     }
   ],
 
-  message1: 'Packet Count: %1',
+  message1: '%{BKY_PING_COUNT}: %1',
   args1: [
     {
       type: 'field_number',
@@ -27,7 +28,7 @@ var pingBlock = {
     }
   ],
 
-  message2: 'Interval (seconds): %1',
+  message2: '%{BKY_PING_INTERVAL}: %1',
   args2: [
     {
       type: 'field_number',
@@ -36,7 +37,7 @@ var pingBlock = {
     }
   ],
 
-  message3: 'Timeout (seconds): %1',
+  message3: '%{BKY_PING_TIMEOUT}: %1',
   args3: [
     {
       type: 'field_number',
@@ -49,8 +50,7 @@ var pingBlock = {
   style: 'Network Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
-  tooltip: 'Send ICMP ECHO_REQUEST to network hosts',
-  helpUrl: 'https://linux.die.net/man/8/ping'
+  tooltip: '%{BKY_PING_TOOLTIP}'
 };
 
 Blockly.defineBlocksWithJsonArray([pingBlock]);

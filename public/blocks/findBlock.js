@@ -26,7 +26,7 @@ var findBlock = {
     }
   ],
 
-  message0: '%{BKY_FIND} \n',
+  message0: '%{BKY_FIND}',
   message1: '%{BKY_FIND_DIRECTORY_SEARCH} ',
   args1: [
     {

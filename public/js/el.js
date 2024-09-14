@@ -62,6 +62,7 @@ Blockly.Msg['FIELD_NUMBER_TOOLTIP'] =
   'Αντιπροσωπεύει τον τρέχοντα αριθμό πεδίου (στήλη)';
 Blockly.Msg['FIELD_NUMBER_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FILE_END_START_WILDCHARS'] = 'Όνομα αρχείου';
+Blockly.Msg['FILE_END_START_WILDCHARS_WITH'] = 'με';
 Blockly.Msg['FILE_END_START_WILDCHARS_TOOLTIP'] =
   'Ορισμός έναρξης ή τέλους κατά την αναζήτηση αρχείων με χαρακτήρες μπαλαντέρ';
 Blockly.Msg['FILE_END_START_WILDCHARS_HELPURL'] = 'https://www.google.com/';
@@ -202,7 +203,7 @@ Blockly.Msg['CONTROLS_FLOW_STATEMENTS_WARNING'] =
   'Προειδοποίηση: Αυτό το μπλοκ μπορεί να χρησιμοποιηθεί μόνο μέσα σε βρόχο.';
 Blockly.Msg['CONTROLS_FOREACH_HELPURL'] =
   'https://github.com/google/blockly/wiki/Loops#for-each';
-Blockly.Msg['CONTROLS_FOREACH_TITLE'] = 'για κάθε στοιχείο %1 στη λίστα %2';
+Blockly.Msg['CONTROLS_FOREACH_TITLE'] = 'Για κάθε στοιχείο %1 στη λίστα %2';
 Blockly.Msg['CONTROLS_FOREACH_TOOLTIP'] =
   "Για κάθε στοιχείο σε μια λίστα, ορίστε τη μεταβλητή '%1' στο στοιχείο και μετά κάντε κάποιες δηλώσεις.";
 Blockly.Msg['CONTROLS_FOR_HELPURL'] =
@@ -220,7 +221,7 @@ Blockly.Msg['CONTROLS_IF_IF_TOOLTIP'] =
   'Προσθέστε, αφαιρέστε ή αναδιατάξτε ενότητες για να αναδιαμορφώσετε αυτό το μπλοκ if.';
 Blockly.Msg['CONTROLS_IF_MSG_ELSE'] = 'αλλιώς';
 Blockly.Msg['CONTROLS_IF_MSG_ELSEIF'] = 'αλλιώς αν';
-Blockly.Msg['CONTROLS_IF_MSG_IF'] = 'αν';
+Blockly.Msg['CONTROLS_IF_MSG_IF'] = 'Αν';
 Blockly.Msg['CONTROLS_IF_TOOLTIP_1'] =
   'Αν μια τιμή είναι αληθής, τότε κάντε κάποιες δηλώσεις.';
 Blockly.Msg['CONTROLS_IF_TOOLTIP_2'] =
@@ -231,14 +232,14 @@ Blockly.Msg['CONTROLS_IF_TOOLTIP_4'] =
   'Αν η πρώτη τιμή είναι αληθής, τότε κάντε το πρώτο μπλοκ δηλώσεων. Διαφορετικά, αν η δεύτερη τιμή είναι αληθής, κάντε το δεύτερο μπλοκ δηλώσεων. Αν καμία από τις τιμές δεν είναι αληθής, κάντε το τελευταίο μπλοκ δηλώσεων.';
 Blockly.Msg['CONTROLS_REPEAT_HELPURL'] =
   'https://en.wikipedia.org/wiki/For_loop';
-Blockly.Msg['CONTROLS_REPEAT_INPUT_DO'] = 'κάντε';
-Blockly.Msg['CONTROLS_REPEAT_TITLE'] = 'επανάληψη %1 φορές';
+Blockly.Msg['CONTROLS_REPEAT_INPUT_DO'] = 'Κάντε';
+Blockly.Msg['CONTROLS_REPEAT_TITLE'] = 'Επανάληψη %1 φορές';
 Blockly.Msg['CONTROLS_REPEAT_TOOLTIP'] =
   'Κάντε κάποιες δηλώσεις αρκετές φορές.';
 Blockly.Msg['CONTROLS_WHILEUNTIL_HELPURL'] =
   'https://github.com/google/blockly/wiki/Loops#repeat';
-Blockly.Msg['CONTROLS_WHILEUNTIL_OPERATOR_UNTIL'] = 'επανάληψη μέχρι';
-Blockly.Msg['CONTROLS_WHILEUNTIL_OPERATOR_WHILE'] = 'επανάληψη ενώ';
+Blockly.Msg['CONTROLS_WHILEUNTIL_OPERATOR_UNTIL'] = 'Επανάληψη μέχρι';
+Blockly.Msg['CONTROLS_WHILEUNTIL_OPERATOR_WHILE'] = 'Επανάληψη ενώ';
 Blockly.Msg['CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL'] =
   'Ενώ μια τιμή είναι ψευδής, τότε κάντε κάποιες δηλώσεις.';
 Blockly.Msg['CONTROLS_WHILEUNTIL_TOOLTIP_WHILE'] =
@@ -347,7 +348,7 @@ Blockly.Msg['LISTS_SET_INDEX_HELPURL'] =
   'https://github.com/google/blockly/wiki/Lists#in-list--set';
 Blockly.Msg['LISTS_SET_INDEX_INPUT_TO'] = 'ως';
 Blockly.Msg['LISTS_SET_INDEX_INSERT'] = 'εισαγωγή στη';
-Blockly.Msg['LISTS_SET_INDEX_SET'] = 'ορισμός';
+Blockly.Msg['LISTS_SET_INDEX_SET'] = 'Ορισμός';
 Blockly.Msg['LISTS_SET_INDEX_TOOLTIP_INSERT_FIRST'] =
   'Εισάγει το στοιχείο στην αρχή μιας λίστας.';
 Blockly.Msg['LISTS_SET_INDEX_TOOLTIP_INSERT_FROM'] =
@@ -404,7 +405,7 @@ Blockly.Msg['LOGIC_COMPARE_TOOLTIP_NEQ'] =
   'Επιστρέφει αληθές αν οι δύο είσοδοι δεν είναι ίσες.';
 Blockly.Msg['LOGIC_NEGATE_HELPURL'] =
   'https://github.com/google/blockly/wiki/Logic#not';
-Blockly.Msg['LOGIC_NEGATE_TITLE'] = 'όχι %1';
+Blockly.Msg['LOGIC_NEGATE_TITLE'] = 'Όχι %1';
 Blockly.Msg['LOGIC_NEGATE_TOOLTIP'] =
   'Επιστρέφει αληθές αν η είσοδος είναι ψευδής. Επιστρέφει ψευδές αν η είσοδος είναι αληθής.';
 Blockly.Msg['LOGIC_NULL'] = 'κενό';
@@ -444,7 +445,7 @@ Blockly.Msg['MATH_ATAN2_TOOLTIP'] =
   'Επιστρέφει την αρκοτανγκεία του σημείου (X, Y) σε μοίρες από -180 έως 180.';
 Blockly.Msg['MATH_CHANGE_HELPURL'] =
   'https://en.wikipedia.org/wiki/Programming_idiom#Incrementing_a_counter';
-Blockly.Msg['MATH_CHANGE_TITLE'] = 'αλλαγή %1 κατά %2';
+Blockly.Msg['MATH_CHANGE_TITLE'] = 'Αλλαγή %1 κατά %2';
 Blockly.Msg['MATH_CHANGE_TOOLTIP'] =
   "Προσθέτει έναν αριθμό στη μεταβλητή '%1'.";
 Blockly.Msg['MATH_CONSTANT_HELPURL'] =
@@ -560,7 +561,7 @@ Blockly.Msg['NEW_VARIABLE'] = 'Δημιουργία μεταβλητής...';
 Blockly.Msg['NEW_VARIABLE_TITLE'] = 'Νέο όνομα μεταβλητής:';
 Blockly.Msg['NEW_VARIABLE_TYPE_TITLE'] = 'Νέος τύπος μεταβλητής:';
 Blockly.Msg['ORDINAL_NUMBER_SUFFIX'] = '';
-Blockly.Msg['PRINT_CREATE_WITH'] = 'πολλαπλές εκτυπώσεις';
+Blockly.Msg['PRINT_CREATE_WITH'] = 'Πολλαπλές εκτυπώσεις';
 Blockly.Msg['PRINT_CREATE_WITH_TOOLTIP'] = 'Προσθήκη επιλογής εκτύπωσης';
 Blockly.Msg['PRINT_CREATE_EMPTY_TITLE'] = 'Δημιουργία επιλογής εκτύπωσης';
 Blockly.Msg['PRINT_CREATE_WITH_HELPURL'] = '';
@@ -696,7 +697,7 @@ Blockly.Msg['TEXT_LENGTH_TOOLTIP'] =
   'Επιστρέφει τον αριθμό των γραμμάτων (συμπεριλαμβανομένων των κενών διαστημάτων) στο δεδομένο κείμενο.';
 Blockly.Msg['TEXT_PRINT_HELPURL'] =
   'https://github.com/google/blockly/wiki/Text#printing-text';
-Blockly.Msg['TEXT_PRINT_TITLE'] = 'εκτύπωση %1';
+Blockly.Msg['TEXT_PRINT_TITLE'] = 'Εκτύπωση %1';
 Blockly.Msg['TEXT_PRINT_TOOLTIP'] =
   'Εκτυπώνει το καθορισμένο κείμενο, αριθμό ή άλλη τιμή.';
 Blockly.Msg['TEXT_PROMPT_HELPURL'] =
@@ -743,7 +744,7 @@ Blockly.Msg['VARIABLES_GET_HELPURL'] =
   'https://github.com/google/blockly/wiki/Variables#get';
 Blockly.Msg['VARIABLES_GET_TOOLTIP'] =
   'Επιστρέφει την τιμή αυτής της μεταβλητής.';
-Blockly.Msg['VARIABLES_SET'] = 'ορισμός %1 σε %2';
+Blockly.Msg['VARIABLES_SET'] = 'Ορισμός %1 σε %2';
 Blockly.Msg['VARIABLES_SET_CREATE_GET'] = "Δημιουργία 'λήψη %1'";
 Blockly.Msg['VARIABLES_SET_HELPURL'] =
   'https://github.com/google/blockly/wiki/Variables#set';
@@ -841,7 +842,7 @@ Blockly.Msg['SAVE_TOOLTIP'] =
 Blockly.Msg['SAVE_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SED'] = 'Αναζήτηση και αντικατάσταση σε ένα αρχείο\n';
-Blockly.Msg['SED_REGEX'] = 'Είναι κανονική έκφραση %1\n';
+Blockly.Msg['SED_REGEX'] = 'Kανονική έκφραση %1\n';
 Blockly.Msg['SED_PATTERN'] = 'Μοτίβο αναζήτησης %1\n';
 Blockly.Msg['SED_STRING'] = 'ή απλή συμβολοσειρά %1\n';
 Blockly.Msg['SED_TEXT'] = 'Κείμενο προς αλλαγή %1\n';
@@ -867,7 +868,7 @@ Blockly.Msg['SORT_TOOLTIP'] =
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TAIL'] = 'Ουρά του αρχείου';
-Blockly.Msg['TAIL_METRIC'] = 'Μετρική %1 απο το τέλος';
+Blockly.Msg['TAIL_METRIC'] = 'Μετρική %1';
 Blockly.Msg['TAIL_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['TAIL_DESC'] = 'Φθίνουσα σειρά %1';
 Blockly.Msg['TAIL_TOOLTIP'] = 'Εμφάνιση του τελευταίου μέρους των αρχείων';
@@ -933,7 +934,7 @@ Blockly.Msg['WC_TOOLTIP'] =
   'Μέτρηση λέξεων, γραμμών, χαρακτήρων και byte σε ένα αρχείο';
 Blockly.Msg['WC_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['XARGS'] = 'Εκτέλεση της παρακάτω εντολής\n για κάθε στοιχείο';
+Blockly.Msg['XARGS'] = 'Εκτέλεση της παρακάτω εντολής\n Για κάθε στοιχείο';
 Blockly.Msg['XARGS_PLACEHOLDER'] =
   'χρησιμοποιήστε έναν σύμβολο κράτησης θέσης %1';
 Blockly.Msg['XARGS_TOOLTIP'] =
@@ -1040,3 +1041,24 @@ Blockly.Msg['PS_SHOW_THREAD'] = 'Εμφάνιση νημάτων %1';
 Blockly.Msg['PS_TOOLTIP'] =
   'Εκτελεί την εντολή ps για εμφάνιση πληροφοριών διεργασίας';
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
+
+// Ping command translations
+Blockly.Msg['PING'] =
+  'Καθορίστε τη διεύθυνση IP ή το όνομα του host για να κάνετε ping:';
+Blockly.Msg['PING_COUNT'] = 'Αριθμός πακέτων για αποστολή';
+Blockly.Msg['PING_INTERVAL'] =
+  'Διάστημα χρόνου μεταξύ κάθε πακέτου (σε δευτερόλεπτα)';
+Blockly.Msg['PING_TIMEOUT'] =
+  'Χρονικό όριο αναμονής για κάθε απόκριση πακέτου (σε δευτερόλεπτα)';
+
+// ssh command
+Blockly.Msg['SSH'] = 'Δημιουργία σύνδεσης SSH';
+Blockly.Msg['SSH_USER'] = 'Καθορίστε το όνομα χρήστη';
+Blockly.Msg['SSH_HOST'] = 'Καθορίστε τη διεύθυνση του απομακρυσμένου host';
+Blockly.Msg['SSH_PORT'] = 'Ορίστε τον αριθμό της θύρας';
+
+// Curl command
+Blockly.Msg['CURL'] = 'Εκτελέστε ένα αίτημα HTTP σε';
+Blockly.Msg['CURL_METHOD'] = 'Επιλέξτε μέθοδο';
+Blockly.Msg['CURL_HEADER'] = 'Παρέχετε προσαρμοσμένες κεφαλίδες για το αίτημα';
+Blockly.Msg['CURL_REDIRECTS'] = 'Ακολούθηση ανακατευθύνσεων';

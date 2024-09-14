@@ -21,7 +21,7 @@ var awkBlock = {
       text: ''
     }
   ],
-  message2: '%{BKY_AWK_OUTPUT_DELIMITER} %1\n',
+  message2: '%{BKY_AWK_OUTPUT_DELIMITER} %1',
   args2: [
     {
       type: 'field_input',
@@ -30,7 +30,7 @@ var awkBlock = {
       align: 'RIGHT'
     }
   ],
-  message3: '%{BKY_AWK_VARIABLE_INPUT} %1\n',
+  message3: '%{BKY_AWK_VARIABLE_INPUT} %1',
   args3: [
     {
       type: 'field_checkbox',
@@ -38,7 +38,7 @@ var awkBlock = {
       checked: false // by default it's disabled
     }
   ],
-  message3: '%{BKY_AWK_BEGIN} %1\n',
+  message3: '%{BKY_AWK_BEGIN} %1',
   args3: [
     {
       type: 'input_value',
@@ -46,7 +46,7 @@ var awkBlock = {
       check: 'String'
     }
   ],
-  message4: '%{BKY_AWK_ACTION} %1\n',
+  message4: '%{BKY_AWK_ACTION} %1',
   args4: [
     {
       type: 'input_value',
@@ -54,7 +54,7 @@ var awkBlock = {
       check: 'String'
     }
   ],
-  message5: '%{BKY_AWK_BEGIN} %1\n',
+  message5: '%{BKY_AWK_BEGIN} %1',
   args5: [
     {
       type: 'input_value',

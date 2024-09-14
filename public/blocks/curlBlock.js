@@ -33,7 +33,7 @@ var curlBlock = {
     }
   ],
 
-  message2: 'Follow redirects: %1',
+  message2: '%{BKY_CURL_REDIRECTS}: %1',
   args2: [
     {
       type: 'field_checkbox',
