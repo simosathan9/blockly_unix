@@ -141,6 +141,41 @@ function loadAutoSavedWorkspace() {
     });
 }
 
+// Function to update the saved workspaces dropdown
+async function updateWorkspaces(userId) {
+  try {
+    // Fetch the user's workspaces from the server
+    const response = await fetch(`/getUserWorkspaces?userId=${userId}`);
+    const data = await response.json();
+    const workspaces = data.workspaces;
+    const savedWorkspacesSelect = document.getElementById('savedWorkspaces');
+
+    // Clear any existing options in the dropdown
+    savedWorkspacesSelect.innerHTML = '';
+
+    // Add a default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.text = 'Select a workspace';
+    savedWorkspacesSelect.appendChild(defaultOption);
+
+    // Populate dropdown with the user's saved workspaces
+    workspaces.forEach((workspace) => {
+      if (workspace.workspaceName !== '__autosave__') {
+        const option = document.createElement('option');
+        option.value = workspace.id; // use the workspace ID as the option value
+        option.text = workspace.workspaceName; // display the workspace name
+        savedWorkspacesSelect.appendChild(option);
+      }
+    });
+
+    // Optionally, show a success message or silently update
+    console.log('Workspaces updated successfully.');
+  } catch (error) {
+    console.error('Error updating workspaces:', error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   fetch('/auth-token')
     .then((response) => response.json())
@@ -253,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('Error saving workspace:', result.error);
                     alert('Failed to save workspace. Please try again.');
                   } else {
+                    updateWorkspaces(user.id);  // Reload the current page
                     alert('Workspace saved successfully.');
                   }
                 })
