@@ -1023,7 +1023,3 @@ Blockly.Msg['CURL_METHOD'] = 'Choose method';
 Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
 
 // Journal  command
-Blockly.Msg['JOURNAL'] = 'Query the systemd journal logs';
-Blockly.Msg['JOURNAL_SINCE'] = 'Specify the start time for logs (since)';
-Blockly.Msg['JOURNAL_UNTIL'] = 'Specify the end time for logs (until)';
-Blockly.Msg['JOURNAL_FOLLOW'] = 'Follow logs in real-time';
