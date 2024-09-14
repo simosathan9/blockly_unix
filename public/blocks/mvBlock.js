@@ -1,25 +1,13 @@
 var mvBlock = {
   type: 'mv',
   category: 'File and Directory Operations',
-  message0: 'Move %1 to %2', // Correctly references %1 (SOURCE) and %2 (DEST)
+  message0: '%{BKY_MV_MESSAGE}', // Correctly references %1 (SOURCE) and %2 (DEST)
   unix_description: [
     {
       not_prompt_confirmation: '-f',
       prompt_confirmation: '-i',
       verbose: '-v',
       not_overwrite: '-n'
-    }
-  ],
-  args0: [
-    {
-      type: 'field_input',
-      name: 'SOURCE',
-      text: 'source' // default source
-    },
-    {
-      type: 'field_input',
-      name: 'DEST',
-      text: 'dest' // default destination
     }
   ],
   message1: '%{BKY_MV_NOT_PROMPT_CONFIRMATION}',
@@ -52,6 +40,19 @@ var mvBlock = {
       type: 'field_checkbox',
       name: 'not_overwrite',
       checked: false
+    }
+  ],
+  message5: '%{BKY_MV_SOURCE}: %1 %{BKY_MV_DEST}: %2',
+  args5: [
+    {
+      type: 'field_input',
+      name: 'SOURCE',
+      text: 'source'
+    },
+    {
+      type: 'field_input',
+      name: 'DEST',
+      text: 'destination'
     }
   ],
   style: 'File and Directory Operations',

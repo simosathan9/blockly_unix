@@ -1649,12 +1649,7 @@ Blockly.Extensions.register('validate_touch_time_d', function () {
     // Define regex patterns to match different valid formats
     var patterns = [
       /^$/, // Empty string pattern
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z)?$/, // YYYY-MM-DDThh:mm:SS[.frac][tz] or YYYY-MM-DD hh:mm:SS[.frac][tz]
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/, // YYYY-MM-DDThh:mm:SS or YYYY-MM-DD hh:mm:SS
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/, // YYYY-MM-DDThh:mm or YYYY-MM-DD hh:mm
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/, // YYYY-MM-DD
-      /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/, // MM-DDThh:mm or MM-DD hh:mm
-      /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3])$/ // MM-DDThh or MM-DD hh
+      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z)?$/ // YYYY-MM-DDThh:mm:SS[.frac][tz] or YYYY-MM-DD hh:mm:SS[.frac][tz]
     ];
 
     // Check if input matches one of the valid patterns

@@ -31,6 +31,9 @@ Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CAT'] = 'Show file';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'With line numbers';
 Blockly.Msg['CAT_TOOLTIP'] = 'Concatenate and print files';
+Blockly.Msg['CAT_SQUEEZE_EMPTY_LINES'] = 'Squeeze empty lines %1';
+Blockly.Msg['CAT_END_OF_LINE_WITH_DOLLAR'] =
+  'Display non-printing characters \n and display a dollar sign at the end of each line %1';
 Blockly.Msg['CAT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CD'] = 'Change directory to';
 Blockly.Msg['CD_TOOLTIP'] = 'Concatenate and print files';
@@ -86,22 +89,22 @@ Blockly.Msg['FIND_EXECUTE_COMMAND'] =
 Blockly.Msg['FIND_TOOLTIP'] = 'Find files in directories and subdirectories';
 Blockly.Msg['FIND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GREP'] = 'Search in file or directory ';
-Blockly.Msg['GREP_PATTERN_DEFINE'] = 'the pattern %1';
-Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'regular expression %1';
-Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'case insensitive %1';
-Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'whole word search %1';
-Blockly.Msg['GREP_COUNT_MATCHES'] = 'count the matches %1';
-Blockly.Msg['GREP_PATTERN_NEGATION'] = "show lines that don't match pattern %1";
-Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'search recursively %1';
-Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'show line numbers %1';
-Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] = 'stop after %1 matches';
+Blockly.Msg['GREP_PATTERN_DEFINE'] = 'The pattern %1';
+Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'Regular expression %1';
+Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'Case insensitive %1';
+Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'Whole word search %1';
+Blockly.Msg['GREP_COUNT_MATCHES'] = 'Count the matches %1';
+Blockly.Msg['GREP_PATTERN_NEGATION'] = "Show lines that don't match pattern %1";
+Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'Search recursively %1';
+Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Show line numbers %1';
+Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] = 'Stop after %1 matches';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] =
   'Search with multiple patterns %1';
 Blockly.Msg['GREP_SHOW_FILENAME'] = 'Show filename %1';
 Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
-  'Print %1 lines of context before match %2';
+  'Output %1 lines of context before match %2';
 Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
-  'Print %1 lines of context after match %2';
+  'Output %1 lines of context after match %2';
 Blockly.Msg['GREP_TOOLTIP'] = 'search in a file with a pattern';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 file';
@@ -118,11 +121,20 @@ Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Show details %1';
-Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 Search in all subdirectories';
+Blockly.Msg['LS_SUBDIRECTORIES'] = 'Search in all subdirectories %1';
 Blockly.Msg['LS_HIDDEN'] = 'Show hidden files %1';
 Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Show in reverse order';
 Blockly.Msg['LS_TOOLTIP'] = 'List directory contents';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['LN_MESSAGE'] = 'Link files';
+Blockly.Msg['LN_SYMBOLIC_LINK'] = 'Create symbolic link %1';
+Blockly.Msg['LN_FORCE'] = 'Force overwrite %1';
+Blockly.Msg['LN_INTERACTIVE'] = 'Prompt before overwrite %1';
+Blockly.Msg['LN_VERBOSE'] = 'Show files as they are processed %1';
+Blockly.Msg['LN_SOURCE'] = 'Source';
+Blockly.Msg['LN_TARGET'] = 'Target';
+Blockly.Msg['LN_TOOLTIP'] =
+  'Creates file links. Supports symbolic links, force overwrite, and verbose output.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Create directory';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
   'For multiple directories separate with space';
@@ -132,12 +144,13 @@ Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'List directories created %1';
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Write directory or path %1';
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Create directory';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
-
+Blockly.Msg['MV_MESSAGE'] = 'Move files';
 Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Do not prompt for confirmation %1';
 Blockly.Msg['MV_PROMPT_CONFIRMATION'] = 'Prompt for confirmation %1';
 Blockly.Msg['MV_VERBOSE'] = 'Verbose mode %1';
 Blockly.Msg['MV_NOT_OVERWRITE'] = 'Do not overwrite %1';
-
+Blockly.Msg['MV_SOURCE'] = 'Source';
+Blockly.Msg['MV_DEST'] = 'Destination';
 Blockly.Msg['RECORD_NUMBER'] = 'Current record';
 Blockly.Msg['RECORD_NUMBER_TOOLTIP'] =
   'Represents the current record or (line) number';
@@ -851,7 +864,27 @@ Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
   'with date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
-  'Set the modification and access times of files.  If any file does not exist, it is created with default permissions. ';
+  'Set the access and modification time of a file. If the file does not exist, it creates an empty file.' +
+  ' Time stamps can be given in two formats. The first format is [[CC]YY]MMDDhhmm[.SS], where:' +
+  '\n- CC: The first two digits of the century (optional)' +
+  '\n- YY: The last two digits of the year (optional)' +
+  '\n- MM: The month number (01-12)' +
+  '\n- DD: The day of the month (01-31)' +
+  '\n- hh: The hour (00-23)' +
+  '\n- mm: The minutes (00-59)' +
+  '\n- SS: The seconds (00-59, optional)' +
+  '\nExample: For January 12, 2024, at 14:30 and 45 seconds, the format would be: 20240112143045.' +
+  '\nAlternatively, you can use the ISO 8601 format: YYYY-MM-DDThh:mm:SS[.frac][Z (for UTC)], where:' +
+  '\n- YYYY: The year (e.g., 2024)' +
+  '\n- MM: The month number (01-12)' +
+  '\n- DD: The day of the month (01-31)' +
+  '\n- T: The separator between date and time' +
+  '\n- hh: The hour (00-23)' +
+  '\n- mm: The minutes (00-59)' +
+  '\n- SS: The seconds (00-59, optional)' +
+  '\n- .frac: Fractional seconds (optional)' +
+  '\n- Z: Represents Coordinated Universal Time (UTC, optional).' +
+  '\nExample: For January 12, 2024, at 14:30 UTC, the format would be: 2024-01-12T14:30:00Z.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';

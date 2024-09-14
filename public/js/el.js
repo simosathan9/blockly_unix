@@ -32,6 +32,9 @@ Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CAT'] = 'Εμφάνιση αρχείου';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'Με αριθμούς γραμμών';
 Blockly.Msg['CAT_TOOLTIP'] = 'Συνένωση και εκτύπωση αρχείων';
+Blockly.Msg['CAT_SQUEEZE_EMPTY_LINES'] = 'Συμπίεση κενών γραμμών %1';
+Blockly.Msg['CAT_END_OF_LINE_WITH_DOLLAR'] =
+  'Εμφάνιση μη εκτυπώσιμων χαρακτήρων \n και επισήμανση τέλους γραμμής με $ %1';
 Blockly.Msg['CAT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CD'] = 'Αλλαγή καταλόγου σε';
 Blockly.Msg['CD_TOOLTIP'] = 'Συνένωση και εκτύπωση αρχείων';
@@ -88,7 +91,7 @@ Blockly.Msg['FIND_EXECUTE_COMMAND'] =
 Blockly.Msg['FIND_TOOLTIP'] = 'Εύρεση αρχείων σε καταλόγους και υποκαταλόγους';
 Blockly.Msg['FIND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GREP'] = 'Αναζήτηση σε αρχείο ή κατάλογο ';
-Blockly.Msg['GREP_PATTERN_DEFINE'] = 'το μοτίβο %1';
+Blockly.Msg['GREP_PATTERN_DEFINE'] = 'Το μοτίβο %1';
 Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'Κανονική έκφραση %1';
 Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'Χωρίς διάκριση πεζών-κεφαλαίων %1';
 Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'Αναζήτηση πλήρους λέξης %1';
@@ -121,11 +124,20 @@ Blockly.Msg['HEAD_TOOLTIP'] = 'Εμφάνιση του πρώτου μέρους
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'Λίστα αρχείων & καταλόγων';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Εμφάνιση λεπτομερειών %1';
-Blockly.Msg['LS_SUBDIRECTORIES'] = '%1 Αναζήτηση σε όλους τους υποκαταλόγους';
+Blockly.Msg['LS_SUBDIRECTORIES'] = 'Αναζήτηση σε όλους τους υποκαταλόγους %1';
 Blockly.Msg['LS_HIDDEN'] = 'Εμφάνιση κρυφών αρχείων %1';
 Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Εμφάνιση σε αντίστροφη σειρά';
 Blockly.Msg['LS_TOOLTIP'] = 'Λίστα περιεχομένων καταλόγου';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['LN_MESSAGE'] = 'Σύνδεση αρχείων';
+Blockly.Msg['LN_SYMBOLIC_LINK'] = 'Δημιουργία συμβολικού συνδέσμου %1';
+Blockly.Msg['LN_SOURCE'] = 'Αρχείο προέλευσης';
+Blockly.Msg['LN_TARGET'] = 'Αρχείο προορισμού';
+Blockly.Msg['LN_FORCE'] = 'Αναγκαστική αντικατάσταση %1';
+Blockly.Msg['LN_INTERACTIVE'] = 'Προτροπή πριν από την αντικατάσταση %1';
+Blockly.Msg['LN_VERBOSE'] = 'Εμφάνιση των αρχείων κατά την επεξεργασία %1';
+Blockly.Msg['LN_TOOLTIP'] =
+  'Δημιουργεί συνδέσμους αρχείων. Υποστηρίζει συμβολικούς συνδέσμους, αναγκαστική αντικατάσταση και λεπτομερή έξοδο.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
   'Για πολλαπλούς καταλόγους χωρίστε με κενό';
@@ -135,13 +147,14 @@ Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'Λίστα δημιουργημένων
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Γράψτε όνομα καταλόγου ή διαδρομή %1';
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
-
+Blockly.Msg['MV_MESSAGE'] = 'Μετακίνηση αρχείων';
 Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Μην ζητήσεις επιβεβαίωση %1';
 Blockly.Msg['MV_PROMPT_CONFIRMATION'] =
-  'Ζήτα επιβεβαίωση προτού εκτελέστεί η εντολή %1';
+  'Ζήτα επιβεβαίωση προτού εκτελεστεί η εντολή %1';
 Blockly.Msg['MV_VERBOSE'] = 'Λεπτομερής αναφορά %1';
 Blockly.Msg['MV_NOT_OVERWRITE'] = 'Μη αντικατάσταση αρχείου %1';
-
+Blockly.Msg['MV_SOURCE'] = 'Αρχείο προέλευσης';
+Blockly.Msg['MV_DEST'] = 'Τοποθεσία προορισμού';
 Blockly.Msg['RECORD_NUMBER'] = 'Τρέχων εγγραφή';
 Blockly.Msg['RECORD_NUMBER_TOOLTIP'] =
   'Αντιπροσωπεύει τον τρέχοντα αριθμό εγγραφής (γραμμής)';
@@ -880,7 +893,27 @@ Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'ή';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
   'με προσθήκη ημερομηνίας στη μορφή YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
-  'Όρισε την ώρα πρόσβασης και τροποποίησης ενός αρχείου. Αν το αρχείο δεν υπάρχει, δημιούργησε ένα κενό αρχείο.';
+  'Ορίστε την ημερομηνία και ώρα πρόσβασης και τροποποίησης ενός αρχείου. Εάν το αρχείο δεν υπάρχει, δημιουργεί ένα κενό αρχείο.' +
+  ' Οι χρονικές στιγμές μπορούν να δοθούν σε δύο μορφές. Η πρώτη είναι η μορφή [[CC]YY]MMDDhhmm[.SS], όπου:' +
+  '\n- CC: Τα δύο πρώτα ψηφία του αιώνα (προαιρετικό)' +
+  '\n- YY: Τα δύο τελευταία ψηφία του έτους (προαιρετικό)' +
+  '\n- MM: Ο αριθμός του μήνα (01-12)' +
+  '\n- DD: Η ημέρα του μήνα (01-31)' +
+  '\n- hh: Η ώρα (00-23)' +
+  '\n- mm: Τα λεπτά (00-59)' +
+  '\n- SS: Τα δευτερόλεπτα (00-59, προαιρετικό)' +
+  '\nΠαράδειγμα: Για 12 Ιανουαρίου 2024, ώρα 14:30 και 45 δευτερόλεπτα, η μορφή θα είναι: 20240112143045.' +
+  '\nΕναλλακτικά, μπορείτε να χρησιμοποιήσετε τη μορφή ISO 8601: YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)], όπου:' +
+  '\n- YYYY: Το έτος (π.χ., 2024)' +
+  '\n- MM: Ο αριθμός του μήνα (01-12)' +
+  '\n- DD: Η ημέρα του μήνα (01-31)' +
+  '\n- T: Ο διαχωριστής μεταξύ ημερομηνίας και ώρας' +
+  '\n- hh: Η ώρα (00-23)' +
+  '\n- mm: Τα λεπτά (00-59)' +
+  '\n- SS: Τα δευτερόλεπτα (00-59, προαιρετικό)' +
+  '\n- .frac: Δεκαδικά για τα δευτερόλεπτα (προαιρετικό)' +
+  '\n- Z: Αντιπροσωπεύει το συντονισμένο παγκόσμιο χρόνο (UTC, προαιρετικό).' +
+  '\nΠαράδειγμα: Για 12 Ιανουαρίου 2024, ώρα 14:30 UTC, η μορφή θα είναι: 2024-01-12T14:30:00Z.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στο αρχείο\n';
