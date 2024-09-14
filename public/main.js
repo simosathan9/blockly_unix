@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('Error saving workspace:', result.error);
                     alert('Failed to save workspace. Please try again.');
                   } else {
-                    updateWorkspaces(user.id);  // Reload the current page
+                    updateWorkspaces(user.id);
                     alert('Workspace saved successfully.');
                   }
                 })
