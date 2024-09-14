@@ -1,23 +1,52 @@
 var curlBlock = {
   type: 'curl',
-  category: 'Network Operations',
-  message0: 'curl %1',
+  message0: '%{BKY_CURL} %1',
   unix_description: [
     {
-      url: 'curl %URL'
+      GET: '-X GET',
+      POST: '-X POST',
+      PUT: '-X PUT',
+      DELETE: '-X DELETE',
+      url: 'str ',
+      follow_redirects: '-L'
     }
   ],
   args0: [
     {
       type: 'field_input',
-      name: 'URL',
-      text: 'http://example.com'
+      name: 'url',
+      text: 'https://example.com'
     }
   ],
+
+  message1: '%{BKY_CURL_METHOD}: %1',
+  args1: [
+    {
+      type: 'field_dropdown',
+      name: 'request',
+      options: [
+        ['GET', 'GET'],
+        ['POST', 'POST'],
+        ['PUT', 'PUT'],
+        ['DELETE', 'DELETE']
+      ]
+    }
+  ],
+
+  message2: 'Follow redirects: %1',
+  args2: [
+    {
+      type: 'field_checkbox',
+      name: 'follow_redirects',
+      checked: true
+    }
+  ],
+
+  category: 'Network Operations',
   style: 'Network Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
-  tooltip: 'Μεταφέρει δεδομένα από ή προς διακομιστές.',
+  tooltip: 'Transfer data from or to a server using curl',
   helpUrl: 'https://linux.die.net/man/1/curl'
 };
 

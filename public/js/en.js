@@ -970,4 +970,27 @@ Blockly.Msg['PS_TOOLTIP'] =
   'Execute the ps command to display process information';
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
 
+// Ping command translations
+Blockly.Msg['PING'] = 'Ping';
+Blockly.Msg['PING_HOST'] = 'Specify the IP address or hostname to ping';
+Blockly.Msg['PING_COUNT'] = 'Number of packets to send';
+Blockly.Msg['PING_INTERVAL'] = 'Time interval between each packet (in seconds)';
+Blockly.Msg['PING_TIMEOUT'] =
+  'Timeout waiting for each packet response (in seconds)';
+
 // ssh command
+Blockly.Msg['SSH'] = 'Establish a SSH connection';
+Blockly.Msg['SSH_USER'] = 'Specify the username';
+Blockly.Msg['SSH_HOST'] = 'Specify the remote host address';
+Blockly.Msg['SSH_PORT'] = 'Define the port number';
+
+// Curl command
+Blockly.Msg['CURL'] = 'Execute an HTTP request to';
+Blockly.Msg['CURL_METHOD'] = 'Choose method';
+Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
+
+// Journal  command
+Blockly.Msg['JOURNAL'] = 'Query the systemd journal logs';
+Blockly.Msg['JOURNAL_SINCE'] = 'Specify the start time for logs (since)';
+Blockly.Msg['JOURNAL_UNTIL'] = 'Specify the end time for logs (until)';
+Blockly.Msg['JOURNAL_FOLLOW'] = 'Follow logs in real-time';

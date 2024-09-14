@@ -1,33 +1,34 @@
 var sshBlock = {
   type: 'ssh',
+  message0: '%{BKY_SSH}',
   category: 'Network Operations',
-  message0: 'ssh %1',
   unix_description: [
     {
       command: 'ssh %USER@%HOST -p %PORT %COMMAND'
     }
   ],
-  args0: [
-    {
-      type: 'field_input',
-      name: 'HOST',
-      text: 'host' // default host
-    }
-  ],
-  message1: 'User %1',
+  message1: '%{BKY_SSH_HOST} %1',
   args1: [
     {
       type: 'field_input',
-      name: 'USER',
-      text: 'user' // default user
+      name: 'HOST',
+      text: 'host'
     }
   ],
-  message2: 'Port %1',
+  message2: '%{BKY_SSH_USER} %1',
   args2: [
     {
       type: 'field_input',
+      name: 'USER',
+      text: 'user'
+    }
+  ],
+  message3: '%{BKY_SSH_PORT} %1',
+  args3: [
+    {
+      type: 'field_input',
       name: 'PORT',
-      text: '22' // default port
+      text: '22'
     }
   ],
   style: 'Network Operations',
@@ -38,4 +39,3 @@ var sshBlock = {
 };
 
 Blockly.defineBlocksWithJsonArray([sshBlock]);
-//
