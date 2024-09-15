@@ -20,7 +20,7 @@ Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Variable input';
 Blockly.Msg['AWK_BEGIN'] = 'Execute once before data is processed';
 Blockly.Msg['AWK_ACTION'] = 'Action';
 Blockly.Msg['AWK_END'] = 'Execute once after data is processed';
-Blockly.Msg['AWK_PRINT'] = 'columns to print';
+Blockly.Msg['AWK_PRINT'] = 'Columns to print';
 Blockly.Msg['AWK_TOOLTIP'] =
   'pattern-directed scanning and processing language';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
@@ -48,8 +48,8 @@ Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Cut out in file or string';
 Blockly.Msg['CUT_DELIMITER'] = 'Delimiter';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Define columns';
-Blockly.Msg['CUT_START'] = 'substring start';
-Blockly.Msg['CUT_END'] = 'end';
+Blockly.Msg['CUT_START'] = 'Substring start : ';
+Blockly.Msg['CUT_END'] = 'End : ';
 Blockly.Msg['CUT_TOOLTIP'] =
   'Cut out in a file or a string.\nFor consecutive cuts use comma(,) , for range cuts use hyphen (-)';
 Blockly.Msg['CUT_HELPURL'] = 'https://www.google.com/';
@@ -124,7 +124,7 @@ Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Show details %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Search in all subdirectories %1';
 Blockly.Msg['LS_HIDDEN'] = 'Show hidden files %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Show in reverse order';
+Blockly.Msg['LS_REVERSE_ORDER'] = 'Show in reverse order %1';
 Blockly.Msg['LS_TOOLTIP'] = 'List directory contents';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LN_MESSAGE'] = 'Link files';
@@ -892,6 +892,11 @@ Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'Count the occurencies of \n duplicates lines removed %1';
 Blockly.Msg['UNIQ_CASE'] = 'Case sensitive %1';
+Blockly.Msg['UNIQ_OUTPUT_NON_REPEATED_LINES'] =
+  'Output only non-repeated lines %1';
+Blockly.Msg['UNIQ_OUTPUT_SINGLE_COPY_OF_REPEATED_LINES'] =
+  'Output only one copy of repeated lines %1';
+Blockly.Msg['UNIQ_SKIP_CHARS'] = 'Skip first %1 characters of each line';
 Blockly.Msg['UNIQ_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';
 

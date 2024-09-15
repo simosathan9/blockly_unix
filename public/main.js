@@ -565,7 +565,11 @@ document
     generatedCommand = replaceKeywords(generatedCommand);
 
     // Combine the constructed UNIX command and filename
-    document.getElementById('resultsText').innerText = generatedCommand;
+    if (generatedCommand.length > 0) {
+      document.getElementById('resultsText').innerText = generatedCommand;
+    } else {
+      document.getElementById('resultsText').innerText = '\n'; // Insert a newline character if the command is empty so that the results area does not shrink
+    }
 
     console.log('Generated command:', generatedCommand);
     if (blockCount > 0) {

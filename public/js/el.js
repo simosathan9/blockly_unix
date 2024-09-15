@@ -49,8 +49,8 @@ Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Αποκοπή σε αρχείο ή συμβολοσειρά';
 Blockly.Msg['CUT_DELIMITER'] = 'Διαχωριστικό';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Ορισμός στηλών';
-Blockly.Msg['CUT_START'] = 'Έναρξη υποσυμβολοσειράς';
-Blockly.Msg['CUT_END'] = 'Τέλος';
+Blockly.Msg['CUT_START'] = 'Έναρξη υποσυμβολοσειράς : ';
+Blockly.Msg['CUT_END'] = 'Τέλος : ';
 Blockly.Msg['CUT_TOOLTIP'] =
   'Αποκοπή σε ένα αρχείο ή μια συμβολοσειρά.\nΓια συνεχόμενες αποκοπές χρησιμοποιήστε κόμμα(,) , για αποκοπές εύρους χρησιμοποιήστε παύλα (-)';
 Blockly.Msg['CUT_HELPURL'] = 'https://www.google.com/';
@@ -127,7 +127,7 @@ Blockly.Msg['LS_MESSAGE'] = 'Λίστα αρχείων & καταλόγων';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Εμφάνιση λεπτομερειών %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Αναζήτηση σε όλους τους υποκαταλόγους %1';
 Blockly.Msg['LS_HIDDEN'] = 'Εμφάνιση κρυφών αρχείων %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = '%1 Εμφάνιση σε αντίστροφη σειρά';
+Blockly.Msg['LS_REVERSE_ORDER'] = 'Εμφάνιση σε αντίστροφη σειρά %1';
 Blockly.Msg['LS_TOOLTIP'] = 'Λίστα περιεχομένων καταλόγου';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LN_MESSAGE'] = 'Σύνδεση αρχείων';
@@ -921,6 +921,12 @@ Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στ
 Blockly.Msg['UNIQ_COUNT'] =
   'Μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
 Blockly.Msg['UNIQ_CASE'] = ' Χωρίς διάκριση πεζών-κεφαλαίων %1';
+Blockly.Msg['UNIQ_OUTPUT_NON_REPEATED_LINES'] =
+  'Εμφάνιση μόνο μη επαναλαμβανόμενων γραμμών %1';
+Blockly.Msg['UNIQ_OUTPUT_SINGLE_COPY_OF_REPEATED_LINES'] =
+  'Εμφάνιση μόνο ενός αντίγραφου των επαναλαμβανόμενων γραμμών %1';
+Blockly.Msg['UNIQ_SKIP_CHARS'] =
+  'Παράλειψη των πρώτων %1 χαρακτήρων κάθε γραμμής';
 Blockly.Msg['UNIQ_TOOLTIP'] =
   'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['UNIQ_HELPURL'] = 'https://www.google.com/';

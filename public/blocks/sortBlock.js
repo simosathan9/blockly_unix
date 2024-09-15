@@ -7,7 +7,7 @@ var sortBlock = {
       desc: '-r',
       numeric_sorting: '-n',
       sort_delimiter: "-t'str'",
-      sort_column: '-k',
+      sort_column: '-k ',
       uniq_elements: '-u',
       ignore_nonPrintable: '-i',
       ignore_leading_blanks: '-b'

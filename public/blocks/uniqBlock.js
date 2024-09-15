@@ -6,7 +6,10 @@ var uniqBlock = {
     {
       none: '',
       occurencies: '-c',
-      caseInsensitive: '-i'
+      caseInsensitive: '-i',
+      outputNonRepeatedLines: '-u',
+      outputSingleCopyOfRepeatedLines: '-d',
+      skipChars: '-s str'
     }
   ],
 
@@ -26,7 +29,30 @@ var uniqBlock = {
       checked: false // by default it's disabled
     }
   ],
-
+  message3: '%{BKY_UNIQ_OUTPUT_NON_REPEATED_LINES}',
+  args3: [
+    {
+      type: 'field_checkbox',
+      name: 'outputNonRepeatedLines',
+      checked: false // by default it's disabled
+    }
+  ],
+  message4: '%{BKY_UNIQ_OUTPUT_SINGLE_COPY_OF_REPEATED_LINES}',
+  args4: [
+    {
+      type: 'field_checkbox',
+      name: 'outputSingleCopyOfRepeatedLines',
+      checked: false // by default it's disabled
+    }
+  ],
+  message5: '%{BKY_UNIQ_SKIP_CHARS}',
+  args5: [
+    {
+      type: 'field_input',
+      name: 'skipChars',
+      text: ''
+    }
+  ],
   style: 'Text Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',
