@@ -1005,7 +1005,7 @@ Blockly.Msg['PS_TOOLTIP'] =
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
 
 // Ping command translations
-Blockly.Msg['PING'] = 'Give a IP address or hostname to ping: ';
+Blockly.Msg['PING'] = 'Ping an IP address or hostname: ';
 Blockly.Msg['PING_COUNT'] = 'Number of packets to send';
 Blockly.Msg['PING_INTERVAL'] = 'Time interval between each packet (in seconds)';
 Blockly.Msg['PING_TIMEOUT'] =
@@ -1023,4 +1023,3 @@ Blockly.Msg['CURL_METHOD'] = 'Choose method';
 Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
 Blockly.Msg['CURL_REDIRECTS'] = 'Follow redirects';
 // Journal  command
-s;

@@ -1043,8 +1043,7 @@ Blockly.Msg['PS_TOOLTIP'] =
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
 
 // Ping command translations
-Blockly.Msg['PING'] =
-  'Καθορίστε τη διεύθυνση IP ή το όνομα του host για να κάνετε ping:';
+Blockly.Msg['PING'] = 'Κάνε Ping στη διεύθυνση:';
 Blockly.Msg['PING_COUNT'] = 'Αριθμός πακέτων για αποστολή';
 Blockly.Msg['PING_INTERVAL'] =
   'Διάστημα χρόνου μεταξύ κάθε πακέτου (σε δευτερόλεπτα)';

@@ -25,7 +25,7 @@ var hostnameBlock = {
     {
       type: 'field_input',
       name: 'set_hostname',
-      text: 'Enter new hostname'
+      text: 'hostname'
     }
   ],
   message3: '%{BKY_HOSTNAME_SHOW_ALIASES}',
