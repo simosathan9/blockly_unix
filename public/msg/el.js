@@ -1,4 +1,4 @@
-var MSG_EL = {
+window.MSG = {
   TEXT_PROCESSING: 'Επεξεργασία Κειμένου',
   FILE_INPUTS: 'Είσοδοι Αρχείων',
   FILE_DIR_OPERATIONS: 'Λειτουργίες Αρχείων και Καταλόγων',
@@ -6,6 +6,13 @@ var MSG_EL = {
   REGULAR_EXPRESSIONS: 'Κανονικές Εκφράσεις',
   DATA_PROCESSING: 'Επεξεργασία Δεδομένων',
   VARIABLES: 'Μεταβλητές',
+  SYSTEM_MONITORING: 'Παρακολούθηση Συστήματος',
+  NETWORK_OPERATIONS: 'Λειτουργίες Δικτύου',
+  TEXT_OUTPUT: 'Έξοδος Κειμένου',
+  LOGIC: 'Λογική',
+  LOOPS: 'Βρόχοι',
+  MATH: 'Μαθηματικά',
+  OTHER_COMMANDS: 'Άλλες Εντολές',
   title: 'Κώδικας',
   blocks: 'Μπλοκ',
   linkTooltip: 'Αποθήκευση και σύνδεση με τα μπλοκ.',

@@ -14,6 +14,8 @@
     <script src="https://unpkg.com/@blockly/workspace-backpack@latest"></script>
     <script src="https://unpkg.com/@blockly/plugin-cross-tab-copy-paste@latest"></script>
     <script src="js/el.js"></script>
+    <script src="msg/en.js"></script>
+
     <!-- <script src="https://unpkg.com/@blockly/block-plus-minus"></script> -->
 
     <!-- BLOCKS DEFINITION -->
@@ -51,7 +53,6 @@
     <script src="blocks/lsBlock.js"></script>
     <script src="blocks/cdBlock.js"></script>
     <script src="blocks/mkdirBlock.js"></script>
-    <script src="blocks/gzipBlock.js"></script>
     <script src="blocks/grepBlock.js"></script>
     <script src="blocks/sedBlock.js"></script>
     <script src="blocks/awkBlock.js"></script>
@@ -135,9 +136,6 @@
         <button id="homePage" class="icon-button" title="HomePage">
           <i class="fas fa-home"></i>
         </button>
-        <form id="homePageForm" action="/" method="POST" style="display: none">
-          <input type="hidden" name="_method" value="POST" />
-        </form>
 
         <form
           id="logoutForm"
@@ -157,15 +155,6 @@
         >
           <i class="fas fa-sign-out-alt"></i>
         </button>
-
-        <form
-          id="loginForm"
-          action="/login"
-          method="POST"
-          style="display: none"
-        >
-          <input type="hidden" name="_method" value="POST" />
-        </form>
         <button
           id="loginButton"
           class="icon-button"
@@ -174,14 +163,6 @@
         >
           <i class="fas fa-sign-in-alt"></i>
         </button>
-        <form
-          id="registerForm"
-          action="/register"
-          method="POST"
-          style="display: none"
-        >
-          <input type="hidden" name="_method" value="POST" />
-        </form>
         <button
           id="registerButton"
           class="icon-button"
@@ -346,7 +327,7 @@
         contents: [
           {
             kind: 'category',
-            name: 'Text Processing',
+            name: [MSG.TEXT_PROCESSING],
             colour: '#4CAF50',
             contents: [
               { kind: 'block', type: 'head' },
@@ -365,7 +346,7 @@
           },
           {
             kind: 'category',
-            name: 'File inputs',
+            name: [MSG.FILE_INPUTS],
             colour: '#5C81A6',
             contents: [
               { kind: 'block', type: 'filename' },
@@ -378,7 +359,7 @@
           },
           {
             kind: 'category',
-            name: 'File and Directory Operations',
+            name: [MSG.FILE_DIR_OPERATIONS],
             colour: '#FE9B13',
             contents: [
               { kind: 'block', type: 'ls' },
@@ -397,7 +378,7 @@
           },
           {
             kind: 'category',
-            name: 'I/O Redirection',
+            name: [MSG.IO_REDIRECTION],
             colour: '#1976D2',
             contents: [
               { kind: 'block', type: 'save' },
@@ -410,7 +391,7 @@
           },
           {
             kind: 'category',
-            name: 'Regular Expressions',
+            name: [MSG.REGULAR_EXPRESSIONS],
             colour: '#FF5733',
             contents: [
               { kind: 'block', type: 'regOutput' },
@@ -433,7 +414,7 @@
           },
           {
             kind: 'category',
-            name: 'System Monitoring',
+            name: [MSG.SYSTEM_MONITORING],
             colour: '#9C27B0',
             contents: [
               { kind: 'block', type: 'ps' },
@@ -449,7 +430,7 @@
           },
           {
             kind: 'category',
-            name: 'Network Operations',
+            name: [MSG.NETWORK_OPERATIONS],
             colour: '#FFC107',
             contents: [
               { kind: 'block', type: 'ssh' },
@@ -463,7 +444,7 @@
           },
           {
             kind: 'category',
-            name: 'Data Processing',
+            name: [MSG.DATA_PROCESSING],
             colour: '#3B7C09',
             contents: [
               { kind: 'block', type: 'beginEnd' },
@@ -476,7 +457,7 @@
               { kind: 'block', type: 'xargs' },
               {
                 kind: 'category',
-                name: 'Text output',
+                name: [MSG.TEXT_OUTPUT],
                 colour: '160',
                 contents: [
                   { kind: 'block', type: 'text' },
@@ -499,7 +480,7 @@
               },
               {
                 kind: 'category',
-                name: 'Logic',
+                name: [MSG.LOGIC],
                 colour: '210',
                 contents: [
                   { kind: 'block', type: 'controls_if' },
@@ -510,7 +491,7 @@
               },
               {
                 kind: 'category',
-                name: 'Loops',
+                name: [MSG.LOOPS],
                 colour: '120',
                 contents: [
                   { kind: 'block', type: 'controls_whileUntil' },
@@ -519,7 +500,7 @@
               },
               {
                 kind: 'category',
-                name: 'Math',
+                name: [MSG.MATH],
                 colour: '230',
                 contents: [
                   { kind: 'block', type: 'math_number' },
@@ -554,7 +535,7 @@
           },
           {
             kind: 'category',
-            name: 'Variables',
+            name: [MSG.VARIABLES],
             colour: '330',
             custom: 'VARIABLE'
           },
@@ -564,7 +545,7 @@
           },
           {
             kind: 'category',
-            name: 'Other Commands',
+            name: [MSG.OTHER_COMMANDS],
             colour: '#009688',
             contents: [
               { kind: 'block', type: 'kill' },

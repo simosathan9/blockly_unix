@@ -1,11 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./blockly_unix_database.db');
 
-// Initialize function to set up LocalStrategy and Google OAuth
+// Initialize function to set up LocalStrategy
 function initialize(passport, getUserByUsername, getUserById) {
   // Local Strategy for login
   const authenticateUser = async (username, password, done) => {
@@ -39,9 +35,10 @@ function initialize(passport, getUserByUsername, getUserById) {
 
   // Serialize user into the session
   passport.serializeUser((user, done) => {
-    done(null, user.id); // Χρησιμοποίησε το `id` από τη βάση δεδομένων
+    done(null, user.id); // Use the `id` from the database
   });
 
+  // Deserialize user from the session
   passport.deserializeUser((id, done) => {
     getUserById(id, (err, user) => {
       if (err) return done(err);
@@ -49,4 +46,5 @@ function initialize(passport, getUserByUsername, getUserById) {
     });
   });
 }
+
 module.exports = initialize;

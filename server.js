@@ -9,15 +9,11 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const app = express();
 const path = require('path');
-
-//Replace when integrate with database
-const users = [];
 const bcrypt = require('bcrypt'); // Importing bcrypt library
 const passport = require('passport');
 const initializePassport = require('./passport-config');
 const flash = require('express-flash');
 const session = require('express-session');
-const methodOverride = require('method-override');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const sqlite3 = require('sqlite3').verbose();
@@ -60,20 +56,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
-  next();
-});
-
-app.use((req, res, next) => {
-  if (req.session) {
-    req.session._garbage = Date();
-    req.session.touch();
-  }
   next();
 });
 
@@ -227,16 +214,6 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
   res.render('register', { errorMessages: req.flash('error') || [] });
-});
-
-app.delete('/logout', (req, res, next) => {
-  res.clearCookie('remember_me');
-  req.logOut((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/');
-  });
 });
 
 app.get('/logout', function (req, res, next) {
@@ -406,9 +383,6 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use(
   new GoogleStrategy(

@@ -15,7 +15,7 @@ var pingBlock = {
     {
       type: 'field_input',
       name: 'address',
-      text: '8.8.8.8'
+      text: 'hostname'
     }
   ],
 

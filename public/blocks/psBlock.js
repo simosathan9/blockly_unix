@@ -27,7 +27,7 @@ var psBlock = {
     {
       type: 'field_input',
       name: 'show_process_user',
-      text: ''
+      text: 'user'
     }
   ],
   message3: '%{BKY_PS_SHOW_PID}',
@@ -35,7 +35,7 @@ var psBlock = {
     {
       type: 'field_input',
       name: 'show_process_pid',
-      text: ''
+      text: 'pid'
     }
   ],
   message4: '%{BKY_PS_FORMAT}',
@@ -43,7 +43,7 @@ var psBlock = {
     {
       type: 'field_input',
       name: 'format',
-      text: ''
+      text: 'format'
     }
   ],
   message5: '%{BKY_PS_SHOW_THREAD}',

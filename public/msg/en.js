@@ -1,4 +1,4 @@
-var MSG_EN = {
+window.MSG = {
   TEXT_PROCESSING: 'Text Processing',
   FILE_INPUTS: 'File Inputs',
   FILE_DIR_OPERATIONS: 'File and Directory Operations',
@@ -6,7 +6,13 @@ var MSG_EN = {
   REGULAR_EXPRESSIONS: 'Regular Expressions',
   DATA_PROCESSING: 'Data Processing',
   VARIABLES: 'Variables',
-
+  SYSTEM_MONITORING: 'System Monitoring',
+  NETWORK_OPERATIONS: 'Network Operations',
+  TEXT_OUTPUT: 'Text Output',
+  LOGIC: 'Logic',
+  LOOPS: 'Loops',
+  MATH: 'Math',
+  OTHER_COMMANDS: 'Other Commands',
   title: 'Code',
   blocks: 'Blocks',
   linkTooltip: 'Save and link to blocks.',
