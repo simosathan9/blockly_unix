@@ -1,7 +1,7 @@
 Blockly.JavaScript.init(workspace);
 Blockly.JavaScript = new Blockly.Generator('JavaScript');
 var generator = javascript.javascriptGenerator;
-let workspaceChangedAfterExecution = false; // Flag to track if the workspace has changed after execution
+let workspaceChangedAfterLastExecution = false; // Flag to track if the workspace has changed after execution
 let hasExecuted = false;
 let executedWorkspace = '';
 
@@ -161,16 +161,16 @@ async function updateWorkspaces(userId) {
 
     // Populate dropdown with the user's saved workspaces
     workspaces.forEach((workspace) => {
-      if (workspace.workspaceName !== '__autosave__') {
+      if (
+        workspace.workspaceName !== '__autosave__' &&
+        workspace.workspaceName !== 'executedWorkspace'
+      ) {
         const option = document.createElement('option');
         option.value = workspace.id; // use the workspace ID as the option value
         option.text = workspace.workspaceName; // display the workspace name
         savedWorkspacesSelect.appendChild(option);
       }
     });
-
-    // Optionally, show a success message or silently update
-    console.log('Workspaces updated successfully.');
   } catch (error) {
     console.error('Error updating workspaces:', error);
   }
@@ -384,26 +384,14 @@ function onWorkspaceChange(event) {
     .then((response) => response.json())
     .then((data) => {
       const token = data.authToken;
+      workspaceChangedAfterLastExecution = true;
+      hasExecuted = false;
       if (token) {
         autoSaveWorkspace();
       } else {
         saveWorkspace();
       }
     });
-  if (hasExecuted) {
-    // Compare the current workspace state with the executed workspace state
-    const currentWorkspaceState =
-      Blockly.serialization.workspaces.save(workspace);
-    const jsonCurrentState = JSON.stringify(currentWorkspaceState);
-
-    if (jsonCurrentState !== executedWorkspace) {
-      workspaceChangedAfterExecution = true;
-      console.log('Workspace has changed since execution.');
-    } else {
-      workspaceChangedAfterExecution = false;
-      console.log('Workspace has not changed since execution.');
-    }
-  }
 }
 Blockly.getMainWorkspace().addChangeListener(onWorkspaceChange);
 
@@ -422,9 +410,6 @@ function saveGuestWorkspaceData() {
     .then((response) => response.json())
     .then((data) => {
       const token = data.authToken;
-      if (!token && hasExecuted && jsonState !== executedWorkspace) {
-        workspaceChangedAfterExecution = true;
-      }
       if (!token) {
         fetch('/saveGuestWorkspace', {
           method: 'POST',
@@ -432,25 +417,12 @@ function saveGuestWorkspaceData() {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            workspaceData: jsonState,
-            executionStatus: hasExecuted,
-            changesAfterExecution: workspaceChangedAfterExecution
+            workspaceData: jsonState
           })
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            if (result.error) {
-              console.error('Error saving guest workspace:', result.error);
-              alert('Failed to save guest workspace. Please try again.');
-            }
-          })
-          .catch((error) => {
-            alert('Failed to save guest workspace. Please try again.');
-          });
+        });
       }
     });
 }
-window.addEventListener('beforeunload', saveGuestWorkspaceData);
 //window.addEventListener('beforeunload', autoSaveWorkspace);
 
 // Global replacement map
@@ -576,14 +548,36 @@ document
       fetch('/auth-token')
         .then((response) => response.json())
         .then((data) => {
-          const token = data.authToken;
-          if (!token) {
-            hasExecuted = true;
-            console.log('It got executed');
+          if (workspaceChangedAfterLastExecution) {
             const state = Blockly.serialization.workspaces.save(workspace);
             executedWorkspace = JSON.stringify(state);
+            const token = data.authToken;
+            const user = data.user;
+            hasExecuted = true;
+            workspaceChangedAfterLastExecution = false;
+            if (token) {
+              if (executedWorkspace) {
+                // Use AJAX to send the data to the server without redirecting
+                fetch('/saveWorkspace', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    workspaceData: executedWorkspace,
+                    userId: user.id,
+                    workspaceName: 'executedWorkspace'
+                  })
+                });
+              }
+            } else {
+              console.log(
+                'Workspace has changed since execution ' +
+                  workspaceChangedAfterLastExecution
+              );
+              saveGuestWorkspaceData();
+            }
           }
-          console.log('Has executed ', hasExecuted); // Now inside the .then block
         });
     } else {
       console.log('Has executed ', hasExecuted); // Still log if no fetch occurs

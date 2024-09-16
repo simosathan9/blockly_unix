@@ -115,7 +115,7 @@ Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Change suffix from .gz to';
 Blockly.Msg['GZIP_VERBOSE'] = 'Τurn on verbose mode %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['HEAD_MESSAGE'] = 'Head of file';
+Blockly.Msg['HEAD_MESSAGE'] = 'First elements of file';
 Blockly.Msg['HEAD_METRIC'] = 'Metric %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
@@ -840,7 +840,7 @@ Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'Ignore leading blanks %1';
 Blockly.Msg['SORT_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TAIL'] = 'Tail of file';
+Blockly.Msg['TAIL'] = 'Last elements of file';
 Blockly.Msg['TAIL_METRIC'] = 'Metric %1';
 Blockly.Msg['TAIL_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['TAIL_DESC'] = 'Descending order %1';

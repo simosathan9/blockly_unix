@@ -39,7 +39,6 @@ var cutBlock = {
       text: ''
     }
   ],
-
   style: 'Text Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',

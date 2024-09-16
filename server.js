@@ -264,27 +264,21 @@ app.post('/saveWorkspace', (req, res) => {
 
 app.post('/saveGuestWorkspace', (req, res) => {
   // Retrieve the workspace data and user ID from the request body
-  const { workspaceData, executionStatus, changesAfterExecution } = req.body;
+  const { workspaceData } = req.body;
   if (!workspaceData) {
     return res.status(400).json({ error: 'Missing workspace data.' });
   }
-  const query = `INSERT INTO guestsWorkspaces (workspaceData, executionStatus, changesAfterExecution) VALUES (?, ?, ?)`;
-  db.run(
-    query,
-    [workspaceData, executionStatus, changesAfterExecution],
-    function (err) {
-      if (err) {
-        console.error('Error inserting workspace data:', err.message);
-        return res
-          .status(500)
-          .json({ error: 'Failed to save workspace data.' });
-      }
-      res.status(200).json({
-        message: 'Workspace data saved successfully.',
-        workspaceId: this.lastID // Return the ID of the inserted workspace
-      });
+  const query = `INSERT INTO guestsWorkspaces (workspaceData) VALUES (?)`;
+  db.run(query, [workspaceData], function (err) {
+    if (err) {
+      console.error('Error inserting workspace data:', err.message);
+      return res.status(500).json({ error: 'Failed to save workspace data.' });
     }
-  );
+    res.status(200).json({
+      message: 'Workspace data saved successfully.',
+      workspaceId: this.lastID // Return the ID of the inserted workspace
+    });
+  });
 });
 
 app.post('/autoSaveWorkspace', (req, res) => {

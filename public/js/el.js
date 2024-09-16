@@ -118,7 +118,7 @@ Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Aλλαγή κατάληξης απο .gz �
 Blockly.Msg['GZIP_VERBOSE'] = 'Εμφάνισε πληροφορίες %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'Συμπίεση/αποσυμπίεση αρχείου';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['HEAD_MESSAGE'] = 'Επικεφαλίδα αρχείου';
+Blockly.Msg['HEAD_MESSAGE'] = 'Πρώτα στοιχεία αρχείου';
 Blockly.Msg['HEAD_METRIC'] = 'Μετρική %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Εμφάνιση του πρώτου μέρους των αρχείων';
@@ -867,7 +867,7 @@ Blockly.Msg['SORT_TOOLTIP'] =
   'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TAIL'] = 'Ουρά του αρχείου';
+Blockly.Msg['TAIL'] = 'Τελευταία στοιχεία αρχείου';
 Blockly.Msg['TAIL_METRIC'] = 'Μετρική %1';
 Blockly.Msg['TAIL_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['TAIL_DESC'] = 'Φθίνουσα σειρά %1';

@@ -16,7 +16,7 @@ var headBlock = {
       type: 'field_dropdown',
       name: 'metric_type',
       options: [
-        ['elements', 'elements'],
+        ['lines', 'lines'],
         ['bytes', 'bytes']
       ]
     }

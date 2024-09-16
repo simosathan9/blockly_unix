@@ -20,8 +20,6 @@ CREATE TABLE IF NOT EXISTS workspaces (
 CREATE TABLE IF NOT EXISTS guestsWorkspaces (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     workspaceData TEXT NOT NULL,
-    executionStatus BOOLEAN DEFAULT 0,
-    changesAfterExecution BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT (datetime('now', 'localtime'))
 );
 
