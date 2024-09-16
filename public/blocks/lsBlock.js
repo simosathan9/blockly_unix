@@ -1,7 +1,7 @@
 var lsBlock = {
   type: 'ls',
   message0: '%{BKY_LS_MESSAGE}',
-  category: 'File and Directory Operations',
+  category: 'Directory Operations',
   unix_description: [
     {
       detailed: '-l',
@@ -43,7 +43,7 @@ var lsBlock = {
       checked: false // by default it's disabled
     }
   ],
-  style: 'File and Directory Operations',
+  style: 'Directory Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_LS_TOOLTIP}',

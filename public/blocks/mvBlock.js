@@ -1,6 +1,6 @@
 var mvBlock = {
   type: 'mv',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   message0: '%{BKY_MV_MESSAGE}', // Correctly references %1 (SOURCE) and %2 (DEST)
   unix_description: [
     {
@@ -55,7 +55,7 @@ var mvBlock = {
       text: 'destination'
     }
   ],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: 'Μετακινεί ή μετονομάζει αρχεία.',

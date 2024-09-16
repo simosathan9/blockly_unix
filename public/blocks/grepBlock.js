@@ -1,6 +1,6 @@
 var grepBlock = {
   type: 'grep',
-  category: 'Data Processing',
+  category: 'Text Processing',
   unix_description: [
     {
       regex: '-E',
@@ -131,7 +131,7 @@ var grepBlock = {
       checked: false // by default it's disabled
     }
   ],
-  style: 'Data Processing',
+  style: 'Text Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: 'search in a file with a pattern',

@@ -1,6 +1,6 @@
 var mkdirBlock = {
   type: 'mkdir',
-  category: 'File and Directory Operations',
+  category: 'Directory Operations',
   unix_description: [
     {
       parents: '-p',
@@ -35,7 +35,7 @@ var mkdirBlock = {
     }
   ],
 
-  style: 'File and Directory Operations',
+  style: 'Directory Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_MKDIR_TOOLTIP}',

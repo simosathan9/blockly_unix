@@ -1,6 +1,6 @@
 var catBlock = {
   type: 'cat',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   unix_description: [
     {
       lineNumbers: '-n',
@@ -38,7 +38,7 @@ var catBlock = {
       checked: false
     }
   ],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_CAT_TOOLTIP}',

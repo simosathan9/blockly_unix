@@ -1,6 +1,6 @@
 var findBlock = {
   type: 'find',
-  category: 'File and Directory Operations',
+  category: 'Directory Operations',
   unix_description: [
     {
       path: 'str',
@@ -163,7 +163,7 @@ var findBlock = {
     }
   ],
 
-  style: 'File and Directory Operations',
+  style: 'Directory Operations',
   nextStatement: 'Action',
   tooltip: 'Find files in directories and subdirectories',
   helpUrl: '' // URL to further information or documentation.

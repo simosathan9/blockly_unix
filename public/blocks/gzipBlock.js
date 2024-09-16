@@ -1,6 +1,6 @@
 var gzipBlock = {
   type: 'gzip',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   unix_description: [
     {
       keep: '-k',
@@ -71,7 +71,7 @@ var gzipBlock = {
       checked: false // by default it's disabled
     }
   ],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   extensions: ['integer_validation'],
   previousStatement: 'Action',
   nextStatement: 'Action',

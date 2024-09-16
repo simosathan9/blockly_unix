@@ -1,7 +1,7 @@
 var touchBlock = {
   type: 'touch',
   message0: '%{BKY_TOUCH}',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   unix_description: [
     {
       not_create_file: '-c',
@@ -56,7 +56,7 @@ var touchBlock = {
     }
   ],
   extensions: ['validate_touch_time_t', 'validate_touch_time_d'],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',

@@ -116,8 +116,8 @@ Blockly.Msg['GZIP_VERBOSE'] = 'Τurn on verbose mode %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'Head of file';
-Blockly.Msg['HEAD_METRIC'] = 'metric %1';
-Blockly.Msg['HEAD_NUMBER_OF'] = 'number of %1';
+Blockly.Msg['HEAD_METRIC'] = 'Metric %1';
+Blockly.Msg['HEAD_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
@@ -888,7 +888,7 @@ Blockly.Msg['TOUCH_TOOLTIP'] =
   '\nExample: For January 12, 2024, at 14:30 UTC, the format would be: 2024-01-12T14:30:00Z.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['UNIQ'] = 'Remove duplicate lines in file\n';
+Blockly.Msg['UNIQ'] = 'Find duplicate lines in file\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'Count the occurencies of \n duplicates lines removed %1';
 Blockly.Msg['UNIQ_CASE'] = 'Case sensitive %1';

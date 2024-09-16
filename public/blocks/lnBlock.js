@@ -1,6 +1,6 @@
 var lnBlock = {
   type: 'ln',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   message0: '%{BKY_LN_MESSAGE}',
   unix_description: [
     {
@@ -59,7 +59,7 @@ var lnBlock = {
       text: 'target' // default target
     }
   ],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_LN_TOOLTIP}',

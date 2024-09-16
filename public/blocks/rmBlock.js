@@ -1,7 +1,7 @@
 var rmBlock = {
   type: 'rm',
   message0: '%{BKY_RM}',
-  category: 'File and Directory Operations',
+  category: 'File Operations',
   unix_description: [
     {
       force: '-f',
@@ -62,7 +62,7 @@ var rmBlock = {
     }
   ],
   extensions: [],
-  style: 'File and Directory Operations',
+  style: 'File Operations',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_RM_TOOLTIP}',

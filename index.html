@@ -48,8 +48,7 @@
     <script src="blocks/wcBlock.js"></script>
     <script src="blocks/sortBlock.js"></script>
     <script src="blocks/uniqBlock.js"></script>
-    <script src="blocks/findDuplicatesBlock.js"></script>
-    <script src="blocks/showUniqsBlock.js"></script>
+    <script src="blocks/uniqBlock.js"></script>
     <script src="blocks/lsBlock.js"></script>
     <script src="blocks/cdBlock.js"></script>
     <script src="blocks/mkdirBlock.js"></script>
@@ -63,7 +62,6 @@
     <script src="blocks/regOutputBlock.js"></script>
     <script src="blocks/regPatternBlock.js"></script>
     <script src="blocks/regOrBlock.js"></script>
-    <script src="blocks/regNegationBlock.js"></script>
     <script src="blocks/regCapturingGroupBlock.js"></script>
     <script src="blocks/regStartBlock.js"></script>
     <script src="blocks/regEndBlock.js"></script>
@@ -249,8 +247,13 @@
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
         },
-        'File and Directory Operations': {
+        'File Operations': {
           colourPrimary: '#FE9B13',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
+        'Directory Operations': {
+          colourPrimary: '#900C3F',
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
         },
@@ -336,6 +339,7 @@
               { kind: 'block', type: 'sort' },
               { kind: 'block', type: 'uniq' },
               { kind: 'block', type: 'cut' },
+              { kind: 'block', type: 'grep' },
               { kind: 'block', type: 'sed' }
             ]
           },
@@ -357,12 +361,9 @@
           },
           {
             kind: 'category',
-            name: [MSG.FILE_DIR_OPERATIONS],
+            name: [MSG.FILE_OPERATIONS],
             colour: '#FE9B13',
             contents: [
-              { kind: 'block', type: 'ls' },
-              { kind: 'block', type: 'find' },
-              { kind: 'block', type: 'mkdir' },
               { kind: 'block', type: 'gzip' },
               { kind: 'block', type: 'cat' },
               { kind: 'block', type: 'touch' },
@@ -374,6 +375,20 @@
           {
             kind: 'sep'
           },
+          {
+            kind: 'category',
+            name: [MSG.DIR_OPERATIONS],
+            colour: '#900C3F',
+            contents: [
+              { kind: 'block', type: 'ls' },
+              { kind: 'block', type: 'find' },
+              { kind: 'block', type: 'mkdir' }
+            ]
+          },
+          {
+            kind: 'sep'
+          },
+
           {
             kind: 'category',
             name: [MSG.IO_REDIRECTION],
@@ -395,7 +410,6 @@
               { kind: 'block', type: 'regOutput' },
               { kind: 'block', type: 'regPattern' },
               { kind: 'block', type: 'regOr' },
-              { kind: 'block', type: 'regNegation' },
               { kind: 'block', type: 'regCapturingGroup' },
               { kind: 'block', type: 'regStart' },
               { kind: 'block', type: 'regEnd' },
@@ -449,7 +463,6 @@
               { kind: 'block', type: 'awk' },
               { kind: 'block', type: 'condOutput' },
               { kind: 'block', type: 'column' },
-              { kind: 'block', type: 'grep' },
               { kind: 'block', type: 'NR' },
               { kind: 'block', type: 'NF' },
               { kind: 'block', type: 'xargs' },
@@ -525,19 +538,15 @@
                     }
                   }
                 ]
+              },
+              {
+                kind: 'category',
+                name: [MSG.VARIABLES],
+                colour: '330',
+                custom: 'VARIABLE'
               }
             ]
           },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: [MSG.VARIABLES],
-            colour: '330',
-            custom: 'VARIABLE'
-          },
-
           {
             kind: 'sep'
           },
