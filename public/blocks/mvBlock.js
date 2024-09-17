@@ -6,7 +6,6 @@ var mvBlock = {
     {
       not_prompt_confirmation: '-f',
       prompt_confirmation: '-i',
-      verbose: '-v',
       not_overwrite: '-n'
     }
   ],
@@ -26,24 +25,16 @@ var mvBlock = {
       checked: false
     }
   ],
-  message3: '%{BKY_MV_VERBOSE}',
+  message3: '%{BKY_MV_NOT_OVERWRITE}',
   args3: [
-    {
-      type: 'field_checkbox',
-      name: 'verbose',
-      checked: false
-    }
-  ],
-  message4: '%{BKY_MV_NOT_OVERWRITE}',
-  args4: [
     {
       type: 'field_checkbox',
       name: 'not_overwrite',
       checked: false
     }
   ],
-  message5: '%{BKY_MV_SOURCE}: %1 %{BKY_MV_DEST}: %2',
-  args5: [
+  message4: '%{BKY_MV_SOURCE}: %1 %{BKY_MV_DEST}: %2',
+  args4: [
     {
       type: 'field_input',
       name: 'SOURCE',
@@ -56,7 +47,6 @@ var mvBlock = {
     }
   ],
   style: 'File Operations',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: 'Μετακινεί ή μετονομάζει αρχεία.',
   helpUrl: 'https://linux.die.net/man/1/mv'

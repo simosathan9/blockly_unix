@@ -44,7 +44,6 @@ var lsBlock = {
     }
   ],
   style: 'Directory Operations',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_LS_TOOLTIP}',
   helpUrl: '' // URL to further information or documentation.

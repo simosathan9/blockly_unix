@@ -8,7 +8,6 @@ var lnBlock = {
       symbolic: '-s',
       force: '-f',
       interactive: '-i',
-      verbose: '-v',
       follow_symlink: '-L',
       no_symlink_follow: '-P'
     }
@@ -37,17 +36,8 @@ var lnBlock = {
       checked: false // by default it's disabled
     }
   ],
-  message4: '%{BKY_LN_VERBOSE}',
+  message4: '%{BKY_LN_SOURCE}: %1 %{BKY_LN_TARGET}: %2',
   args4: [
-    {
-      type: 'field_checkbox',
-      name: 'verbose',
-      checked: false // by default it's disabled
-    }
-  ],
-
-  message5: '%{BKY_LN_SOURCE}: %1 %{BKY_LN_TARGET}: %2',
-  args5: [
     {
       type: 'field_input',
       name: 'SOURCE',
@@ -60,7 +50,6 @@ var lnBlock = {
     }
   ],
   style: 'File Operations',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_LN_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/ln'

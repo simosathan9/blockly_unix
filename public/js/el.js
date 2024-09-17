@@ -115,7 +115,6 @@ Blockly.Msg['GZIP_FILE'] = '%1 Αρχείο';
 Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'Διατήρηση αρχικού αρχείου %1';
 Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Επίπεδο συμπίεσης %1';
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Aλλαγή κατάληξης απο .gz σε';
-Blockly.Msg['GZIP_VERBOSE'] = 'Εμφάνισε πληροφορίες %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'Συμπίεση/αποσυμπίεση αρχείου';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'Πρώτα στοιχεία αρχείου';
@@ -136,15 +135,15 @@ Blockly.Msg['LN_SOURCE'] = 'Αρχείο προέλευσης';
 Blockly.Msg['LN_TARGET'] = 'Αρχείο προορισμού';
 Blockly.Msg['LN_FORCE'] = 'Επιβολή αντικατάστασης %1';
 Blockly.Msg['LN_INTERACTIVE'] = 'Προτροπή πριν από την αντικατάσταση %1';
-Blockly.Msg['LN_VERBOSE'] = 'Εμφάνιση των αρχείων κατά την επεξεργασία %1';
 Blockly.Msg['LN_TOOLTIP'] =
   'Δημιουργεί συνδέσμους αρχείων. Υποστηρίζει συμβολικούς συνδέσμους, αναγκαστική αντικατάσταση και λεπτομερή έξοδο.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'Για πολλαπλούς καταλόγους χωρίστε με κενό';
+  'Διαχωρίστε τους υποκαταλόγους με κάθετους (/)';
+Blockly.Msg['MKDIR_SAME_LEVEL_DIRECTORIES'] =
+  'Διαχωρίστε τους καταλόγους στο ίδιο επίπεδο με κενά';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
   'Δημιουργήστε επίσης καταλόγους γονέων %1';
-Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'Λίστα δημιουργημένων καταλόγων %1';
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Γράψτε όνομα καταλόγου ή διαδρομή %1';
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Δημιουργία καταλόγου';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
@@ -152,7 +151,6 @@ Blockly.Msg['MV_MESSAGE'] = 'Μετακίνηση αρχείων';
 Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Μην ζητήσεις επιβεβαίωση %1';
 Blockly.Msg['MV_PROMPT_CONFIRMATION'] =
   'Ζήτα επιβεβαίωση προτού εκτελεστεί η εντολή %1';
-Blockly.Msg['MV_VERBOSE'] = 'Λεπτομερής αναφορά %1';
 Blockly.Msg['MV_NOT_OVERWRITE'] = 'Μη αντικατάσταση αρχείου %1';
 Blockly.Msg['MV_SOURCE'] = 'Αρχείο προέλευσης';
 Blockly.Msg['MV_DEST'] = 'Τοποθεσία προορισμού';
@@ -618,9 +616,6 @@ Blockly.Msg['RM_REQUEST_CONFIRMATION'] =
   'Ζητήστε επιβεβαίωση πριν την αφαίρεση αρχείου(ων) %1';
 Blockly.Msg['RM_REMOVE_DIRECTORIES'] = 'Αφαίρεση καταλόγων %1';
 Blockly.Msg['RM_RECURSIVE'] = 'Αφαίρεση αναδρομικά %1';
-Blockly.Msg['RM_VERBOSE'] =
-  'Λειτουργία αναλυτικών πληροφοριών (εμφάνιση αφαιρεθέντων αρχείων) %1';
-Blockly.Msg['RM_NO_CROSS_MOUNT'] = 'Μην διασχίσετε σημεία σύνδεσης %1';
 Blockly.Msg['RM_TOOLTIP'] =
   'Αφαιρεί αρχεία και καταλόγους με βάση τις καθορισμένες επιλογές.';
 
@@ -876,7 +871,7 @@ Blockly.Msg['TAIL_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TEE'] = 'Αποθήκευση σε αρχείο &\n και συνέχιση επεξεργασίας\n';
 Blockly.Msg['TEE_APPEND'] = 'Προσθήκη στο αρχείο %1\n';
-Blockly.Msg['TEE_NAME'] = 'Δώστε όνομα αρχείου %1';
+Blockly.Msg['TEE_NAME'] = 'Όνομα αρχείου %1';
 Blockly.Msg['TEE_TOOLTIP'] =
   'Το εργαλείο tee αντιγράφει την τυπική είσοδο στην τυπική έξοδο, κάνοντας ένα αντίγραφο σε ένα ή περισσότερα αρχεία.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
@@ -917,7 +912,7 @@ Blockly.Msg['TOUCH_TOOLTIP'] =
   '\nΠαράδειγμα: Για 12 Ιανουαρίου 2024, ώρα 14:30 UTC, η μορφή θα είναι: 2024-01-12T14:30:00Z.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['UNIQ'] = 'Αφαίρεση διπλότυπων γραμμών στο αρχείο\n';
+Blockly.Msg['UNIQ'] = 'Αναγνώριση διπλότυπων γραμμών στο αρχείο\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'Μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
 Blockly.Msg['UNIQ_CASE'] = ' Χωρίς διάκριση πεζών-κεφαλαίων %1';

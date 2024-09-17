@@ -14,8 +14,7 @@ var gzipBlock = {
       five: '-5',
       seven: '-7',
       eight: '-8',
-      suffix: '-S str',
-      verbose: '-v'
+      suffix: '-S str'
     }
   ],
   message0: '%{BKY_GZIP_FILE}',
@@ -61,14 +60,6 @@ var gzipBlock = {
       type: 'field_input',
       name: 'suffix',
       text: '' // empty text for user to define path
-    }
-  ],
-  message4: '%{BKY_GZIP_VERBOSE}',
-  args4: [
-    {
-      type: 'field_checkbox',
-      name: 'verbose',
-      checked: false // by default it's disabled
     }
   ],
   style: 'File Operations',

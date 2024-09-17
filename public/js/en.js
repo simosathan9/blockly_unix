@@ -112,7 +112,6 @@ Blockly.Msg['GZIP_FILE'] = '%1 file';
 Blockly.Msg['GZIP_KEEP_ORIGINAL_FILE'] = 'Keep original file %1';
 Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Level of compression %1';
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Change suffix from .gz to';
-Blockly.Msg['GZIP_VERBOSE'] = 'Τurn on verbose mode %1';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'First elements of file';
@@ -131,24 +130,23 @@ Blockly.Msg['LN_MESSAGE'] = 'Link files';
 Blockly.Msg['LN_SYMBOLIC_LINK'] = 'Create symbolic link %1';
 Blockly.Msg['LN_FORCE'] = 'Force overwrite %1';
 Blockly.Msg['LN_INTERACTIVE'] = 'Prompt before overwrite %1';
-Blockly.Msg['LN_VERBOSE'] = 'Show files as they are processed %1';
 Blockly.Msg['LN_SOURCE'] = 'Source';
 Blockly.Msg['LN_TARGET'] = 'Target';
 Blockly.Msg['LN_TOOLTIP'] =
   'Creates file links. Supports symbolic links, force overwrite, and verbose output.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Create directory';
 Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'For multiple directories separate with space';
+  'Separate nested directories with forward slashes (/)';
+Blockly.Msg['MKDIR_SAME_LEVEL_DIRECTORIES'] =
+  'Separate directories at the same level with spaces';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
   'Create also parent directories %1';
-Blockly.Msg['MKDIR_LIST_DIRECTORIES'] = 'List directories created %1';
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Write directory or path %1';
 Blockly.Msg['MKDIR_TOOLTIP'] = 'Create directory';
 Blockly.Msg['MKDIR_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['MV_MESSAGE'] = 'Move files';
 Blockly.Msg['MV_NOT_PROMPT_CONFIRMATION'] = 'Do not prompt for confirmation %1';
 Blockly.Msg['MV_PROMPT_CONFIRMATION'] = 'Prompt for confirmation %1';
-Blockly.Msg['MV_VERBOSE'] = 'Verbose mode %1';
 Blockly.Msg['MV_NOT_OVERWRITE'] = 'Do not overwrite %1';
 Blockly.Msg['MV_SOURCE'] = 'Source';
 Blockly.Msg['MV_DEST'] = 'Destination';
@@ -605,8 +603,6 @@ Blockly.Msg['RM_REQUEST_CONFIRMATION'] =
   'Request confirmation before removing file(s) %1';
 Blockly.Msg['RM_REMOVE_DIRECTORIES'] = 'Remove directories %1';
 Blockly.Msg['RM_RECURSIVE'] = 'Remove recursively %1';
-Blockly.Msg['RM_VERBOSE'] = 'Verbose mode (show removed files) %1';
-Blockly.Msg['RM_NO_CROSS_MOUNT'] = 'Do not cross mount points %1';
 Blockly.Msg['RM_TOOLTIP'] =
   'Removes files and directories based on specified options.';
 Blockly.Msg['TEXT_APPEND_HELPURL'] =
@@ -847,9 +843,9 @@ Blockly.Msg['TAIL_DESC'] = 'Descending order %1';
 Blockly.Msg['TAIL_TOOLTIP'] = 'Output the last parts of files';
 Blockly.Msg['TAIL_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TEE'] = 'Save to file &\n and continue processing\n';
+Blockly.Msg['TEE'] = 'Save to file &\n pass through for further processing\n';
 Blockly.Msg['TEE_APPEND'] = 'Append to file %1\n';
-Blockly.Msg['TEE_NAME'] = 'Give file name %1';
+Blockly.Msg['TEE_NAME'] = 'File name %1';
 Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
@@ -888,7 +884,7 @@ Blockly.Msg['TOUCH_TOOLTIP'] =
   '\nExample: For January 12, 2024, at 14:30 UTC, the format would be: 2024-01-12T14:30:00Z.';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['UNIQ'] = 'Find duplicate lines in file\n';
+Blockly.Msg['UNIQ'] = 'Identify duplicate lines in file\n';
 Blockly.Msg['UNIQ_COUNT'] =
   'Count the occurencies of \n duplicates lines removed %1';
 Blockly.Msg['UNIQ_CASE'] = 'Case sensitive %1';

@@ -8,9 +8,7 @@ var rmBlock = {
       request_confirmation: '-i',
       remove_directory: '-d',
       recursive: '-R',
-      verbose: '-v',
-      undelete: '-W',
-      no_cross_mount: '-x'
+      undelete: '-W'
     }
   ],
   message1: '%{BKY_RM_FORCE}',
@@ -42,22 +40,6 @@ var rmBlock = {
     {
       type: 'field_checkbox',
       name: 'recursive',
-      checked: false
-    }
-  ],
-  message5: '%{BKY_RM_VERBOSE}',
-  args5: [
-    {
-      type: 'field_checkbox',
-      name: 'verbose',
-      checked: false
-    }
-  ],
-  message6: '%{BKY_RM_NO_CROSS_MOUNT}',
-  args6: [
-    {
-      type: 'field_checkbox',
-      name: 'no_cross_mount',
       checked: false
     }
   ],

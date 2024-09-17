@@ -11,7 +11,6 @@ var filenameBlock = {
   ],
   output: 'filename',
   style: 'File inputs',
-  nextStatement: 'Action',
   tooltip: '%{BKY_FILENAME_TOOLTIP}',
   helpUrl: '%{BKY_FILENAME_HELPURL}' // URL to further information or documentation.
 };
