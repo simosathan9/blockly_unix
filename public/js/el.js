@@ -876,18 +876,18 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'Το εργαλείο tee αντιγράφει την τυπική είσοδο στην τυπική έξοδο, κάνοντας ένα αντίγραφο σε ένα ή περισσότερα αρχεία.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου';
+Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου \n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
-  'Μη δημιουργία αρχείου αν δεν υπάρχει %1';
-Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
-  'Αλλαγή χρόνου τελευταίας πρόσβασης %1';
-Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
-  'Αλλαγή χρόνου τελευταίας τροποποίησης %1';
-Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
-  'με προσθήκη ημερομηνίας στη μορφή [[CC]YY]MMDDhhmm[.SS] %1';
-Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'ή';
+  'Μη δημιουργία αρχείου αν δεν υπάρχει %1 \n';
+  Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Αλλαγή της χρονικής σήμανσης πρόσβασης στην τρέχουσα ώρα %1 \n';
+  Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Αλλαγή της χρονικής σήμανσης τροποποίησης στην τρέχουσα ώρα %1 \n';
+  Blockly.Msg['TOUCH_SPECIFY_TIME_T'] = 'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
+  Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
+  'Προσθήκη ημερομηνίας στη μορφή [[CC]YY]MMDDhhmm[.SS] %1 \n';
+Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'ή \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_D'] = 'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
-  'με προσθήκη ημερομηνίας στη μορφή YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)] %1';
+  'Προσθήκη ημερομηνίας στη μορφή YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
   'Ορίστε την ημερομηνία και ώρα πρόσβασης και τροποποίησης ενός αρχείου. Εάν το αρχείο δεν υπάρχει, δημιουργεί ένα κενό αρχείο.' +
   ' Οι χρονικές στιγμές μπορούν να δοθούν σε δύο μορφές. Η πρώτη είναι η μορφή [[CC]YY]MMDDhhmm[.SS], όπου:' +

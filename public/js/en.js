@@ -852,14 +852,16 @@ Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['TOUCH'] = 'Modify file timestamps';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
-  'Do not create file if it does not exist %1';
-Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Change access time %1';
-Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Change modification time %1';
+  'Do not create file if it does not exist %1 \n';
+Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Change access timestamp to current time %1 \n';
+Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Change modification timestamp to current time %1 \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_T'] = 'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
-  'with date in [[CC]YY]MMDDhhmm[.SS] %1';
-Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or';
+  'Add date in [[CC]YY]MMDDhhmm[.SS] %1 \n';
+Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_D'] = 'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
-  'with date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
+  'Add date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
   'Set the access and modification time of a file. If the file does not exist, it creates an empty file.' +
   ' Time stamps can be given in two formats. The first format is [[CC]YY]MMDDhhmm[.SS], where:' +

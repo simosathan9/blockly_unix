@@ -35,9 +35,9 @@ var touchBlock = {
       checked: false
     }
   ],
-
-  message4: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_T}',
-  args4: [
+  message4: '%{BKY_TOUCH_SPECIFY_TIME_T}',
+  message5: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_T}',
+  args5: [
     {
       type: 'field_input',
       name: 'change_time_t',
@@ -45,9 +45,10 @@ var touchBlock = {
       check: 'String'
     }
   ],
-  message5: '%{BKY_TOUCH_PROPOSE_OTHER_FORMAT}',
-  message6: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_D}',
-  args6: [
+  message6: '%{BKY_TOUCH_PROPOSE_OTHER_FORMAT}',
+  message7: '%{BKY_TOUCH_SPECIFY_TIME_D}',
+  message8: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_D}',
+  args8: [
     {
       type: 'field_input',
       name: 'change_time_d',
