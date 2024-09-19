@@ -204,7 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Populate dropdown with the user's saved workspaces
             workspaces.forEach((workspace) => {
-              if (workspace.workspaceName !== '__autosave__' && workspace.workspaceName !== 'executedWorkspace') {
+              if (
+                workspace.workspaceName !== '__autosave__' &&
+                workspace.workspaceName !== 'executedWorkspace'
+              ) {
                 const option = document.createElement('option');
                 option.value = workspace.id; // use the ID as the option value
                 option.text = workspace.workspaceName; // display the workspace name

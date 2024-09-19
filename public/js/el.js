@@ -879,13 +879,17 @@ Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου \n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Μη δημιουργία αρχείου αν δεν υπάρχει %1 \n';
-  Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Αλλαγή της χρονικής σήμανσης πρόσβασης στην τρέχουσα ώρα %1 \n';
-  Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Αλλαγή της χρονικής σήμανσης τροποποίησης στην τρέχουσα ώρα %1 \n';
-  Blockly.Msg['TOUCH_SPECIFY_TIME_T'] = 'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
-  Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
+Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
+  'Αλλαγή της χρονικής σήμανσης πρόσβασης στην τρέχουσα ώρα %1 \n';
+Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
+  'Αλλαγή της χρονικής σήμανσης τροποποίησης στην τρέχουσα ώρα %1 \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_T'] =
+  'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
   'Προσθήκη ημερομηνίας στη μορφή [[CC]YY]MMDDhhmm[.SS] %1 \n';
 Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'ή \n';
-Blockly.Msg['TOUCH_SPECIFY_TIME_D'] = 'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_D'] =
+  'Αλλαγή χρόνου πρόσβασης και τελευταίας τροποποίησης \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
   'Προσθήκη ημερομηνίας στη μορφή YYYY-MM-DDThh:mm:SS[.frac][Z (για UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =

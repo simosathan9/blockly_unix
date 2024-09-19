@@ -853,13 +853,17 @@ Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['TOUCH'] = 'Modify file timestamps';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Do not create file if it does not exist %1 \n';
-Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] = 'Change access timestamp to current time %1 \n';
-Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] = 'Change modification timestamp to current time %1 \n';
-Blockly.Msg['TOUCH_SPECIFY_TIME_T'] = 'Change the access and modification times to the specified time \n';
+Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
+  'Change access timestamp to current time %1 \n';
+Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
+  'Change modification timestamp to current time %1 \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_T'] =
+  'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
   'Add date in [[CC]YY]MMDDhhmm[.SS] %1 \n';
 Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or \n';
-Blockly.Msg['TOUCH_SPECIFY_TIME_D'] = 'Change the access and modification times to the specified time \n';
+Blockly.Msg['TOUCH_SPECIFY_TIME_D'] =
+  'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
   'Add date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
