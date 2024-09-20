@@ -255,7 +255,7 @@
       <div class="row justify-content-center">
 
         <!-- About Section -->
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
           <div class="footer-info">
             <h3>Blockly Unix</h3>
             <p>
@@ -263,27 +263,37 @@
             </p>
             <p>
               <strong>Location:</strong> 76 Patision Street, Athens<br>
-              <strong>Email:</strong> <a href="mailto:blocklyunix@aueb.gr">blocklyunix@aueb.gr</a><br>
+              <strong>Email:</strong> <a href="mailto:blocklyunix@aueb.gr">@aueb.gr</a><br>
             </p>
           </div>
         </div>
 
         <!-- Useful Links Section -->
-        <div class="col-lg-4 col-md-6 mb-4 ms-lg-auto">
+        <div class="col offset-lg-1">
           <div class="footer-links">
-            <h4>Useful Links</h4>
+            <h4>Links</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/index.html">Blockly Unix</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/tutorials">Tutorials</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://github.com/simosathan9/blockly_unix">GitHub Repository</a></li>
             </ul>
           </div>
         </div>
 
+        <!-- Information Section -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="footer-links">
+            <h4>Information</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#" data-bs-toggle="modal" data-bs-target="#creatorsModal">Creators</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Use</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://github.com/AUEB-BALab/blockly_unix">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
 
         <!-- Contribute Section -->
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
           <div class="footer-newsletter">
             <h4><i class="bx bxl-github"></i> Contribute on GitHub</h4>
             <p>Blockly Unix is an open-source project. Visit our <a href="https://github.com/AUEB-BALab/blockly_unix">GitHub repository</a> to explore the source code, report issues, and contribute to the project.</p>
@@ -304,6 +314,53 @@
     </div>
   </div>
 </footer><!-- End Footer -->
+
+<!-- Creators Modal -->
+<div class="modal fade" id="creatorsModal" tabindex="-1" aria-labelledby="creatorsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="creatorsModalLabel">Creators of Blockly Unix</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>This project was developed by students and researchers at the Business Analytics Lab of the Athens University of Economics and Business (AUEB). Its aim is to offer an interactive and educational tool designed to teach Unix through block-based coding, making learning more accessible and engaging for users of all levels.</p>
+        <p>Team Members:</p>
+        <ul>
+          <li><a href="https://github.com/simosathan9" target="_blank">Athanasiadis Simos - Undergraduate student</a></li>
+          <li><a href="https://github.com/vcipi" target="_blank">Cipi Klenti - Graduate student</a></li>
+          <li><a href="https://github.com/Pantelis325" target="_blank">Kakavas Pantelis - Graduate student</a></li>
+          <li><a href="https://github.com/foivospro" target="_blank">Proestakis Foivos - Undergraduate student</a></li>
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Terms of Use Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+  <div class="modal-dialog"> <!-- Changed to modal-lg for larger size -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModalLabel">Terms of Use</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>By using Blockly Unix, you agree that the data generated in the workspace through the use of blocks will be utilized for academic research and the improvement of the application. All data collected will be anonymized and strictly used for educational, development, and research purposes.</p>
+        <p>This data helps us enhance the user experience and contribute to academic studies focused on the development of educational tools.</p>
+        <p>For further information regarding data privacy, please contact us at <a href="mailto:blocklyunix@aueb.gr">@aueb.gr</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <!-- Bootstrap JS and Popper.js -->
