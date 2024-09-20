@@ -5,9 +5,7 @@ var headBlock = {
   unix_description: [
     {
       bytes: '-c',
-      lines: '-n',
-      QUIET: '--quiet',
-      VERBOSE: '--verbose'
+      lines: '-n'
     }
   ],
   message1: '%{BKY_HEAD_METRIC}',

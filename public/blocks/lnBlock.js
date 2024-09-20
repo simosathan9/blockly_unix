@@ -50,7 +50,6 @@ var lnBlock = {
     }
   ],
   style: 'File Operations',
-  nextStatement: 'Action',
   tooltip: '%{BKY_LN_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/ln'
 };

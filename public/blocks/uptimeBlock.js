@@ -39,7 +39,6 @@ var uptimeBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_UPTIME_TOOLTIP}',
   helpUrl: '%{BKY_UPTIME_HELPURL}'

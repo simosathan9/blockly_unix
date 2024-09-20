@@ -56,7 +56,6 @@ var hostnameBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_HOSTNAME_TOOLTIP}',
   helpUrl: '%{BKY_HOSTNAME_HELPURL}'

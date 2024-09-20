@@ -48,7 +48,6 @@ var pingBlock = {
 
   category: 'Network Operations',
   style: 'Network Operations',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_PING_TOOLTIP}'
 };

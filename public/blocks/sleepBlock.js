@@ -15,8 +15,6 @@ var sleepBlock = {
     }
   ],
   style: 'Other Commands',
-  previousStatement: 'Action',
-  nextStatement: 'Action',
   tooltip: '%{BKY_SLEEP_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/sleep'
 };

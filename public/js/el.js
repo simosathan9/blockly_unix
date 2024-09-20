@@ -54,9 +54,6 @@ Blockly.Msg['CUT_END'] = 'Τέλος : ';
 Blockly.Msg['CUT_TOOLTIP'] =
   'Αποκοπή σε ένα αρχείο ή μια συμβολοσειρά.\nΓια συνεχόμενες αποκοπές χρησιμοποιήστε κόμμα(,) , για αποκοπές εύρους χρησιμοποιήστε παύλα (-)';
 Blockly.Msg['CUT_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['ECHO'] = 'Εγγραφή στην έξοδο';
-Blockly.Msg['ECHO_TOOLTIP'] = 'Εγγραφή παραμέτρων στην τυπική έξοδο';
-Blockly.Msg['ECHO_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FIELD_NUMBER'] = 'Τρέχων πεδίο';
 Blockly.Msg['FIELD_NUMBER_TOOLTIP'] =
   'Αντιπροσωπεύει τον τρέχοντα αριθμό πεδίου (στήλη)';
@@ -98,17 +95,17 @@ Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'Χωρίς διάκριση πεζών-�
 Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'Αναζήτηση πλήρους λέξης %1';
 Blockly.Msg['GREP_COUNT_MATCHES'] = 'Μέτρηση των αντιστοιχιών %1';
 Blockly.Msg['GREP_PATTERN_NEGATION'] =
-  'Εμφάνιση γραμμών που δεν ταιριάζουν στο μοτίβο %1';
+  'Έξοδος γραμμών που δεν ταιριάζουν στο μοτίβο %1';
 Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'Αναζήτηση αναδρομικά %1';
-Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Εμφάνιση αριθμών γραμμών %1';
+Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Έξοδος αριθμών γραμμών %1';
 Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] =
   'Σταμάτησε μετά από %1 αντιστοιχίες';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] = 'Αναζήτηση με πολλαπλά μοτίβα %1';
 Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
-  'Εμφάνιση %1 γραμμών πριν από την αντιστοιχία %2';
+  'Έξοδος %1 γραμμών πριν από την αντιστοιχία %2';
 Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
-  'Εμφάνιση %1 γραμμών μετά την αντιστοιχία %2';
-Blockly.Msg['GREP_SHOW_FILENAME'] = 'Εμφάνιση ονόματος αρχείου %1';
+  'Έξοδος %1 γραμμών μετά την αντιστοιχία %2';
+Blockly.Msg['GREP_SHOW_FILENAME'] = 'Έξοδος ονόματος αρχείου %1';
 Blockly.Msg['GREP_TOOLTIP'] = 'Αναζήτηση σε αρχείο με μοτίβο';
 Blockly.Msg['GREP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['GZIP_FILE'] = '%1 Αρχείο';
@@ -120,13 +117,13 @@ Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['HEAD_MESSAGE'] = 'Πρώτα στοιχεία αρχείου';
 Blockly.Msg['HEAD_METRIC'] = 'Μετρική %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Αριθμός %1';
-Blockly.Msg['HEAD_TOOLTIP'] = 'Εμφάνιση του πρώτου μέρους των αρχείων';
+Blockly.Msg['HEAD_TOOLTIP'] = 'Έξοδος του πρώτου μέρους των αρχείων';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'Λίστα αρχείων & καταλόγων';
-Blockly.Msg['LS_SHOW_DETAILS'] = 'Εμφάνιση λεπτομερειών %1';
+Blockly.Msg['LS_SHOW_DETAILS'] = 'Έξοδος λεπτομερειών %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Αναζήτηση σε όλους τους υποκαταλόγους %1';
-Blockly.Msg['LS_HIDDEN'] = 'Εμφάνιση κρυφών αρχείων %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = 'Εμφάνιση σε αντίστροφη σειρά %1';
+Blockly.Msg['LS_HIDDEN'] = 'Έξοδος κρυφών αρχείων %1';
+Blockly.Msg['LS_REVERSE_ORDER'] = 'Έξοδος σε αντίστροφη σειρά %1';
 Blockly.Msg['LS_TOOLTIP'] = 'Λίστα περιεχομένων καταλόγου';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LN_MESSAGE'] = 'Σύνδεση αρχείων';
@@ -921,9 +918,9 @@ Blockly.Msg['UNIQ_COUNT'] =
   'Μέτρηση των εμφανίσεων των \n γραμμών που αφαιρέθηκαν %1';
 Blockly.Msg['UNIQ_CASE'] = ' Χωρίς διάκριση πεζών-κεφαλαίων %1';
 Blockly.Msg['UNIQ_OUTPUT_NON_REPEATED_LINES'] =
-  'Εμφάνιση μόνο μη επαναλαμβανόμενων γραμμών %1';
+  'Έξοδος μόνο μη επαναλαμβανόμενων γραμμών %1';
 Blockly.Msg['UNIQ_OUTPUT_SINGLE_COPY_OF_REPEATED_LINES'] =
-  'Εμφάνιση μόνο ενός αντίγραφου των επαναλαμβανόμενων γραμμών %1';
+  'Έξοδος μόνο ενός αντίγραφου των επαναλαμβανόμενων γραμμών %1';
 Blockly.Msg['UNIQ_SKIP_CHARS'] =
   'Παράλειψη των πρώτων %1 χαρακτήρων κάθε γραμμής';
 Blockly.Msg['UNIQ_TOOLTIP'] =
@@ -959,48 +956,47 @@ Blockly.Msg['CATVARIABLES'] = 'Μεταβλητές';
 
 // df command
 Blockly.Msg['DF'] = 'Χρήση χώρου δίσκου';
-Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Εμφάνιση τύπου συστήματος αρχείων %1';
-Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Εμφάνιση συνολικού αριθμού blocks %1';
-Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Εμφάνιση χρησιμοποιημένων blocks %1';
-Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Εμφάνιση διαθέσιμων blocks %1';
+Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Έξοδος τύπου συστήματος αρχείων %1';
+Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Έξοδος συνολικού αριθμού blocks %1';
+Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Έξοδος  χρησιμοποιημένων blocks %1';
+Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Έξοδος διαθέσιμων blocks %1';
 Blockly.Msg['DF_TOOLTIP'] =
   'Εκτελεί την εντολή df για εμφάνιση πληροφοριών χρήσης χώρου δίσκου';
 Blockly.Msg['DF_HELPURL'] = 'https://man7.org/linux/man-pages/man1/df.1.html';
 
 // uptime command
 Blockly.Msg['UPTIME'] = 'Χρόνος λειτουργίας συστήματος';
-Blockly.Msg['UPTIME_PRETTY'] = 'Εμφάνιση χρόνου λειτουργίας σε όμορφη μορφή %1';
+Blockly.Msg['UPTIME_PRETTY'] = 'Έξοδος χρόνου λειτουργίας σε όμορφη μορφή %1';
 Blockly.Msg['UPTIME_SINCE'] =
-  'Εμφάνιση του χρόνου λειτουργίας από την εκκίνηση %1';
-Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Εμφάνιση της έκδοσης του πυρήνα %1';
+  'Έξοδος του χρόνου λειτουργίας από την εκκίνηση %1';
+Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Έξοδος της έκδοσης του πυρήνα %1';
 Blockly.Msg['UPTIME_TOOLTIP'] =
   'Εμφανίζει τον χρόνο λειτουργίας του συστήματος, τον αριθμό των χρηστών και τους μέσους όρους φορτίου';
 Blockly.Msg['UPTIME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/uptime.1.html';
 
 // who command
-Blockly.Msg['WHO'] = 'Εμφάνιση ποιοι χρήστες είναι συνδεδεμένοι';
-Blockly.Msg['WHO_SHOW_HEADING'] = 'Εμφάνιση πληροφοριών κεφαλίδας %1';
-Blockly.Msg['WHO_SHOW_ALL'] = 'Εμφάνιση όλων των πληροφοριών %1';
-Blockly.Msg['WHO_SHOW_USERS'] = 'Εμφάνιση διεργασιών χρηστών %1';
-Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Εμφάνιση τελευταίου χρόνου εκκίνησης %1';
-Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Εμφάνιση του τρέχοντος runlevel %1';
+Blockly.Msg['WHO'] = 'Έξοδος ποιοι χρήστες είναι συνδεδεμένοι';
+Blockly.Msg['WHO_SHOW_HEADING'] = 'Έξοδος πληροφοριών κεφαλίδας %1';
+Blockly.Msg['WHO_SHOW_ALL'] = 'Έξοδος όλων των πληροφοριών %1';
+Blockly.Msg['WHO_SHOW_USERS'] = 'Έξοδος διεργασιών χρηστών %1';
+Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Έξοδος τελευταίου χρόνου εκκίνησης %1';
+Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Έξοδος του τρέχοντος runlevel %1';
 Blockly.Msg['WHO_TOOLTIP'] =
   'Εμφανίζει ποιοι χρήστες είναι συνδεδεμένοι και σχετικές πληροφορίες συστήματος';
 Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
 
 // hostname command
-Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Εμφάνιση του ονόματος του συστήματος';
-Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] =
-  'Εμφάνιση του ονόματος του συστήματος %1';
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Έξοδος του ονόματος του συστήματος';
+Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = 'Έξοδος του ονόματος του συστήματος %1';
 Blockly.Msg['HOSTNAME_SET_HOSTNAME'] =
   'Ορισμός του ονόματος του συστήματος σε %1';
 Blockly.Msg['HOSTNAME_SHOW_ALIASES'] =
-  'Εμφάνιση ψευδωνύμων του ονόματος συστήματος %1';
+  'Έξοδος ψευδωνύμων του ονόματος συστήματος %1';
 Blockly.Msg['HOSTNAME_SHOW_IP'] =
-  'Εμφάνιση της IP διεύθυνσης που συνδέεται με το όνομα συστήματος %1';
+  'Έξοδος της IP διεύθυνσης που συνδέεται με το όνομα συστήματος %1';
 Blockly.Msg['HOSTNAME_SHOW_FQDN'] =
-  'Εμφάνιση του πλήρως καταρτισμένου ονόματος τομέα (FQDN) %1';
+  'Έξοδος του πλήρως καταρτισμένου ονόματος τομέα (FQDN) %1';
 Blockly.Msg['HOSTNAME_TOOLTIP'] =
   'Εμφανίζει ή ορίζει το όνομα του συστήματος και σχετικές πληροφορίες';
 Blockly.Msg['HOSTNAME_HELPURL'] =
@@ -1008,8 +1004,8 @@ Blockly.Msg['HOSTNAME_HELPURL'] =
 
 // date command
 Blockly.Msg['SYSTEM_DATE_COMMAND'] =
-  'Εμφάνιση της τρέχουσας ημερομηνίας και ώρας';
-Blockly.Msg['DATE_UTC_TIME'] = 'Εμφάνιση ώρας σε UTC %1';
+  'Έξοδος της τρέχουσας ημερομηνίας και ώρας';
+Blockly.Msg['DATE_UTC_TIME'] = 'Έξοδος ώρας σε UTC %1';
 Blockly.Msg['DATE_TOOLTIP'] =
   'Εμφανίζει ή ορίζει την ημερομηνία και ώρα του συστήματος';
 Blockly.Msg['DATE_HELPURL'] =
@@ -1023,9 +1019,9 @@ Blockly.Msg['KILL_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/kill.1.html';
 
 // echo command
-Blockly.Msg['ECHO'] = 'Εκτύπωση μηνύματος';
-Blockly.Msg['ECHO_BLOCK'] = 'εκτύπωση μηνύματος %1';
-Blockly.Msg['ECHO_TOOLTIP'] = 'Εκτυπώνει ένα μήνυμα στο τερματικό';
+Blockly.Msg['ECHO'] = 'Εγγραφή στην έξοδο:';
+Blockly.Msg['ECHO_TOOLTIP'] = 'Εγγραφή παραμέτρων στην τυπική έξοδο';
+Blockly.Msg['ECHO_BLOCK'] = '%1';
 Blockly.Msg['ECHO_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/echo.1.html';
 
@@ -1038,11 +1034,11 @@ Blockly.Msg['SLEEP_HELPURL'] =
 
 // ps command
 Blockly.Msg['PS'] = 'Κατάσταση διεργασίας';
-Blockly.Msg['PS_SHOW_ALL'] = 'Εμφάνιση όλων των διεργασιών %1';
-Blockly.Msg['PS_SHOW_USER'] = 'Εμφάνιση διεργασιών για χρήστη %1';
-Blockly.Msg['PS_SHOW_PID'] = 'Εμφάνιση διεργασίας με PID %1';
+Blockly.Msg['PS_SHOW_ALL'] = 'Έξοδος όλων των διεργασιών %1';
+Blockly.Msg['PS_SHOW_USER'] = 'Έξοδος διεργασιών για χρήστη %1';
+Blockly.Msg['PS_SHOW_PID'] = 'Έξοδος διεργασίας με PID %1';
 Blockly.Msg['PS_FORMAT'] = 'Μορφή εξόδου %1';
-Blockly.Msg['PS_SHOW_THREAD'] = 'Εμφάνιση νημάτων %1';
+Blockly.Msg['PS_SHOW_THREAD'] = 'Έξοδος νημάτων %1';
 Blockly.Msg['PS_TOOLTIP'] =
   'Εκτελεί την εντολή ps για εμφάνιση πληροφοριών διεργασίας';
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';

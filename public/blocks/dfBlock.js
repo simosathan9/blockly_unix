@@ -49,7 +49,6 @@ var dfBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_DF_TOOLTIP}',
   helpUrl: '%{BKY_DF_HELPURL}'

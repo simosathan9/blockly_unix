@@ -1,7 +1,7 @@
 var echoBlock = {
   type: 'echo',
   message0: '%{BKY_ECHO}',
-  category: 'Other Commands',
+  category: 'Text Processing',
   unix_description: [
     {
       command: 'str'
@@ -12,11 +12,10 @@ var echoBlock = {
     {
       type: 'field_input',
       name: 'echoInput',
-      text: ''
+      text: 'Hello World!'
     }
   ],
-  style: 'Other Commands',
-  previousStatement: 'Action',
+  style: 'Text Processing',
   nextStatement: 'Action',
   tooltip: '%{BKY_ECHO_TOOLTIP}',
   helpUrl: '%{BKY_ECHO_HELPURL}' // URL to further information or documentation.

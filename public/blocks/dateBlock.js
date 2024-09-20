@@ -20,7 +20,6 @@ var dateBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_DATE_TOOLTIP}',
   helpUrl: '%{BKY_DATE_HELPURL}'

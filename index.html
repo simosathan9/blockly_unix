@@ -337,10 +337,12 @@
               { kind: 'block', type: 'tail' },
               { kind: 'block', type: 'wc' },
               { kind: 'block', type: 'sort' },
+              { kind: 'block', type: 'cat' },
               { kind: 'block', type: 'uniq' },
               { kind: 'block', type: 'cut' },
               { kind: 'block', type: 'grep' },
-              { kind: 'block', type: 'sed' }
+              { kind: 'block', type: 'sed' },
+              { kind: 'block', type: 'echo' }
             ]
           },
           {
@@ -365,7 +367,6 @@
             colour: '#FE9B13',
             contents: [
               { kind: 'block', type: 'gzip' },
-              { kind: 'block', type: 'cat' },
               { kind: 'block', type: 'touch' },
               { kind: 'block', type: 'ln' },
               { kind: 'block', type: 'mv' },
@@ -556,7 +557,6 @@
             colour: '#009688',
             contents: [
               { kind: 'block', type: 'kill' },
-              { kind: 'block', type: 'echo' },
               { kind: 'block', type: 'sleep' }
             ]
           }

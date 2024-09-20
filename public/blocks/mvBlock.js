@@ -47,7 +47,6 @@ var mvBlock = {
     }
   ],
   style: 'File Operations',
-  nextStatement: 'Action',
   tooltip: 'Μετακινεί ή μετονομάζει αρχεία.',
   helpUrl: 'https://linux.die.net/man/1/mv'
 };

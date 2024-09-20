@@ -1,6 +1,6 @@
 var catBlock = {
   type: 'cat',
-  category: 'File Operations',
+  category: 'Text Processing',
   unix_description: [
     {
       lineNumbers: '-n',
@@ -38,7 +38,7 @@ var catBlock = {
       checked: false
     }
   ],
-  style: 'File Operations',
+  style: 'Text Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_CAT_TOOLTIP}',

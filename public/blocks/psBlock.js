@@ -58,7 +58,6 @@ var psBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_PS_TOOLTIP}',
   helpUrl: '%{BKY_PS_HELPURL}' // URL to further information or documentation.

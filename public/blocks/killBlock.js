@@ -15,8 +15,6 @@ var killBlock = {
     }
   ],
   style: 'Other Commands',
-  previousStatement: 'Action',
-  nextStatement: 'Action',
   tooltip: '%{BKY_KILL_TOOLTIP}',
   helpUrl: '%{BKY_KILL_HELPURL}'
 };

@@ -28,12 +28,12 @@ Blockly.Msg['BEGIN_END'] = 'Execute once\n before/after data processing';
 Blockly.Msg['BEGIN_END_TOOLTIP'] =
   'pattern-directed scanning and processing language';
 Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['CAT'] = 'Show file';
+Blockly.Msg['CAT'] = 'Output file';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'With line numbers';
 Blockly.Msg['CAT_TOOLTIP'] = 'Concatenate and print files';
 Blockly.Msg['CAT_SQUEEZE_EMPTY_LINES'] = 'Squeeze empty lines %1';
 Blockly.Msg['CAT_END_OF_LINE_WITH_DOLLAR'] =
-  'Display non-printing characters \n and display a dollar sign at the end of each line %1';
+  'Output non-printing characters \n and output a dollar sign at the end of each line %1';
 Blockly.Msg['CAT_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CD'] = 'Change directory to';
 Blockly.Msg['CD_TOOLTIP'] = 'Concatenate and print files';
@@ -53,9 +53,6 @@ Blockly.Msg['CUT_END'] = 'End : ';
 Blockly.Msg['CUT_TOOLTIP'] =
   'Cut out in a file or a string.\nFor consecutive cuts use comma(,) , for range cuts use hyphen (-)';
 Blockly.Msg['CUT_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['ECHO'] = 'Write to output';
-Blockly.Msg['ECHO_TOOLTIP'] = 'Write arguments to standard output';
-Blockly.Msg['ECHO_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FIELD_NUMBER'] = 'Current field';
 Blockly.Msg['FIELD_NUMBER_TOOLTIP'] =
   'Represents the current field (column) number';
@@ -95,13 +92,14 @@ Blockly.Msg['GREP_REGULAR_EXPRESSION_CHECK'] = 'Regular expression %1';
 Blockly.Msg['GREP_CASE_INSENSITIVE'] = 'Case insensitive %1';
 Blockly.Msg['GREP_WHOLE_WORD_SEARCH'] = 'Whole word search %1';
 Blockly.Msg['GREP_COUNT_MATCHES'] = 'Count the matches %1';
-Blockly.Msg['GREP_PATTERN_NEGATION'] = "Show lines that don't match pattern %1";
+Blockly.Msg['GREP_PATTERN_NEGATION'] =
+  "Output lines that don't match pattern %1";
 Blockly.Msg['GREP_RECURSIVE_SEARCH'] = 'Search recursively %1';
-Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Show line numbers %1';
+Blockly.Msg['GREP_DISPLAY_LINE_NUMBERS'] = 'Output line numbers %1';
 Blockly.Msg['GREP_STOP_AFTER_NUM_MATCHES'] = 'Stop after %1 matches';
 Blockly.Msg['GREP_MULTIPLE_PATTERN_SEARCH'] =
   'Search with multiple patterns %1';
-Blockly.Msg['GREP_SHOW_FILENAME'] = 'Show filename %1';
+Blockly.Msg['GREP_SHOW_FILENAME'] = 'Output filename %1';
 Blockly.Msg['GREP_PRINT_CONTEXT_BEFORE_MATCH'] =
   'Output %1 lines of context before match %2';
 Blockly.Msg['GREP_PRINT_CONTEXT_AFTER_MATCH'] =
@@ -120,10 +118,10 @@ Blockly.Msg['HEAD_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
-Blockly.Msg['LS_SHOW_DETAILS'] = 'Show details %1';
+Blockly.Msg['LS_SHOW_DETAILS'] = 'Output details %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Search in all subdirectories %1';
-Blockly.Msg['LS_HIDDEN'] = 'Show hidden files %1';
-Blockly.Msg['LS_REVERSE_ORDER'] = 'Show in reverse order %1';
+Blockly.Msg['LS_HIDDEN'] = 'Output hidden files %1';
+Blockly.Msg['LS_REVERSE_ORDER'] = 'Output in reverse order %1';
 Blockly.Msg['LS_TOOLTIP'] = 'List directory contents';
 Blockly.Msg['LS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LN_MESSAGE'] = 'Link files';
@@ -929,53 +927,54 @@ Blockly.Msg['CATVARIABLES'] = 'Variables';
 
 // df command
 Blockly.Msg['DF'] = 'Disk space usage';
-Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Show file system type %1';
-Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Show total block count %1';
-Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Show used blocks %1';
-Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Show available blocks %1';
+Blockly.Msg['DF_SHOW_FS_TYPE'] = 'Output file system type %1';
+Blockly.Msg['DF_SHOW_TOTAL_BLOCKS'] = 'Output total block count %1';
+Blockly.Msg['DF_SHOW_USED_BLOCKS'] = 'Output used blocks %1';
+Blockly.Msg['DF_SHOW_AVAILABLE_BLOCKS'] = 'Output available blocks %1';
 Blockly.Msg['DF_TOOLTIP'] =
   'Execute the df command to display disk space usage information';
 Blockly.Msg['DF_HELPURL'] = 'https://man7.org/linux/man-pages/man1/df.1.html';
 
 // uptime command
 Blockly.Msg['UPTIME'] = 'System uptime';
-Blockly.Msg['UPTIME_PRETTY'] = 'Display uptime in a pretty format %1';
+Blockly.Msg['UPTIME_PRETTY'] = 'Output uptime in a pretty format %1';
 Blockly.Msg['UPTIME_SINCE'] =
-  'Show how long the system has been running since boot %1';
-Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Display the kernel version %1';
+  'Output how long the system has been running since boot %1';
+Blockly.Msg['UPTIME_KERNEL_VERSION'] = 'Output the kernel version %1';
 Blockly.Msg['UPTIME_TOOLTIP'] =
-  'Displays system uptime, number of users, and load averages';
+  'Output system uptime, number of users, and load averages';
 Blockly.Msg['UPTIME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/uptime.1.html';
 
 // who command
-Blockly.Msg['WHO'] = 'Display who is logged in';
-Blockly.Msg['WHO_SHOW_HEADING'] = 'Show heading information %1';
-Blockly.Msg['WHO_SHOW_ALL'] = 'Show all information %1';
-Blockly.Msg['WHO_SHOW_USERS'] = 'Show user processes %1';
-Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Show last boot time %1';
-Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Show current runlevel %1';
+Blockly.Msg['WHO'] = 'Output who is logged in';
+Blockly.Msg['WHO_SHOW_HEADING'] = 'Output heading information %1';
+Blockly.Msg['WHO_SHOW_ALL'] = 'Output all information %1';
+Blockly.Msg['WHO_SHOW_USERS'] = 'Output user processes %1';
+Blockly.Msg['WHO_SHOW_BOOT_TIME'] = 'Output last boot time %1';
+Blockly.Msg['WHO_SHOW_RUNLEVEL'] = 'Output current runlevel %1';
 Blockly.Msg['WHO_TOOLTIP'] =
   'Displays who is logged in and related system information';
 Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
 
 // hostname command
-Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Show the hostname of the system';
-Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = "Show the system's hostname %1";
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Output the hostname of the system';
+Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = "Output the system's hostname %1";
 Blockly.Msg['HOSTNAME_SET_HOSTNAME'] = "Set the system's hostname to %1";
-Blockly.Msg['HOSTNAME_SHOW_ALIASES'] = 'Show hostname aliases %1';
-Blockly.Msg['HOSTNAME_SHOW_IP'] = 'Show IP address associated with hostname %1';
+Blockly.Msg['HOSTNAME_SHOW_ALIASES'] = 'Output hostname aliases %1';
+Blockly.Msg['HOSTNAME_SHOW_IP'] =
+  'Output IP address associated with hostname %1';
 Blockly.Msg['HOSTNAME_SHOW_FQDN'] =
-  'Show fully qualified domain name (FQDN) %1';
+  'Output fully qualified domain name (FQDN) %1';
 Blockly.Msg['HOSTNAME_TOOLTIP'] =
-  'Displays or sets the system hostname and related information';
+  'Output or sets the system hostname and related information';
 Blockly.Msg['HOSTNAME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/hostname.1.html';
 
 // date command
-Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Display the current date and time';
-Blockly.Msg['DATE_UTC_TIME'] = 'Display time in UTC %1';
-Blockly.Msg['DATE_TOOLTIP'] = 'Displays or sets the system date and time';
+Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Output the current date and time';
+Blockly.Msg['DATE_UTC_TIME'] = 'Output time in UTC %1';
+Blockly.Msg['DATE_TOOLTIP'] = 'Outputs or sets the system date and time';
 Blockly.Msg['DATE_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/date.1.html';
 
@@ -987,9 +986,10 @@ Blockly.Msg['KILL_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/kill.1.html';
 
 // echo command
-Blockly.Msg['ECHO'] = 'Print message';
-Blockly.Msg['ECHO_BLOCK'] = 'print message %1';
-Blockly.Msg['ECHO_TOOLTIP'] = 'Print a message to the terminal';
+Blockly.Msg['ECHO'] = 'Write to output:';
+Blockly.Msg['ECHO_BLOCK'] = '%1';
+Blockly.Msg['ECHO_TOOLTIP'] = 'Write arguments to standard output';
+Blockly.Msg['ECHO_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['ECHO_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/echo.1.html';
 
@@ -1002,11 +1002,11 @@ Blockly.Msg['SLEEP_HELPURL'] =
 
 // ps command
 Blockly.Msg['PS'] = 'Process status';
-Blockly.Msg['PS_SHOW_ALL'] = 'Show all processes %1';
-Blockly.Msg['PS_SHOW_USER'] = 'Show processes for user %1';
-Blockly.Msg['PS_SHOW_PID'] = 'Show process by PID %1';
+Blockly.Msg['PS_SHOW_ALL'] = 'Output all processes %1';
+Blockly.Msg['PS_SHOW_USER'] = 'Output processes for user %1';
+Blockly.Msg['PS_SHOW_PID'] = 'Output process by PID %1';
 Blockly.Msg['PS_FORMAT'] = 'Output format %1';
-Blockly.Msg['PS_SHOW_THREAD'] = 'Show threads %1';
+Blockly.Msg['PS_SHOW_THREAD'] = 'Output threads %1';
 Blockly.Msg['PS_TOOLTIP'] =
   'Execute the ps command to display process information';
 Blockly.Msg['PS_HELPURL'] = 'https://man7.org/linux/man-pages/man1/ps.1.html';
@@ -1029,4 +1029,5 @@ Blockly.Msg['CURL'] = 'Execute an HTTP request to';
 Blockly.Msg['CURL_METHOD'] = 'Choose method';
 Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
 Blockly.Msg['CURL_REDIRECTS'] = 'Follow redirects';
+
 // Journal  command

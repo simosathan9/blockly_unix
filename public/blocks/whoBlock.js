@@ -56,7 +56,6 @@ var whoBlock = {
   extensions: ['integer_validation'],
 
   style: 'System Monitoring',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_WHO_TOOLTIP}',
   helpUrl: '%{BKY_WHO_HELPURL}'

@@ -58,8 +58,6 @@ var touchBlock = {
   ],
   extensions: ['validate_touch_time_t', 'validate_touch_time_d'],
   style: 'File Operations',
-  previousStatement: 'Action',
-  nextStatement: 'Action',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',
   helpUrl: '%{BKY_TOUCH_HELPURL}' // URL to further information or documentation.
 };
