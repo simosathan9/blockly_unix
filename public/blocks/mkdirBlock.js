@@ -26,6 +26,7 @@ var mkdirBlock = {
     }
   ],
   style: 'Directory Operations',
+  nextStatement: 'Action',
   tooltip: '%{BKY_MKDIR_TOOLTIP}',
   helpUrl: '' // URL to further information or documentation.
 };

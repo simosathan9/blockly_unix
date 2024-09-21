@@ -45,6 +45,7 @@ var rmBlock = {
   ],
   extensions: [],
   style: 'File Operations',
+  nextStatement: 'Action',
   tooltip: '%{BKY_RM_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/rm'
 };

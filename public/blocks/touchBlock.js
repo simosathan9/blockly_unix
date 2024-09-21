@@ -8,7 +8,7 @@ var touchBlock = {
       change_time_t: '-t str',
       change_time_d: '-d str',
       access_time: '-a',
-      modification_time: '-r'
+      modification_time: '-m'
     }
   ],
   message1: '%{BKY_TOUCH_NOT_CREATE_FILE}',
@@ -35,20 +35,9 @@ var touchBlock = {
       checked: false
     }
   ],
-  message4: '%{BKY_TOUCH_SPECIFY_TIME_T}',
-  message5: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_T}',
+  message4: '%{BKY_TOUCH_SPECIFY_TIME_D}',
+  message5: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_D}',
   args5: [
-    {
-      type: 'field_input',
-      name: 'change_time_t',
-      text: '',
-      check: 'String'
-    }
-  ],
-  message6: '%{BKY_TOUCH_PROPOSE_OTHER_FORMAT}',
-  message7: '%{BKY_TOUCH_SPECIFY_TIME_D}',
-  message8: '%{BKY_TOUCH_SPECIFY_TIME_FORMAT_D}',
-  args8: [
     {
       type: 'field_input',
       name: 'change_time_d',
@@ -56,8 +45,10 @@ var touchBlock = {
       check: 'String'
     }
   ],
-  extensions: ['validate_touch_time_t', 'validate_touch_time_d'],
+  extensions: ['validate_touch_time_d'],
   style: 'File Operations',
+  previousStatement: 'Action',
+  nextStatement: 'Action',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',
   helpUrl: '%{BKY_TOUCH_HELPURL}' // URL to further information or documentation.
 };

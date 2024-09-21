@@ -519,6 +519,42 @@ document
             blockDef.category === 'Regular Expressions')
         ) {
           generatedCommand += handleBlock(currentBlock);
+        } else if (currentBlock.type === 'touch') {
+          let touchCommand = 'touch'; // Start with the basic touch command
+
+          // Check each option and append to the command if selected
+          const notCreateFile =
+            currentBlock.getFieldValue('not_create_file') === 'TRUE';
+          const changeAccessTime =
+            currentBlock.getFieldValue('access_time') === 'TRUE';
+          const changeModificationTime =
+            currentBlock.getFieldValue('modification_time') === 'TRUE';
+          const rawTimestamp = currentBlock.getFieldValue('change_time_d');
+
+          // Check if the previous block passed a filename
+          let previousBlock = currentBlock.getPreviousBlock();
+
+          if (notCreateFile) {
+            touchCommand += ' -c';
+          }
+
+          if (changeAccessTime) {
+            touchCommand += ' -a';
+          }
+
+          if (changeModificationTime) {
+            touchCommand += ' -m';
+          }
+
+          // Append '-d' with formatted timestamp if it's selected and has a value
+          if (rawTimestamp) {
+            const formattedTimestamp = rawTimestamp.replace(' ', 'T'); // Adjust timestamp format if needed
+            touchCommand += ` -d ${formattedTimestamp}`;
+          }
+
+          // Add the constructed touch command to the generatedCommand
+          generatedCommand += (generatedCommand ? ' | ' : '') + touchCommand;
+          generatedCommand += ' ' + handleFilenamesBlocks(previousBlock);
         } else {
           generatedCommand +=
             (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
@@ -1550,143 +1586,13 @@ Blockly.Extensions.register('cut_validation', function () {
   });
 });
 
-// Define validation extension for the touch -t flag
-Blockly.Extensions.register('validate_touch_time_t', function () {
-  this.getField('change_time_t').setValidator(function (input) {
-    // Define multiple regex patterns to match different formats
-    var patterns = [
-      /^$/, // Empty string pattern
-      /^(\d{2})(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(\.[0-5][0-9])?$/, // CCYYMMDDhhmm[.SS]
-      /^(\d{2})(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])$/, // CCYYMMDDhhmm
-      /^(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(\.[0-5][0-9])?$/, // YYMMDDhhmm[.SS]
-      /^(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])$/, // YYMMDDhhmm
-      /^(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(\.[0-5][0-9])?$/, // MMDDhhmm[.SS]
-      /^(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])$/ // MMDDhhmm
-    ];
-
-    // Allow empty input
-    if (input === '') {
-      return input; // Accept empty input as valid
-    }
-
-    // Check if input matches one of the valid formats
-    var isValid = patterns.some(function (pattern) {
-      return pattern.test(input);
-    });
-
-    if (!isValid) {
-      return null; // Invalid input, reject
-    }
-
-    // Determine the current date, year, and century
-    var now = new Date();
-    var currentYear = now.getFullYear();
-    var currentCentury = Math.floor(currentYear / 100);
-
-    // Parse input based on its length
-    var century = '';
-    var year = '';
-    var month = '';
-    var day = '';
-    var hour = '';
-    var minute = '';
-    var second = '00'; // default seconds to '00'
-
-    switch (input.length) {
-      case 15: // CCYYMMDDhhmm[.SS]
-        century = input.substr(0, 2);
-        year = input.substr(2, 2);
-        month = input.substr(4, 2);
-        day = input.substr(6, 2);
-        hour = input.substr(8, 2);
-        minute = input.substr(10, 2);
-        second = input.substr(12, 2);
-        break;
-      case 13: // YYMMDDhhmm[.SS]
-        year = input.substr(0, 2);
-        month = input.substr(2, 2);
-        day = input.substr(4, 2);
-        hour = input.substr(6, 2);
-        minute = input.substr(8, 2);
-        second = input.substr(10, 2);
-        break;
-      case 12: // CCYYMMDDhhmm
-        century = input.substr(0, 2);
-        year = input.substr(2, 2);
-        month = input.substr(4, 2);
-        day = input.substr(6, 2);
-        hour = input.substr(8, 2);
-        minute = input.substr(10, 2);
-        break;
-      case 11: // MMDDhhmm[.SS]
-        month = input.substr(0, 2);
-        day = input.substr(2, 2);
-        hour = input.substr(4, 2);
-        minute = input.substr(6, 2);
-        second = input.substr(8, 2);
-        year = String(currentYear).slice(-2); // default to current year
-        century = String(currentCentury); // default to current century
-        break;
-      case 10: // YYMMDDhhmm
-        year = input.substr(0, 2);
-        month = input.substr(2, 2);
-        day = input.substr(4, 2);
-        hour = input.substr(6, 2);
-        minute = input.substr(8, 2);
-        break;
-      case 8: // MMDDhhmm
-        month = input.substr(0, 2);
-        day = input.substr(2, 2);
-        hour = input.substr(4, 2);
-        minute = input.substr(6, 2);
-        year = String(currentYear).slice(-2); // default to current year
-        century = String(currentCentury); // default to current century
-        break;
-
-      default:
-        return null; // Invalid length, reject
-    }
-
-    // If year is present but no century, infer based on year
-    if (year && !century) {
-      century = parseInt(year, 10) >= 69 ? '19' : '20'; // infer century
-    }
-
-    var fullYear = parseInt(century) * 100 + parseInt(year, 10);
-
-    // Validate ranges for month, day, hour, minute, and second
-    if (
-      month < '01' ||
-      month > '12' ||
-      day < '01' ||
-      day > '31' ||
-      hour < '00' ||
-      hour > '23' ||
-      minute < '00' ||
-      minute > '59' ||
-      second < '00' ||
-      second > '60'
-    ) {
-      return null; // Invalid input: reject and keep the old value
-    }
-
-    // Check day validity for the given month and year (leap year handling)
-    var daysInMonth = new Date(fullYear, parseInt(month, 10), 0).getDate();
-    if (parseInt(day, 10) > daysInMonth) {
-      return null; // Invalid day for the given month
-    }
-
-    return input; // Input is valid
-  });
-});
-
-// Define validation extension for the touch -d flag
 Blockly.Extensions.register('validate_touch_time_d', function () {
   this.getField('change_time_d').setValidator(function (input) {
     // Define regex patterns to match different valid formats
     var patterns = [
       /^$/, // Empty string pattern
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([T\s])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z)?$/ // YYYY-MM-DDThh:mm:SS[.frac][tz] or YYYY-MM-DD hh:mm:SS[.frac][tz]
+      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(Z)?$/, // YYYY-MM-DD hh:mm:SS[tz]
+      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(Z)?$/ // YYYY-MM-DDThh:mm:SS[tz]
     ];
 
     // Check if input matches one of the valid patterns
@@ -1698,14 +1604,10 @@ Blockly.Extensions.register('validate_touch_time_d', function () {
       return null; // Invalid input, reject
     }
 
-    // Normalize the input by replacing space with 'T'
-    input = input.replace(/\s/, 'T');
-
-    // Extract components from input
+    // Extract components from input (no replacement here)
     var parts = input.split('T');
     var datePart = parts[0];
     var timePart = (parts[1] || '').split('.')[0]; // Remove fractional seconds part
-    var fractionPart = (parts[1] || '').split('.')[1] || ''; // Extract fractional seconds
     var tzPart = (parts[1] || '').includes('Z') ? 'Z' : '';
 
     // Handle date part
@@ -1742,17 +1644,13 @@ Blockly.Extensions.register('validate_touch_time_d', function () {
       return null; // Invalid day for the given month
     }
 
-    // Fractional seconds handling
-    if (fractionPart.length > 3) {
-      return null; // Fractional seconds should not exceed 3 digits
-    }
-
     // Optional time zone part validation
     if (tzPart && tzPart !== 'Z') {
       return null; // Invalid time zone designator, should be 'Z' if present
     }
 
-    return input; // Input is valid
+    // Replace space with 'T' only when returning the valid input
+    return input;
   });
 });
 

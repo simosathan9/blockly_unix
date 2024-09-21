@@ -848,44 +848,29 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Modify file timestamps';
+Blockly.Msg['TOUCH'] = 'Modify file timestamps \n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Do not create file if it does not exist %1 \n';
 Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
   'Change access timestamp to current time %1 \n';
 Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
   'Change modification timestamp to current time %1 \n';
-Blockly.Msg['TOUCH_SPECIFY_TIME_T'] =
-  'Change the access and modification times to the specified time \n';
-Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_T'] =
-  'Add date in [[CC]YY]MMDDhhmm[.SS] %1 \n';
-Blockly.Msg['TOUCH_PROPOSE_OTHER_FORMAT'] = 'or \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_D'] =
   'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
-  'Add date in YYYY-MM-DDThh:mm:SS[.frac][Z (UTC)] %1';
+  'Add date in YYYY-MM-DD hh:mm:SS[Z (UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
   'Set the access and modification time of a file. If the file does not exist, it creates an empty file.' +
-  ' Time stamps can be given in two formats. The first format is [[CC]YY]MMDDhhmm[.SS], where:' +
-  '\n- CC: The first two digits of the century (optional)' +
-  '\n- YY: The last two digits of the year (optional)' +
-  '\n- MM: The month number (01-12)' +
-  '\n- DD: The day of the month (01-31)' +
-  '\n- hh: The hour (00-23)' +
-  '\n- mm: The minutes (00-59)' +
-  '\n- SS: The seconds (00-59, optional)' +
-  '\nExample: For January 12, 2024, at 14:30 and 45 seconds, the format would be: 20240112143045.' +
-  '\nAlternatively, you can use the ISO 8601 format: YYYY-MM-DDThh:mm:SS[.frac][Z (for UTC)], where:' +
+  'To insert timestamps you can use the ISO 8601 format: YYYY-MM-DD hh:mm:SS[Z (for UTC)], where:' +
   '\n- YYYY: The year (e.g., 2024)' +
   '\n- MM: The month number (01-12)' +
   '\n- DD: The day of the month (01-31)' +
   '\n- T: The separator between date and time' +
   '\n- hh: The hour (00-23)' +
   '\n- mm: The minutes (00-59)' +
-  '\n- SS: The seconds (00-59, optional)' +
-  '\n- .frac: Fractional seconds (optional)' +
+  '\n- SS: The seconds (00-59)' +
   '\n- Z: Represents Coordinated Universal Time (UTC, optional).' +
-  '\nExample: For January 12, 2024, at 14:30 UTC, the format would be: 2024-01-12T14:30:00Z.';
+  '\nExample: For January 12, 2024, at 14:30 UTC, the format would be: 2024-01-12T14:30:00Z';
 Blockly.Msg['TOUCH_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['UNIQ'] = 'Identify duplicate lines in file\n';
