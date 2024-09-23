@@ -222,7 +222,9 @@
     </div>
     <div id="resultsWrapper">
       <div id="resultsArea">
-        <div id="resultsText">Results will appear here...</div>
+        <div id="resultsText" style="user-select: text">
+          Results will appear here...
+        </div>
 
         <button id="copyButton" class="btn btn-light">
           <i class="fas fa-copy"></i>
@@ -247,7 +249,7 @@
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
         },
-        'File Operations': {
+        'Filesystem Operations': {
           colourPrimary: '#FE9B13',
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
@@ -363,24 +365,13 @@
           },
           {
             kind: 'category',
-            name: [MSG.FILE_OPERATIONS],
+            name: [MSG.FILESYSTEM_OPERATIONS],
             colour: '#FE9B13',
             contents: [
-              { kind: 'block', type: 'gzip' },
               { kind: 'block', type: 'touch' },
               { kind: 'block', type: 'ln' },
               { kind: 'block', type: 'mv' },
-              { kind: 'block', type: 'rm' }
-            ]
-          },
-          {
-            kind: 'sep'
-          },
-          {
-            kind: 'category',
-            name: [MSG.DIR_OPERATIONS],
-            colour: '#900C3F',
-            contents: [
+              { kind: 'block', type: 'rm' },
               { kind: 'block', type: 'ls' },
               { kind: 'block', type: 'find' },
               { kind: 'block', type: 'mkdir' }
@@ -389,7 +380,6 @@
           {
             kind: 'sep'
           },
-
           {
             kind: 'category',
             name: [MSG.IO_REDIRECTION],
@@ -408,7 +398,6 @@
             name: [MSG.REGULAR_EXPRESSIONS],
             colour: '#FF5733',
             contents: [
-              { kind: 'block', type: 'regOutput' },
               { kind: 'block', type: 'regPattern' },
               { kind: 'block', type: 'regOr' },
               { kind: 'block', type: 'regCapturingGroup' },
@@ -416,9 +405,7 @@
               { kind: 'block', type: 'regEnd' },
               { kind: 'block', type: 'regFor' },
               { kind: 'block', type: 'regRange' },
-              { kind: 'block', type: 'regQuant' },
               { kind: 'block', type: 'regAnyOne' },
-              { kind: 'block', type: 'regLookahead' },
               { kind: 'block', type: 'regCommon' }
             ]
           },
@@ -557,7 +544,8 @@
             colour: '#009688',
             contents: [
               { kind: 'block', type: 'kill' },
-              { kind: 'block', type: 'sleep' }
+              { kind: 'block', type: 'sleep' },
+              { kind: 'block', type: 'gzip' }
             ]
           }
         ]

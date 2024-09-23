@@ -1,6 +1,6 @@
 var mvBlock = {
   type: 'mv',
-  category: 'File Operations',
+  category: 'Filesystem Operations',
   message0: '%{BKY_MV_MESSAGE}', // Correctly references %1 (SOURCE) and %2 (DEST)
   unix_description: [
     {
@@ -46,8 +46,7 @@ var mvBlock = {
       text: 'destination'
     }
   ],
-  style: 'File Operations',
-  nextStatement: 'Action',
+  style: 'Filesystem Operations',
   tooltip: 'Μετακινεί ή μετονομάζει αρχεία.',
   helpUrl: 'https://linux.die.net/man/1/mv'
 };

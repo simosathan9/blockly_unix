@@ -4,7 +4,6 @@ var sedBlock = {
   unix_description: [
     {
       regPattern: "'s/patt ",
-      singleStr: "'s/str/",
       regReplaceText: "str/'",
       regex: '-E',
       globally: 'g'
@@ -14,9 +13,9 @@ var sedBlock = {
   message1: '%{BKY_SED_REGEX}',
   args1: [
     {
-      type: 'field_checkbox',
+      type: 'hidden',
       name: 'regex',
-      checked: false // by default it's disabled
+      checked: true
     }
   ],
   message2: '%{BKY_SED_PATTERN}',
@@ -27,23 +26,16 @@ var sedBlock = {
       check: 'String'
     }
   ],
-  message3: '%{BKY_SED_STRING}',
+  message3: '%{BKY_SED_TEXT}',
   args3: [
-    {
-      type: 'field_input',
-      name: 'singleStr'
-    }
-  ],
-  message4: '%{BKY_SED_TEXT}',
-  args4: [
     {
       type: 'field_input',
       name: 'regReplaceText',
       text: 'changeText' // default text for the input
     }
   ],
-  message5: '%{BKY_SED_INALL}',
-  args5: [
+  message4: '%{BKY_SED_INALL}',
+  args4: [
     {
       type: 'field_checkbox',
       name: 'globally',

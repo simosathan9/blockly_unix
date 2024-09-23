@@ -112,7 +112,7 @@ Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Level of compression %1';
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Change suffix from .gz to';
 Blockly.Msg['GZIP_TOOLTIP'] = 'File compress/decompress';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['HEAD_MESSAGE'] = 'First elements of file';
+Blockly.Msg['HEAD_MESSAGE'] = 'First elements';
 Blockly.Msg['HEAD_METRIC'] = 'Metric %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
@@ -133,10 +133,6 @@ Blockly.Msg['LN_TARGET'] = 'Target';
 Blockly.Msg['LN_TOOLTIP'] =
   'Creates file links. Supports symbolic links, force overwrite, and verbose output.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Create directory';
-Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'Separate nested directories with forward slashes (/)';
-Blockly.Msg['MKDIR_SAME_LEVEL_DIRECTORIES'] =
-  'Separate directories at the same level with spaces';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
   'Create also parent directories %1';
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Write directory or path %1';
@@ -811,7 +807,7 @@ Blockly.Msg['SAVE_TOOLTIP'] =
 Blockly.Msg['SAVE_HELPURL'] = 'https://www.google.com/';
 
 Blockly.Msg['SED'] = 'Search and replace in a file\n';
-Blockly.Msg['SED_REGEX'] = 'Is Regex %1\n';
+Blockly.Msg['SED_REGEX'] = '%1';
 Blockly.Msg['SED_PATTERN'] = 'Search pattern %1\n';
 Blockly.Msg['SED_STRING'] = 'or single string %1\n';
 Blockly.Msg['SED_TEXT'] = 'Text to change %1\n';
@@ -834,7 +830,7 @@ Blockly.Msg['SORT_IGNORE_LEADING_BLANKS'] = 'Ignore leading blanks %1';
 Blockly.Msg['SORT_TOOLTIP'] = 'Report or filter out repeated lines in a file';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TAIL'] = 'Last elements of file';
+Blockly.Msg['TAIL'] = 'Last elements';
 Blockly.Msg['TAIL_METRIC'] = 'Metric %1';
 Blockly.Msg['TAIL_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['TAIL_DESC'] = 'Descending order %1';

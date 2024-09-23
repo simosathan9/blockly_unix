@@ -1,6 +1,6 @@
 var gzipBlock = {
   type: 'gzip',
-  category: 'File Operations',
+  category: 'Filesystem Operations',
   unix_description: [
     {
       keep: '-k',
@@ -62,7 +62,7 @@ var gzipBlock = {
       text: '' // empty text for user to define path
     }
   ],
-  style: 'File Operations',
+  style: 'Other Commands',
   extensions: ['integer_validation'],
   previousStatement: 'Action',
   nextStatement: 'Action',

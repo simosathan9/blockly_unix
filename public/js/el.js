@@ -114,7 +114,7 @@ Blockly.Msg['GZIP_LEVEL_OF_COMPRESSION'] = 'Επίπεδο συμπίεσης %1
 Blockly.Msg['GZIP_CHANGE_SUFFIX'] = 'Aλλαγή κατάληξης απο .gz σε';
 Blockly.Msg['GZIP_TOOLTIP'] = 'Συμπίεση/αποσυμπίεση αρχείου';
 Blockly.Msg['GZIP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['HEAD_MESSAGE'] = 'Πρώτα στοιχεία αρχείου';
+Blockly.Msg['HEAD_MESSAGE'] = 'Πρώτα στοιχεία';
 Blockly.Msg['HEAD_METRIC'] = 'Μετρική %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Έξοδος του πρώτου μέρους των αρχείων';
@@ -135,10 +135,6 @@ Blockly.Msg['LN_INTERACTIVE'] = 'Προτροπή πριν από την αντ�
 Blockly.Msg['LN_TOOLTIP'] =
   'Δημιουργεί συνδέσμους αρχείων. Υποστηρίζει συμβολικούς συνδέσμους, αναγκαστική αντικατάσταση και λεπτομερή έξοδο.';
 Blockly.Msg['MKDIR_MESSAGE'] = 'Δημιουργία καταλόγου';
-Blockly.Msg['MKDIR_MULTIPLE_DIRECTORIES'] =
-  'Διαχωρίστε τους υποκαταλόγους με κάθετους (/)';
-Blockly.Msg['MKDIR_SAME_LEVEL_DIRECTORIES'] =
-  'Διαχωρίστε τους καταλόγους στο ίδιο επίπεδο με κενά';
 Blockly.Msg['MKDIR_CREATE_SUBDIRECTORIES'] =
   'Δημιουργήστε επίσης καταλόγους γονέων %1';
 Blockly.Msg['MKDIR_WRITE_DIRECTORY'] = 'Γράψτε όνομα καταλόγου ή διαδρομή %1';
@@ -859,7 +855,7 @@ Blockly.Msg['SORT_TOOLTIP'] =
   'Αναφορά ή φιλτράρισμα επαναλαμβανόμενων γραμμών σε ένα αρχείο';
 Blockly.Msg['SORT_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TAIL'] = 'Τελευταία στοιχεία αρχείου';
+Blockly.Msg['TAIL'] = 'Τελευταία στοιχεία';
 Blockly.Msg['TAIL_METRIC'] = 'Μετρική %1';
 Blockly.Msg['TAIL_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['TAIL_DESC'] = 'Φθίνουσα σειρά %1';

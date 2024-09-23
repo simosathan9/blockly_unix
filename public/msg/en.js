@@ -1,7 +1,7 @@
 window.MSG = {
   TEXT_PROCESSING: 'Text Processing',
   FILE_INPUTS: 'File Inputs',
-  FILE_OPERATIONS: 'File Operations',
+  FILESYSTEM_OPERATIONS: 'Filesystem Operations',
   DIR_OPERATIONS: 'Directory Operations',
   IO_REDIRECTION: 'I/O Redirection',
   REGULAR_EXPRESSIONS: 'Regular Expressions',

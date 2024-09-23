@@ -1,6 +1,6 @@
 var lnBlock = {
   type: 'ln',
-  category: 'File Operations',
+  category: 'Filesystem Operations',
   message0: '%{BKY_LN_MESSAGE}',
   unix_description: [
     {
@@ -49,8 +49,7 @@ var lnBlock = {
       text: 'target' // default target
     }
   ],
-  style: 'File Operations',
-  nextStatement: 'Action',
+  style: 'Filesystem Operations',
   tooltip: '%{BKY_LN_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/ln'
 };

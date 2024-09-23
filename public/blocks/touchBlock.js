@@ -1,7 +1,7 @@
 var touchBlock = {
   type: 'touch',
   message0: '%{BKY_TOUCH}',
-  category: 'File Operations',
+  category: 'Filesystem Operations',
   unix_description: [
     {
       not_create_file: '-c',
@@ -41,14 +41,12 @@ var touchBlock = {
     {
       type: 'field_input',
       name: 'change_time_d',
-      text: '',
+      text: new Date().toISOString().slice(0, 19).replace('T', ' '),
       check: 'String'
     }
   ],
   extensions: ['validate_touch_time_d'],
-  style: 'File Operations',
-  previousStatement: 'Action',
-  nextStatement: 'Action',
+  style: 'Filesystem Operations',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',
   helpUrl: '%{BKY_TOUCH_HELPURL}' // URL to further information or documentation.
 };

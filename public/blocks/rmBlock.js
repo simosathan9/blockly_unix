@@ -1,7 +1,7 @@
 var rmBlock = {
   type: 'rm',
   message0: '%{BKY_RM}',
-  category: 'File Operations',
+  category: 'Filesystem Operations',
   unix_description: [
     {
       force: '-f',
@@ -44,8 +44,7 @@ var rmBlock = {
     }
   ],
   extensions: [],
-  style: 'File Operations',
-  nextStatement: 'Action',
+  style: 'Filesystem Operations',
   tooltip: '%{BKY_RM_TOOLTIP}',
   helpUrl: 'https://linux.die.net/man/1/rm'
 };
