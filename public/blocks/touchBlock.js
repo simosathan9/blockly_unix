@@ -1,14 +1,23 @@
 var touchBlock = {
   type: 'touch',
-  message0: '%{BKY_TOUCH}',
+
   category: 'Filesystem Operations',
   unix_description: [
     {
+      argument: 'arg',
       not_create_file: '-c',
       change_time_t: '-t str',
       change_time_d: '-d str',
       access_time: '-a',
       modification_time: '-m'
+    }
+  ],
+  message0: '%{BKY_TOUCH}',
+  args0: [
+    {
+      type: 'input_value',
+      name: 'argument',
+      check: 'String'
     }
   ],
   message1: '%{BKY_TOUCH_NOT_CREATE_FILE}',
@@ -45,6 +54,7 @@ var touchBlock = {
       check: 'String'
     }
   ],
+
   extensions: ['validate_touch_time_d'],
   style: 'Filesystem Operations',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',

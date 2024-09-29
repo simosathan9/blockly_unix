@@ -1,10 +1,10 @@
 window.MSG = {
   TEXT_PROCESSING: 'Επεξεργασία Κειμένου',
-  FILE_INPUTS: 'Είσοδοι Αρχείων',
-  FILE_DIR_OPERATIONS: 'Λειτουργίες Αρχείων και Καταλόγων',
+  FUCTION_INPUTS: 'Λειτουργία εξόδων',
+  FILESYSTEM_OPERATIONS: 'Λειτουργίες συστήματος αρχείων',
   IO_REDIRECTION: 'Ανακατεύθυνση Εισόδου/Εξόδου',
   REGULAR_EXPRESSIONS: 'Κανονικές Εκφράσεις',
-  DATA_PROCESSING: 'Επεξεργασία Δεδομένων',
+  FIELD_PROCESSING: 'Επεξεργασία Δεδομένων',
   VARIABLES: 'Μεταβλητές',
   SYSTEM_MONITORING: 'Παρακολούθηση Συστήματος',
   NETWORK_OPERATIONS: 'Λειτουργίες Δικτύου',

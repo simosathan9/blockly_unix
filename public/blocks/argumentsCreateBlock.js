@@ -1,7 +1,7 @@
-var regOrBlock = {
-  type: 'regOr',
-  category: 'Regular Expressions',
-  message0: '%{BKY_REGOR_CREATE_WITH} %1',
+var argumentsCreateBlock = {
+  type: 'argumentsCreate',
+  category: 'Function inputs',
+  message0: '%{BKY_ARGUMENTS_CREATE_WITH} %1',
   args0: [
     {
       type: 'input_dummy',
@@ -9,15 +9,15 @@ var regOrBlock = {
     }
   ],
   output: 'String',
-  style: 'Regular Expressions',
-  helpUrl: '%{BKY_REGOR_CREATE_WITH_HELPURL}',
-  tooltip: '%{BKY_REGOR_CREATE_WITH_TOOLTIP}',
-  mutator: 'new_list_create_with_mutator_OrRegex'
+  style: 'Function inputs',
+  helpUrl: '%{BKY_ARGUMENTS_CREATE_WITH_HELPURL}',
+  tooltip: '%{BKY_ARGUMENTS_CREATE_WITH_TOOLTIP}',
+  mutator: 'new_list_create_with_mutator_Arguments'
 };
 
-Blockly.defineBlocksWithJsonArray([regOrBlock]);
+Blockly.defineBlocksWithJsonArray([argumentsCreateBlock]);
 
-const listCreateMutator_OrRegex = {
+const listCreateMutator_Arguments = {
   /**
    * Number of item inputs the block has.
    * @type {number}
@@ -25,7 +25,7 @@ const listCreateMutator_OrRegex = {
   itemCount_: 0,
 
   /**
-   * Creates XML to represent number of text inputs.
+   * Creates XML to represent number of argument inputs.
    * @returns {!Element} XML storage element.
    * @this {Blockly.Block}
    */
@@ -35,7 +35,7 @@ const listCreateMutator_OrRegex = {
     return container;
   },
   /**
-   * Parses XML to restore the text inputs.
+   * Parses XML to restore the argument inputs.
    * @param {!Element} xmlElement XML storage element.
    * @this {Blockly.Block}
    */
@@ -99,10 +99,6 @@ const listCreateMutator_OrRegex = {
     this.updateMinus_();
   },
 
-  // To properly keep track of indices we have to increment before/after adding
-  // the inputs, and decrement the opposite.
-  // Because we want our first input to be ADD0 (not ADD1) we increment after.
-
   /**
    * Adds an input to the end of the block. If the block currently has no
    * inputs it updates the top 'EMPTY' input to receive a block.
@@ -114,7 +110,7 @@ const listCreateMutator_OrRegex = {
       this.removeInput('EMPTY');
       this.topInput_ = this.appendValueInput('ADD' + this.itemCount_)
         .appendField(createPlusField(), 'PLUS')
-        .appendField(Blockly.Msg['REGOR_CREATE_WITH']);
+        .appendField(Blockly.Msg['ARGUMENTS_CREATE_WITH']);
     } else {
       this.appendValueInput('ADD' + this.itemCount_);
     }
@@ -133,7 +129,7 @@ const listCreateMutator_OrRegex = {
     if (this.itemCount_ == 0) {
       this.topInput_ = this.appendDummyInput('EMPTY')
         .appendField(createPlusField(), 'PLUS')
-        .appendField(Blockly.Msg['REGOR_CREATE_EMPTY_TITLE']);
+        .appendField(Blockly.Msg['ARGUMENTS_CREATE_EMPTY_TITLE']);
     }
   },
 
@@ -155,13 +151,13 @@ const listCreateMutator_OrRegex = {
  * Updates the shape of the block to have 3 inputs if no mutation is provided.
  * @this {Blockly.Block}
  */
-const listCreateHelper_OrRegex = function () {
+const listCreateHelper_Arguments = function () {
   this.getInput('EMPTY').insertFieldAt(0, createPlusField(), 'PLUS');
   this.updateShape_(2);
 };
 
 Blockly.Extensions.registerMutator(
-  'new_list_create_with_mutator_OrRegex',
-  listCreateMutator_OrRegex,
-  listCreateHelper_OrRegex
+  'new_list_create_with_mutator_Arguments',
+  listCreateMutator_Arguments,
+  listCreateHelper_Arguments
 );

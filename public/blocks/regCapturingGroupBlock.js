@@ -9,14 +9,15 @@ var regCapturingGroupBlock = {
   message0: '%{BKY_REGCAPTURINGGROUP}',
   args0: [
     {
-      type: 'input_value',
+      type: 'input_statement',
       name: 'regPattern',
       check: 'String'
     }
   ],
   tooltip: '%{BKY_REGCAPTURINGGROUP_TOOLTIP}',
-  previousStatement: 'Action',
-  nextStatement: 'Action',
+  output: 'String',
+  previousStatement: null,
+  nextStatement: null,
   style: 'Regular Expressions',
   helpUrl: '%{BKY_REGCAPTURINGGROUP_HELPURL}' // URL to further information or documentation.
 };

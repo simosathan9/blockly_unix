@@ -7,13 +7,6 @@ var regStartBlock = {
     }
   ],
   message0: '%{BKY_REGSTART}',
-  args0: [
-    {
-      type: 'input_value',
-      name: 'regPattern',
-      check: 'String'
-    }
-  ],
   style: 'Regular Expressions',
   previousStatement: 'Action',
   nextStatement: 'Action',

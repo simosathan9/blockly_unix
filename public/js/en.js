@@ -65,7 +65,7 @@ Blockly.Msg['FILE_END_START_WILDCHARS_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['FILENAME'] = 'Filename';
 Blockly.Msg['FILENAME_TOOLTIP'] = 'Represents a filename';
 Blockly.Msg['FILENAME_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['FILES_CREATE_WITH'] = 'Filename insert';
+Blockly.Msg['FILES_CREATE_WITH'] = 'Input files';
 Blockly.Msg['FILES_CREATE_WITH_TOOLTIP'] = 'Add files';
 Blockly.Msg['FILES_CREATE_EMPTY_TITLE'] = 'Create list of files';
 Blockly.Msg['FILES_CREATE_WITH_HELPURL'] = '';
@@ -753,22 +753,22 @@ Blockly.Msg['TEXT_APPEND_VARIABLE'] = Blockly.Msg['VARIABLES_DEFAULT_NAME'];
 Blockly.Msg['TEXT_CREATE_JOIN_ITEM_TITLE_ITEM'] =
   Blockly.Msg['VARIABLES_DEFAULT_NAME'];
 
-Blockly.Msg['REGANYONE'] = 'Match any of %1 characters';
+Blockly.Msg['REGANYONE'] = 'Character class %1  ';
 Blockly.Msg['REGANYONE_NOT'] = 'Not %1';
 Blockly.Msg['REGANYONE_TOOLTIP'] = 'Match any one of the defined characters';
 Blockly.Msg['REGANYONE_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGCAPTURINGGROUP'] = 'Group the pattern %1\n';
 Blockly.Msg['REGCAPTURINGGROUP_TOOLTIP'] = 'Define a pattern group';
 Blockly.Msg['REGCAPTURINGGROUP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGCOMMON'] = 'Common searches';
+Blockly.Msg['REGCOMMON'] = 'Common patterns';
 Blockly.Msg['REGCOMMON_MATCH'] = 'Match %1';
 Blockly.Msg['REGCOMMON_TOOLTIP'] = 'Common regular expression searches';
 Blockly.Msg['REGCOMMON_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGEND'] = 'Lines ends with %1\n';
+Blockly.Msg['REGEND'] = 'Lines ends with\n';
 Blockly.Msg['REGEND_TOOLTIP'] = 'End of line';
 Blockly.Msg['REGEND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGFOR'] =
-  "Match the pattern From %1\n To %2 times OR To infinite %3\n(for exactly n times 'From' and 'To' values must be equal)";
+  'Match the pattern From %1\n To %2 times OR To infinite %3';
 Blockly.Msg['REGFOR_1'] = '%1';
 Blockly.Msg['REGFOR_TOOLTIP'] = 'More than one pattern matches.';
 Blockly.Msg['REGFOR_HELPURL'] = 'https://www.google.com/';
@@ -780,11 +780,7 @@ Blockly.Msg['REGNEGATION'] = 'Negate following pattern %1\n';
 Blockly.Msg['REGNEGATION_TOOLTIP'] =
   'Find the negation of the pattern following';
 Blockly.Msg['REGNEGATION_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGOUTPUT'] = 'Put Regex';
-Blockly.Msg['REGOUTPUT_1'] = '%1';
-Blockly.Msg['REGOUTPUT_TOOLTIP'] = 'Include your Regex here.';
-Blockly.Msg['REGOUTPUT_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGPATTERN'] = 'Pattern %1';
+Blockly.Msg['REGPATTERN'] = 'Fixed String %1';
 Blockly.Msg['REGPATTERN_TOOLTIP'] = 'Define a pattern to search';
 Blockly.Msg['REGPATTERN_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGQUANT'] = 'Check occurencies of pattern \n';
@@ -792,12 +788,12 @@ Blockly.Msg['REGQUANT_1'] = '%1';
 Blockly.Msg['REGQUANT_PATTERN'] = 'pattern %1';
 Blockly.Msg['REGQUANT_TOOLTIP'] = 'Quantifiers of patterns';
 Blockly.Msg['REGQUANT_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGRANGE'] = 'Range matching %1';
+Blockly.Msg['REGRANGE'] = 'Matches %1';
 Blockly.Msg['REGRANGE_NOT'] = 'Not %1';
 Blockly.Msg['REGRANGE_TOOLTIP'] =
   'Match in the file the designated range of characters';
 Blockly.Msg['REGRANGE_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGSTART'] = 'Line starts with %1\n';
+Blockly.Msg['REGSTART'] = 'Line starts with\n';
 Blockly.Msg['REGSTART_TOOLTIP'] = 'Start of line';
 Blockly.Msg['REGSTART_HELPURL'] = 'https://www.google.com/';
 
@@ -844,7 +840,7 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Modify file timestamps \n';
+Blockly.Msg['TOUCH'] = 'Modify file timestamps %1 \n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Do not create file if it does not exist %1 \n';
 Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
@@ -928,7 +924,7 @@ Blockly.Msg['UPTIME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/uptime.1.html';
 
 // who command
-Blockly.Msg['WHO'] = 'Output who is logged in';
+Blockly.Msg['WHO'] = 'Who is logged in';
 Blockly.Msg['WHO_SHOW_HEADING'] = 'Output heading information %1';
 Blockly.Msg['WHO_SHOW_ALL'] = 'Output all information %1';
 Blockly.Msg['WHO_SHOW_USERS'] = 'Output user processes %1';
@@ -939,7 +935,7 @@ Blockly.Msg['WHO_TOOLTIP'] =
 Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
 
 // hostname command
-Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Output the hostname of the system';
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Hostname of the system';
 Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = "Output the system's hostname %1";
 Blockly.Msg['HOSTNAME_SET_HOSTNAME'] = "Set the system's hostname to %1";
 Blockly.Msg['HOSTNAME_SHOW_ALIASES'] = 'Output hostname aliases %1';
@@ -953,7 +949,7 @@ Blockly.Msg['HOSTNAME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/hostname.1.html';
 
 // date command
-Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Output the current date and time';
+Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Current date and time';
 Blockly.Msg['DATE_UTC_TIME'] = 'Output time in UTC %1';
 Blockly.Msg['DATE_TOOLTIP'] = 'Outputs or sets the system date and time';
 Blockly.Msg['DATE_HELPURL'] =
@@ -1011,4 +1007,14 @@ Blockly.Msg['CURL_METHOD'] = 'Choose method';
 Blockly.Msg['CURL_HEADER'] = 'Provide custom headers for the request';
 Blockly.Msg['CURL_REDIRECTS'] = 'Follow redirects';
 
-// Journal  command
+// ARGUMENTS_CREATE_WITH command
+Blockly.Msg['ARGUMENTS_CREATE_WITH'] = 'Input arguments';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_TOOLTIP'] = '';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_HELPURL'] = '';
+Blockly.Msg['ARGUMENTS_CREATE_EMPTY_TITLE'] = 'No inputs';
+
+// ARGUMENT command
+Blockly.Msg['ARGUMENT'] = 'Argument';
+Blockly.Msg['ARGUMENT_TOOLTIP'] = 'Enter an argument for the function.';
+Blockly.Msg['ARGUMENT_HELPURL'] = 'https://example.com/help/argument';
+Blockly.Msg['ARGUMENT_DEFAULT_TEXT'] = 'default_argument';

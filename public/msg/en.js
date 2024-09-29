@@ -1,11 +1,10 @@
 window.MSG = {
   TEXT_PROCESSING: 'Text Processing',
-  FILE_INPUTS: 'File Inputs',
+  FUCTION_INPUTS: 'Function Inputs',
   FILESYSTEM_OPERATIONS: 'Filesystem Operations',
-  DIR_OPERATIONS: 'Directory Operations',
   IO_REDIRECTION: 'I/O Redirection',
   REGULAR_EXPRESSIONS: 'Regular Expressions',
-  DATA_PROCESSING: 'Data Processing',
+  FIELD_PROCESSING: 'Field Processing',
   VARIABLES: 'Variables',
   SYSTEM_MONITORING: 'System Monitoring',
   NETWORK_OPERATIONS: 'Network Operations',
