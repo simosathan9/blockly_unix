@@ -472,10 +472,6 @@ replacementMap.set(/== \//g, '~ /');
 replacementMap.set(/\/ ==/g, '/ ~');
 replacementMap.set(/,(\d+)\.(\d+)/g, '');
 
-// used for sed
-replacementMap.set(/\/\s{1,}/g, '/');
-replacementMap.set(/\/\'\s{1,}g/g, "/g'");
-
 //used for gzip
 replacementMap.set(/\s.?-k\s{1,}/g, '-k ');
 
@@ -555,6 +551,63 @@ document
           // Add the constructed touch command to the generatedCommand
           generatedCommand += (generatedCommand ? ' | ' : '') + touchCommand;
           generatedCommand += ' ' + handleFilenamesBlocks(previousBlock);
+        } else if (currentBlock.type === 'sed') {
+          let sedCommand = handleBlock(currentBlock); // Generates the basic sed command
+
+          // Get the pattern input and replacement field input
+          let patternBlock = currentBlock.getInputTargetBlock('regPattern');
+          let replacementText = currentBlock.getFieldValue('regReplaceText');
+
+          // Check if patternBlock is null
+          if (!patternBlock) {
+            console.error('Pattern block is missing');
+            return; // Exit if pattern block is missing
+          }
+
+          // Extract field value from the pattern block
+          let pattern = patternBlock.getFieldValue('regPattern');
+
+          // Check if replacementText is defined
+          if (
+            typeof replacementText === 'undefined' ||
+            replacementText === ''
+          ) {
+            console.error('Replacement text is missing or empty');
+            return;
+          }
+
+          // Escape slashes in pattern and replacement text (if any)
+          pattern = pattern.replace(/\//g, '\\/'); // Escape slashes in pattern
+          replacementText = replacementText.replace(/\//g, '\\/'); // Escape slashes in replacement
+
+          // Replace spaces in pattern and replacement with slashes
+          pattern = pattern.replace(/\s+/g, '/');
+          replacementText = replacementText.replace(/\s+/g, '/');
+
+          // Extract if 'g' flag is present
+          const hasGlobalFlag = sedCommand.includes('g');
+
+          // Construct the sed command with the escaped slashes and ensure no extra space between pattern/replacement
+          if (sedCommand.startsWith('sed ')) {
+            sedCommand = sedCommand.replace(
+              /s\s*\/(.*?)\/(.*?)\//, // Capture pattern and replacement inside the slashes
+              `s/${pattern}/${replacementText}/` // Replace them with actual values
+            );
+
+            // Ensure the global flag `g` (if present) is positioned correctly, without extra spaces
+            if (hasGlobalFlag) {
+              sedCommand = sedCommand.replace(/\s+g/, 'g'); // Remove any space before the 'g' flag
+            }
+
+            // Format the command to include -E for extended regex
+            sedCommand =
+              `sed -E 's/${pattern}/${replacementText}/` +
+              (hasGlobalFlag ? 'g' : '') +
+              `'`; // Ensure proper formatting
+          }
+
+          // Add the constructed sed command to the generatedCommand
+          generatedCommand += (generatedCommand ? ' | ' : '') + sedCommand;
         } else {
           generatedCommand +=
             (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
