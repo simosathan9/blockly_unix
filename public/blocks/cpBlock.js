@@ -27,4 +27,3 @@ var cpBlock = {
 };
 
 Blockly.defineBlocksWithJsonArray([cpBlock]);
-//

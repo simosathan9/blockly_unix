@@ -13,22 +13,26 @@ Blockly.Msg['ARRAY_CREATE_WITH'] = 'Δημιουργία πίνακα με';
 Blockly.Msg['ARRAY_CREATE_WITH_TOOLTIP'] = 'Προσθήκη στοιχείου στον πίνακα';
 Blockly.Msg['ARRAY_CREATE_EMPTY_TITLE'] = 'Δημιουργία λίστας στοιχείων';
 Blockly.Msg['ARRAY_CREATE_WITH_HELPURL'] = '';
+Blockly.Msg['ASSIGN_VAR'] = 'Ανάθεση μεταβλητής';
+Blockly.Msg['ASSIGN_VAR_TOOLTIP'] = 'Ανάθεση τιμής σε μεταβλητή';
+Blockly.Msg['ASSIGN_VAR_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['AWK_TEXT_DATA_PROCESSING'] = 'Επεξεργασία δεδομένων κειμένου';
 Blockly.Msg['AWK_INPUT_DELIMITER'] = 'Διαχωριστής εισόδου';
 Blockly.Msg['AWK_OUTPUT_DELIMITER'] = 'Διαχωριστής εξόδου';
-Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Μεταβλητή εισόδου';
+Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Μεταβλητή εισόδου %1';
 Blockly.Msg['AWK_BEGIN'] =
   'Εκτέλεση μία φορά πριν από την επεξεργασία δεδομένων';
-Blockly.Msg['AWK_ACTION'] = 'Ενέργεια';
+Blockly.Msg['AWK_CONDITION_ACTION'] = 'Συνθήκη και Ενέργεια';
 Blockly.Msg['AWK_END'] = 'Εκτέλεση μία φορά μετά την επεξεργασία δεδομένων';
 Blockly.Msg['AWK_PRINT'] = 'Στήλες προς εκτύπωση';
 Blockly.Msg['AWK_TOOLTIP'] = 'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['BEGIN_END'] =
-  'Εκτέλεση μία φορά\n πριν/μετά την επεξεργασία δεδομένων';
-Blockly.Msg['BEGIN_END_TOOLTIP'] =
-  'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
-Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['BEGIN'] = 'Εκτέλεση μία φορά\n πριν την επεξεργασία δεδομένων';
+Blockly.Msg['BEGIN_TOOLTIP'] = 'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
+Blockly.Msg['BEGIN_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['END'] = 'Εκτέλεση μία φορά\n μετά την επεξεργασία δεδομένων';
+Blockly.Msg['END_TOOLTIP'] = 'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
+Blockly.Msg['END_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CAT'] = 'Εμφάνιση αρχείου';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'Με αριθμούς γραμμών';
 Blockly.Msg['CAT_TOOLTIP'] = 'Συνένωση και εκτύπωση αρχείων';
@@ -119,6 +123,9 @@ Blockly.Msg['HEAD_METRIC'] = 'Μετρική %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Αριθμός %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Έξοδος του πρώτου μέρους των αρχείων';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['INDEX'] = 'Δείκτης της λέξης %2 στο κείμενο %1';
+Blockly.Msg['INDEX_TOOLTIP'] = 'Επιστρέφει τη θέση της λέξης στο κείμενο';
+Blockly.Msg['INDEX_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'Λίστα αρχείων & καταλόγων';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Έξοδος λεπτομερειών %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Αναζήτηση σε όλους τους υποκαταλόγους %1';
@@ -720,6 +727,14 @@ Blockly.Msg['TEXT_TRIM_OPERATOR_RIGHT'] =
 Blockly.Msg['TEXT_TRIM_TOOLTIP'] =
   'Επιστρέφει ένα αντίγραφο του κειμένου με τα κενά διαστήματα αφαιρεμένα από τη μία ή και από τις δύο άκρες.';
 Blockly.Msg['TODAY'] = 'Σήμερα';
+Blockly.Msg['TO_UPPER'] = 'Μετατροπή σε κεφαλαία';
+Blockly.Msg['TO_UPPER_TOOLTIP'] =
+  'Επιστρέφει ένα αντίγραφο του κειμένου με όλους τους χαρακτήρες σε κεφαλαία.';
+Blockly.Msg['TO_UPPER_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['TO_LOWER'] = 'Μετατροπή σε πεζά';
+Blockly.Msg['TO_LOWER_TOOLTIP'] =
+  'Επιστρέφει ένα αντίγραφο του κειμένου με όλους τους χαρακτήρες σε πεζά.';
+Blockly.Msg['TO_LOWER_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['UNDO'] = 'Αναίρεση';
 Blockly.Msg['UNNAMED_KEY'] = 'ανώνυμο';
 Blockly.Msg['VAR_CREATE_WITH'] = 'πολλαπλές μεταβλητές';

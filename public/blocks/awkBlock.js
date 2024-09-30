@@ -3,9 +3,9 @@ var awkBlock = {
   category: 'Data Processing',
   unix_description: [
     {
-      awkInput_delimiter: "-F'str' ", // Change to awk_delimiter
+      awkInput_delimiter: "-F 'str' ", // Change to awk_delimiter
       awkOutput_delimiter: 'OFS"str"', // Change to awk_delimiter
-      input_variable: '-v"',
+      input_variable: '-v',
       regPattern: "'{patt",
       awk_cols: "{print str}}'",
       begin: 'BEGIN',
@@ -21,21 +21,12 @@ var awkBlock = {
       text: ''
     }
   ],
-  message2: '%{BKY_AWK_OUTPUT_DELIMITER} %1',
+  message2: '%{BKY_AWK_VARIABLE_INPUT}',
   args2: [
     {
-      type: 'field_input',
-      name: 'awkOutput_delimiter', // Change to output awk_delimiter
-      text: '',
-      align: 'RIGHT'
-    }
-  ],
-  message3: '%{BKY_AWK_VARIABLE_INPUT} %1',
-  args3: [
-    {
-      type: 'field_checkbox',
+      type: 'input_value',
       name: 'input_variable',
-      checked: false // by default it's disabled
+      check: 'String'
     }
   ],
   message3: '%{BKY_AWK_BEGIN} %1',
@@ -46,7 +37,7 @@ var awkBlock = {
       check: 'String'
     }
   ],
-  message4: '%{BKY_AWK_ACTION} %1',
+  message4: '%{BKY_AWK_CONDITION_ACTION} %1',
   args4: [
     {
       type: 'input_value',
@@ -54,20 +45,12 @@ var awkBlock = {
       check: 'String'
     }
   ],
-  message5: '%{BKY_AWK_BEGIN} %1',
+  message5: '%{BKY_AWK_END} %1',
   args5: [
     {
       type: 'input_value',
       name: 'end',
       check: 'String'
-    }
-  ],
-  message6: '%{BKY_AWK_PRINT} %1',
-  args6: [
-    {
-      type: 'input_value',
-      name: 'awk_cols',
-      text: ''
     }
   ],
   style: 'Data Processing',

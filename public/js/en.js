@@ -13,21 +13,28 @@ Blockly.Msg['ARRAY_CREATE_WITH'] = 'Create array with';
 Blockly.Msg['ARRAY_CREATE_WITH_TOOLTIP'] = 'Add element to array';
 Blockly.Msg['ARRAY_CREATE_EMPTY_TITLE'] = 'Create list of elements';
 Blockly.Msg['ARRAY_CREATE_WITH_HELPURL'] = '';
+Blockly.Msg['ASSIGN_VAR'] = 'Assign variable';
+Blockly.Msg['ASSIGN_VAR_TOOLTIP'] = 'Assign a value to a variable';
+Blockly.Msg['ASSIGN_VAR_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['AWK_TEXT_DATA_PROCESSING'] = 'Text data processing';
 Blockly.Msg['AWK_INPUT_DELIMITER'] = 'Input delimiter';
 Blockly.Msg['AWK_OUTPUT_DELIMITER'] = 'Output delimiter';
-Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Variable input';
+Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Variable input %1';
 Blockly.Msg['AWK_BEGIN'] = 'Execute once before data is processed';
-Blockly.Msg['AWK_ACTION'] = 'Action';
+Blockly.Msg['AWK_CONDITION_ACTION'] = 'Condition and Action';
 Blockly.Msg['AWK_END'] = 'Execute once after data is processed';
 Blockly.Msg['AWK_PRINT'] = 'Columns to print';
 Blockly.Msg['AWK_TOOLTIP'] =
   'pattern-directed scanning and processing language';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['BEGIN_END'] = 'Execute once\n before/after data processing';
-Blockly.Msg['BEGIN_END_TOOLTIP'] =
+Blockly.Msg['BEGIN'] = 'Execute once\n before data processing';
+Blockly.Msg['BEGIN_TOOLTIP'] =
   'pattern-directed scanning and processing language';
-Blockly.Msg['BEGIN_END_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['BEGIN_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['END'] = 'Execute once\n after data processing';
+Blockly.Msg['AFTER_TOOLTIP'] =
+  'pattern-directed scanning and processing language';
+Blockly.Msg['AFTER_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CAT'] = 'Output file';
 Blockly.Msg['CAT_LINE_NUMBERS'] = 'With line numbers';
 Blockly.Msg['CAT_TOOLTIP'] = 'Concatenate and print files';
@@ -117,6 +124,10 @@ Blockly.Msg['HEAD_METRIC'] = 'Metric %1';
 Blockly.Msg['HEAD_NUMBER_OF'] = 'Number of %1';
 Blockly.Msg['HEAD_TOOLTIP'] = 'Output the first part of files';
 Blockly.Msg['HEAD_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['INDEX'] = 'Index of string %2 in %1';
+Blockly.Msg['INDEX_TOOLTIP'] =
+  'Returns the index of the first occurrence of the string t in the word s';
+Blockly.Msg['INDEX_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['LS_MESSAGE'] = 'List files & directories';
 Blockly.Msg['LS_SHOW_DETAILS'] = 'Output details %1';
 Blockly.Msg['LS_SUBDIRECTORIES'] = 'Search in all subdirectories %1';
@@ -699,6 +710,14 @@ Blockly.Msg['TEXT_TRIM_OPERATOR_RIGHT'] = 'trim spaces from right side of';
 Blockly.Msg['TEXT_TRIM_TOOLTIP'] =
   'Return a copy of the text with spaces removed from one or both ends.';
 Blockly.Msg['TODAY'] = 'Today';
+Blockly.Msg['TO_UPPER'] = 'To upper case';
+Blockly.Msg['TO_UPPER_TOOLTIP'] =
+  'Returns a copy of str with all lower-case characters translated to their corresponding upper-case equivalents.';
+Blockly.Msg['TO_UPPER_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['TO_LOWER'] = 'To lower case';
+Blockly.Msg['TO_LOWER_TOOLTIP'] =
+  'Returns a copy of str with all upper-case characters translated to their corresponding lower-case equivalents.';
+Blockly.Msg['TO_LOWER_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['UNDO'] = 'Undo';
 Blockly.Msg['UNNAMED_KEY'] = 'unnamed';
 Blockly.Msg['VAR_CREATE_WITH'] = 'multiple variables';

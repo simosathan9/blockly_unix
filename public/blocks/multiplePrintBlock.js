@@ -8,7 +8,8 @@ var multiplePrintBlock = {
       name: 'EMPTY'
     }
   ],
-  output: 'String',
+
+  previousStatement: true, // The block can be connected to a previous statement.
   style: 'text_blocks',
   helpUrl: '%{BKY_PRINT_CREATE_WITH_HELPURL}',
   tooltip: '%{BKY_PRINT_CREATE_WITH_TOOLTIP}',

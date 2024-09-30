@@ -472,9 +472,11 @@ replacementMap.set(/== \//g, '~ /');
 replacementMap.set(/\/ ==/g, '/ ~');
 replacementMap.set(/,(\d+)\.(\d+)/g, '');
 
-// used for sed
-replacementMap.set(/\/\s{1,}/g, '/');
-replacementMap.set(/\/\'\s{1,}g/g, "/g'");
+// Replace the first and second slashes in the sed command to use # as the delimiter
+replacementMap.set(/s\/(.+?)\/(.+?)\//g, 's#$1#$2#'); // Replaces 's/pattern/replacement/' with 's#pattern#replacement#'
+
+// Ensure the global flag remains correct
+replacementMap.set(/\/\'\s{1,}g/g, 'g'); // Ensures that #g' is added for global replacement
 
 //used for gzip
 replacementMap.set(/\s.?-k\s{1,}/g, '-k ');
@@ -555,6 +557,64 @@ document
           // Add the constructed touch command to the generatedCommand
           generatedCommand += (generatedCommand ? ' | ' : '') + touchCommand;
           generatedCommand += ' ' + handleFilenamesBlocks(previousBlock);
+        } else if (currentBlock.type === 'sed') {
+          let sedCommand = handleBlock(currentBlock); // Assuming this generates the basic sed command
+
+          // Get the pattern input and replacement field input
+          let patternBlock = currentBlock.getInputTargetBlock('regPattern');
+          let replacementText = currentBlock.getFieldValue('regReplaceText');
+
+          // Check if patternBlock is null
+          if (!patternBlock) {
+            console.error('Pattern block is missing');
+            return; // Exit if pattern block is missing
+          }
+
+          // Extract field value from the pattern block
+          let pattern = patternBlock.getFieldValue('regPattern');
+
+          // Check if replacementText is defined
+          if (
+            typeof replacementText === 'undefined' ||
+            replacementText === ''
+          ) {
+            console.error('Replacement text is missing or empty');
+            return; // Exit if replacement text is missing or empty
+          }
+
+          if (pattern.includes('/')) {
+            pattern = pattern.replace(/\//g, '\\/'); // Escape slashes in pattern
+          }
+          if (replacementText.includes('/')) {
+            replacementText = replacementText.replace(/\//g, '\\/'); // Escape slashes in replacement
+          }
+
+          // Construct the sed command with the escaped slashes
+          if (sedCommand.startsWith('sed ')) {
+            console.log('Before Replacement:', sedCommand);
+
+            // Replace the placeholder with the actual escaped pattern and replacement
+            sedCommand = sedCommand.replace(
+              /s\s*\/(.+?)\/(.+?)\//,
+              `s/${pattern}/${replacementText}/`
+            );
+
+            // Log the outcome for debugging
+            console.log('Pattern:', pattern);
+            console.log('Replacement Text:', replacementText);
+            console.log('After Replacement:', sedCommand);
+
+            // Clean up the command
+            sedCommand = sedCommand.replace(/'/g, ''); // Remove single quotes around the command if present
+            sedCommand = sedCommand.replace(/\s+g/, 'g'); // Remove any space before the 'g' flag
+
+            // Format the command to include -E for extended regex
+            sedCommand = `sed -E ${sedCommand.slice(4)}`; // Replace 'sed ' with 'sed -E '
+
+            // Log the final generated command
+            console.log('Final Generated Command:', sedCommand);
+          }
+          generatedCommand += (generatedCommand ? ' | ' : '') + sedCommand;
         } else {
           generatedCommand +=
             (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
@@ -710,6 +770,8 @@ function handleBlock(block) {
   console.log('begin', beginBlock);
   var endBlock = block.getInputTargetBlock('end');
   console.log('end', endBlock);
+  var assignVarBlock = block.getInputTargetBlock('input_variable');
+  console.log('input_variable', assignVarBlock);
 
   var beginValue = '';
   if (beginBlock) {
@@ -719,6 +781,11 @@ function handleBlock(block) {
   var endValue = '';
   if (endBlock) {
     endValue = handleBeginEnd(endBlock);
+  }
+
+  var assignVariables = '';
+  if (assignVarBlock) {
+    assignVariables = handleAssignVariables(assignVarBlock);
   }
 
   //console.log("inputPatternBlock:", inputPatternBlock.type);
@@ -796,7 +863,7 @@ function handleBlock(block) {
   if (blockType === 'awk') {
     regexStringValue = '';
     let contains = commandParts.some(
-      (element) => element && element.includes("-F'")
+      (element) => element && element.includes("-F '")
     );
     if (!contains) {
       commandParts[0] = "'" + commandParts[0];
@@ -820,7 +887,7 @@ function handleBlock(block) {
   // commandString = conditionValue.replace(/{(.+?) }'/g, "$1");
   // }
   else if (blockType === 'variables_set') {
-    commandString = variable_name + '=' + variable_value + ' |';
+    commandString = variable_name + '= ' + variable_value;
   } else if (blockType === 'awk') {
     let beginIndex = commandParts.indexOf('BEGIN');
     let endIndex = commandParts.indexOf('END');
@@ -839,6 +906,8 @@ function handleBlock(block) {
         blockType +
         ' ' +
         inputDelim +
+        ' ' +
+        assignVariables +
         ' ' +
         "'" +
         ' ' +
@@ -865,14 +934,17 @@ function handleBlock(block) {
           item !== undefined &&
           !item.includes('undefined') &&
           !item.includes('BEGIN') &&
-          !item.includes('END')
+          !item.includes('END') &&
+          !item.includes('-v')
       );
       console.log('commands:', filteredArray);
-      // commandString = blockType +  ' ' + filteredArray.join(' ');
+
       commandString =
         blockType +
         ' ' +
         inputDelim +
+        ' ' +
+        assignVariables +
         ' ' +
         "'" +
         ' ' +
@@ -880,7 +952,6 @@ function handleBlock(block) {
         ' ' +
         beginValue +
         ' ' +
-        filteredArray.join(' ') +
         ' ' +
         regexStringValue +
         ' ' +
@@ -1033,7 +1104,6 @@ function handleMainBlocks(
       commandParts.push(value);
     });
   });
-
   return commandParts;
 }
 
@@ -1171,6 +1241,67 @@ function handleBeginEnd(block) {
   console.log('handleBegin - code:', blockCode);
 
   return blockCode;
+}
+
+function handleAssignVariables(block) {
+  var blockCode;
+  var transformedCode = ''; // Initialize transformedCode
+
+  // Step 1: Get the inner block and check its type
+  var innerBlock = block.getInputTargetBlock('DO');
+  if (!innerBlock) {
+    console.error('Error: innerBlock is undefined');
+    return;
+  }
+
+  var doBlock = innerBlock.getInputTargetBlock('DO0');
+  console.log('Inner block type', innerBlock.type);
+
+  // Step 2: Check if it's a 'variables_set' block and there is no 'doBlock'
+  if (innerBlock.type === 'variables_set' && !doBlock) {
+    // Step 3: Get the value of the variable being assigned
+    var value = innerBlock.getInputTargetBlock('VALUE');
+    if (value) {
+      value = generator.blockToCode(value)[0]; // Ensure value is extracted correctly
+      console.log('Value to be assigned block', value);
+    }
+
+    // Step 4: Generate block code for the 'variables_set' block
+    blockCode = generator.blockToCode(innerBlock);
+
+    // Step 5: Check if blockCode is valid and not undefined
+    if (!blockCode || typeof blockCode !== 'string') {
+      console.error('Error: blockCode is undefined or not a string');
+      return;
+    }
+
+    // Step 6: Clean up the block code (replace line breaks, extra spaces)
+    blockCode = blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ');
+
+    // Step 7: Extract assignments and transform them into the desired format
+    let assignments = blockCode.replace(/[{}]/g, '').trim().split(';');
+
+    transformedCode = assignments
+      .map((assignment) => {
+        if (assignment.trim()) {
+          // Skip empty entries
+          let [variable, value] = assignment
+            .split('=')
+            .map((part) => part.trim());
+          return `-v ${variable}=${value}`;
+        }
+      })
+      .filter(Boolean) // Filter out undefined or empty values
+      .join(' ');
+
+    // Step 8: Output the transformed code
+    console.log('Transformed code:', transformedCode);
+  } else {
+    console.error(
+      'Error: innerBlock is not of type "variables_set" or doBlock exists'
+    );
+  }
+  return transformedCode;
 }
 
 function handleConditionsAndLoops(block, blockType) {
@@ -1404,6 +1535,28 @@ generator.forBlock['column'] = function (block) {
   return [code, generator.ORDER_ATOMIC];
 };
 
+generator.forBlock['toupper'] = function (block) {
+  // Get the value of the 'TEXT' input. If no block is connected, default to an empty string.
+  var text =
+    Blockly.JavaScript.valueToCode(
+      block,
+      'TEXT',
+      Blockly.JavaScript.ORDER_NONE
+    ) || '""';
+
+  // Generate the correct toupper() function call in the generated code.
+  var code = 'toupper(' + text + ')';
+
+  // Return the generated code. No need to wrap it in an array if you're just returning the value.
+  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL]; // ORDER_FUNCTION_CALL ensures correct operator precedence
+};
+
+generator.forBlock['toLower'] = function (block) {
+  var text = block.getFieldValue('TEXT');
+  var code = 'tolower(' + `'${text}'` + ')';
+  return [code, generator.ORDER_ATOMIC];
+};
+
 generator.forBlock['NR'] = function (block) {
   var code = 'NR';
   return [code, generator.ORDER_ATOMIC];
@@ -1546,6 +1699,71 @@ Blockly.Extensions.register('disallow_multiple_filenames', function () {
     }
   });
 });
+
+function registerConnectionRestrictionExtension(
+  extensionName,
+  parentBlockType,
+  inputFieldName,
+  allowedBlockType
+) {
+  Blockly.Extensions.register(extensionName, function () {
+    this.setOnChange(function (changeEvent) {
+      // Ensure we're checking this block only when it moves
+      if (
+        changeEvent.type === Blockly.Events.BLOCK_MOVE &&
+        this.id === changeEvent.blockId
+      ) {
+        var parentBlock = this.getParent();
+
+        // Check if the parent block is of the expected type
+        if (parentBlock && parentBlock.type === parentBlockType) {
+          // Check if the current block is connected to the specified input on the parent block
+          var inputConnection = parentBlock.getInputTargetBlock(inputFieldName);
+
+          // If the connected block is not this block, or if it's not the allowed block type, disconnect
+          if (
+            inputConnection !== this ||
+            (allowedBlockType && this.type !== allowedBlockType)
+          ) {
+            if (this.outputConnection.targetConnection) {
+              this.outputConnection.disconnect();
+              console.warn(
+                `${this.type} block can only connect to the ${inputFieldName} field of ${parentBlockType} block.`
+              );
+            }
+          }
+        } else {
+          // If the parent block is not of the expected type, disconnect
+          if (this.outputConnection.targetConnection) {
+            this.outputConnection.disconnect();
+            console.warn(
+              `${this.type} block can only connect to ${parentBlockType} block.`
+            );
+          }
+        }
+      }
+    });
+  });
+}
+
+registerConnectionRestrictionExtension(
+  'restrict_assignVar_to_awk_input_variable',
+  'awk',
+  'input_variable',
+  'assignVar'
+);
+registerConnectionRestrictionExtension(
+  'restrict_begin_to_awk_begin',
+  'awk',
+  'begin',
+  'begin'
+);
+registerConnectionRestrictionExtension(
+  'restrict_end_to_awk_end',
+  'awk',
+  'end',
+  'end'
+);
 
 Blockly.Extensions.register('cut_validation', function () {
   var thisBlock = this;

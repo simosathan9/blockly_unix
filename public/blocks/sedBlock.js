@@ -4,7 +4,7 @@ var sedBlock = {
   unix_description: [
     {
       regPattern: "'s/patt ",
-      regReplaceText: "str/'",
+      regReplaceText: 'str',
       regex: '-E',
       globally: 'g'
     }

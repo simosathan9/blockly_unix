@@ -1,5 +1,5 @@
 window.MSG = {
-  TEXT_PROCESSING: 'Text Processing',
+  TEXT_PROCESSING: 'Text \n Processing',
   FILE_INPUTS: 'File Inputs',
   FILESYSTEM_OPERATIONS: 'Filesystem Operations',
   DIR_OPERATIONS: 'Directory Operations',
@@ -9,6 +9,8 @@ window.MSG = {
   VARIABLES: 'Variables',
   SYSTEM_MONITORING: 'System Monitoring',
   NETWORK_OPERATIONS: 'Network Operations',
+  STRING_FUNCTIONS: 'String Functions',
+  FIELD_RECORD_CONTROL: 'Field and Record Control',
   TEXT_OUTPUT: 'Text Output',
   LOGIC: 'Logic',
   LOOPS: 'Loops',

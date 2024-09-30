@@ -1,7 +1,7 @@
 window.MSG = {
   TEXT_PROCESSING: 'Επεξεργασία Κειμένου',
   FILE_INPUTS: 'Είσοδοι Αρχείων',
-  FILE_DIR_OPERATIONS: 'Λειτουργίες Αρχείων και Καταλόγων',
+  FILESYSTEM_OPERATIONS: 'Λειτουργίες Αρχείων και Καταλόγων',
   IO_REDIRECTION: 'Ανακατεύθυνση Εισόδου/Εξόδου',
   REGULAR_EXPRESSIONS: 'Κανονικές Εκφράσεις',
   DATA_PROCESSING: 'Επεξεργασία Δεδομένων',
@@ -9,6 +9,7 @@ window.MSG = {
   SYSTEM_MONITORING: 'Παρακολούθηση Συστήματος',
   NETWORK_OPERATIONS: 'Λειτουργίες Δικτύου',
   TEXT_OUTPUT: 'Έξοδος Κειμένου',
+  STRING_FUNCTIONS: 'Συναρτήσεις Κειμένου',
   LOGIC: 'Λογική',
   LOOPS: 'Βρόχοι',
   MATH: 'Μαθηματικά',

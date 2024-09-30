@@ -1,6 +1,6 @@
 var NRBlock = {
   type: 'NR',
-  category: 'Data Processing',
+  category: 'Field and Record Control',
   unix_description: [
     {
       recordNumber: 'NR'
@@ -13,7 +13,7 @@ var NRBlock = {
       name: 'recordNumber'
     }
   ],
-  style: 'Data Processing',
+  style: 'Field and Record Control',
   output: null,
   tooltip: '%{BKY_RECORD_NUMBER_TOOLTIP}',
   helpUrl: '%{BKY_RECORD_NUMBER_HELPURL}' // URL to further information or documentation.

@@ -41,7 +41,8 @@
     <script src="blocks/hostnameBlock.js"></script>
     <script src="blocks/dateBlock.js"></script>
     <script src="blocks/sleepBlock.js"></script>
-    <script src="blocks/beginEndBlock.js"></script>
+    <script src="blocks/beginBlock.js"></script>
+    <script src="blocks/endBlock.js"></script>
     <script src="blocks/filenameBlock.js"></script>
     <script src="blocks/headBlock.js"></script>
     <script src="blocks/tailBlock.js"></script>
@@ -83,6 +84,10 @@
     <script src="blocks/NRBlock.js"></script>
     <script src="blocks/NFBlock.js"></script>
     <script src="blocks/xargsBlock.js"></script>
+    <script src="blocks/assignVar.js"></script>
+    <script src="blocks/indexBlock.js"></script>
+    <script src="blocks/toUpperBlock.js"></script>
+    <script src="blocks/toLowerBlock.js"></script>
     <!-- END OF BLOCK DEFINITION -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -279,6 +284,16 @@
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
         },
+        'String Functions': {
+          colourPrimary: '#4682B4', // Primary color: Steel Blue
+          colourSecondary: '#5F9EA0', // Secondary color: Cadet Blue
+          colourTertiary: '#B0E0E6' // Tertiary color: Powder Blue
+        },
+        'Field and Record Control': {
+          colourPrimary: '#900C3F',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
         'System Monitoring': {
           colourPrimary: '#9C27B0',
           colourSecondary: '#ff0000',
@@ -447,13 +462,32 @@
             name: [MSG.DATA_PROCESSING],
             colour: '#3B7C09',
             contents: [
-              { kind: 'block', type: 'beginEnd' },
+              { kind: 'block', type: 'begin' },
+              { kind: 'block', type: 'end' },
+              { kind: 'block', type: 'assignVar' },
               { kind: 'block', type: 'awk' },
               { kind: 'block', type: 'condOutput' },
               { kind: 'block', type: 'column' },
-              { kind: 'block', type: 'NR' },
-              { kind: 'block', type: 'NF' },
               { kind: 'block', type: 'xargs' },
+              {
+                kind: 'category',
+                name: [MSG.STRING_FUNCTIONS],
+                colour: '#4682B4',
+                contents: [
+                  { kind: 'block', type: 'index' },
+                  { kind: 'block', type: 'toupper' },
+                  { kind: 'block', type: 'tolower' }
+                ]
+              },
+              {
+                kind: 'category',
+                name: [MSG.FIELD_RECORD_CONTROL],
+                colour: '#900C3F',
+                contents: [
+                  { kind: 'block', type: 'NR' },
+                  { kind: 'block', type: 'NF' }
+                ]
+              },
               {
                 kind: 'category',
                 name: [MSG.TEXT_OUTPUT],
