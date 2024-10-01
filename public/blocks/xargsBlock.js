@@ -1,6 +1,6 @@
 var xargsBlock = {
   type: 'xargs',
-  category: 'Data processing',
+  category: 'Field Processing',
   unix_description: [
     {
       placeholder: '-I{}'
@@ -15,7 +15,7 @@ var xargsBlock = {
       checked: false // by default it's disabled
     }
   ],
-  style: 'Data Processing',
+  style: 'Field Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_XARGS_TOOLTIP}',

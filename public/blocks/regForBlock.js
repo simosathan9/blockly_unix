@@ -4,7 +4,7 @@ var regForBlock = {
   message0: '%{BKY_REGFOR}',
   unix_description: [
     {
-      FROM: 'patt{n',
+      FROM: '{n',
       TO: ',m}'
     }
   ],

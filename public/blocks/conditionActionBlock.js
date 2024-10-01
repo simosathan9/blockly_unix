@@ -1,6 +1,6 @@
 var conditionActionBlock = {
   type: 'conditionAction',
-  category: 'Data Processing',
+  category: 'Field Processing',
   message0: '%{BKY_CONDITION_ACTION_COND} %1',
   args0: [
     {
@@ -18,7 +18,7 @@ var conditionActionBlock = {
   previousStatement: true,
   nextStatement: true,
   nextStatement: null,
-  style: 'Data Processing',
+  style: 'Field Processing',
   tooltip: '%{BKY_CONDITION_ACTION_TOOLTIP}',
   helpUrl: '%{BKY_CONDITION_ACTION_HELPURL}' // URL to further information or documentation.
 };

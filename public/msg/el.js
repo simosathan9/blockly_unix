@@ -4,7 +4,7 @@ window.MSG = {
   FILE_DIR_OPERATIONS: 'Λειτουργίες Αρχείων και Καταλόγων',
   IO_REDIRECTION: 'Ανακατεύθυνση Εισόδου/Εξόδου',
   REGULAR_EXPRESSIONS: 'Κανονικές Εκφράσεις',
-  DATA_PROCESSING: 'Επεξεργασία Δεδομένων',
+  FIELD_PROCESSING: 'Επεξεργασία Πεδίου',
   VARIABLES: 'Μεταβλητές',
   SYSTEM_MONITORING: 'Παρακολούθηση Συστήματος',
   NETWORK_OPERATIONS: 'Λειτουργίες Δικτύου',
@@ -817,22 +817,22 @@ Blockly.Msg['TEXT_CREATE_JOIN_ITEM_TITLE_ITEM'] =
   Blockly.Msg['VARIABLES_DEFAULT_NAME'];
 
 Blockly.Msg['REGANYONE'] = 'Αντιστοίχιση οποιουδήποτε από τους χαρακτήρες %1';
-Blockly.Msg['REGANYONE_NOT'] = 'Όχι %1';
+Blockly.Msg['REGANYONE_NOT'] = 'Όχι %2';
 Blockly.Msg['REGANYONE_TOOLTIP'] =
   'Αντιστοίχιση οποιουδήποτε από τους καθορισμένους χαρακτήρες';
 Blockly.Msg['REGANYONE_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGCAPTURINGGROUP'] = 'Ομαδοποίηση του μοτίβου %1\n';
 Blockly.Msg['REGCAPTURINGGROUP_TOOLTIP'] = 'Ορισμός μιας ομάδας μοτίβων';
 Blockly.Msg['REGCAPTURINGGROUP_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGCOMMON'] = 'Κοινές αναζητήσεις';
+Blockly.Msg['REGCOMMON'] = 'Κοινά μοτίβα';
 Blockly.Msg['REGCOMMON_MATCH'] = 'Αντιστοίχιση %1';
 Blockly.Msg['REGCOMMON_TOOLTIP'] = 'Κοινές αναζητήσεις κανονικών εκφράσεων';
 Blockly.Msg['REGCOMMON_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGEND'] = 'Οι γραμμές τελειώνουν με %1\n';
+Blockly.Msg['REGEND'] = 'Οι γραμμές τελειώνουν με \n';
 Blockly.Msg['REGEND_TOOLTIP'] = 'Τέλος γραμμής';
 Blockly.Msg['REGEND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGFOR'] =
-  "Αντιστοίχιση του μοτίβου Από %1\n Έως %2 φορές Ή Έως το άπειρο %3\n(για ακριβώς n φορές οι τιμές 'Από' και 'Έως' πρέπει να είναι ίσες)";
+  'Αντιστοίχιση του μοτίβου Από %1\n Έως %2 φορές Ή Έως το άπειρο %3\n';
 Blockly.Msg['REGFOR_1'] = '%1';
 Blockly.Msg['REGFOR_TOOLTIP'] = 'Περισσότερες από μία αντιστοιχίες μοτίβων.';
 Blockly.Msg['REGFOR_HELPURL'] = 'https://www.google.com/';
@@ -861,7 +861,7 @@ Blockly.Msg['REGRANGE_NOT'] = 'Όχι %1';
 Blockly.Msg['REGRANGE_TOOLTIP'] =
   'Αντιστοίχιση στο αρχείο του καθορισμένου εύρους χαρακτήρων';
 Blockly.Msg['REGRANGE_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGSTART'] = 'Οι γραμμές ξεκινούν με %1\n';
+Blockly.Msg['REGSTART'] = 'Οι γραμμές ξεκινούν με\n';
 Blockly.Msg['REGSTART_TOOLTIP'] = 'Έναρξη γραμμής';
 Blockly.Msg['REGSTART_HELPURL'] = 'https://www.google.com/';
 
@@ -910,7 +910,7 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'Το εργαλείο tee αντιγράφει την τυπική είσοδο στην τυπική έξοδο, κάνοντας ένα αντίγραφο σε ένα ή περισσότερα αρχεία.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου \n';
+Blockly.Msg['TOUCH'] = 'Τροποποίηση χρονικών στιγμών αρχείου %1\n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Μη δημιουργία αρχείου αν δεν υπάρχει %1 \n';
 Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
@@ -997,7 +997,7 @@ Blockly.Msg['UPTIME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/uptime.1.html';
 
 // who command
-Blockly.Msg['WHO'] = 'Έξοδος ποιοι χρήστες είναι συνδεδεμένοι';
+Blockly.Msg['WHO'] = 'Ποιοι χρήστες είναι συνδεδεμένοι';
 Blockly.Msg['WHO_SHOW_HEADING'] = 'Έξοδος πληροφοριών κεφαλίδας %1';
 Blockly.Msg['WHO_SHOW_ALL'] = 'Έξοδος όλων των πληροφοριών %1';
 Blockly.Msg['WHO_SHOW_USERS'] = 'Έξοδος διεργασιών χρηστών %1';
@@ -1008,7 +1008,7 @@ Blockly.Msg['WHO_TOOLTIP'] =
 Blockly.Msg['WHO_HELPURL'] = 'https://man7.org/linux/man-pages/man1/who.1.html';
 
 // hostname command
-Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Έξοδος του ονόματος του συστήματος';
+Blockly.Msg['SYSTEM_HOSTNAME_COMMAND'] = 'Όνομα του συστήματος';
 Blockly.Msg['HOSTNAME_SHOW_HOSTNAME'] = 'Έξοδος του ονόματος του συστήματος %1';
 Blockly.Msg['HOSTNAME_SET_HOSTNAME'] =
   'Ορισμός του ονόματος του συστήματος σε %1';
@@ -1024,8 +1024,7 @@ Blockly.Msg['HOSTNAME_HELPURL'] =
   'https://man7.org/linux/man-pages/man1/hostname.1.html';
 
 // date command
-Blockly.Msg['SYSTEM_DATE_COMMAND'] =
-  'Έξοδος της τρέχουσας ημερομηνίας και ώρας';
+Blockly.Msg['SYSTEM_DATE_COMMAND'] = 'Τρέχουσα ημερομηνία και ώρα';
 Blockly.Msg['DATE_UTC_TIME'] = 'Έξοδος ώρας σε UTC %1';
 Blockly.Msg['DATE_TOOLTIP'] =
   'Εμφανίζει ή ορίζει την ημερομηνία και ώρα του συστήματος';
@@ -1076,6 +1075,7 @@ Blockly.Msg['PING_TIMEOUT'] =
 Blockly.Msg['SSH'] = 'Δημιουργία σύνδεσης SSH';
 Blockly.Msg['SSH_USER'] = 'Καθορίστε το όνομα χρήστη';
 Blockly.Msg['SSH_HOST'] = 'Καθορίστε τη διεύθυνση του απομακρυσμένου host';
+Blockly.Msg['SSH_KEY'] = 'Αρχείο Ιδιωτικού Κλειδιού';
 Blockly.Msg['SSH_PORT'] = 'Ορίστε τον αριθμό της θύρας';
 
 // Curl command
@@ -1083,3 +1083,38 @@ Blockly.Msg['CURL'] = 'Εκτελέστε ένα αίτημα HTTP σε';
 Blockly.Msg['CURL_METHOD'] = 'Επιλέξτε μέθοδο';
 Blockly.Msg['CURL_HEADER'] = 'Παρέχετε προσαρμοσμένες κεφαλίδες για το αίτημα';
 Blockly.Msg['CURL_REDIRECTS'] = 'Ακολούθηση ανακατευθύνσεων';
+
+Blockly.Msg['ARGUMENTS_CREATE_WITH'] = 'Εισαγωγή ορισμάτων';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_TOOLTIP'] =
+  'Προσθέστε επιχειρήματα για τη συνάρτηση.';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_HELPURL'] =
+  'https://example.com/help/arguments_create_with';
+Blockly.Msg['ARGUMENTS_CREATE_EMPTY_TITLE'] = 'Χωρίς εισαγωγές';
+
+// ARGUMENTS_CREATE_WITH command
+Blockly.Msg['ARGUMENTS_CREATE_WITH'] = 'Εισαγωγή ορισμάτων';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_TOOLTIP'] =
+  'Προσθέστε επιχειρήματα για τη συνάρτηση.';
+Blockly.Msg['ARGUMENTS_CREATE_WITH_HELPURL'] =
+  'https://example.com/help/arguments_create_with';
+Blockly.Msg['ARGUMENTS_CREATE_EMPTY_TITLE'] = 'Χωρίς εισαγωγές';
+
+// ARGUMENT command
+Blockly.Msg['ARGUMENT'] = 'Όρισμα';
+Blockly.Msg['ARGUMENT_TOOLTIP'] = 'Εισάγετε ένα όρισμα για τη συνάρτηση.';
+Blockly.Msg['ARGUMENT_HELPURL'] = 'https://example.com/help/argument';
+Blockly.Msg['ARGUMENT_DEFAULT_TEXT'] = 'προεπιλεγμένο_όρισμα';
+
+// BACKREFERENCE command
+Blockly.Msg['REGBACKREFERENCE'] = 'Αναφορά σε ομάδα %1';
+Blockly.Msg['REGBACKREFERENCE_TOOLTIP'] =
+  'Αναφέρεται σε μια προηγουμένως αντιστοιχισμένη ομάδα χρησιμοποιώντας \\1, \\2, κλπ.';
+Blockly.Msg['REGBACKREFERENCE_HELPURL'] =
+  'https://developer.mozilla.org/el/docs/Web/JavaScript/Guide/Regular_Expressions';
+
+// ALTERNATION command
+Blockly.Msg['REGALTERNATION'] = 'Λογικό ή';
+Blockly.Msg['REGALTERNATION_TOOLTIP'] =
+  'Ταιριάζει είτε με το πρότυπο στα αριστερά είτε με το πρότυπο στα δεξιά. Χρησιμοποιήστε | για λογικό "ή".';
+Blockly.Msg['REGALTERNATION_HELPURL'] =
+  'https://developer.mozilla.org/el/docs/Web/JavaScript/Guide/Regular_Expressions#logical_or';

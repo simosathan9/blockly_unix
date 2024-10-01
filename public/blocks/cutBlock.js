@@ -6,7 +6,7 @@ var cutBlock = {
       delimiter: "-d 'str'",
       columns: '-f str',
       charsStart: '-c str',
-      charsEnd: '-c-str'
+      charsEnd: '-c str'
     }
   ],
   message0: '%{BKY_CUT}\n',

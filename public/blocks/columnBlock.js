@@ -1,6 +1,6 @@
 var columnBlock = {
   type: 'column',
-  category: 'Data Processing',
+  category: 'Field Processing',
   unix_description: [
     {
       TEXT: '$str'
@@ -14,7 +14,7 @@ var columnBlock = {
     }
   ],
   output: null,
-  style: 'Data Processing',
+  style: 'Field Processing',
   tooltip: '%{BKY_COLUMN_TOOLTIP}',
   helpUrl: '%{BKY_COLUMN_HELPURL}'
 };

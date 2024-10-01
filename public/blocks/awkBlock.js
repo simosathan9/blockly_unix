@@ -1,6 +1,6 @@
 var awkBlock = {
   type: 'awk',
-  category: 'Data Processing',
+  category: 'Field Processing',
   unix_description: [
     {
       awkInput_delimiter: "-F 'str' " // Change to awk_delimiter
@@ -22,7 +22,7 @@ var awkBlock = {
       name: 'awkConditionAction'
     }
   ],
-  style: 'Data Processing',
+  style: 'Field Processing',
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_AWK_TOOLTIP}',

@@ -8,7 +8,7 @@ var regAnyOneBlock = {
     }
   ],
 
-  message0: '%{BKY_REGANYONE} \n Not %2',
+  message0: '%{BKY_REGANYONE} \n %{BKY_REGANYONE_NOT}',
   args0: [
     {
       type: 'input_statement',
@@ -24,7 +24,6 @@ var regAnyOneBlock = {
   ],
 
   tooltip: '%{BKY_REGANYONE_TOOLTIP}',
-  output: 'String',
   previousStatement: null,
   nextStatement: null,
   style: 'Regular Expressions',

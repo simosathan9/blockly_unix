@@ -14,7 +14,7 @@ var regBackreferenceBlock = {
       9: '\\9'
     }
   ],
-  message0: 'Backreference to group %1',
+  message0: '%{BKY_REGBACKREFERENCE}',
   args0: [
     {
       type: 'field_dropdown', // Dropdown για επιλογή του αριθμού αναφοράς
@@ -35,9 +35,8 @@ var regBackreferenceBlock = {
   style: 'Regular Expressions',
   previousStatement: 'Action',
   nextStatement: 'Action',
-  tooltip: 'References a previously matched group using \\1, \\2, etc.',
-  helpUrl:
-    'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#backreferences'
+  tooltip: '%{BKY_REGBACKREFERENCE_TOOLTIP}',
+  helpUrl: '%{BKY_REGBACKREFERENCE_HELPURL}'
 };
 
 Blockly.defineBlocksWithJsonArray([regBackreferenceBlock]);

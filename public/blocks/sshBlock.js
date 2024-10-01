@@ -10,7 +10,7 @@ var sshBlock = {
       HOST: 'str'
     }
   ],
-  message1: 'Private Key File %1',
+  message1: '%{BKY_SSH_KEY}%1',
   args1: [
     {
       type: 'field_input',

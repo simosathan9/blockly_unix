@@ -17,7 +17,7 @@ var regAlternationBlock = {
     }
   ],
 
-  message1: ' Logical or ',
+  message1: '%{BKY_REGALTERNATION}',
 
   message2: '%1',
   args2: [
@@ -28,7 +28,6 @@ var regAlternationBlock = {
     }
   ],
   style: 'Regular Expressions',
-  output: 'String',
   previousStatement: null,
   nextStatement: null,
   tooltip:

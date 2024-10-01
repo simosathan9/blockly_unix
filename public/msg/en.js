@@ -5,7 +5,7 @@ window.MSG = {
   DIR_OPERATIONS: 'Directory Operations',
   IO_REDIRECTION: 'I/O Redirection',
   REGULAR_EXPRESSIONS: 'Regular Expressions',
-  DATA_PROCESSING: 'Data Processing',
+  FIELD_PROCESSING: 'Field Processing',
   VARIABLES: 'Variables',
   SYSTEM_MONITORING: 'System Monitoring',
   NETWORK_OPERATIONS: 'Network Operations',
@@ -796,7 +796,7 @@ Blockly.Msg['TEXT_CREATE_JOIN_ITEM_TITLE_ITEM'] =
   Blockly.Msg['VARIABLES_DEFAULT_NAME'];
 
 Blockly.Msg['REGANYONE'] = 'Character class %1  ';
-Blockly.Msg['REGANYONE_NOT'] = 'Not %1';
+Blockly.Msg['REGANYONE_NOT'] = 'Not %2';
 Blockly.Msg['REGANYONE_TOOLTIP'] = 'Match any one of the defined characters';
 Blockly.Msg['REGANYONE_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGCAPTURINGGROUP'] = 'Group the pattern %1\n';
@@ -1041,6 +1041,7 @@ Blockly.Msg['PING_TIMEOUT'] =
 Blockly.Msg['SSH'] = 'Establish a SSH connection';
 Blockly.Msg['SSH_USER'] = 'Specify the username';
 Blockly.Msg['SSH_HOST'] = 'Specify the remote host address';
+Blockly.Msg['BKY_SSH_KEY'] = 'Private Key File ';
 Blockly.Msg['SSH_PORT'] = 'Define the port number';
 
 // Curl command
@@ -1060,3 +1061,17 @@ Blockly.Msg['ARGUMENT'] = 'Argument';
 Blockly.Msg['ARGUMENT_TOOLTIP'] = 'Enter an argument for the function.';
 Blockly.Msg['ARGUMENT_HELPURL'] = 'https://example.com/help/argument';
 Blockly.Msg['ARGUMENT_DEFAULT_TEXT'] = 'default_argument';
+
+// BACKREFERENCE command
+Blockly.Msg['REGBACKREFERENCE'] = 'Backreference to group %1';
+Blockly.Msg['REGBACKREFERENCE_TOOLTIP'] =
+  'References a previously matched group using \\1, \\2, etc.';
+Blockly.Msg['REGBACKREFERENCE_HELPURL'] =
+  'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions';
+
+// ALTERNATION command
+Blockly.Msg['REGALTERNATION'] = 'Logical or';
+Blockly.Msg['REGALTERNATION_TOOLTIP'] =
+  'Matches either the pattern on the left or the pattern on the right. Use | for logical "or".';
+Blockly.Msg['REGALTERNATION_HELPURL'] =
+  'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#logical_or';

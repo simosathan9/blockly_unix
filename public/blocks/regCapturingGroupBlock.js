@@ -15,7 +15,6 @@ var regCapturingGroupBlock = {
     }
   ],
   tooltip: '%{BKY_REGCAPTURINGGROUP_TOOLTIP}',
-  output: 'String',
   previousStatement: null,
   nextStatement: null,
   style: 'Regular Expressions',
