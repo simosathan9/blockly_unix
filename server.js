@@ -18,7 +18,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const sqlite3 = require('sqlite3').verbose();
 app.use(express.json());
-const db = new sqlite3.Database('blockly_unix_database.db', (err) => {
+const db = new sqlite3.Database('db/blockly_unix_database.db', (err) => {
   if (err) {
     console.error(err.message);
   }

@@ -11,8 +11,8 @@ var sshBlock = {
   args1: [
     {
       type: 'field_input',
-      name: 'HOST',
-      text: 'host'
+      name: 'KEY',
+      text: 'key'
     }
   ],
   message2: '%{BKY_SSH_USER} %1',

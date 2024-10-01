@@ -3,7 +3,7 @@ var regEndBlock = {
   category: 'Regular Expressions',
   unix_description: [
     {
-      regPattern: 'patt$'
+      regEnd: 'patt$'
     }
   ],
   message0: '%{BKY_REGEND}',

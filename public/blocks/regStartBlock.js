@@ -3,7 +3,7 @@ var regStartBlock = {
   category: 'Regular Expressions',
   unix_description: [
     {
-      regPattern: '^patt'
+      regStart: '^'
     }
   ],
   message0: '%{BKY_REGSTART}',
@@ -15,7 +15,6 @@ var regStartBlock = {
     }
   ],
   style: 'Regular Expressions',
-  previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_REGSTART_TOOLTIP}',
   helpUrl: '%{BKY_REGSTART_HELPURL}' // URL to further information or documentation.
