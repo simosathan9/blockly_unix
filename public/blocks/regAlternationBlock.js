@@ -28,6 +28,7 @@ var regAlternationBlock = {
     }
   ],
   style: 'Regular Expressions',
+  output: 'String',
   previousStatement: null,
   nextStatement: null,
   tooltip:

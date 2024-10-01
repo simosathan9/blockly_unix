@@ -24,13 +24,7 @@ var regForBlock = {
       checked: false
     }
   ],
-  message1: '%{BKY_REGFOR_1}',
-  args1: [
-    {
-      type: 'input_statement',
-      name: 'DO'
-    }
-  ],
+
   previousStatement: null,
   nextStatement: null,
   style: 'Regular Expressions',

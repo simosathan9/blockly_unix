@@ -1,6 +1,6 @@
 window.MSG = {
   TEXT_PROCESSING: 'Text Processing',
-  FILE_INPUTS: 'File Inputs',
+  FUCTION_INPUTS: 'Function Inputs',
   FILESYSTEM_OPERATIONS: 'Filesystem Operations',
   DIR_OPERATIONS: 'Directory Operations',
   IO_REDIRECTION: 'I/O Redirection',
@@ -807,7 +807,7 @@ Blockly.Msg['REGCOMMON'] = 'Common patterns';
 Blockly.Msg['REGCOMMON_MATCH'] = 'Match %1';
 Blockly.Msg['REGCOMMON_TOOLTIP'] = 'Common regular expression searches';
 Blockly.Msg['REGCOMMON_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGEND'] = 'Lines ends with  %1\n';
+Blockly.Msg['REGEND'] = 'Lines ends with\n';
 Blockly.Msg['REGEND_TOOLTIP'] = 'End of line';
 Blockly.Msg['REGEND_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['REGFOR'] =
@@ -836,7 +836,7 @@ Blockly.Msg['REGRANGE_NOT'] = 'Not %1';
 Blockly.Msg['REGRANGE_TOOLTIP'] =
   'Match in the file the designated range of characters';
 Blockly.Msg['REGRANGE_HELPURL'] = 'https://www.google.com/';
-Blockly.Msg['REGSTART'] = 'Line starts with  %1 \n';
+Blockly.Msg['REGSTART'] = 'Line starts with\n';
 Blockly.Msg['REGSTART_TOOLTIP'] = 'Start of line';
 Blockly.Msg['REGSTART_HELPURL'] = 'https://www.google.com/';
 
@@ -883,7 +883,7 @@ Blockly.Msg['TEE_TOOLTIP'] =
   'The tee utility copies standard input to standard output, making a copy in zero or more files.';
 Blockly.Msg['TEE_HELPURL'] = 'https://www.google.com/';
 
-Blockly.Msg['TOUCH'] = 'Modify file timestamps \n';
+Blockly.Msg['TOUCH'] = 'Modify file timestamps %1 \n';
 Blockly.Msg['TOUCH_NOT_CREATE_FILE'] =
   'Do not create file if it does not exist %1 \n';
 Blockly.Msg['TOUCH_CHANGE_ACCESS_TIME'] =
@@ -893,7 +893,7 @@ Blockly.Msg['TOUCH_CHANGE_MODIFICATION_TIME'] =
 Blockly.Msg['TOUCH_SPECIFY_TIME_D'] =
   'Change the access and modification times to the specified time \n';
 Blockly.Msg['TOUCH_SPECIFY_TIME_FORMAT_D'] =
-  'Timestamp in YYYY-MM-DD hh:mm:SS[Z (UTC)] %1';
+  'Add date in YYYY-MM-DD hh:mm:SS[Z (UTC)] %1';
 Blockly.Msg['TOUCH_TOOLTIP'] =
   'Set the access and modification time of a file. If the file does not exist, it creates an empty file.' +
   'To insert timestamps you can use the ISO 8601 format: YYYY-MM-DD hh:mm:SS[Z (for UTC)], where:' +

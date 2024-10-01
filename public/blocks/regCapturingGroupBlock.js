@@ -2,7 +2,7 @@ var regCapturingGroupBlock = {
   type: 'regCapturingGroup',
   unix_description: [
     {
-      Group: '(patt)'
+      regPattern: '(patt)'
     }
   ],
   category: 'Regular Expressions',
@@ -10,11 +10,12 @@ var regCapturingGroupBlock = {
   args0: [
     {
       type: 'input_statement',
-      name: 'Group',
+      name: 'regPattern',
       check: 'String'
     }
   ],
   tooltip: '%{BKY_REGCAPTURINGGROUP_TOOLTIP}',
+  output: 'String',
   previousStatement: null,
   nextStatement: null,
   style: 'Regular Expressions',

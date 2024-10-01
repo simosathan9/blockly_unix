@@ -1,6 +1,6 @@
 var filenamesCreateBlock = {
   type: 'filenamesCreate',
-  category: 'File inputs',
+  category: 'Function inputs',
   message0: '%{BKY_FILES_CREATE_WITH} %1',
   args0: [
     {
@@ -8,7 +8,7 @@ var filenamesCreateBlock = {
       name: 'EMPTY'
     }
   ],
-  style: 'File inputs',
+  style: 'Function inputs',
   nextStatement: 'Action',
   helpUrl: '%{BKY_FILES_CREATE_WITH_HELPURL}',
   tooltip: '%{BKY_FILES_CREATE_WITH_TOOLTIP}',

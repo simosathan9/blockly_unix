@@ -1,6 +1,6 @@
 var filenameBlock = {
   type: 'filename',
-  category: 'File inputs',
+  category: 'Function inputs',
   message0: '%{BKY_FILENAME} %1',
   args0: [
     {
@@ -10,7 +10,7 @@ var filenameBlock = {
     }
   ],
   output: 'filename',
-  style: 'File inputs',
+  style: 'Function inputs',
   tooltip: '%{BKY_FILENAME_TOOLTIP}',
   helpUrl: '%{BKY_FILENAME_HELPURL}' // URL to further information or documentation.
 };

@@ -9,7 +9,8 @@ var lnBlock = {
       force: '-f',
       interactive: '-i',
       follow_symlink: '-L',
-      no_symlink_follow: '-P'
+      no_symlink_follow: '-P',
+      SOURCE: 'str'
     }
   ],
   message1: '%{BKY_LN_SYMBOLIC_LINK}',
@@ -39,14 +40,16 @@ var lnBlock = {
   message4: '%{BKY_LN_SOURCE}: %1 %{BKY_LN_TARGET}: %2',
   args4: [
     {
-      type: 'field_input',
+      type: 'input_value',
       name: 'SOURCE',
-      text: 'source' // default source
+      text: 'source', // default source
+      check: 'String'
     },
     {
-      type: 'field_input',
+      type: 'input_value',
       name: 'TARGET',
-      text: 'target' // default target
+      text: 'target', // default target
+      check: 'String'
     }
   ],
   style: 'Filesystem Operations',

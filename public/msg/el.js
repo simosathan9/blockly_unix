@@ -41,7 +41,6 @@ window.MSG = {
   parseError:
     "Σφάλμα ανάλυσης %1:\n%2\n\nΕπιλέξτε 'OK' για να εγκαταλείψετε τις αλλαγές σας ή 'Ακύρωση' για να συνεχίσετε να επεξεργάζεστε το %1."
 };
-
 // This file was automatically generated.  Do not modify.
 
 ('use strict');
