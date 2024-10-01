@@ -58,13 +58,7 @@ Blockly.Msg['ARRAY_CREATE_EMPTY_TITLE'] = 'Δημιουργία λίστας σ�
 Blockly.Msg['ARRAY_CREATE_WITH_HELPURL'] = '';
 Blockly.Msg['AWK_TEXT_DATA_PROCESSING'] = 'Επεξεργασία δεδομένων κειμένου';
 Blockly.Msg['AWK_INPUT_DELIMITER'] = 'Διαχωριστής εισόδου';
-Blockly.Msg['AWK_OUTPUT_DELIMITER'] = 'Διαχωριστής εξόδου';
-Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Μεταβλητή εισόδου';
-Blockly.Msg['AWK_BEGIN'] =
-  'Εκτέλεση μία φορά πριν από την επεξεργασία δεδομένων';
-Blockly.Msg['AWK_ACTION'] = 'Ενέργεια';
-Blockly.Msg['AWK_END'] = 'Εκτέλεση μία φορά μετά την επεξεργασία δεδομένων';
-Blockly.Msg['AWK_PRINT'] = 'Στήλες προς εκτύπωση';
+Blockly.Msg['AWK_CONDITION_ACTION'] = 'Τοποθετήστε συνθήκη και ενέργεια';
 Blockly.Msg['AWK_TOOLTIP'] = 'Γλώσσα σάρωσης και επεξεργασίας με βάση μοτίβα';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['BEGIN_END'] =
@@ -89,6 +83,10 @@ Blockly.Msg['CONDITION_OUTPUT'] = 'Τοποθετήστε συνθήκη ανα�
 Blockly.Msg['CONDITION_OUTPUT_TOOLTIP'] =
   'Δημιουργία συνθήκης αναζήτησης με δηλώσεις if';
 Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['CONDITION_ACTION_COND'] = 'Συνθήκη';
+Blockly.Msg['CONDITION_ACTION_ACT'] = 'Ενέργεια';
+Blockly.Msg['CONDITION_ACTION_TOOLTIP'] = 'Δημιουργία συνθήκης και ενέργειας';
+Blockly.Msg['CONDITION_ACTION_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Αποκοπή σε αρχείο ή συμβολοσειρά';
 Blockly.Msg['CUT_DELIMITER'] = 'Διαχωριστικό';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Ορισμός στηλών';

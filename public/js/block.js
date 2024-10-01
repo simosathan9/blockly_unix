@@ -141,7 +141,8 @@ document
           pattern = pattern.replace(/\s+/g, '/');
           replacementText = replacementText.replace(/\s+/g, '/');
           // Extract if 'g' flag is present
-          const hasGlobalFlag = sedCommand.includes('g');
+          const hasGlobalFlag =
+            currentBlock.getFieldValue('globally') === 'TRUE';
           // Construct the sed command with the escaped slashes and ensure no extra space between pattern/replacement
           if (sedCommand.startsWith('sed ')) {
             sedCommand = sedCommand.replace(
@@ -157,6 +158,12 @@ document
               `sed -E 's/${pattern}/${replacementText}/` +
               (hasGlobalFlag ? 'g' : '') +
               `'`; // Ensure proper formatting
+
+            let previousBlock = currentBlock.getPreviousBlock();
+            if (previousBlock && previousBlock.type === 'filenamesCreate') {
+              const filenames = handleFilenamesBlocks(previousBlock); // Assuming handleFilenamesBlocks extracts filenames
+              sedCommand += ` ${filenames}`; // Append filenames to the sed command
+            }
           }
           // Add the constructed sed command to the generatedCommand
           generatedCommand += (generatedCommand ? ' | ' : '') + sedCommand;
@@ -372,7 +379,7 @@ function handleBlock(block) {
   if (blockType === 'awk') {
     regexStringValue = '';
     let contains = commandParts.some(
-      (element) => element && element.includes("-F'")
+      (element) => element && element.includes("-F '")
     );
     if (!contains) {
       commandParts[0] = "'" + commandParts[0];
@@ -456,7 +463,6 @@ function handleBlock(block) {
         ' ' +
         beginValue +
         ' ' +
-        filteredArray.join(' ') +
         ' ' +
         regexStringValue +
         ' ' +

@@ -83,6 +83,7 @@
     <script src="blocks/NRBlock.js"></script>
     <script src="blocks/NFBlock.js"></script>
     <script src="blocks/xargsBlock.js"></script>
+    <script src="blocks/conditionActionBlock.js"></script>
     <!-- END OF BLOCK DEFINITION -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -452,6 +453,7 @@
             colour: '#3B7C09',
             contents: [
               { kind: 'block', type: 'beginEnd' },
+              { kind: 'block', type: 'conditionAction' },
               { kind: 'block', type: 'awk' },
               { kind: 'block', type: 'condOutput' },
               { kind: 'block', type: 'column' },

@@ -58,12 +58,7 @@ Blockly.Msg['ARRAY_CREATE_EMPTY_TITLE'] = 'Create list of elements';
 Blockly.Msg['ARRAY_CREATE_WITH_HELPURL'] = '';
 Blockly.Msg['AWK_TEXT_DATA_PROCESSING'] = 'Text data processing';
 Blockly.Msg['AWK_INPUT_DELIMITER'] = 'Input delimiter';
-Blockly.Msg['AWK_OUTPUT_DELIMITER'] = 'Output delimiter';
-Blockly.Msg['AWK_VARIABLE_INPUT'] = 'Variable input';
-Blockly.Msg['AWK_BEGIN'] = 'Execute once before data is processed';
-Blockly.Msg['AWK_ACTION'] = 'Action';
-Blockly.Msg['AWK_END'] = 'Execute once after data is processed';
-Blockly.Msg['AWK_PRINT'] = 'Columns to print';
+Blockly.Msg['AWK_CONDITION_ACTION'] = 'Condition and action';
 Blockly.Msg['AWK_TOOLTIP'] =
   'pattern-directed scanning and processing language';
 Blockly.Msg['AWK_HELPURL'] = 'https://www.google.com/';
@@ -88,6 +83,10 @@ Blockly.Msg['CONDITION_OUTPUT'] = 'Put search condition';
 Blockly.Msg['CONDITION_OUTPUT_TOOLTIP'] =
   'Construct a search condition with if statements';
 Blockly.Msg['CONDITION_OUTPUT_HELPURL'] = 'https://www.google.com/';
+Blockly.Msg['CONDITION_ACTION_COND'] = 'Condition';
+Blockly.Msg['CONDITION_ACTION_ACT'] = 'Action';
+Blockly.Msg['CONDITION_ACTION_TOOLTIP'] = 'Condition and action';
+Blockly.Msg['CONDITION_ACTION_HELPURL'] = 'https://www.google.com/';
 Blockly.Msg['CUT'] = 'Cut out in file or string';
 Blockly.Msg['CUT_DELIMITER'] = 'Delimiter';
 Blockly.Msg['CUT_DEFINE_COLUMNS'] = 'Define columns';
