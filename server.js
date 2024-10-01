@@ -16,6 +16,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const favicon = require('serve-favicon');
 const sqlite3 = require('sqlite3').verbose();
 app.use(express.json());
 const db = new sqlite3.Database('db/blockly_unix_database.db', (err) => {
@@ -68,7 +69,7 @@ app.use((req, res, next) => {
 function addAuthToken(req, res, next) {
   if (req.isAuthenticated()) {
     const token = jwt.sign({ user: req.user.id }, process.env.SECRET_KEY, {
-      expiresIn: '20m'
+      expiresIn: '30m'
     }); // Token expires in 10 seconds for testing. When in production, set to 20 minutes
     req.authToken = token;
   } else {

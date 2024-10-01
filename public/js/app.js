@@ -1,6 +1,3 @@
-Blockly.JavaScript.init(workspace);
-Blockly.JavaScript = new Blockly.Generator('JavaScript');
-var generator = javascript.javascriptGenerator;
 let workspaceChangedAfterLastExecution = false; // Flag to track if the workspace has changed after execution
 let hasExecuted = false;
 let executedWorkspace = '';
