@@ -5,15 +5,14 @@ var argumentBlock = {
   args0: [
     {
       type: 'field_input',
-      name: 'argument',
+      name: 'ARGUMENT',
       text: 'argument' // default text for the input
     }
   ],
-
+  extensions: ['restrict_argumentsCreate_to_argument'],
   output: 'String',
   style: 'Function inputs',
   tooltip: '%{BKY_ARGUMENT_TOOLTIP}',
   helpUrl: '%{BKY_ARGUMENT_HELPURL}' // URL για περαιτέρω πληροφορίες ή τεκμηρίωση.
 };
-
 Blockly.defineBlocksWithJsonArray([argumentBlock]);

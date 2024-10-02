@@ -1,6 +1,5 @@
 var rmBlock = {
   type: 'rm',
-  message0: '%{BKY_RM}',
   category: 'Filesystem Operations',
   unix_description: [
     {
@@ -9,6 +8,14 @@ var rmBlock = {
       remove_directory: '-d',
       recursive: '-R',
       undelete: '-W'
+    }
+  ],
+  message0: '%{BKY_RM} %1',
+  args0: [
+    {
+      type: 'input_value',
+      name: 'ARGUMENT',
+      check: 'String'
     }
   ],
   message1: '%{BKY_RM_FORCE}',

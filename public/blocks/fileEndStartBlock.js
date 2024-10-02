@@ -24,11 +24,10 @@ var fileEndStartBlock = {
       text: '....' // empty text for user to define filename
     }
   ],
-
+  extensions: ['restrict_fileEndStart_to_filenamesCreate'],
   output: 'fileWildcard',
   style: 'Function inputs',
   tooltip: '%{BKY_FILE_END_START_WILDCHARS_TOOLTIP}',
   helpUrl: '%{BKY_FILE_END_START_WILDCHARS_HELPURL} ' // URL to further information or documentation.
 };
-
 Blockly.defineBlocksWithJsonArray([fileEndStartBlock]);

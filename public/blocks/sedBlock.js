@@ -21,7 +21,7 @@ var sedBlock = {
   message2: '%{BKY_SED_PATTERN}',
   args2: [
     {
-      type: 'input_value',
+      type: 'input_statement',
       name: 'regPattern',
       check: 'String'
     }

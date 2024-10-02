@@ -36,12 +36,12 @@ var mvBlock = {
   message4: '%{BKY_MV_SOURCE}: %1 %{BKY_MV_DEST}: %2',
   args4: [
     {
-      type: 'field_input',
+      type: 'input_value',
       name: 'SOURCE',
       text: 'source'
     },
     {
-      type: 'field_input',
+      type: 'input_value',
       name: 'DEST',
       text: 'destination'
     }

@@ -89,9 +89,7 @@ document
           const changeModificationTime =
             currentBlock.getFieldValue('modification_time') === 'TRUE';
           const rawTimestamp = currentBlock.getFieldValue('change_time_d');
-
-          // Check if the previous block passed a filename
-          let previousBlock = currentBlock.getPreviousBlock();
+          const argumentBlock = currentBlock.getInputTargetBlock('argument');
 
           if (notCreateFile) {
             touchCommand += ' -c';
@@ -113,7 +111,7 @@ document
 
           // Add the constructed touch command to the generatedCommand
           generatedCommand += (generatedCommand ? ' | ' : '') + touchCommand;
-          generatedCommand += ' ' + handleFilenamesBlocks(previousBlock);
+          generatedCommand += ' ' + handleArgumentsBlocks(argumentBlock);
         } else if (currentBlock.type === 'sed') {
           let sedCommand = handleBlock(currentBlock); // Generates the basic sed command
           // Get the pattern input and replacement field input
@@ -167,6 +165,83 @@ document
           }
           // Add the constructed sed command to the generatedCommand
           generatedCommand += (generatedCommand ? ' | ' : '') + sedCommand;
+        } else if (currentBlock.type === 'ln') {
+          let lnCommand = 'ln';
+          const symbolic = currentBlock.getFieldValue('symbolic') === 'TRUE';
+          const force = currentBlock.getFieldValue('force') === 'TRUE';
+          const interactive =
+            currentBlock.getFieldValue('interactive') === 'TRUE';
+
+          if (symbolic) {
+            lnCommand += ' -s ';
+          }
+
+          if (force) {
+            lnCommand += ' -f ';
+          }
+
+          if (interactive) {
+            lnCommand += ' -i ';
+          }
+          const sourceArgsBlock = currentBlock.getInputTargetBlock('SOURCE');
+          const targetArgsBlock = currentBlock.getInputTargetBlock('TARGET');
+          lnCommand += handleArgumentsBlocks(sourceArgsBlock);
+          lnCommand += ' ' + handleArgumentsBlocks(targetArgsBlock);
+          generatedCommand += (generatedCommand ? ' | ' : '') + lnCommand;
+        } else if (currentBlock.type === 'mv') {
+          let mvCommand = 'mv'; // Start with the basic mv command
+          const notPromptConfirmation =
+            currentBlock.getFieldValue('not_prompt_confirmation') === 'TRUE';
+          const promptConfirmation =
+            currentBlock.getFieldValue('prompt_confirmation') === 'TRUE';
+          const notOverwrite =
+            currentBlock.getFieldValue('not_overwrite') === 'TRUE';
+          const sourceArgsBlock = currentBlock.getInputTargetBlock('SOURCE');
+          const targetArgsBlock = currentBlock.getInputTargetBlock('DEST');
+
+          if (notPromptConfirmation) {
+            mvCommand += ' -f ';
+          }
+
+          if (promptConfirmation) {
+            mvCommand += ' -i ';
+          }
+
+          if (notOverwrite) {
+            mvCommand += ' -n ';
+          }
+
+          mvCommand += handleArgumentsBlocks(sourceArgsBlock);
+          mvCommand += ' ' + handleArgumentsBlocks(targetArgsBlock);
+          generatedCommand += (generatedCommand ? ' | ' : '') + mvCommand;
+        } else if (currentBlock.type === 'rm') {
+          let rmCommand = 'rm'; // Start with the basic rm command
+          const force = currentBlock.getFieldValue('force') === 'TRUE';
+          const requestConfirmation =
+            currentBlock.getFieldValue('request_confirmation') === 'TRUE';
+          const removeDirectory =
+            currentBlock.getFieldValue('remove_directory') === 'TRUE';
+          const recursive = currentBlock.getFieldValue('recursive') === 'TRUE';
+
+          if (force) {
+            rmCommand += ' -f ';
+          }
+
+          if (requestConfirmation) {
+            rmCommand += ' -i ';
+          }
+
+          if (removeDirectory) {
+            rmCommand += ' -d ';
+          }
+
+          if (recursive) {
+            rmCommand += ' -R ';
+          }
+
+          const argumentBlock = currentBlock.getInputTargetBlock('ARGUMENT');
+          rmCommand += ' ' + handleArgumentsBlocks(argumentBlock);
+          generatedCommand += (generatedCommand ? ' | ' : '') + rmCommand;
         } else {
           generatedCommand +=
             (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
@@ -507,6 +582,27 @@ function handleBlock(block) {
   // Here you can add any custom logic for special cases
 
   return commandString;
+}
+
+function handleArgumentsBlocks(block) {
+  console.log('handleArgumentsBlocks - init');
+
+  var arguments = '';
+
+  if (block && block.type === 'argumentsCreate') {
+    console.log('handleArgumentsBlocks - block:', block.type);
+    let args = [];
+    for (let i = 0; i < block.itemCount_; i++) {
+      let inputBlock = block.getInputTargetBlock('ADD' + i);
+      if (inputBlock) {
+        let arg = inputBlock.getFieldValue('ARGUMENT');
+        if (arg) {
+          args.push(arg);
+        }
+      }
+    }
+    return args.join(' ');
+  }
 }
 
 function handleMainBlocks(
@@ -1113,6 +1209,79 @@ Blockly.Extensions.register('integer_validation', function () {
   });
 });
 
+function registerConnectionRestrictionExtension(
+  extensionName,
+  parentBlockType,
+  inputFieldName,
+  allowedBlockType
+) {
+  Blockly.Extensions.register(extensionName, function () {
+    this.setOnChange(function (changeEvent) {
+      if (
+        changeEvent.type === Blockly.Events.BLOCK_MOVE &&
+        this.id === changeEvent.blockId
+      ) {
+        var parentBlock = this.getParent();
+        if (parentBlock && parentBlock.type === parentBlockType) {
+          var inputConnection = parentBlock
+            .getInput(inputFieldName)
+            .connection.targetBlock();
+
+          // If the connected block is not this block, or if it's not the allowed block type, disconnect
+          if (
+            (inputConnection && inputConnection !== this) ||
+            (allowedBlockType && this.type !== allowedBlockType)
+          ) {
+            if (this.outputConnection.targetConnection) {
+              this.outputConnection.disconnect();
+              console.warn(
+                `${this.type} block can only connect to the ${inputFieldName} input of ${parentBlockType} block.`
+              );
+            }
+          }
+        } else {
+          // If the parent block is not of the expected type, disconnect
+          if (this.outputConnection.targetConnection) {
+            this.outputConnection.disconnect();
+            console.warn(
+              `${this.type} block can only connect to ${parentBlockType} block.`
+            );
+          }
+        }
+      }
+    });
+  });
+}
+
+// Register the connection restriction for the 'argumentsCreate' block
+registerConnectionRestrictionExtension(
+  'restrict_argumentsCreate_to_argument',
+  'argumentsCreate',
+  'EMPTY',
+  'argument'
+);
+
+registerConnectionRestrictionExtension(
+  'restrict_filename_to_filenamesCreate',
+  'filenamesCreate',
+  'EMPTY',
+  'filename'
+);
+
+registerConnectionRestrictionExtension(
+  'restrict_fileEndStart_to_filenamesCreate',
+  'filenamesCreate',
+  'EMPTY',
+  'fileEndStart'
+);
+
+registerConnectionRestrictionExtension(
+  'restrict_touch_to_argumentsCreate',
+  'argumentsCreate',
+  'EMPTY',
+  'touch'
+);
+
 Blockly.Extensions.register('disallow_multiple_filenames', function () {
   this.setOnChange(function (changeEvent) {
     if (
@@ -1165,74 +1334,6 @@ Blockly.Extensions.register('cut_validation', function () {
         thisBlock.setWarningText(null);
       }
     }
-  });
-});
-
-Blockly.Extensions.register('validate_touch_time_d', function () {
-  this.getField('change_time_d').setValidator(function (input) {
-    // Define regex patterns to match different valid formats
-    var patterns = [
-      /^$/, // Empty string pattern
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(Z)?$/, // YYYY-MM-DD hh:mm:SS[tz]
-      /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(Z)?$/ // YYYY-MM-DDThh:mm:SS[tz]
-    ];
-
-    // Check if input matches one of the valid patterns
-    var isValid = patterns.some(function (pattern) {
-      return pattern.test(input);
-    });
-
-    if (!isValid) {
-      return null; // Invalid input, reject
-    }
-
-    // Extract components from input (no replacement here)
-    var parts = input.split('T');
-    var datePart = parts[0];
-    var timePart = (parts[1] || '').split('.')[0]; // Remove fractional seconds part
-    var tzPart = (parts[1] || '').includes('Z') ? 'Z' : '';
-
-    // Handle date part
-    var dateParts = datePart.split('-');
-    var year = dateParts[0];
-    var month = dateParts[1];
-    var day = dateParts[2];
-
-    // Handle time part
-    var timeParts = timePart.split(':');
-    var hour = timeParts[0] || '00';
-    var minute = timeParts[1] || '00';
-    var second = timeParts[2] || '00';
-
-    // Validate ranges for year, month, day, hour, minute, and second
-    if (
-      month < '01' ||
-      month > '12' ||
-      day < '01' ||
-      day > '31' ||
-      hour < '00' ||
-      hour > '23' ||
-      minute < '00' ||
-      minute > '59' ||
-      second < '00' ||
-      second > '59'
-    ) {
-      return null; // Invalid input: reject
-    }
-
-    // Check day validity for the given month and year (leap year handling)
-    var daysInMonth = new Date(year, parseInt(month, 10), 0).getDate();
-    if (parseInt(day, 10) > daysInMonth) {
-      return null; // Invalid day for the given month
-    }
-
-    // Optional time zone part validation
-    if (tzPart && tzPart !== 'Z') {
-      return null; // Invalid time zone designator, should be 'Z' if present
-    }
-
-    // Replace space with 'T' only when returning the valid input
-    return input;
   });
 });
 
