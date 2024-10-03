@@ -54,7 +54,27 @@ var lnBlock = {
   ],
   style: 'Filesystem Operations',
   tooltip: '%{BKY_LN_TOOLTIP}',
-  helpUrl: 'https://linux.die.net/man/1/ln'
+  helpUrl: 'https://linux.die.net/man/1/ln',
+  generateCommand: function (block) {
+    let lnCommand = 'ln ';
+    const symbolic = block.getFieldValue('symbolic') === 'TRUE';
+    const force = block.getFieldValue('force') === 'TRUE';
+    const interactive = block.getFieldValue('interactive') === 'TRUE';
+
+    if (symbolic) lnCommand += ' -s ';
+    if (force) lnCommand += ' -f ';
+    if (interactive) lnCommand += ' -i ';
+
+    const sourceArgsBlock = block.getInputTargetBlock('SOURCE');
+    const targetArgsBlock = block.getInputTargetBlock('TARGET');
+    lnCommand +=
+      handleArgumentsBlocks(sourceArgsBlock) +
+      ' ' +
+      handleArgumentsBlocks(targetArgsBlock);
+
+    generatedCommand = lnCommand;
+    return generatedCommand;
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([lnBlock]);

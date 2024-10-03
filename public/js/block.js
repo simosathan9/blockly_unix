@@ -60,15 +60,14 @@ var filenameBlocks = ['filename', 'filenamesCreate', 'fileEndStart'];
 document
   .getElementById('executeButton')
   .addEventListener('click', function onExecuteButtonClick() {
-    // Start from the first block
     let currentBlock = workspace.getTopBlocks()[0];
     let generatedCommand = '';
-    let blockCount = 0; // Mark the workspace as executed if users clicks the execute button and there are blocks in the workspace
+    let blockCount = 0;
 
     while (currentBlock) {
       blockCount++;
       var blockDef = window[currentBlock.type + 'Block'];
-      // Generate the command for the current block
+      const specificCommand = handleSpecificBlocks(currentBlock); // Call the refactored function
       try {
         if (filenameBlocks.includes(currentBlock.type)) {
           console.log('Filename Block initiated');
@@ -78,170 +77,8 @@ document
             blockDef.category === 'Regular Expressions')
         ) {
           generatedCommand += handleBlock(currentBlock);
-        } else if (currentBlock.type === 'touch') {
-          let touchCommand = 'touch'; // Start with the basic touch command
-
-          // Check each option and append to the command if selected
-          const notCreateFile =
-            currentBlock.getFieldValue('not_create_file') === 'TRUE';
-          const changeAccessTime =
-            currentBlock.getFieldValue('access_time') === 'TRUE';
-          const changeModificationTime =
-            currentBlock.getFieldValue('modification_time') === 'TRUE';
-          const rawTimestamp = currentBlock.getFieldValue('change_time_d');
-          const argumentBlock = currentBlock.getInputTargetBlock('argument');
-
-          if (notCreateFile) {
-            touchCommand += ' -c';
-          }
-
-          if (changeAccessTime) {
-            touchCommand += ' -a';
-          }
-
-          if (changeModificationTime) {
-            touchCommand += ' -m';
-          }
-
-          // Append '-d' with formatted timestamp if it's selected and has a value
-          if (rawTimestamp) {
-            const formattedTimestamp = rawTimestamp.replace(' ', 'T'); // Adjust timestamp format if needed
-            touchCommand += ` -d ${formattedTimestamp}`;
-          }
-
-          // Add the constructed touch command to the generatedCommand
-          generatedCommand += (generatedCommand ? ' | ' : '') + touchCommand;
-          generatedCommand += ' ' + handleArgumentsBlocks(argumentBlock);
-        } else if (currentBlock.type === 'sed') {
-          let sedCommand = handleBlock(currentBlock); // Generates the basic sed command
-          // Get the pattern input and replacement field input
-          let patternBlock = currentBlock.getInputTargetBlock('regPattern');
-          let replacementText = currentBlock.getFieldValue('regReplaceText');
-          // Check if patternBlock is null
-          if (!patternBlock) {
-            console.error('Pattern block is missing');
-            return; // Exit if pattern block is missing
-          }
-          // Extract field value from the pattern block
-          let pattern = patternBlock.getFieldValue('regPattern');
-          // Check if replacementText is defined
-          if (
-            typeof replacementText === 'undefined' ||
-            replacementText === ''
-          ) {
-            console.error('Replacement text is missing or empty');
-            return;
-          }
-          // Escape slashes in pattern and replacement text (if any)
-          pattern = pattern.replace(/\//g, '\\/'); // Escape slashes in pattern
-          replacementText = replacementText.replace(/\//g, '\\/'); // Escape slashes in replacement
-          // Replace spaces in pattern and replacement with slashes
-          pattern = pattern.replace(/\s+/g, '/');
-          replacementText = replacementText.replace(/\s+/g, '/');
-          // Extract if 'g' flag is present
-          const hasGlobalFlag =
-            currentBlock.getFieldValue('globally') === 'TRUE';
-          // Construct the sed command with the escaped slashes and ensure no extra space between pattern/replacement
-          if (sedCommand.startsWith('sed ')) {
-            sedCommand = sedCommand.replace(
-              /s\s*\/(.*?)\/(.*?)\//, // Capture pattern and replacement inside the slashes
-              `s/${pattern}/${replacementText}/` // Replace them with actual values
-            );
-            // Ensure the global flag `g` (if present) is positioned correctly, without extra spaces
-            if (hasGlobalFlag) {
-              sedCommand = sedCommand.replace(/\s+g/, 'g'); // Remove any space before the 'g' flag
-            }
-            // Format the command to include -E for extended regex
-            sedCommand =
-              `sed -E 's/${pattern}/${replacementText}/` +
-              (hasGlobalFlag ? 'g' : '') +
-              `'`; // Ensure proper formatting
-
-            let previousBlock = currentBlock.getPreviousBlock();
-            if (previousBlock && previousBlock.type === 'filenamesCreate') {
-              const filenames = handleFilenamesBlocks(previousBlock); // Assuming handleFilenamesBlocks extracts filenames
-              sedCommand += ` ${filenames}`; // Append filenames to the sed command
-            }
-          }
-          // Add the constructed sed command to the generatedCommand
-          generatedCommand += (generatedCommand ? ' | ' : '') + sedCommand;
-        } else if (currentBlock.type === 'ln') {
-          let lnCommand = 'ln';
-          const symbolic = currentBlock.getFieldValue('symbolic') === 'TRUE';
-          const force = currentBlock.getFieldValue('force') === 'TRUE';
-          const interactive =
-            currentBlock.getFieldValue('interactive') === 'TRUE';
-
-          if (symbolic) {
-            lnCommand += ' -s ';
-          }
-
-          if (force) {
-            lnCommand += ' -f ';
-          }
-
-          if (interactive) {
-            lnCommand += ' -i ';
-          }
-          const sourceArgsBlock = currentBlock.getInputTargetBlock('SOURCE');
-          const targetArgsBlock = currentBlock.getInputTargetBlock('TARGET');
-          lnCommand += handleArgumentsBlocks(sourceArgsBlock);
-          lnCommand += ' ' + handleArgumentsBlocks(targetArgsBlock);
-          generatedCommand += (generatedCommand ? ' | ' : '') + lnCommand;
-        } else if (currentBlock.type === 'mv') {
-          let mvCommand = 'mv'; // Start with the basic mv command
-          const notPromptConfirmation =
-            currentBlock.getFieldValue('not_prompt_confirmation') === 'TRUE';
-          const promptConfirmation =
-            currentBlock.getFieldValue('prompt_confirmation') === 'TRUE';
-          const notOverwrite =
-            currentBlock.getFieldValue('not_overwrite') === 'TRUE';
-          const sourceArgsBlock = currentBlock.getInputTargetBlock('SOURCE');
-          const targetArgsBlock = currentBlock.getInputTargetBlock('DEST');
-
-          if (notPromptConfirmation) {
-            mvCommand += ' -f ';
-          }
-
-          if (promptConfirmation) {
-            mvCommand += ' -i ';
-          }
-
-          if (notOverwrite) {
-            mvCommand += ' -n ';
-          }
-
-          mvCommand += handleArgumentsBlocks(sourceArgsBlock);
-          mvCommand += ' ' + handleArgumentsBlocks(targetArgsBlock);
-          generatedCommand += (generatedCommand ? ' | ' : '') + mvCommand;
-        } else if (currentBlock.type === 'rm') {
-          let rmCommand = 'rm'; // Start with the basic rm command
-          const force = currentBlock.getFieldValue('force') === 'TRUE';
-          const requestConfirmation =
-            currentBlock.getFieldValue('request_confirmation') === 'TRUE';
-          const removeDirectory =
-            currentBlock.getFieldValue('remove_directory') === 'TRUE';
-          const recursive = currentBlock.getFieldValue('recursive') === 'TRUE';
-
-          if (force) {
-            rmCommand += ' -f ';
-          }
-
-          if (requestConfirmation) {
-            rmCommand += ' -i ';
-          }
-
-          if (removeDirectory) {
-            rmCommand += ' -d ';
-          }
-
-          if (recursive) {
-            rmCommand += ' -R ';
-          }
-
-          const argumentBlock = currentBlock.getInputTargetBlock('ARGUMENT');
-          rmCommand += ' ' + handleArgumentsBlocks(argumentBlock);
-          generatedCommand += (generatedCommand ? ' | ' : '') + rmCommand;
+        } else if (specificCommand) {
+          generatedCommand += (generatedCommand ? ' | ' : '') + specificCommand;
         } else {
           generatedCommand +=
             (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
@@ -251,18 +88,15 @@ document
         if (error.lineNumber) {
           console.log('Line Number:', error.lineNumber);
         }
-        // For a complete stack trace:
         console.error(error.stack);
         break;
       }
-      // Move to the next connected block
       currentBlock = currentBlock.getNextBlock();
     }
 
     console.log('before command:', generatedCommand);
     generatedCommand = replaceKeywords(generatedCommand);
 
-    // Combine the constructed UNIX command and filename
     if (generatedCommand.length > 0) {
       document.getElementById('resultsText').innerText = generatedCommand;
     } else {
@@ -283,12 +117,9 @@ document
             workspaceChangedAfterLastExecution = false;
             if (token) {
               if (executedWorkspace) {
-                // Use AJAX to send the data to the server without redirecting
                 fetch('/saveWorkspace', {
                   method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
+                  headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({
                     workspaceData: executedWorkspace,
                     userId: user.id,
@@ -298,18 +129,34 @@ document
               }
             } else {
               console.log(
-                'Workspace has changed since execution ' +
-                  workspaceChangedAfterLastExecution
+                'Workspace has changed since execution ',
+                workspaceChangedAfterLastExecution
               );
               saveGuestWorkspaceData();
             }
           }
         });
     } else {
-      console.log('Has executed ', hasExecuted); // Still log if no fetch occurs
+      console.log('Has executed ', hasExecuted);
     }
-    console.log('Top blocks:', workspace.getTopBlocks());
   });
+
+function handleSpecificBlocks(currentBlock) {
+  let generatedCommand = '';
+  // Handle different block types
+  if (currentBlock.type === 'touch') {
+    generatedCommand = touchBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'sed') {
+    generatedCommand = sedBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'ln') {
+    generatedCommand = lnBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'mv') {
+    generatedCommand = mvBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'rm') {
+    generatedCommand = rmBlock.generateCommand(currentBlock);
+  }
+  return generatedCommand;
+}
 
 document.getElementById('resetButton').addEventListener('click', function () {
   if (
@@ -602,6 +449,11 @@ function handleArgumentsBlocks(block) {
       }
     }
     return args.join(' ');
+  } else if (block && block.type === 'argument') {
+    console.log('handleArgumentsBlocks - block:', block.type);
+    return block.getFieldValue('ARGUMENT');
+  } else {
+    return '';
   }
 }
 
@@ -1211,9 +1063,10 @@ Blockly.Extensions.register('integer_validation', function () {
 
 function registerConnectionRestrictionExtension(
   extensionName,
-  parentBlockType,
-  inputFieldName,
-  allowedBlockType
+  parentBlockTypes, // Array of allowed parent block types
+  inputFieldNamesMap, // Object to map block types to their input field names
+  allowedBlockType,
+  restrictedInputField // New parameter for the restricted input field
 ) {
   Blockly.Extensions.register(extensionName, function () {
     this.setOnChange(function (changeEvent) {
@@ -1222,30 +1075,41 @@ function registerConnectionRestrictionExtension(
         this.id === changeEvent.blockId
       ) {
         var parentBlock = this.getParent();
-        if (parentBlock && parentBlock.type === parentBlockType) {
-          var inputConnection = parentBlock
-            .getInput(inputFieldName)
-            .connection.targetBlock();
 
-          // If the connected block is not this block, or if it's not the allowed block type, disconnect
-          if (
-            (inputConnection && inputConnection !== this) ||
-            (allowedBlockType && this.type !== allowedBlockType)
-          ) {
+        if (parentBlock && parentBlockTypes.includes(parentBlock.type)) {
+          // Get the input field name based on the parent block type
+          var inputFieldName = inputFieldNamesMap[parentBlock.type];
+          console.log('inputFieldName:', inputFieldName);
+
+          // Check connection to the correct input field
+          if (inputFieldName) {
+            // Check the restricted connection (e.g., SOURCE)
+            var restrictedConnection = parentBlock
+              .getInput(restrictedInputField)
+              .connection.targetBlock();
+            if (restrictedConnection && restrictedConnection === this) {
+              // Disconnect if connected to the restricted input
+              if (this.outputConnection.targetConnection) {
+                this.outputConnection.disconnect();
+              }
+            }
+
+            // If the connected block is not this block, or if it's not the allowed block type, disconnect
+            if (allowedBlockType && this.type !== allowedBlockType) {
+              if (this.outputConnection.targetConnection) {
+                this.outputConnection.disconnect();
+              }
+            }
+          } else {
+            // No valid input field for this parent block
             if (this.outputConnection.targetConnection) {
               this.outputConnection.disconnect();
-              console.warn(
-                `${this.type} block can only connect to the ${inputFieldName} input of ${parentBlockType} block.`
-              );
             }
           }
         } else {
           // If the parent block is not of the expected type, disconnect
           if (this.outputConnection.targetConnection) {
             this.outputConnection.disconnect();
-            console.warn(
-              `${this.type} block can only connect to ${parentBlockType} block.`
-            );
           }
         }
       }
@@ -1253,32 +1117,37 @@ function registerConnectionRestrictionExtension(
   });
 }
 
-// Register the connection restriction for the 'argumentsCreate' block
+// Register the connection restriction for the 'argument' block
 registerConnectionRestrictionExtension(
-  'restrict_argumentsCreate_to_argument',
-  'argumentsCreate',
-  'EMPTY',
-  'argument'
+  'restrict_args_block',
+  ['argumentsCreate', 'mv', 'ln'],
+  {
+    argumentsCreate: 'EMPTY',
+    mv: 'DEST',
+    ln: 'TARGET'
+  },
+  'argument',
+  'SOURCE'
 );
 
 registerConnectionRestrictionExtension(
   'restrict_filename_to_filenamesCreate',
-  'filenamesCreate',
-  'EMPTY',
+  ['filenamesCreate'],
+  { filenamesCreate: 'EMPTY' },
   'filename'
 );
 
 registerConnectionRestrictionExtension(
   'restrict_fileEndStart_to_filenamesCreate',
-  'filenamesCreate',
-  'EMPTY',
+  ['filenamesCreate'],
+  { filenamesCreate: 'EMPTY' },
   'fileEndStart'
 );
 
 registerConnectionRestrictionExtension(
   'restrict_touch_to_argumentsCreate',
-  'argumentsCreate',
-  'EMPTY',
+  ['argumentsCreate'],
+  { argumentsCreate: 'EMPTY' },
   'touch'
 );
 

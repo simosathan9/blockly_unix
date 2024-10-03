@@ -47,7 +47,40 @@ var sedBlock = {
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_SED_TOOLTIP}',
-  helpUrl: '%{BKY_SED_HELPURL}' // URL to further information or documentation.
+  helpUrl: '%{BKY_SED_HELPURL}', // URL to further information or documentation.
+  generateCommand: function (block) {
+    let sedCommand = handleBlock(block); // Basic sed command
+
+    // Handle pattern and replacement
+    let patternBlock = block.getInputTargetBlock('regPattern');
+    let replacementText = block.getFieldValue('regReplaceText');
+
+    if (!patternBlock) {
+      console.error('Pattern block is missing');
+      return '';
+    }
+
+    let pattern = patternBlock.getFieldValue('regPattern');
+    if (typeof replacementText === 'undefined' || replacementText === '') {
+      console.error('Replacement text is missing or empty');
+      return '';
+    }
+
+    // Escape slashes in pattern and replacement
+    pattern = pattern.replace(/\//g, '\\/');
+    replacementText = replacementText.replace(/\//g, '\\/');
+    const hasGlobalFlag = block.getFieldValue('globally') === 'TRUE';
+
+    sedCommand = `sed -E 's/${pattern}/${replacementText}/${hasGlobalFlag ? 'g' : ''}'`;
+
+    let previousBlock = block.getPreviousBlock();
+    if (previousBlock && previousBlock.type === 'filenamesCreate') {
+      const filenames = handleFilenamesBlocks(previousBlock);
+      sedCommand += ` ${filenames}`;
+    }
+
+    generatedCommand = sedCommand;
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([sedBlock]);
