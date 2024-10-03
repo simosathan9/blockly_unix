@@ -4,174 +4,45 @@ const replacementMap = new Map([
   ['window.alert', 'print']
 ]);
 
-// used for correctly using the cut block with the -c parameter
-let regexKey = /(\d+)\s+-c-(\d+)/g;
-replacementMap.set(regexKey, (str) => {
-  regexKey.lastIndex = 0; // Reset lastIndex for global regex
-  let match = regexKey.exec(str);
-  return match ? `${match[1]}-${match[2]}` : null;
-});
-
-// used for correctly using the find block
-let regexKeyFind = /([-+])\s+(\d+)/g;
-replacementMap.set(regexKeyFind, (str) => {
-  regexKeyFind.lastIndex = 0; // Reset lastIndex for global regex
-  let match = regexKeyFind.exec(str);
-  return match ? `${match[1]}${match[2]}` : null;
-});
-
-// used for correctly using the find block
-let regexKeyFind1 = /([+-])(\d+)\s+([A-Z])/g;
-replacementMap.set(regexKeyFind1, (str) => {
-  regexKeyFind1.lastIndex = 0; // Reset lastIndex for global regex
-  let match = regexKeyFind1.exec(str);
-  return match ? `${match[1]}${match[2]}${match[3]}` : null;
-});
-
-// used for printing variables changes without the extra generic javascript check
-replacementMap.set(/\(typeof (.+?) === number \? (.+?) : 0\) /g, '');
-
-// used for printing correctly variable's changes
-replacementMap.set(/= \+1/g, '++');
-replacementMap.set(/= \+/g, '+=');
-replacementMap.set(/== \//g, '~ /');
-replacementMap.set(/\/ ==/g, '/ ~');
-replacementMap.set(/,(\d+)\.(\d+)/g, '');
-
-//used for gzip
-replacementMap.set(/\s.?-k\s{1,}/g, '-k ');
-
-//used for exec parameter in find
-replacementMap.set(/{}.\\;.*?\|.*/g, '{} \\;');
-
-replacementMap.set(/}}\'\s+END/g, '}} END');
-replacementMap.set(/}\s\'{/g, '} {');
-// replacementMap.set(/\'\s+\'/g, "'");
-replacementMap.set(/\|\s+\|\s+awk/g, ' awk');
-replacementMap.set(/\|\s+\|/g, ' |');
-replacementMap.set(/,0\s+\|/g, ' |');
-
-//used for xargs
-replacementMap.set(/xargs(?!.*-I{}).*?\|/g, 'xargs ');
-replacementMap.set(/xargs.*-I{}.*?\|/g, 'xargs -I{} ');
-
 var filenameBlocks = ['filename', 'filenamesCreate', 'fileEndStart'];
-
-document
-  .getElementById('executeButton')
-  .addEventListener('click', function onExecuteButtonClick() {
-    let currentBlock = workspace.getTopBlocks()[0];
-    let generatedCommand = '';
-    let blockCount = 0;
-
-    while (currentBlock) {
-      blockCount++;
-      var blockDef = window[currentBlock.type + 'Block'];
-      const specificCommand = handleSpecificBlocks(currentBlock); // Call the refactored function
-      try {
-        if (filenameBlocks.includes(currentBlock.type)) {
-          console.log('Filename Block initiated');
-        } else if (
-          blockDef &&
-          (blockDef.category === 'I/O Redirection' ||
-            blockDef.category === 'Regular Expressions')
-        ) {
-          generatedCommand += handleBlock(currentBlock);
-        } else if (specificCommand) {
-          generatedCommand += (generatedCommand ? ' | ' : '') + specificCommand;
-        } else {
-          generatedCommand +=
-            (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
-        }
-      } catch (error) {
-        console.error('An error occurred:', error.message);
-        if (error.lineNumber) {
-          console.log('Line Number:', error.lineNumber);
-        }
-        console.error(error.stack);
-        break;
-      }
-      currentBlock = currentBlock.getNextBlock();
-    }
-
-    console.log('before command:', generatedCommand);
-    generatedCommand = replaceKeywords(generatedCommand);
-
-    if (generatedCommand.length > 0) {
-      document.getElementById('resultsText').innerText = generatedCommand;
-    } else {
-      document.getElementById('resultsText').innerText = '\n'; // Insert a newline character if the command is empty so that the results area does not shrink
-    }
-
-    console.log('Generated command:', generatedCommand);
-    if (blockCount > 0) {
-      fetch('/auth-token')
-        .then((response) => response.json())
-        .then((data) => {
-          if (workspaceChangedAfterLastExecution) {
-            const state = Blockly.serialization.workspaces.save(workspace);
-            executedWorkspace = JSON.stringify(state);
-            const token = data.authToken;
-            const user = data.user;
-            hasExecuted = true;
-            workspaceChangedAfterLastExecution = false;
-            if (token) {
-              if (executedWorkspace) {
-                fetch('/saveWorkspace', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    workspaceData: executedWorkspace,
-                    userId: user.id,
-                    workspaceName: 'executedWorkspace'
-                  })
-                });
-              }
-            } else {
-              console.log(
-                'Workspace has changed since execution ',
-                workspaceChangedAfterLastExecution
-              );
-              saveGuestWorkspaceData();
-            }
-          }
-        });
-    } else {
-      console.log('Has executed ', hasExecuted);
-    }
-  });
-
-function handleSpecificBlocks(currentBlock) {
-  let generatedCommand = '';
-  // Handle different block types
-  if (currentBlock.type === 'touch') {
-    generatedCommand = touchBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'sed') {
-    generatedCommand = sedBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'ln') {
-    generatedCommand = lnBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'mv') {
-    generatedCommand = mvBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'rm') {
-    generatedCommand = rmBlock.generateCommand(currentBlock);
-  }
-  return generatedCommand;
-}
-
-document.getElementById('resetButton').addEventListener('click', function () {
-  if (
-    confirm(
-      'Are you sure you want to reset the workspace? Everything will be deleted.'
-    )
-  ) {
-    workspace.clear(); // this clears the workspace
-  }
-});
 
 Blockly.JavaScript.forBlock['filename'] = function (block) {
   var filename = block.getFieldValue('FILENAME');
   return [JSON.stringify(filename), Blockly.JavaScript.ORDER_NONE];
 };
+
+function generateCommandFromWorkspace() {
+  let currentBlock = workspace.getTopBlocks()[0];
+  let generatedCommand = '';
+  let blockCount = 0;
+
+  while (currentBlock) {
+    blockCount++;
+    var blockDef = window[currentBlock.type + 'Block'];
+    try {
+      if (
+        blockDef &&
+        (blockDef.category === 'I/O Redirection' ||
+          blockDef.category === 'Regular Expressions')
+      ) {
+        generatedCommand += handleBlock(currentBlock);
+      } else {
+        generatedCommand +=
+          (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error.message);
+      if (error.lineNumber) {
+        console.log('Line Number:', error.lineNumber);
+      }
+      console.error(error.stack);
+      break;
+    }
+    currentBlock = currentBlock.getNextBlock();
+  }
+
+  return replaceKeywords(generatedCommand);
+}
 
 function handleBlock(block) {
   var blockType = block.type;
@@ -203,7 +74,6 @@ function handleBlock(block) {
   }
 
   // Fetch the attached regex block
-  var inputPatternBlock = block.getInputTargetBlock('regPattern');
   var inputreplaceTextBlock = block.getInputTargetBlock('regReplaceText');
   console.log('regReplaceText', inputreplaceTextBlock);
   var beginBlock = block.getInputTargetBlock('begin');
@@ -221,22 +91,9 @@ function handleBlock(block) {
     endValue = handleBeginEnd(endBlock);
   }
 
-  //console.log("inputPatternBlock:", inputPatternBlock.type);
   // If there's a connected block, and it's of type 'Regex', get the field value
   var patternValue = '';
   var conditionValue = '';
-  if (inputPatternBlock && inputPatternBlock.type === 'regPattern') {
-    patternValue = inputPatternBlock.getFieldValue('regPattern');
-    console.log('HANDLEBLOCK - patternValue:', patternValue);
-  } else if (inputPatternBlock && inputPatternBlock.type === 'regOr') {
-    patternValue = getMultiplePatterns(inputPatternBlock);
-    console.log('HANDLEBLOCK - MultiplepatternValue:', patternValue);
-  } else if (inputPatternBlock && inputPatternBlock.type === 'condOutput') {
-    console.log('inputPatternBlock', inputPatternBlock);
-    console.log('blockType', blockType);
-    conditionValue = handleConditionsAndLoops(inputPatternBlock, blockType);
-    console.log('HANDLEBLOCK - conditionValue', conditionValue);
-  }
 
   //get all the regex children blocks of the main block
   var regexBlocks = getRegexChildenBlocks(block);
@@ -292,22 +149,6 @@ function handleBlock(block) {
     );
   }
 
-  //in case of the awk the regexStringValue is already included in the command so we dont need it
-  if (blockType === 'awk') {
-    regexStringValue = '';
-    let contains = commandParts.some(
-      (element) => element && element.includes("-F '")
-    );
-    if (!contains) {
-      commandParts[0] = "'" + commandParts[0];
-    }
-  }
-
-  //in case of the sed command the regexStringValue is already included in the command so we dont need it
-  if (blockType === 'sed') {
-    regexStringValue = '';
-  }
-
   // Build the string command from parts
   let commandString;
 
@@ -315,11 +156,7 @@ function handleBlock(block) {
     commandString = commandParts.join(' ');
   } else if (blockCategory === 'Regular Expressions') {
     commandString = commandParts.join('');
-  }
-  // else if(blockType === 'loopOutput'){
-  // commandString = conditionValue.replace(/{(.+?) }'/g, "$1");
-  // }
-  else if (blockType === 'variables_set') {
+  } else if (blockType === 'variables_set') {
     commandString = variable_name + '=' + variable_value + ' |';
   } else if (blockType === 'awk') {
     let beginIndex = commandParts.indexOf('BEGIN');
@@ -418,38 +255,7 @@ function handleBlock(block) {
       ' ' +
       filenameValue;
   }
-
-  console.log('HANDLEBLOCK - command built:', commandString);
-
-  // Here you can add any custom logic for special cases
-
   return commandString;
-}
-
-function handleArgumentsBlocks(block) {
-  console.log('handleArgumentsBlocks - init');
-
-  var arguments = '';
-
-  if (block && block.type === 'argumentsCreate') {
-    console.log('handleArgumentsBlocks - block:', block.type);
-    let args = [];
-    for (let i = 0; i < block.itemCount_; i++) {
-      let inputBlock = block.getInputTargetBlock('ADD' + i);
-      if (inputBlock) {
-        let arg = inputBlock.getFieldValue('ARGUMENT');
-        if (arg) {
-          args.push(arg);
-        }
-      }
-    }
-    return args.join(' ');
-  } else if (block && block.type === 'argument') {
-    console.log('handleArgumentsBlocks - block:', block.type);
-    return block.getFieldValue('ARGUMENT');
-  } else {
-    return '';
-  }
 }
 
 function handleMainBlocks(
@@ -715,45 +521,6 @@ function handleBeginEnd(block) {
   return blockCode;
 }
 
-function handleConditionsAndLoops(block, blockType) {
-  console.log('handleConditionsAndLoops init');
-  var blockCode;
-  //console.log("handleConditionsAndLoops - block :", block.type);
-  var innerBlock = block.getInputTargetBlock('DO');
-  //console.log("handleConditionsAndLoops - innerBlock :", innerBlock);
-
-  var conditionBlock = innerBlock.getInputTargetBlock('IF0'); // Get the first condition block
-  var doBlock = innerBlock.getInputTargetBlock('DO0');
-
-  if (innerBlock.type === 'controls_if' && !doBlock) {
-    // Check if the "do" block of an if statement is empty
-    //console.log("handleConditionsAndLoops - conditionBlock:", conditionBlock.type);
-    if (conditionBlock) {
-      blockCode = generator.blockToCode(conditionBlock)[0];
-      blockCode = blockCode.replace(/'/g, ''); //.replace(/;/g, '');
-      if (blockType == 'awk') {
-        blockCode = blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ');
-      } else {
-        blockCode = blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ') + "'";
-      }
-    }
-  } else {
-    blockCode = generator.blockToCode(innerBlock);
-    blockCode = blockCode.replace(/'/g, ''); //.replace(/;/g, '');
-    if (blockType == 'awk') {
-      blockCode =
-        '{' + blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ') + '}';
-    } else {
-      blockCode =
-        '{' + blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ') + "}'";
-    }
-  }
-
-  console.log('handleConditionsAndLoops - code:', blockCode);
-
-  return blockCode;
-}
-
 function generateRegexString(regexBlocksList) {
   console.log('generateRegexString init');
   let regexStringCommand = '';
@@ -837,21 +604,6 @@ function replaceKeywords(command) {
   return command;
 }
 
-function getFileNames(block) {
-  console.log('getFileNames - init');
-  let fileNames = [];
-  for (let i = 0; i < block.itemCount_; i++) {
-    let inputBlock = block.getInputTargetBlock('ADD' + i);
-    if (inputBlock) {
-      let fileName = inputBlock.getFieldValue('FILENAME');
-      if (fileName) {
-        fileNames.push(fileName);
-      }
-    }
-  }
-  return fileNames.join(' ');
-}
-
 function handleFilenamesBlocks(block) {
   console.log('handleFilenamesBlocks - init');
   var filename = '';
@@ -871,21 +623,6 @@ function handleFilenamesBlocks(block) {
   }
 
   return filename;
-}
-
-function getMultiplePatterns(block) {
-  console.log('getMultiplePatterns - init');
-  let patterns = [];
-  for (let i = 0; i < block.itemCount_; i++) {
-    let inputBlock = block.getInputTargetBlock('ADD' + i);
-    if (inputBlock) {
-      let patt = inputBlock.getFieldValue('regPattern');
-      if (patt) {
-        patterns.push(patt);
-      }
-    }
-  }
-  return patterns.join('|');
 }
 
 function getMultiplePrints(block) {
@@ -908,10 +645,6 @@ function getMultiplePrints(block) {
         singlePrint = blockDefinition.unix_description[0]['FieldNumber'];
       } else if (inputBlock.type == 'regPattern') {
         singlePrint = inputBlock.getFieldValue('regPattern');
-      } else if (inputBlock.type == 'regOr') {
-        singlePrint = getMultiplePatterns(inputBlock);
-      } else if (inputBlock.type == 'regOutput') {
-        singlePrint = handleBlock(inputBlock);
       } else if (inputBlock.type == 'variables_get') {
         // Retrieve the variable ID from the block
         var variableId = inputBlock.getFieldValue('VAR');
@@ -946,42 +679,6 @@ generator.forBlock['column'] = function (block) {
   return [code, generator.ORDER_ATOMIC];
 };
 
-generator.forBlock['NR'] = function (block) {
-  var code = 'NR';
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['NF'] = function (block) {
-  var code = 'NF';
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['multiplePrint'] = function (block) {
-  var code = getMultiplePrints(block);
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['regPattern'] = function (block) {
-  var text = block.getFieldValue('regPattern');
-  var code = `'${text}'`;
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['regOr'] = function (block) {
-  var code = getMultiplePatterns(block);
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['regOutput'] = function (block) {
-  var code = handleBlock(block);
-  return [code, generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['awk'] = function (block) {
-  var code = handleBlock(block);
-  return [code, generator.ORDER_ATOMIC];
-};
-
 generator.forBlock['text'] = function (block) {
   var textValue = block.getFieldValue('TEXT');
   var code = '"' + textValue + '"';
@@ -1013,10 +710,6 @@ generator.forBlock['logic_compare'] = function (block) {
   );
   if (leftBlock && leftBlock.type === 'regOutput' && leftBlockCode) {
     leftBlockCode = '/' + leftBlockCode + '/';
-  }
-
-  if (rightBlock && rightBlock.type === 'regOutput' && rightBlockCode) {
-    rightBlockCode = '/' + rightBlockCode + '/';
   }
 
   // Construct the final code for the logic_compare block

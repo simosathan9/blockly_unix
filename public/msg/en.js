@@ -1041,7 +1041,7 @@ Blockly.Msg['PING_TIMEOUT'] =
 Blockly.Msg['SSH'] = 'Establish a SSH connection';
 Blockly.Msg['SSH_USER'] = 'Specify the username';
 Blockly.Msg['SSH_HOST'] = 'Specify the remote host address';
-Blockly.Msg['BKY_SSH_KEY'] = 'Private Key File ';
+Blockly.Msg['SSH_KEY'] = 'Private Key File ';
 Blockly.Msg['SSH_PORT'] = 'Define the port number';
 
 // Curl command

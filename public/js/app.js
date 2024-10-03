@@ -1,6 +1,7 @@
 let workspaceChangedAfterLastExecution = false; // Flag to track if the workspace has changed after execution
 let hasExecuted = false;
 let executedWorkspace = '';
+const state = Blockly.serialization.workspaces.save(workspace);
 
 window.onload = function () {
   initBlockly(); // Initialize your Blockly workspace
@@ -20,8 +21,6 @@ function initBlockly() {
       }
     });
 }
-
-const state = Blockly.serialization.workspaces.save(workspace);
 
 function autoSaveWorkspace() {
   fetch('/auth-token')
@@ -173,7 +172,7 @@ async function updateWorkspaces(userId) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function manageWorkspaces() {
   fetch('/auth-token')
     .then((response) => response.json())
     .then((data) => {
@@ -307,54 +306,44 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch((error) => {
       console.error('Error fetching the token:', error);
     });
-});
-document
-  .getElementById('themeDropdown')
-  .addEventListener('change', function (event) {
-    var selectedTheme = this.value;
-    if (selectedTheme === 'halloween') {
-      workspace.setTheme(Blockly.Themes.Halloween);
-      document.getElementById('light-theme').disabled = false;
-      document.getElementById('dark-theme').disabled = true;
-    } else if (selectedTheme === 'dark') {
-      document.getElementById('light-theme').disabled = true;
-      document.getElementById('dark-theme').disabled = false;
-      workspace.setTheme(Blockly.Themes.Dark);
-    }
-  });
+}
+
+function manageTheme(event) {
+  var selectedTheme = event.target.value; // Παίρνουμε την επιλεγμένη τιμή από το event.target
+
+  if (selectedTheme === 'halloween') {
+    workspace.setTheme(Blockly.Themes.Halloween); // Ορισμός του θέματος Halloween
+    document.getElementById('light-theme').disabled = false;
+    document.getElementById('dark-theme').disabled = true;
+  } else if (selectedTheme === 'dark') {
+    document.getElementById('light-theme').disabled = true;
+    document.getElementById('dark-theme').disabled = false;
+    workspace.setTheme(Blockly.Themes.Dark); // Ορισμός του σκοτεινού θέματος
+  }
+}
 
 function loadLanguageFile(language) {
-  return Promise.all([
-    new Promise((resolve, reject) => {
-      var script = document.createElement('script');
-      script.src = 'msg/' + language + '.js';
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.appendChild(script);
-    })
-  ]);
+  return new Promise((resolve, reject) => {
+    var script = document.createElement('script');
+    script.src = 'msg/' + language + '.js';
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
 }
 
 function loadInitialLanguage() {
-  var selectedLanguage = 'en'; // Αρχική γλώσσα (αγγλικά)
+  var selectedLanguage = 'en';
   loadLanguageFile(selectedLanguage).then(initBlockly);
 }
 
-function handleLanguageChange() {
-  document
-    .getElementById('languageMenu')
-    .addEventListener('change', function (event) {
-      var selectedLanguage = event.target.value;
-      loadLanguageFile(selectedLanguage).then(function () {
-        // Clear the workspace before reloading blocks in the new language
-        Blockly.getMainWorkspace().clear();
-        initBlockly();
-      });
-    });
+function handleLanguageChange(event) {
+  var selectedLanguage = event.target.value;
+  loadLanguageFile(selectedLanguage).then(function () {
+    Blockly.getMainWorkspace().clear();
+    initBlockly();
+  });
 }
-
-loadInitialLanguage();
-handleLanguageChange();
 
 function loadWorkspace() {
   var jsonState = localStorage.getItem('blocklyWorkspace');
@@ -386,7 +375,6 @@ function onWorkspaceChange(event) {
       }
     });
 }
-Blockly.getMainWorkspace().addChangeListener(onWorkspaceChange);
 
 function saveWorkspace() {
   //used for saving the workspace in the local storage of the browser in case the user is not logged in
@@ -446,7 +434,91 @@ function copyToClipboard() {
   document.body.removeChild(textArea);
 }
 
-// Attach the function to the 'click' event of the button
+function executeButton() {
+  const generatedCommand = generateCommandFromWorkspace();
+  const blockCount = workspace.getTopBlocks().length;
+  saveWorkspaceOnExecute(blockCount);
+
+  if (generatedCommand.length > 0) {
+    document.getElementById('resultsText').innerText = generatedCommand;
+  } else {
+    document.getElementById('resultsText').innerText = '\n'; // Insert a newline character if the command is empty so that the results area does not shrink
+  }
+}
+
+function saveWorkspaceOnExecute(blockCount) {
+  if (blockCount > 0) {
+    fetch('/auth-token')
+      .then((response) => response.json())
+      .then((data) => {
+        if (workspaceChangedAfterLastExecution) {
+          const state = Blockly.serialization.workspaces.save(workspace);
+          executedWorkspace = JSON.stringify(state);
+          const token = data.authToken;
+          const user = data.user;
+          hasExecuted = true;
+          workspaceChangedAfterLastExecution = false;
+          if (token) {
+            if (executedWorkspace) {
+              fetch('/saveWorkspace', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  workspaceData: executedWorkspace,
+                  userId: user.id,
+                  workspaceName: 'executedWorkspace'
+                })
+              });
+            }
+          } else {
+            console.log(
+              'Workspace has changed since execution ',
+              workspaceChangedAfterLastExecution
+            );
+            saveGuestWorkspaceData();
+          }
+        }
+      });
+  } else {
+    console.log('Has executed ', hasExecuted);
+  }
+}
+
+function resetWorkspace() {
+  if (
+    confirm(
+      'Are you sure you want to reset the workspace? Everything will be deleted.'
+    )
+  ) {
+    workspace.clear(); // Καθαρίζει το workspace
+  }
+}
+
+// EventListeners
 document
   .getElementById('copyButton')
   .addEventListener('click', copyToClipboard);
+
+document
+  .getElementById('executeButton')
+  .addEventListener('click', executeButton);
+
+document
+  .getElementById('resetButton')
+  .addEventListener('click', resetWorkspace);
+
+document
+  .getElementById('themeDropdown')
+  .addEventListener('change', manageTheme);
+
+document
+  .getElementById('languageMenu')
+  .addEventListener('change', handleLanguageChange);
+
+document.addEventListener('DOMContentLoaded', loadInitialLanguage);
+
+document.addEventListener('DOMContentLoaded', () => {
+  manageWorkspaces();
+});
+
+Blockly.getMainWorkspace().addChangeListener(onWorkspaceChange);

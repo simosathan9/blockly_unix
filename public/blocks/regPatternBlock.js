@@ -28,10 +28,3 @@ var regPatternBlock = {
 
 // Ορισμός του block στο Blockly
 Blockly.defineBlocksWithJsonArray([regPatternBlock]);
-
-// Ορισμός του generator για το block regPattern
-generator.forBlock['regPattern'] = function (block) {
-  var text = block.getFieldValue('regPattern');
-  var code = `'${text}'`;
-  return [code, generator.ORDER_ATOMIC];
-};

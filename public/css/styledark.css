@@ -82,16 +82,13 @@ body {
   box-shadow: none;
   width: 200px;
   height: 150px;
-  top: 50px;
-  left: 258px;
+  top: 54px;
+  left: 210px;
   border-radius: 3px;
-  background-color: #252526;
 }
 
 .blockly-focus-region {
-  background-color: #252526; /* Applies to HTML elements */
   fill: #252526; /* Applies to SVG elements */
-  border: none; /* Ensures no border is applied */
 }
 
 .svg {

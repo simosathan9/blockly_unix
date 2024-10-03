@@ -15,7 +15,7 @@ var sshBlock = {
     {
       type: 'field_input',
       name: 'KEY',
-      text: '/path/to/key'
+      text: 'key'
     }
   ],
   message2: '%{BKY_SSH_USER} %1',
