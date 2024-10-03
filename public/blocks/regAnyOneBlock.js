@@ -3,8 +3,8 @@ var regAnyOneBlock = {
   category: 'Regular Expressions',
   unix_description: [
     {
-      regPattern: '[patt]',
-      notMatch: '[^patt^]'
+      regPattern: '[stm]',
+      notMatch: '[^stm]'
     }
   ],
 

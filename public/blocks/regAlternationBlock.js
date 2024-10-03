@@ -3,9 +3,9 @@ var regAlternationBlock = {
   category: 'Regular Expressions',
   unix_description: [
     {
-      LEFT_PATTERN: 'patt |',
+      LEFT_PATTERN: 'stm | ',
 
-      RIGHT_PATTERN: 'patt'
+      RIGHT_PATTERN: 'stm'
     }
   ],
   message0: '%1', // Μήνυμα που εμφανίζει το | ανάμεσα στις δύο εισόδους

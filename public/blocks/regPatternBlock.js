@@ -19,7 +19,7 @@ var regPatternBlock = {
       text: 'string' // default text for the input
     }
   ],
-  previousStatement: 'Action',
+  previousStatement: ['String', 'Action'],
   nextStatement: 'Action',
   style: 'Regular Expressions',
   tooltip: '%{BKY_REGPATTERN_TOOLTIP}',

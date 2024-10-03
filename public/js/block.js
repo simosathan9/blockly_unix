@@ -321,11 +321,6 @@ document.getElementById('resetButton').addEventListener('click', function () {
   }
 });
 
-// Attach the function to the 'click' event of the button
-document
-  .getElementById('copyButton')
-  .addEventListener('click', copyToClipboard);
-
 Blockly.JavaScript.forBlock['filename'] = function (block) {
   var filename = block.getFieldValue('FILENAME');
   return [JSON.stringify(filename), Blockly.JavaScript.ORDER_NONE];
@@ -472,7 +467,7 @@ function handleBlock(block) {
   if (blockCategory === 'I/O Redirection') {
     commandString = commandParts.join(' ');
   } else if (blockCategory === 'Regular Expressions') {
-    commandString = regexStringValue + commandParts.join('');
+    commandString = commandParts.join('');
   }
   // else if(blockType === 'loopOutput'){
   // commandString = conditionValue.replace(/{(.+?) }'/g, "$1");
@@ -720,10 +715,10 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
   let commandParts = [];
   // Iterate over all inputs and their fields
   block.inputList.forEach((input) => {
+    let value;
     //console.log("handleRegexBlocks - input:", input.name);
     input.fieldRow.forEach((field) => {
       console.log('handleRegexBlocks - field:', field);
-      let value;
 
       // Handle dropdowns
       if (field instanceof Blockly.FieldDropdown) {
@@ -810,15 +805,32 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
               patternValue
             )
           : '';
-      } else if (input.type === Blockly.INPUT_STATEMENT) {
-        value = '';
+      }
+    });
+    if (
+      input.type === Blockly.NEXT_STATEMENT ||
+      input.type === Blockly.INPUT_STATEMENT
+    ) {
+      let statementCode = '';
+      let childBlock = block.getInputTargetBlock(input.name);
+
+      while (childBlock) {
+        // Process the child block using handleBlock
+        let childCode = handleBlock(childBlock);
+        statementCode += childCode;
+        // Move to the next block connected via next connection
+        childBlock = childBlock.getNextBlock();
       }
 
-      console.log('handleRegexBlocks - value:', value);
-      // Add the processed value to the command parts
-      console.log('handleRegexBlocks - commandParts:', commandParts);
-      commandParts.push(value);
-    });
+      value = blockDefinition.unix_description[0][input.name]
+        ? blockDefinition.unix_description[0][input.name].replace(
+            'stm',
+            statementCode
+          )
+        : '';
+    }
+    console.log('handleRegexBlocks - value:', value);
+    commandParts.push(value);
   });
 
   return commandParts;

@@ -1,9 +1,9 @@
 var regEndBlock = {
-  type: 'regEnd',
+  type: '$',
   category: 'Regular Expressions',
   unix_description: [
     {
-      regPattern: 'patt$'
+      regEnd: '$'
     }
   ],
   message0: '%{BKY_REGEND}',

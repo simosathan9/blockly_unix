@@ -48,7 +48,7 @@ var regRangeBlock = {
     }
   ],
   style: 'Regular Expressions',
-  previousStatement: 'Action',
+  previousStatement: ['String', 'Action'],
   nextStatement: 'Action',
   tooltip: '%{BKY_REGRANGE_TOOLTIP}',
   helpUrl: '%{BKY_REGRANGE_HELPURL}' // URL to further information or documentation.

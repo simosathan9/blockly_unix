@@ -402,7 +402,7 @@
               { kind: 'block', type: 'regFor' },
               { kind: 'block', type: 'regRange' },
               { kind: 'block', type: 'regStart' },
-              { kind: 'block', type: 'regEnd' },
+              { kind: 'block', type: '$' },
               { kind: 'block', type: 'regAnyOne' },
               { kind: 'block', type: 'regCapturingGroup' },
               { kind: 'block', type: 'regAlternation' },
@@ -582,7 +582,6 @@
         },
 
         plugins: {
-          blockDragger: ScrollBlockDragger,
           metricsManager: ScrollMetricsManager,
           toolboxSearch: true
         }

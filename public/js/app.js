@@ -445,3 +445,8 @@ function copyToClipboard() {
   // Clean up: Remove the temporary text area element
   document.body.removeChild(textArea);
 }
+
+// Attach the function to the 'click' event of the button
+document
+  .getElementById('copyButton')
+  .addEventListener('click', copyToClipboard);
