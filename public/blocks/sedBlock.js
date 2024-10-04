@@ -80,6 +80,7 @@ var sedBlock = {
     }
 
     generatedCommand = sedCommand;
+    return generatedCommand;
   }
 };
 

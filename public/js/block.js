@@ -6,11 +6,6 @@ const replacementMap = new Map([
 
 var filenameBlocks = ['filename', 'filenamesCreate', 'fileEndStart'];
 
-Blockly.JavaScript.forBlock['filename'] = function (block) {
-  var filename = block.getFieldValue('FILENAME');
-  return [JSON.stringify(filename), Blockly.JavaScript.ORDER_NONE];
-};
-
 function generateCommandFromWorkspace() {
   let currentBlock = workspace.getTopBlocks()[0];
   let generatedCommand = '';
@@ -19,6 +14,7 @@ function generateCommandFromWorkspace() {
   while (currentBlock) {
     blockCount++;
     var blockDef = window[currentBlock.type + 'Block'];
+    const specificCommand = handleSpecificBlocks(currentBlock);
     try {
       if (
         blockDef &&
@@ -26,6 +22,8 @@ function generateCommandFromWorkspace() {
           blockDef.category === 'Regular Expressions')
       ) {
         generatedCommand += handleBlock(currentBlock);
+      } else if (specificCommand) {
+        generatedCommand += (generatedCommand ? ' | ' : '') + specificCommand;
       } else {
         generatedCommand +=
           (generatedCommand ? ' | ' : '') + handleBlock(currentBlock);
@@ -368,6 +366,47 @@ function handleMainBlocks(
   return commandParts;
 }
 
+function handleSpecificBlocks(currentBlock) {
+  let generatedCommand = '';
+  // Handle different block types
+  if (currentBlock.type === 'touch') {
+    generatedCommand = touchBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'sed') {
+    generatedCommand = sedBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'ln') {
+    generatedCommand = lnBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'mv') {
+    generatedCommand = mvBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'rm') {
+    generatedCommand = rmBlock.generateCommand(currentBlock);
+  }
+  return generatedCommand;
+}
+
+function handleArgumentsBlocks(block) {
+  console.log('handleArgumentsBlocks - init');
+  var arguments = '';
+  if (block && block.type === 'argumentsCreate') {
+    console.log('handleArgumentsBlocks - block:', block.type);
+    let args = [];
+    for (let i = 0; i < block.itemCount_; i++) {
+      let inputBlock = block.getInputTargetBlock('ADD' + i);
+      if (inputBlock) {
+        let arg = inputBlock.getFieldValue('ARGUMENT');
+        if (arg) {
+          args.push(arg);
+        }
+      }
+    }
+    return args.join(' ');
+  } else if (block && block.type === 'argument') {
+    console.log('handleArgumentsBlocks - block:', block.type);
+    return block.getFieldValue('ARGUMENT');
+  } else {
+    return '';
+  }
+}
+
 function handleRegexBlocks(block, blockDefinition, patternValue) {
   console.log('handleRegexBlocks init');
   let commandParts = [];
@@ -623,6 +662,21 @@ function handleFilenamesBlocks(block) {
   }
 
   return filename;
+}
+
+function getFileNames(block) {
+  console.log('getFileNames - init');
+  let fileNames = [];
+  for (let i = 0; i < block.itemCount_; i++) {
+    let inputBlock = block.getInputTargetBlock('ADD' + i);
+    if (inputBlock) {
+      let fileName = inputBlock.getFieldValue('FILENAME');
+      if (fileName) {
+        fileNames.push(fileName);
+      }
+    }
+  }
+  return fileNames.join(' ');
 }
 
 function getMultiplePrints(block) {
