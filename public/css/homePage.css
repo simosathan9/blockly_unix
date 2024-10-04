@@ -81,18 +81,6 @@ body {
   font-family: 'Roboto', Arial, sans-serif;
 }
 
-.d-flex {
-  display: flex;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.min-vh-100 {
-  min-height: 100vh;
-}
-
 .flex-fill {
   flex: 1;
 }

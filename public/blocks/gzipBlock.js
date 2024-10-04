@@ -33,7 +33,7 @@ var gzipBlock = {
     {
       type: 'field_checkbox',
       name: 'keep',
-      checked: true // by default it's disabled
+      checked: true
     }
   ],
   message2: '%{BKY_GZIP_LEVEL_OF_COMPRESSION}',
@@ -59,7 +59,7 @@ var gzipBlock = {
     {
       type: 'field_input',
       name: 'suffix',
-      text: '' // empty text for user to define path
+      text: ''
     }
   ],
   style: 'Other Commands',
@@ -67,7 +67,7 @@ var gzipBlock = {
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_GZIP_TOOLTIP}',
-  helpUrl: '' // URL to further information or documentation.
+  helpUrl: ''
 };
 
 Blockly.defineBlocksWithJsonArray([gzipBlock]);

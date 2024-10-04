@@ -20,4 +20,3 @@ var killBlock = {
 };
 
 Blockly.defineBlocksWithJsonArray([killBlock]);
-//

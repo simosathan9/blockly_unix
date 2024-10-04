@@ -58,29 +58,7 @@ var touchBlock = {
   extensions: ['validate_touch_time_d', 'restrict_touch_to_argumentsCreate'],
   style: 'Filesystem Operations',
   tooltip: '%{BKY_TOUCH_TOOLTIP}',
-  helpUrl: '%{BKY_TOUCH_HELPURL}', // URL to further information or documentation.
-  generateCommand: function (block) {
-    let touchCommand = 'touch'; // Start with the basic touch command
-
-    // Check each option and append to the command if selected
-    const notCreateFile = block.getFieldValue('not_create_file') === 'TRUE';
-    const changeAccessTime = block.getFieldValue('access_time') === 'TRUE';
-    const changeModificationTime =
-      block.getFieldValue('modification_time') === 'TRUE';
-    const rawTimestamp = block.getFieldValue('change_time_d');
-    const argumentBlock = block.getInputTargetBlock('argument');
-
-    if (notCreateFile) touchCommand += ' -c';
-    if (changeAccessTime) touchCommand += ' -a';
-    if (changeModificationTime) touchCommand += ' -m';
-    if (rawTimestamp) {
-      const formattedTimestamp = rawTimestamp.replace(' ', 'T');
-      touchCommand += ` -d ${formattedTimestamp}`;
-    }
-    generatedCommand =
-      touchCommand + ' ' + handleArgumentsBlocks(argumentBlock);
-    return generatedCommand;
-  }
+  helpUrl: '%{BKY_TOUCH_HELPURL}' // URL to further information or documentation.
 };
 
 Blockly.defineBlocksWithJsonArray([touchBlock]);
