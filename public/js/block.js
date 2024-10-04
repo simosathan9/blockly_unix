@@ -16,7 +16,9 @@ function generateCommandFromWorkspace() {
     var blockDef = window[currentBlock.type + 'Block'];
     const specificCommand = handleSpecificBlocks(currentBlock);
     try {
-      if (
+      if (filenameBlocks.includes(currentBlock.type)) {
+        console.log('Filename Block initiated');
+      } else if (
         blockDef &&
         (blockDef.category === 'I/O Redirection' ||
           blockDef.category === 'Regular Expressions')
@@ -30,10 +32,6 @@ function generateCommandFromWorkspace() {
       }
     } catch (error) {
       console.error('An error occurred:', error.message);
-      if (error.lineNumber) {
-        console.log('Line Number:', error.lineNumber);
-      }
-      console.error(error.stack);
       break;
     }
     currentBlock = currentBlock.getNextBlock();
