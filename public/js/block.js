@@ -17,7 +17,6 @@ function generateCommandFromWorkspace() {
     const specificCommand = handleSpecificBlocks(currentBlock);
     try {
       if (filenameBlocks.includes(currentBlock.type)) {
-        console.log('Filename Block initiated');
       } else if (
         blockDef &&
         (blockDef.category === 'I/O Redirection' ||
@@ -42,8 +41,6 @@ function generateCommandFromWorkspace() {
 
 function handleBlock(block) {
   var blockType = block.type;
-  console.log('HANDLEBLOCK () - Block Type:', blockType);
-
   var wildcardFilenameValue = '';
   var lastFindCommand = '';
   // get last child of find command for exec paramter
@@ -61,8 +58,6 @@ function handleBlock(block) {
 
   var blockDefinition = window[blockType + 'Block']; // Construct the name of the block definition variable and access it
   var blockCategory = blockDefinition ? blockDefinition.category : '';
-  console.log('HANDLEBLOCK - Block Category:', blockCategory);
-
   var aboveBlock = block.getPreviousBlock();
   var filenameValue = '';
   if (aboveBlock && filenameBlocks.includes(aboveBlock.type)) {
@@ -71,11 +66,8 @@ function handleBlock(block) {
 
   // Fetch the attached regex block
   var inputreplaceTextBlock = block.getInputTargetBlock('regReplaceText');
-  console.log('regReplaceText', inputreplaceTextBlock);
   var beginBlock = block.getInputTargetBlock('begin');
-  console.log('begin', beginBlock);
   var endBlock = block.getInputTargetBlock('end');
-  console.log('end', endBlock);
 
   var beginValue = '';
   if (beginBlock) {
@@ -93,12 +85,9 @@ function handleBlock(block) {
 
   //get all the regex children blocks of the main block
   var regexBlocks = getRegexChildenBlocks(block);
-  //console.log("HANDLEBLOCK - regexBlocks[] length:", regexBlocks.length);
 
   var regexStringValue =
     regexBlocks.length > 0 ? generateRegexString(regexBlocks) : '';
-
-  console.log('HANDLEBLOCK - Regex String value:', regexStringValue);
 
   let commandParts = [];
 
@@ -130,11 +119,7 @@ function handleBlock(block) {
           block.getInputTargetBlock('VALUE')
         );
       }
-
-      console.log('HANDLEBLOCK - Variable name:', variable_name);
-      console.log('HANDLEBLOCK - Variable value:', variable_value);
     } else {
-      console.log('Variable not found');
     }
   } else {
     commandParts = handleMainBlocks(
@@ -165,8 +150,6 @@ function handleBlock(block) {
     let end = endIndex !== -1 ? commandParts[endIndex] : '';
     let inputDelim =
       inputDelimIndex !== -1 ? commandParts[inputDelimIndex] : '';
-
-    console.log('commands:', commandParts);
     if (conditionValue !== '') {
       commandString =
         blockType +
@@ -200,8 +183,6 @@ function handleBlock(block) {
           !item.includes('BEGIN') &&
           !item.includes('END')
       );
-      console.log('commands:', filteredArray);
-      // commandString = blockType +  ' ' + filteredArray.join(' ');
       commandString =
         blockType +
         ' ' +
@@ -225,7 +206,6 @@ function handleBlock(block) {
         filenameValue;
     }
   } else if (blockType === 'find') {
-    console.log('commands:', commandParts);
     commandString =
       blockType +
       ' ' +
@@ -239,7 +219,6 @@ function handleBlock(block) {
       ' ' +
       lastFindCommand;
   } else {
-    console.log('commands:', commandParts);
     commandString =
       blockType +
       ' ' +
@@ -260,15 +239,11 @@ function handleMainBlocks(
   patternValue,
   regexStringValue
 ) {
-  console.log('handleMainBlocks init');
   let commandParts = [];
 
   //in case we don't have just a pattern in a main block but a full regex
-  console.log('handleMainBlocks - regexStringValue:', regexStringValue);
-  console.log('handleMainBlocks - patternValue:', patternValue);
   if (regexStringValue !== null && patternValue === '') {
     patternValue = regexStringValue;
-    console.log('handleMainBlocks - after patternValue:', patternValue);
   }
 
   // Iterate over all inputs and their fields
@@ -310,7 +285,6 @@ function handleMainBlocks(
               : blockDefinition.unix_description[0][field.name] +
                 field.getValue();
       } else if (input.type === Blockly.INPUT_VALUE) {
-        console.log('***', input.type, input.name, blockDefinition);
         if (
           block.getInputTargetBlock(input.name) &&
           blockDefinition.unix_description[0][input.name]
@@ -335,8 +309,6 @@ function handleMainBlocks(
                   )
                 : inputBlock.getFieldValue('TEXT');
             inputValueStr = getMultiplePrints(inputBlock);
-            console.log('handleMainBlocks -  inputValue:', inputValue);
-            console.log('handleMainBlocks -  inputValueStr:', inputValueStr);
             if (inputValueStr !== '' && inputValue == null) {
               inputValue = inputValueStr;
               //console.log("handleMainBlocks - after inputValue:", inputValue);
@@ -355,7 +327,6 @@ function handleMainBlocks(
         }
       }
 
-      console.log('handleMainBlocks - value:', value);
       // Add the processed value to the command parts
       commandParts.push(value);
     });
@@ -382,10 +353,8 @@ function handleSpecificBlocks(currentBlock) {
 }
 
 function handleArgumentsBlocks(block) {
-  console.log('handleArgumentsBlocks - init');
   var arguments = '';
   if (block && block.type === 'argumentsCreate') {
-    console.log('handleArgumentsBlocks - block:', block.type);
     let args = [];
     for (let i = 0; i < block.itemCount_; i++) {
       let inputBlock = block.getInputTargetBlock('ADD' + i);
@@ -398,7 +367,6 @@ function handleArgumentsBlocks(block) {
     }
     return args.join(' ');
   } else if (block && block.type === 'argument') {
-    console.log('handleArgumentsBlocks - block:', block.type);
     return block.getFieldValue('ARGUMENT');
   } else {
     return '';
@@ -406,15 +374,19 @@ function handleArgumentsBlocks(block) {
 }
 
 function handleRegexBlocks(block, blockDefinition, patternValue) {
-  console.log('handleRegexBlocks init');
   let commandParts = [];
+  const blockName = block.type;
+  const blockDescription = blockDefinition.unix_description[0][blockName] || '';
+  if (blockDescription) {
+    let value = patternValue
+      ? blockDescription.replace('patt', patternValue)
+      : blockDescription.replace('patt', '');
+    commandParts.push(value);
+  }
   // Iterate over all inputs and their fields
   block.inputList.forEach((input) => {
     let value;
-    //console.log("handleRegexBlocks - input:", input.name);
     input.fieldRow.forEach((field) => {
-      console.log('handleRegexBlocks - field:', field);
-
       // Handle dropdowns
       if (field instanceof Blockly.FieldDropdown) {
         paramselected = field.getValue();
@@ -427,13 +399,13 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
         //console.log("handleRegexBlocks - value:", value);
       } else if (field instanceof Blockly.FieldCheckbox) {
         if (field.name === 'notMatch' && field.getValue() === 'TRUE') {
-          commandParts.splice(-3);
-          value = patternValue
-            ? blockDefinition.unix_description[0][field.name].replace(
-                'patt',
-                patternValue
-              )
-            : '';
+          //custom for regAnyOneBlock
+          commandParts = commandParts.map((element) => {
+            if (element) {
+              return element.replace('[', '[^'); // Check if the element is not undefined
+            }
+            return element; // Return the element as is if it's undefined
+          });
         } else if (field.name === 'not' && field.getValue() === 'TRUE') {
           //custom for regRangeBlock
           commandParts = commandParts.map((element) => {
@@ -443,42 +415,29 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
             }
             return element; // Return the element as is if it's undefined
           });
+        } else if (field.name === 'INFINITE' && field.getValue() === 'TRUE') {
+          const regexPattern = /\{(\d+),(\d+)\}/;
+          const lastPart = commandParts[commandParts.length - 1];
+          if (regexPattern.test(lastPart)) {
+            const newPart = lastPart.replace(regexPattern, '{$1,}');
+            commandParts[commandParts.length - 1] = newPart;
+          }
         } else {
           value =
             field.getValue() === 'TRUE'
               ? blockDefinition.unix_description[0][field.name]
               : '';
         }
-
-        //console.log("handleRegexBlocks - commandParts:", commandParts);
-        //specifically made for the regForBlock so value m is replaced with the infinity option(commandParts.length - 2 is used because the last part of the list is an object with an undefined value - don't know what)
-        if (field.name === 'INFINITE' && field.getValue() === 'TRUE') {
-          commandParts[commandParts.length - 2] = ',}';
-          //console.log("handleRegexBlocks - commandParts:", commandParts);
-        }
       } else if (field instanceof Blockly.FieldNumber) {
-        value =
-          blockDefinition.unix_description[0][field.name] == null
-            ? field.getValue()
-            : patternValue
-              ? blockDefinition.unix_description[0][field.name]
-                  .replace('n', field.getValue())
-                  .replace('m', field.getValue())
-                  .replace('patt', patternValue)
-              : blockDefinition.unix_description[0][field.name]
-                  .replace('n', field.getValue())
-                  .replace('m', field.getValue())
-                  .replace('patt', '');
-
-        //specifically made for the regForBlock in case n=m is replaced with the '}' option(commandParts.length - 2 is used because the last part of the list is an object with an undefined value - don't know what)
-        str = commandParts[commandParts.length - 2]
-          ? commandParts[commandParts.length - 2]
-          : 'notValid';
-        //console.log("handleRegexBlocks - str:", str[str.length - 1]);
-        //console.log("handleRegexBlocks - str:", field.getValue());
-        //str.length - 1 is the n of the '{n' part of the command so far right before the m which is the current vlue that the user gives
-        if (str[str.length - 1] == field.getValue()) {
-          value = '}';
+        if (field.name === 'FROM') {
+          value = `{${field.getValue()},`;
+        } else if (field.name === 'TO') {
+          let fromValue = block.getFieldValue('FROM');
+          if (fromValue == field.getValue()) {
+            commandParts[commandParts.length - 1] = `{${fromValue}}`;
+          } else {
+            commandParts[commandParts.length - 1] += `${field.getValue()}}`;
+          }
         }
       } else if (field instanceof Blockly.FieldTextInput) {
         value =
@@ -524,7 +483,6 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
           )
         : '';
     }
-    console.log('handleRegexBlocks - value:', value);
     commandParts.push(value);
   });
 
@@ -532,7 +490,6 @@ function handleRegexBlocks(block, blockDefinition, patternValue) {
 }
 
 function handleBeginEnd(block) {
-  console.log('handleBegin init');
   var blockCode;
   //console.log("handleBeginEnd - block :", block.type);
   var innerBlock = block.getInputTargetBlock('DO');
@@ -553,19 +510,13 @@ function handleBeginEnd(block) {
     blockCode = '{' + blockCode.replace(/\n/g, ' ').replace(/\s+/g, ' ') + '}';
   }
 
-  console.log('handleBegin - code:', blockCode);
-
   return blockCode;
 }
 
 function generateRegexString(regexBlocksList) {
-  console.log('generateRegexString init');
   let regexStringCommand = '';
 
   for (let block of regexBlocksList) {
-    //console.log('generateRegexString - Block Type: ', block.type);
-
-    var blockDef = window[block.type + 'Block'];
     // Generate the command for the current block
     try {
       regexStringCommand += handleBlock(block);
@@ -575,13 +526,10 @@ function generateRegexString(regexBlocksList) {
     }
   }
 
-  console.log('generateRegexString - Generated regex:', regexStringCommand);
-
   return regexStringCommand;
 }
 
 function getRegexChildenBlocks(startBlock) {
-  console.log('getRegexChildenBlocks init');
   var allBlocks = [];
 
   // Helper function to recursively add child blocks
@@ -589,14 +537,8 @@ function getRegexChildenBlocks(startBlock) {
     if (block) {
       var blockDefinition = window[block.type + 'Block'];
       // Check if the block's category is 'Regular Expressions'
-      if (
-        block.type != 'regPattern' &&
-        block.type != 'regOr' &&
-        blockDefinition
-      ) {
-        if (blockDefinition.category === 'Regular Expressions') {
-          allBlocks.push(block);
-        }
+      if (blockDefinition.category === 'Regular Expressions') {
+        allBlocks.push(block);
       }
 
       // Add next connected block
@@ -642,28 +584,23 @@ function replaceKeywords(command) {
 }
 
 function handleFilenamesBlocks(block) {
-  console.log('handleFilenamesBlocks - init');
   var filename = '';
   if (block && block.type === 'filename') {
     filename = block.getFieldValue('FILENAME');
-    console.log('handleFilenamesBlocks - filename:', filename);
   } else if (block && block.type === 'filenamesCreate') {
     filename = getFileNames(block);
-    console.log('handleFilenamesBlocks - MultiplefilenameValue:', filename);
   } else {
     dropdownSelection = block.getFieldValue('metric_type');
     input = block.getFieldValue('FILENAME');
     filename = window[block.type + 'Block'].unix_description[0][
       dropdownSelection
     ].replace('str', input);
-    console.log('handleFilenamesBlocks - WildcardsfilenameValue:', filename);
   }
 
   return filename;
 }
 
 function getFileNames(block) {
-  console.log('getFileNames - init');
   let fileNames = [];
   for (let i = 0; i < block.itemCount_; i++) {
     let inputBlock = block.getInputTargetBlock('ADD' + i);
@@ -678,7 +615,6 @@ function getFileNames(block) {
 }
 
 function getMultiplePrints(block) {
-  console.log('getMultiplePrints - init');
   let prints = [];
   for (let i = 0; i < block.itemCount_; i++) {
     let inputBlock = block.getInputTargetBlock('ADD' + i);
@@ -708,9 +644,7 @@ function getMultiplePrints(block) {
         if (variableModel) {
           // Get the name of the variable
           singlePrint = variableModel.name;
-          console.log('Variable name:', singlePrint);
         } else {
-          console.log('Variable not found');
         }
       } else if (inputBlock.type == 'math_arithmetic') {
         singlePrint = generator.blockToCode(inputBlock);
@@ -836,7 +770,6 @@ function registerConnectionRestrictionExtension(
         if (parentBlock && parentBlockTypes.includes(parentBlock.type)) {
           // Get the input field name based on the parent block type
           var inputFieldName = inputFieldNamesMap[parentBlock.type];
-          console.log('inputFieldName:', inputFieldName);
 
           // Check connection to the correct input field
           if (inputFieldName) {

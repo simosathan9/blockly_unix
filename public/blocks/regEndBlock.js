@@ -1,5 +1,5 @@
 var regEndBlock = {
-  type: '$',
+  type: 'regEnd',
   category: 'Regular Expressions',
   unix_description: [
     {

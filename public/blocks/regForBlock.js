@@ -16,7 +16,8 @@ var regForBlock = {
     },
     {
       type: 'field_number',
-      name: 'TO'
+      name: 'TO',
+      value: 0
     },
     {
       type: 'field_checkbox',
