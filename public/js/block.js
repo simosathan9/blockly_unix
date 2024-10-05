@@ -348,6 +348,8 @@ function handleSpecificBlocks(currentBlock) {
     generatedCommand = mvBlock.generateCommand(currentBlock);
   } else if (currentBlock.type === 'rm') {
     generatedCommand = rmBlock.generateCommand(currentBlock);
+  } else if (currentBlock.type === 'cut') {
+    generatedCommand = cutBlock.generateCommand(currentBlock);
   }
   return generatedCommand;
 }
@@ -852,45 +854,6 @@ Blockly.Extensions.register('disallow_multiple_filenames', function () {
         // Disconnect the disallowed block
         this.previousConnection.disconnect();
         console.warn('Disallowed block type cannot be connected here.');
-      }
-    }
-  });
-});
-
-Blockly.Extensions.register('cut_validation', function () {
-  var thisBlock = this;
-
-  // Register a change listener on the workspace
-  thisBlock.workspace.addChangeListener(function (event) {
-    // Check if the change involves this block
-    if (event.blockId === thisBlock.id) {
-      // Validate based on the conditions you specified
-      var columnsValue = thisBlock.getFieldValue('columns').trim();
-      var charsStartValue = thisBlock.getFieldValue('charsStart').trim();
-      var charsEndValue = thisBlock.getFieldValue('charsEnd').trim();
-      var delimiterValue = thisBlock.getFieldValue('delimiter').trim();
-
-      if (
-        columnsValue !== '' &&
-        (charsStartValue !== '' || charsEndValue !== '')
-      ) {
-        // Set warning text since conditions are violated.
-        thisBlock.setWarningText(
-          'Can not choose columns and chars at the same time.\n' +
-            'Columns are used for cut in files, chars are used for cut in strings'
-        );
-      } else if (
-        delimiterValue !== '' &&
-        (charsStartValue !== '' || charsEndValue !== '')
-      ) {
-        // Set warning text since conditions are violated.
-        thisBlock.setWarningText(
-          'Can not choose delimiter and chars at the same time.\n' +
-            'Delimiter is used for cut in files, chars are used for cut in strings'
-        );
-      } else {
-        // Clear warning text since conditions are satisfied.
-        thisBlock.setWarningText(null);
       }
     }
   });
