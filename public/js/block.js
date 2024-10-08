@@ -51,7 +51,7 @@ function handleBlock(block) {
     wildcardFilenameValue = block.getInputTargetBlock('fileEndStart')
       ? '-name ' +
         '"' +
-        handleFilenamesBlocks(block.getInputTargetBlock('fileEndStart')) +
+        handleRegexBlocks(block.getInputTargetBlock('regPattern')) +
         '"'
       : '';
   }
@@ -215,9 +215,7 @@ function handleBlock(block) {
       ' ' +
       regexStringValue +
       ' ' +
-      wildcardFilenameValue +
-      ' ' +
-      lastFindCommand;
+      wildcardFilenameValue;
   } else {
     commandString =
       blockType +

@@ -32,7 +32,7 @@ var headBlock = {
   previousStatement: 'Action',
   nextStatement: 'Action',
   style: 'Text Processing',
-  extensions: ['integer_validation', 'disallow_multiple_filenames'],
+  extensions: ['integer_validation'],
   helpUrl: '' // URL to further information or documentation.
 };
 

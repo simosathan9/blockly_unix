@@ -102,7 +102,7 @@ var grepBlock = {
   message11: '%{BKY_GREP_PATTERN_DEFINE}',
   args11: [
     {
-      type: 'input_value',
+      type: 'input_statement',
       name: 'regPattern',
       check: 'String'
     }

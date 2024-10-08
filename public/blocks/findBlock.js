@@ -22,6 +22,7 @@ var findBlock = {
       subdirs: '-maxdepth 1',
       file: '-type f',
       directory: '-type d',
+      regPattern: '"patt"',
       both: ''
     }
   ],
@@ -149,9 +150,9 @@ var findBlock = {
   message9: '%{BKY_FIND_NAME_DEFINE}',
   args9: [
     {
-      type: 'input_value',
-      name: 'fileEndStart',
-      check: 'fileWildcard'
+      type: 'input_statement',
+      name: 'regPattern',
+      check: 'String'
     }
   ],
   message10: '%{BKY_FIND_EXECUTE_COMMAND}',
@@ -164,7 +165,7 @@ var findBlock = {
   ],
 
   style: 'Filesystem Operations',
-  nextStatement: 'Action',
+  nextStatement: true,
   tooltip: 'Find files in directories and subdirectories',
   helpUrl: '' // URL to further information or documentation.
 };

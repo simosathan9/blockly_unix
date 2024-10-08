@@ -1,6 +1,3 @@
-// TO DO
-// Fix issue with blockly Data Processing sub categories
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
