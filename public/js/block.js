@@ -304,9 +304,9 @@ function handleBuiltInBlocks(currentBlock) {
       MULTIPLY: '*',
       DIVIDE: '/',
       POWER: '^',
-      AND: '&&', // Logical AND
-      OR: '||', // Logical OR
-      NOT: '!' // Logical NOT
+      AND: '&&',
+      OR: '||',
+      NOT: '!'
     };
     return operators[operatorField];
   };
@@ -403,6 +403,7 @@ function handleBlockByType(currentBlock) {
     'math_number',
     'math_arithmetic',
     'logic_compare',
+    'logic_operation',
     'controls_if'
   ];
 

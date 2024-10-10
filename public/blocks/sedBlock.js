@@ -49,7 +49,7 @@ var sedBlock = {
   tooltip: '%{BKY_SED_TOOLTIP}',
   helpUrl: '%{BKY_SED_HELPURL}', // URL to further information or documentation.
   generateCommand: function (block) {
-    let sedCommand = handleBlockByType(block); // Basic sed command
+    let sedCommand;
 
     // Handle pattern and replacement
     let patternBlock = block.getInputTargetBlock('regPattern');
