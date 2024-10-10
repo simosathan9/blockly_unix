@@ -16,7 +16,10 @@ var NRBlock = {
   style: 'Field Processing',
   output: null,
   tooltip: '%{BKY_RECORD_NUMBER_TOOLTIP}',
-  helpUrl: '%{BKY_RECORD_NUMBER_HELPURL}' // URL to further information or documentation.
+  helpUrl: '%{BKY_RECORD_NUMBER_HELPURL}', // URL to further information or documentation.
+  generateCommand: function (block) {
+    return 'NR';
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([NRBlock]);

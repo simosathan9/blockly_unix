@@ -26,7 +26,10 @@ var awkBlock = {
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_AWK_TOOLTIP}',
-  helpUrl: '%{BKY_AWK_HELPURL}' // URL to further information or documentation.
+  helpUrl: '%{BKY_AWK_HELPURL}', // URL to further information or documentation.
+  generateCommand: function (block) {
+    var awkInput_delimiter = block.getFieldValue('awkInput_delimiter');
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([awkBlock]);

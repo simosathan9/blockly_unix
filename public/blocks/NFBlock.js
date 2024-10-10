@@ -16,7 +16,11 @@ var NFBlock = {
   style: 'Field Processing',
   output: null,
   tooltip: '%{BKY_FIELD_NUMBER_TOOLTIP}',
-  helpUrl: '%{BKY_FIELD_NUMBER_HELPURL}' // URL to further information or documentation.
+  helpUrl: '%{BKY_FIELD_NUMBER_HELPURL}', // URL to further information or documentation.
+  generateCommand: function (block) {
+    var awkCommand = 'NF';
+    return awkCommand;
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([NFBlock]);

@@ -16,7 +16,11 @@ var columnBlock = {
   output: null,
   style: 'Field Processing',
   tooltip: '%{BKY_COLUMN_TOOLTIP}',
-  helpUrl: '%{BKY_COLUMN_HELPURL}'
+  helpUrl: '%{BKY_COLUMN_HELPURL}',
+  generateCommand: function (block) {
+    var text = block.getFieldValue('TEXT');
+    return '$' + text;
+  }
 };
 
 Blockly.defineBlocksWithJsonArray([columnBlock]);

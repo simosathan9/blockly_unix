@@ -14,7 +14,7 @@ function generateCommandFromWorkspace() {
   while (currentBlock) {
     blockCount++;
     var blockDef = window[currentBlock.type + 'Block'];
-    const specificCommand = handleSpecificBlocks(currentBlock);
+    const specificCommand = handleBlockByType(currentBlock);
     try {
       if (filenameBlocks.includes(currentBlock.type)) {
       } else if (
@@ -139,83 +139,6 @@ function handleBlock(block) {
     commandString = commandParts.join('');
   } else if (blockType === 'variables_set') {
     commandString = variable_name + '=' + variable_value + ' |';
-  } else if (blockType === 'awk') {
-    let beginIndex = commandParts.indexOf('BEGIN');
-    let endIndex = commandParts.indexOf('END');
-    let inputDelimIndex = commandParts.findIndex(
-      (element) => typeof element === 'string' && element.includes('-F')
-    );
-
-    let begin = beginIndex !== -1 ? commandParts[beginIndex] : '';
-    let end = endIndex !== -1 ? commandParts[endIndex] : '';
-    let inputDelim =
-      inputDelimIndex !== -1 ? commandParts[inputDelimIndex] : '';
-    if (conditionValue !== '') {
-      commandString =
-        blockType +
-        ' ' +
-        inputDelim +
-        ' ' +
-        "'" +
-        ' ' +
-        begin +
-        ' ' +
-        beginValue +
-        ' ' +
-        conditionValue +
-        ' ' +
-        regexStringValue +
-        ' ' +
-        end +
-        ' ' +
-        endValue +
-        ' ' +
-        "'" +
-        ' ' +
-        filenameValue;
-    } else {
-      let filteredArray = commandParts.filter(
-        (item) =>
-          item !== '' &&
-          item !== null &&
-          item !== undefined &&
-          !item.includes('undefined') &&
-          !item.includes('BEGIN') &&
-          !item.includes('END')
-      );
-      commandString =
-        blockType +
-        ' ' +
-        inputDelim +
-        ' ' +
-        "'" +
-        ' ' +
-        begin +
-        ' ' +
-        beginValue +
-        ' ' +
-        ' ' +
-        regexStringValue +
-        ' ' +
-        end +
-        ' ' +
-        endValue +
-        ' ' +
-        "'" +
-        ' ' +
-        filenameValue;
-    }
-  } else if (blockType === 'find') {
-    commandString =
-      blockType +
-      ' ' +
-      commandParts.join(' ') +
-      ' ' +
-      conditionValue +
-      ' ' +
-      regexStringValue +
-      ' ' +
-      wildcardFilenameValue;
   } else {
     commandString =
       blockType +
@@ -334,22 +257,160 @@ function handleMainBlocks(
 }
 
 function handleSpecificBlocks(currentBlock) {
+  const blockTypesWithCommand = {
+    touch: touchBlock,
+    sed: sedBlock,
+    ln: lnBlock,
+    mv: mvBlock,
+    rm: rmBlock,
+    awk: awkBlock,
+    conditionAction: conditionActionBlock,
+    cut: cutBlock,
+    NR: NRBlock,
+    NF: NFBlock,
+    column: columnBlock,
+    condition: conditionBlock
+  };
+
+  if (blockTypesWithCommand[currentBlock.type]) {
+    return blockTypesWithCommand[currentBlock.type].generateCommand(
+      currentBlock
+    );
+  }
+  return '';
+}
+
+function handleBuiltInBlocks(currentBlock) {
   let generatedCommand = '';
-  // Handle different block types
-  if (currentBlock.type === 'touch') {
-    generatedCommand = touchBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'sed') {
-    generatedCommand = sedBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'ln') {
-    generatedCommand = lnBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'mv') {
-    generatedCommand = mvBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'rm') {
-    generatedCommand = rmBlock.generateCommand(currentBlock);
-  } else if (currentBlock.type === 'cut') {
-    generatedCommand = cutBlock.generateCommand(currentBlock);
+
+  // Helper function to get variable by ID and return its name
+  const getVariableName = (variableId) => {
+    const variableModel =
+      Blockly.getMainWorkspace().getVariableById(variableId);
+    return variableModel ? variableModel.name : '';
+  };
+
+  // Helper function to get operator symbol
+  const getOperatorSymbol = (operatorField) => {
+    const operators = {
+      EQ: '==',
+      NEQ: '!=',
+      LT: '<',
+      LTE: '<=',
+      GT: '>',
+      GTE: '>=',
+      ADD: '+',
+      MINUS: '-',
+      MULTIPLY: '*',
+      DIVIDE: '/',
+      POWER: '^',
+      AND: '&&', // Logical AND
+      OR: '||', // Logical OR
+      NOT: '!' // Logical NOT
+    };
+    return operators[operatorField];
+  };
+
+  switch (currentBlock.type) {
+    // Variables set
+    case 'variables_set': {
+      const variableId = currentBlock.getFieldValue('VAR');
+      const variableSetTo = handleBlockByType(
+        currentBlock.getInputTargetBlock('VALUE')
+      );
+      const variableName = getVariableName(variableId);
+      generatedCommand = `${variableName}=${variableSetTo}`;
+      break;
+    }
+
+    // Variables get
+    case 'variables_get': {
+      const variableId = currentBlock.getFieldValue('VAR');
+      generatedCommand = getVariableName(variableId);
+      break;
+    }
+
+    // Math number
+    case 'math_number': {
+      generatedCommand = currentBlock.getFieldValue('NUM');
+      break;
+    }
+
+    // Math arithmetic
+    case 'math_arithmetic': {
+      const leftBlockCode = handleBlockByType(
+        currentBlock.getInputTargetBlock('A')
+      );
+      const rightBlockCode = handleBlockByType(
+        currentBlock.getInputTargetBlock('B')
+      );
+      const operatorSymbol = getOperatorSymbol(
+        currentBlock.getFieldValue('OP')
+      );
+      generatedCommand = `${leftBlockCode} ${operatorSymbol} ${rightBlockCode}`;
+      break;
+    }
+
+    // Logic compare
+    case 'logic_compare' || 'logic_operation': {
+      const leftBlockCode = handleBlockByType(
+        currentBlock.getInputTargetBlock('A')
+      );
+      const rightBlockCode = handleBlockByType(
+        currentBlock.getInputTargetBlock('B')
+      );
+      const operatorSymbol = getOperatorSymbol(
+        currentBlock.getFieldValue('OP')
+      );
+      generatedCommand = `${leftBlockCode} ${operatorSymbol} ${rightBlockCode}`;
+      break;
+    }
+
+    // Control flow (if) block
+    case 'controls_if': {
+      const conditionBlock = currentBlock.getInputTargetBlock('IF0');
+      const actionBlock = currentBlock.getInputTargetBlock('DO0');
+      let blockCode = '';
+
+      if (conditionBlock) {
+        const leftBlockCode = handleBlockByType(
+          conditionBlock.getInputTargetBlock('A')
+        );
+        const rightBlockCode = handleBlockByType(
+          conditionBlock.getInputTargetBlock('B')
+        );
+        const operatorSymbol = getOperatorSymbol(
+          conditionBlock.getFieldValue('OP')
+        );
+        blockCode = `if (${leftBlockCode} ${operatorSymbol} ${rightBlockCode}) {`;
+      }
+
+      if (actionBlock) {
+        blockCode += handleBlockByType(actionBlock);
+      }
+      blockCode += '}';
+      generatedCommand = blockCode;
+      break;
+    }
   }
   return generatedCommand;
+}
+
+function handleBlockByType(currentBlock) {
+  const builtInBlockTypes = [
+    'variables_set',
+    'variables_get',
+    'math_number',
+    'math_arithmetic',
+    'logic_compare',
+    'controls_if'
+  ];
+
+  if (builtInBlockTypes.includes(currentBlock.type)) {
+    return handleBuiltInBlocks(currentBlock); // Use built-in handler
+  } else {
+    return handleSpecificBlocks(currentBlock); // Use specific handler
+  }
 }
 
 function handleArgumentsBlocks(block) {
@@ -370,6 +431,14 @@ function handleArgumentsBlocks(block) {
     return block.getFieldValue('ARGUMENT');
   } else {
     return '';
+  }
+}
+
+function handleConditionActionBlocks(block) {
+  var conditionAction = '';
+  if (block && block.type === 'conditionAction') {
+    let conditionActionPairs = [];
+    for (let i = 0; i < block.itemCount_; i++) {}
   }
 }
 
@@ -659,12 +728,6 @@ function getMultiplePrints(block) {
   return prints.join(',');
 }
 
-generator.forBlock['column'] = function (block) {
-  var text = block.getFieldValue('TEXT');
-  var code = '$' + `'${text}'`;
-  return [code, generator.ORDER_ATOMIC];
-};
-
 generator.forBlock['text'] = function (block) {
   var textValue = block.getFieldValue('TEXT');
   var code = '"' + textValue + '"';
@@ -683,37 +746,6 @@ generator.forBlock['arrayCreate'] = function (block) {
   }
   var listString = elements.join(' '); // Join elements with space
   return ['(' + listString + ')', generator.ORDER_ATOMIC];
-};
-
-generator.forBlock['logic_compare'] = function (block) {
-  var leftBlock = block.getInputTargetBlock('A');
-  var rightBlock = block.getInputTargetBlock('B');
-  var leftBlockCode = generator.valueToCode(block, 'A', generator.ORDER_ATOMIC);
-  var rightBlockCode = generator.valueToCode(
-    block,
-    'B',
-    generator.ORDER_ATOMIC
-  );
-  if (leftBlock && leftBlock.type === 'regOutput' && leftBlockCode) {
-    leftBlockCode = '/' + leftBlockCode + '/';
-  }
-
-  // Construct the final code for the logic_compare block
-  var operator = block.getFieldValue('OP');
-
-  // Map the field value to the corresponding symbol
-  var operators = {
-    EQ: '==',
-    NEQ: '!=',
-    LT: '<',
-    LTE: '<=',
-    GT: '>',
-    GTE: '>='
-  };
-  var operatorSymbol = operators[operator];
-
-  var code = leftBlockCode + ' ' + operatorSymbol + ' ' + rightBlockCode;
-  return [code, generator.ORDER_RELATIONAL];
 };
 
 //***********************************
