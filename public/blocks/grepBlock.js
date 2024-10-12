@@ -12,7 +12,7 @@ var grepBlock = {
       show_line_nums: '-n',
       stop_after_num_matches: '-m ',
       multiple_patterns: '-e',
-      regPattern: '"patt"',
+      regPattern: "-E 'patt'",
       showFiles: '-H',
       print_context_before_match: '-B ',
       print_context_after_match: '-A '

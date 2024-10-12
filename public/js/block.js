@@ -197,14 +197,17 @@ function handleMainBlocks(
                 field.getValue()
               );
       } else if (field instanceof Blockly.FieldNumber) {
-        value =
+        if (
           blockDefinition.unix_description[0][field.name] == null &&
           field.getValue() != 0
-            ? field.getValue()
-            : field.getValue() == 0
-              ? ''
-              : blockDefinition.unix_description[0][field.name] +
-                field.getValue();
+        ) {
+          value = field.getValue();
+        } else if (field.getValue() == 0) {
+          value = '';
+        } else {
+          value =
+            blockDefinition.unix_description[0][field.name] + field.getValue();
+        }
       } else if (input.type === Blockly.INPUT_VALUE) {
         if (
           block.getInputTargetBlock(input.name) &&
@@ -232,7 +235,6 @@ function handleMainBlocks(
             inputValueStr = getMultiplePrints(inputBlock);
             if (inputValueStr !== '' && inputValue == null) {
               inputValue = inputValueStr;
-              //console.log("handleMainBlocks - after inputValue:", inputValue);
             }
 
             value =

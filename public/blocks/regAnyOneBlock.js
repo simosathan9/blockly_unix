@@ -3,17 +3,17 @@ var regAnyOneBlock = {
   category: 'Regular Expressions',
   unix_description: [
     {
-      regPattern: '[stm]',
-      notMatch: '[^stm]'
+      Pattern: '[patt]',
+      notMatch: '[^patt]'
     }
   ],
 
   message0: '%{BKY_REGANYONE} \n %{BKY_REGANYONE_NOT}',
   args0: [
     {
-      type: 'input_statement',
-      name: 'regPattern',
-      check: 'String'
+      type: 'field_input',
+      name: 'Pattern',
+      text: 'String'
     },
 
     {

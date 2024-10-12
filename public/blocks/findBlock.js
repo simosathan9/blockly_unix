@@ -22,7 +22,7 @@ var findBlock = {
       subdirs: '-maxdepth 1',
       file: '-type f',
       directory: '-type d',
-      regPattern: '"patt"',
+      Pattern: '-regex "str"',
       both: ''
     }
   ],
@@ -151,7 +151,7 @@ var findBlock = {
   args9: [
     {
       type: 'input_statement',
-      name: 'regPattern',
+      name: 'Pattern',
       check: 'String'
     }
   ],
