@@ -84,7 +84,7 @@ function handleBlock(block) {
   var conditionValue = '';
 
   //get all the regex children blocks of the main block
-  var regexBlocks = getRegexChildenBlocks(block);
+  var regexBlocks = getRegexChildrenBlocks(block);
 
   var regexStringValue =
     regexBlocks.length > 0 ? generateRegexString(regexBlocks) : '';
@@ -371,9 +371,10 @@ function handleBuiltInBlocks(currentBlock) {
     // Control flow (if) block
     case 'controls_if': {
       const conditionBlock = currentBlock.getInputTargetBlock('IF0');
-      const actionBlock = currentBlock.getInputTargetBlock('DO0');
       let blockCode = '';
+      console.log(currentBlock);
 
+      // Handle the primary condition
       if (conditionBlock) {
         const leftBlockCode = handleBlockByType(
           conditionBlock.getInputTargetBlock('A')
@@ -387,11 +388,73 @@ function handleBuiltInBlocks(currentBlock) {
         blockCode = `if (${leftBlockCode} ${operatorSymbol} ${rightBlockCode}) {`;
       }
 
-      if (actionBlock) {
-        blockCode += handleBlockByType(actionBlock);
+      // Handle actions for the main block
+      let actionBlock = currentBlock.getInputTargetBlock('DO0');
+      while (actionBlock) {
+        let actionCode = handleBlockByType(actionBlock);
+        blockCode += actionCode + '; ';
+        actionBlock = actionBlock.getNextBlock();
       }
-      blockCode += '}';
+      blockCode += '}'; // Close the if block
+
+      // Handle the ELSE IF blocks
+      let elseIfIndex = 1;
+      let elseIfBlock = currentBlock.getInputTargetBlock(`IF${elseIfIndex}`);
+      while (elseIfBlock) {
+        const leftBlockCode = handleBlockByType(
+          elseIfBlock.getInputTargetBlock('A')
+        );
+        const rightBlockCode = handleBlockByType(
+          elseIfBlock.getInputTargetBlock('B')
+        );
+        const operatorSymbol = getOperatorSymbol(
+          elseIfBlock.getFieldValue('OP')
+        );
+
+        blockCode += ` else if (${leftBlockCode} ${operatorSymbol} ${rightBlockCode}) {`;
+
+        // Handle actions for ELSE IF block
+        let elseIfActionBlock = currentBlock.getInputTargetBlock(
+          `DO${elseIfIndex}`
+        );
+        while (elseIfActionBlock) {
+          let actionCode = handleBlockByType(elseIfActionBlock);
+          blockCode += actionCode + '; ';
+          elseIfActionBlock = elseIfActionBlock.getNextBlock();
+        }
+        blockCode += '}'; // Close the else if block
+
+        // Move to the next ELSE IF block
+        elseIfIndex++;
+        elseIfBlock = currentBlock.getInputTargetBlock(`IF${elseIfIndex}`);
+      }
+
+      const elseBlock = currentBlock.getInputTargetBlock('ELSE');
+      if (elseBlock) {
+        blockCode += ' else {';
+
+        // Start with the first block under the ELSE section
+        let elseActionBlock = elseBlock;
+        while (elseActionBlock) {
+          const actionCode = handleBlockByType(elseActionBlock);
+          blockCode += actionCode + '; ';
+          elseActionBlock = elseActionBlock.getNextBlock(); // Move to the next block in ELSE
+        }
+
+        blockCode += '}'; // Close the else block
+      }
+
       generatedCommand = blockCode;
+      break;
+    }
+    // forEach_loop
+    case 'controls_forEach': {
+      const variableId = currentBlock.getFieldValue('VAR');
+      const listBlock = currentBlock.getInputTargetBlock('LIST');
+      const listName = handleBlockByType(listBlock);
+      const actionBlock = currentBlock.getInputTargetBlock('DO');
+      const actionCode = handleBlockByType(actionBlock);
+      generatedCommand = `forEach(${variableId} in ${listName}) { ${actionCode} }`;
       break;
     }
   }
@@ -439,10 +502,15 @@ function handleArgumentsBlocks(block) {
 
 function handleConditionActionBlocks(block) {
   var conditionAction = '';
+  var block = block.getInputTargetBlock('awkConditionAction');
   if (block && block.type === 'conditionAction') {
-    let conditionActionPairs = [];
-    for (let i = 0; i < block.itemCount_; i++) {}
+    while (block) {
+      console.log('block:', block);
+      conditionAction += handleBlockByType(block) + ' ';
+      block = block.getNextBlock();
+    }
   }
+  return conditionAction;
 }
 
 function handleRegexBlocks(block, blockDefinition, patternValue) {
@@ -601,7 +669,7 @@ function generateRegexString(regexBlocksList) {
   return regexStringCommand;
 }
 
-function getRegexChildenBlocks(startBlock) {
+function getRegexChildrenBlocks(startBlock) {
   var allBlocks = [];
 
   // Helper function to recursively add child blocks

@@ -28,7 +28,16 @@ var awkBlock = {
   tooltip: '%{BKY_AWK_TOOLTIP}',
   helpUrl: '%{BKY_AWK_HELPURL}', // URL to further information or documentation.
   generateCommand: function (block) {
-    var awkInput_delimiter = block.getFieldValue('awkInput_delimiter');
+    var awkCommand = 'awk ';
+    var delimiter = block.getFieldValue('awkInput_delimiter');
+    if (delimiter) {
+      awkCommand += "-F '" + delimiter + "' ";
+    }
+    awkCommand += "' ";
+    var conditionAction = handleConditionActionBlocks(block);
+    awkCommand += conditionAction;
+    awkCommand += " '";
+    return awkCommand;
   }
 };
 
