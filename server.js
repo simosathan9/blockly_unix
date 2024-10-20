@@ -1,8 +1,9 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-
+const fs = require('fs');
 // Importing libraries installed with npm
+const https = require('https');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -381,7 +382,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/auth/google/callback'
+      callbackURL: 'https://ublocks.balab.aueb.gr/auth/google/callback'
     },
     (accessToken, refreshToken, profile, done) => {
       // Check if user with the given Google ID exists
@@ -480,6 +481,10 @@ app.get(
   }
 );
 
-app.listen(3000, () => {
-  console.log('Server started on http://localhost:3000');
+
+
+app.listen(8443, () => {
+  console.log('Server is running on https://ublocks.balab.aueb.gr');
 });
+
+
