@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const fs = require('fs');
 // Importing libraries installed with npm
+const { exec } = require('child_process');
 const https = require('https');
 const express = require('express');
 const app = express();
@@ -63,6 +64,25 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post('/github-webhook', (req, res) => {
+  const githubSignature = req.headers['x-hub-signature-256'];
+  if (req.body.ref === 'refs/heads/main') {
+    exec('cd /blockly && git pull origin main', (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Error executing git pull: ${stderr}`);
+        return res.sendStatus(500);
+      }
+      console.log(`Git pull output: ${stdout}`);
+      return res.sendStatus(200);
+    });
+  } else {
+    res.sendStatus(200);
+  }
+});
+
+app.listen(4000, () => {
+  console.log('Listening for GitHub Webhooks on port 4000');
+});
 // Middleware to add auth token
 function addAuthToken(req, res, next) {
   if (req.isAuthenticated()) {
