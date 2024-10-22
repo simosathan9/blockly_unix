@@ -64,19 +64,38 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/github-webhook', (req, res) => {
-  const githubSignature = req.headers['x-hub-signature-256'];
+app.post('/github-webhook', express.json(), (req, res) => {
+  const secret = process.env.GITHUB_WEBHOOK_SECRET;
+
+  // Verify the signature to ensure that the request is actually coming from GitHub
+  const signature = req.headers['x-hub-signature-256'];
+  const expectedSignature = `sha256=${crypto
+    .createHmac('sha256', secret)
+    .update(JSON.stringify(req.body))
+    .digest('hex')}`;
+
+  if (signature !== expectedSignature) {
+    return res.status(403).send('Forbidden');
+  }
+
+  // Handle the push event
   if (req.body.ref === 'refs/heads/main') {
-    exec('cd /blockly && git pull origin main', (err, stdout, stderr) => {
-      if (err) {
-        console.error(`Error executing git pull: ${stderr}`);
-        return res.sendStatus(500);
+    // Execute a shell command to pull the latest changes from GitHub
+    const exec = require('child_process').exec;
+    exec(
+      'git pull origin main',
+      { cwd: '/path/to/your/app' },
+      (err, stdout, stderr) => {
+        if (err) {
+          console.error(`Error pulling changes: ${stderr}`);
+          return res.status(500).send('Error pulling changes');
+        }
+        console.log(`Pulled latest changes: ${stdout}`);
+        res.status(200).send('Webhook received successfully');
       }
-      console.log(`Git pull output: ${stdout}`);
-      return res.sendStatus(200);
-    });
+    );
   } else {
-    res.sendStatus(200);
+    res.status(200).send('Not a push to main branch, ignoring...');
   }
 });
 
