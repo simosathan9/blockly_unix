@@ -321,7 +321,7 @@ function handleBuiltInBlocks(currentBlock) {
         currentBlock.getInputTargetBlock('VALUE')
       );
       const variableName = getVariableName(variableId);
-      generatedCommand = `${variableName}=${variableSetTo}`;
+      generatedCommand = `${variableName} = ${variableSetTo}`;
       break;
     }
 
@@ -372,20 +372,13 @@ function handleBuiltInBlocks(currentBlock) {
     case 'controls_if': {
       const conditionBlock = currentBlock.getInputTargetBlock('IF0');
       let blockCode = '';
-      console.log(currentBlock);
+      console.log(conditionBlock);
 
       // Handle the primary condition
       if (conditionBlock) {
-        const leftBlockCode = handleBlockByType(
-          conditionBlock.getInputTargetBlock('A')
-        );
-        const rightBlockCode = handleBlockByType(
-          conditionBlock.getInputTargetBlock('B')
-        );
-        const operatorSymbol = getOperatorSymbol(
-          conditionBlock.getFieldValue('OP')
-        );
-        blockCode = `if (${leftBlockCode} ${operatorSymbol} ${rightBlockCode}) {`;
+        conditionCode = handleBlockByType(conditionBlock);
+        console.log('conditionCode:', conditionCode);
+        blockCode = `if (${conditionCode}) {`;
       }
 
       // Handle actions for the main block
@@ -401,17 +394,8 @@ function handleBuiltInBlocks(currentBlock) {
       let elseIfIndex = 1;
       let elseIfBlock = currentBlock.getInputTargetBlock(`IF${elseIfIndex}`);
       while (elseIfBlock) {
-        const leftBlockCode = handleBlockByType(
-          elseIfBlock.getInputTargetBlock('A')
-        );
-        const rightBlockCode = handleBlockByType(
-          elseIfBlock.getInputTargetBlock('B')
-        );
-        const operatorSymbol = getOperatorSymbol(
-          elseIfBlock.getFieldValue('OP')
-        );
-
-        blockCode += ` else if (${leftBlockCode} ${operatorSymbol} ${rightBlockCode}) {`;
+        let elseIfConditionBlock = handleBlockByType(elseIfBlock);
+        blockCode += ` else if (${elseIfConditionBlock}) {`;
 
         // Handle actions for ELSE IF block
         let elseIfActionBlock = currentBlock.getInputTargetBlock(
@@ -450,11 +434,102 @@ function handleBuiltInBlocks(currentBlock) {
     // forEach_loop
     case 'controls_forEach': {
       const variableId = currentBlock.getFieldValue('VAR');
+      const variableName = getVariableName(variableId);
       const listBlock = currentBlock.getInputTargetBlock('LIST');
       const listName = handleBlockByType(listBlock);
       const actionBlock = currentBlock.getInputTargetBlock('DO');
       const actionCode = handleBlockByType(actionBlock);
-      generatedCommand = `forEach(${variableId} in ${listName}) { ${actionCode} }`;
+      generatedCommand = `for(${variableName} in ${listName} ) { ${actionCode} }`;
+      break;
+    }
+
+    // while_loop
+    case 'controls_whileUntil': {
+      const mode = currentBlock.getFieldValue('MODE');
+      const conditionBlock = currentBlock.getInputTargetBlock('BOOL');
+      const conditionCode = handleBlockByType(conditionBlock);
+      const actionBlock = currentBlock.getInputTargetBlock('DO');
+      const actionCode = handleBlockByType(actionBlock);
+      if (mode === 'WHILE') {
+        generatedCommand = `while (${conditionCode}) { ${actionCode} }`;
+      } else {
+        generatedCommand = `do { ${actionCode} } while (${conditionCode})`;
+      }
+      break;
+    }
+
+    case 'controls_for': {
+      const variableId = currentBlock.getFieldValue('VAR');
+      const variableName = getVariableName(variableId);
+      const fromBlock = currentBlock.getInputTargetBlock('FROM');
+      const fromValue = handleBlockByType(fromBlock);
+      const toBlock = currentBlock.getInputTargetBlock('TO');
+      const toValue = handleBlockByType(toBlock);
+      const byBlock = currentBlock.getInputTargetBlock('BY');
+      const byValue = handleBlockByType(byBlock);
+      const actionBlock = currentBlock.getInputTargetBlock('DO');
+      const actionCode = handleBlockByType(actionBlock);
+      generatedCommand = `for( ${variableName}=${fromValue}; ${variableName} <= ${toValue}; ${variableName}+=${byValue} ) { ${actionCode} }`;
+      break;
+    }
+
+    case 'lists_create_with': {
+      const elements = [];
+      for (let i = 0; i < currentBlock.itemCount_; i++) {
+        const elementCode = handleBlockByType(
+          currentBlock.getInputTargetBlock('ADD' + i)
+        );
+        elements.push(elementCode);
+      }
+      generatedCommand = `[${elements.join(', ')}]`;
+      break;
+    }
+
+    case 'lists_getIndex': {
+      const listBlock = currentBlock.getInputTargetBlock('VALUE');
+      console.log('listBlock:', listBlock);
+      const listName = handleBlockByType(listBlock);
+      console.log('listName:', listName);
+      const indexSpecification = currentBlock.getFieldValue('WHERE');
+      console.log('indexSpecification:', indexSpecification);
+      switch (indexSpecification) {
+        case 'FROM_START': {
+          const indexBlock = currentBlock.getInputTargetBlock('AT');
+          const indexValue = handleBlockByType(indexBlock);
+          generatedCommand = `${listName}[${indexValue}]`;
+          break;
+        }
+        case 'FIRST': {
+          generatedCommand = `${listName}[1]`;
+          break;
+        }
+      }
+      break;
+    }
+
+    case 'lists_setIndex': {
+      const listBlock = currentBlock.getInputTargetBlock('LIST');
+      const listName = handleBlockByType(listBlock);
+      console.log('listName:', listName);
+      const indexBlock = currentBlock.getInputTargetBlock('AT');
+      const indexValue = handleBlockByType(indexBlock);
+      console.log('indexValue:', indexValue);
+      const valueBlock = currentBlock.getInputTargetBlock('TO');
+      const value = handleBlockByType(valueBlock);
+      console.log('value:', value);
+      generatedCommand = `${listName}[${indexValue}] = ${value}`;
+      break;
+    }
+
+    case 'text': {
+      generatedCommand = '"' + currentBlock.getFieldValue('TEXT') + '"';
+      break;
+    }
+
+    case 'text_print': {
+      const textBlock = currentBlock.getInputTargetBlock('TEXT');
+      const textValue = handleBlockByType(textBlock);
+      generatedCommand = `print ${textValue}`;
       break;
     }
   }
@@ -469,7 +544,15 @@ function handleBlockByType(currentBlock) {
     'math_arithmetic',
     'logic_compare',
     'logic_operation',
-    'controls_if'
+    'controls_if',
+    'lists_create_with',
+    'lists_getIndex',
+    'lists_setIndex',
+    'controls_forEach',
+    'controls_whileUntil',
+    'controls_for',
+    'text',
+    'text_print'
   ];
 
   if (builtInBlockTypes.includes(currentBlock.type)) {
@@ -817,6 +900,60 @@ generator.forBlock['arrayCreate'] = function (block) {
   }
   var listString = elements.join(' '); // Join elements with space
   return ['(' + listString + ')', generator.ORDER_ATOMIC];
+};
+
+Blockly.Blocks['lists_getIndex'] = {
+  init: function () {
+    this.appendValueInput('VALUE').setCheck('Array').appendField('in list');
+
+    // Customize the dropdown to remove unwanted options
+    this.whereField = new Blockly.FieldDropdown(
+      [
+        ['index', 'FROM_START'],
+        ['first', 'FIRST']
+      ],
+      this.updateShape_.bind(this)
+    ); // Bind the updateShape_ function to handle changes
+
+    this.appendDummyInput().appendField(this.whereField, 'WHERE');
+
+    // Initially call the shape update in case the default value requires it
+    this.updateShape_(this.whereField.getValue());
+
+    this.setOutput(true);
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+  },
+
+  updateShape_: function (option) {
+    // Remove previous "AT" input if it exists
+    if (this.getInput('AT')) {
+      this.removeInput('AT');
+    }
+
+    if (option === 'FROM_START') {
+      this.appendValueInput('AT');
+    }
+  }
+};
+
+Blockly.Blocks['lists_setIndex'] = {
+  init: function () {
+    // Create the input for the list
+    this.appendValueInput('LIST').setCheck('Array').appendField('in list');
+
+    // Input for the index where the value should be set
+    this.appendValueInput('AT').setCheck('Number').appendField('set in index');
+
+    // Input for the value to set
+    this.appendValueInput('TO').appendField('to');
+
+    // Make this block able to connect to other blocks
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+
+    // Set block color
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+  }
 };
 
 //***********************************

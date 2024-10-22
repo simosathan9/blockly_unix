@@ -4,7 +4,7 @@ var conditionActionBlock = {
   message0: '%{BKY_CONDITION_ACTION_COND} %1',
   args0: [
     {
-      type: 'input_statement',
+      type: 'input_value',
       name: 'COND'
     }
   ],
@@ -23,6 +23,7 @@ var conditionActionBlock = {
   helpUrl: '%{BKY_CONDITION_ACTION_HELPURL}', // URL to further information or documentation.
   generateCommand: function (block) {
     var cond = block.getInputTargetBlock('COND');
+    console.log('cond:', cond);
     var condCommand = '';
     if (cond !== null) {
       condCommand = handleBlockByType(cond);

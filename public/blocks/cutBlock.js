@@ -67,11 +67,7 @@ var cutBlock = {
   previousStatement: 'Action',
   nextStatement: 'Action',
   tooltip: '%{BKY_CUT_TOOLTIP}',
-  extensions: [
-    'cut_validation',
-    'integer_validation',
-    'disallow_multiple_filenames'
-  ],
+  extensions: ['cut_validation', 'integer_validation'],
   helpUrl: '%{BKY_CUT_HELPURL}', // URL to further information or documentation.
 
   generateCommand: function (block) {

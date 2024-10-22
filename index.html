@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blockly Demo: Unix</title>
+    <title>Ublocks</title>
     <meta name="x-auth-token" content="" />
     <script src="https://unpkg.com/blockly@latest/blockly_compressed.js"></script>
     <script src="https://unpkg.com/blockly@latest/blocks_compressed.js"></script>
@@ -85,6 +85,7 @@
     <script src="blocks/xargsBlock.js"></script>
     <script src="blocks/conditionActionBlock.js"></script>
     <script src="blocks/conditionBlock.js"></script>
+    <script src="blocks/arrayCreateBlock.js"></script>
     <!-- END OF BLOCK DEFINITION -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -292,6 +293,11 @@
           colourSecondary: '#ff0000',
           colourTertiary: '#C5EAFF'
         },
+        Tables: {
+          colourPrimary: '#260',
+          colourSecondary: '#ff0000',
+          colourTertiary: '#C5EAFF'
+        },
         'Other Commands': {
           colourPrimary: '#009688',
           colourSecondary: '#ff0000',
@@ -449,14 +455,13 @@
             name: [MSG.FIELD_PROCESSING],
             colour: '#3B7C09',
             contents: [
-              { kind: 'block', type: 'beginEnd' },
-              { kind: 'block', type: 'conditionAction' },
+              //{ kind: 'block', type: 'beginEnd' },
               { kind: 'block', type: 'awk' },
-              { kind: 'block', type: 'condOutput' },
+              { kind: 'block', type: 'conditionAction' },
               { kind: 'block', type: 'column' },
               { kind: 'block', type: 'NR' },
               { kind: 'block', type: 'NF' },
-              { kind: 'block', type: 'xargs' },
+              // { kind: 'block', type: 'xargs' },
               { kind: 'block', type: 'condition' },
               {
                 kind: 'category',
@@ -485,12 +490,7 @@
                 kind: 'category',
                 name: [MSG.LOGIC],
                 colour: '210',
-                contents: [
-                  { kind: 'block', type: 'controls_if' },
-                  { kind: 'block', type: 'logic_compare' },
-                  { kind: 'block', type: 'logic_operation' },
-                  { kind: 'block', type: 'logic_negate' }
-                ]
+                contents: [{ kind: 'block', type: 'controls_if' }]
               },
               {
                 kind: 'category',
@@ -498,7 +498,8 @@
                 colour: '120',
                 contents: [
                   { kind: 'block', type: 'controls_whileUntil' },
-                  { kind: 'block', type: 'controls_forEach' }
+                  { kind: 'block', type: 'controls_forEach' },
+                  { kind: 'block', type: 'controls_for' }
                 ]
               },
               {
@@ -533,9 +534,32 @@
               },
               {
                 kind: 'category',
-                name: [MSG.VARIABLES],
+                name: [MSG.VARIABLES], // Use the translated message for "Variables"
                 colour: '330',
                 custom: 'VARIABLE'
+              },
+              {
+                kind: 'category',
+                name: 'Lists', // Reference to the translated message for "Lists"
+                colour: '260',
+                contents: [
+                  {
+                    kind: 'block',
+                    type: 'lists_create_with' // Block for creating a list with items
+                  },
+                  {
+                    kind: 'block',
+                    type: 'lists_getIndex' // Block for getting an item from a list
+                  },
+                  {
+                    kind: 'block',
+                    type: 'lists_setIndex' // Block for setting an item in a list
+                  }
+                  //{
+                  //  kind: 'block',
+                  //  type: 'lists_getSublist' // Block for getting a sublist from a list
+                  //}
+                ]
               }
             ]
           },

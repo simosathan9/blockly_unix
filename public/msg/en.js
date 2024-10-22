@@ -292,6 +292,7 @@ Blockly.Msg['EXPAND_BLOCK'] = 'Expand Block';
 Blockly.Msg['EXTERNAL_INPUTS'] = 'External Inputs';
 Blockly.Msg['HELP'] = 'Help';
 Blockly.Msg['INLINE_INPUTS'] = 'Inline Inputs';
+Blockly.Msg['LISTS'] = 'Lists';
 Blockly.Msg['LISTS_CREATE_EMPTY_HELPURL'] =
   'https://github.com/google/blockly/wiki/Lists#create-empty-list';
 Blockly.Msg['LISTS_CREATE_EMPTY_TITLE'] = 'create empty list';

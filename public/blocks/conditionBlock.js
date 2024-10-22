@@ -20,7 +20,10 @@ var conditionBlock = {
         ['<', '<'],
         ['<=', '<='],
         ['>', '>'],
-        ['>=', '>=']
+        ['>=', '>='],
+        ['&& (AND)', '&&'],
+        ['|| (OR)', '||'],
+        ['! (NOT)', '!']
       ]
     }
   ],
@@ -33,7 +36,7 @@ var conditionBlock = {
     }
   ],
   style: 'Field Processing',
-  previousStatement: null,
+  output: null,
   generateCommand: function (block) {
     var awkCondition = '';
     const leftPartBlock = block.getInputTargetBlock('left_part');

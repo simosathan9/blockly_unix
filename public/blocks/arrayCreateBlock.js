@@ -9,7 +9,7 @@ var arrayCreateBlock = {
     }
   ],
   output: 'Array',
-  style: 'list_blocks',
+  style: 'Field Processing',
   nextStatement: 'Action',
   helpUrl: '%{BKY_ARRAY_CREATE_WITH_HELPURL}',
   tooltip: '%{BKY_ARRAY_CREATE_WITH_TOOLTIP}',
